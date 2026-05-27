@@ -1,0 +1,9 @@
+.DS_Store
+*.zip
+data/
+results/
+__pycache__/
+.pycache/
+.venv/
+.model_cache/
+.env
