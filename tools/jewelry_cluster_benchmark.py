@@ -39,6 +39,19 @@ SHOT_KEY_RE = re.compile(
     r"^(?P<date>\d{8})-(?:high res|web res 1500|png 1500)(?:-(?P<num>\d+))?\.(?:jpg|jpeg|png)$",
     re.IGNORECASE,
 )
+CATALOG_PRODUCT_ID_RE = re.compile(r"(?<![A-Z0-9])[REN]\d{3}(?!\d)", re.IGNORECASE)
+CATALOG_CATEGORY_ALIASES = {
+    "rings": "טבעות",
+    "ring": "טבעות",
+    "טבעות": "טבעות",
+    "earrings": "עגילים",
+    "earring": "עגילים",
+    "עגילים": "עגילים",
+    "necklaces": "שרשראות",
+    "necklace": "שרשראות",
+    "שרשראות": "שרשראות",
+}
+CATALOG_CATEGORY_CODE = {"טבעות": "R", "עגילים": "E", "שרשראות": "N"}
 
 
 @dataclass
@@ -215,6 +228,80 @@ def iter_image_files(base: Path) -> Iterable[Path]:
     return sorted(path for path in base.rglob("*") if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS)
 
 
+def catalog_product_ids(text: str) -> list[str]:
+    return sorted(set(match.group(0).upper() for match in CATALOG_PRODUCT_ID_RE.finditer(text)))
+
+
+def catalog_image_role(path: Path) -> str:
+    lowered = " ".join(part.lower() for part in path.parts)
+    if "model" in lowered or "lifestyle" in lowered or "אווירה" in lowered:
+        return "model_or_lifestyle"
+    if "front" in lowered or "frontal" in lowered:
+        return "front"
+    if "back" in lowered:
+        return "back"
+    if "side" in lowered:
+        return "side"
+    if "angled" in lowered or "angle" in lowered:
+        return "angled"
+    if "detail" in lowered or "crop" in lowered:
+        return "detail_or_crop"
+    return "unknown"
+
+
+def catalog_export_kind(path: Path) -> str:
+    lowered_parts = [part.lower().strip() for part in path.parts]
+    suffix = path.suffix.lower()
+    if suffix == ".png" or any(part == "png" for part in lowered_parts):
+        return "png"
+    if any("print" == part or part.startswith("print") for part in lowered_parts) or "high res" in path.name.lower():
+        return "print"
+    if any(part == "web" or part.startswith("web ") for part in lowered_parts) or "web res" in path.name.lower():
+        return "web"
+    if "crop" in lowered_parts:
+        return "crop"
+    return "other"
+
+
+def catalog_shot_key(path: Path) -> str:
+    stem = path.stem.lower()
+    stem = re.sub(r"^(עותק של|copy of)\s+", "", stem).strip()
+    stem = CATALOG_PRODUCT_ID_RE.sub("", stem)
+    replacements = [
+        r"web[- ]?res[- ]?1500",
+        r"png[- ]?1500",
+        r"high[- ]?res",
+        r"\bprint\b",
+        r"_print\b",
+        r"\barchive\b",
+    ]
+    for pattern in replacements:
+        stem = re.sub(pattern, "", stem, flags=re.IGNORECASE)
+    stem = re.sub(r"[^a-z0-9א-ת]+", "-", stem)
+    stem = re.sub(r"-+", "-", stem).strip("-")
+    return stem or path.stem.lower()
+
+
+def catalog_normalized_category(raw: str) -> str | None:
+    return CATALOG_CATEGORY_ALIASES.get(raw)
+
+
+def iter_catalog_image_files(root: Path, categories: set[str]) -> Iterable[tuple[str, Path, Path]]:
+    for category_dir in sorted(path for path in root.iterdir() if path.is_dir()):
+        category = catalog_normalized_category(category_dir.name)
+        if category not in categories:
+            continue
+        for path in iter_image_files(category_dir):
+            yield category, category_dir, path
+
+
+def catalog_product_folder(category_dir: Path, image_path: Path) -> str:
+    rel = image_path.relative_to(category_dir)
+    if len(rel.parts) <= 1:
+        return ""
+    return rel.parts[0]
+
+
 def scan_source(source: str, base: Path, tmpdir: Path, start_index: int) -> list[Occurrence]:
     occurrences: list[Occurrence] = []
     for index, path in enumerate(iter_image_files(base), start=start_index):
@@ -245,6 +332,133 @@ def scan_source(source: str, base: Path, tmpdir: Path, start_index: int) -> list
             )
         )
     return occurrences
+
+
+def scan_catalog(root: Path, categories: set[str], tmpdir: Path) -> list[dict]:
+    occurrences = []
+    for index, (category, category_dir, path) in enumerate(iter_catalog_image_files(root, categories), start=1):
+        rel = path.relative_to(root)
+        product_folder = catalog_product_folder(category_dir, path)
+        folder_ids = catalog_product_ids(product_folder)
+        filename_ids = catalog_product_ids(path.name)
+        product_ids = filename_ids or folder_ids
+        width, height = image_size(path)
+        occurrences.append(
+            {
+                "occurrence_id": f"CO{index:05d}",
+                "category": category,
+                "category_code": CATALOG_CATEGORY_CODE.get(category, ""),
+                "path": str(path),
+                "rel_path": str(rel),
+                "product_folder": product_folder,
+                "product_folder_path": str(Path(category) / product_folder) if product_folder else category,
+                "folder_product_ids": folder_ids,
+                "filename_product_ids": filename_ids,
+                "product_ids": product_ids,
+                "reference_cluster_id": f"{category}/{product_folder}" if product_folder else category,
+                "filename": path.name,
+                "extension": path.suffix.lower(),
+                "export_kind": catalog_export_kind(path),
+                "image_role": catalog_image_role(rel),
+                "shot_key": catalog_shot_key(path),
+                "size_bytes": path.stat().st_size,
+                "width": width,
+                "height": height,
+                "sha256": sha256(path),
+                "ahash": average_hash(path, tmpdir),
+                "dhash": difference_hash(path, tmpdir),
+            }
+        )
+    return occurrences
+
+
+def catalog_asset_sort_key(group: list[dict]) -> tuple:
+    preferred = choose_catalog_preferred(group, KIND_REVIEW_PRIORITY)
+    return (preferred["category"], preferred["product_folder"], preferred["shot_key"], preferred["filename"])
+
+
+def choose_catalog_preferred(group: list[dict], kind_priority: dict[str, int]) -> dict:
+    return sorted(
+        group,
+        key=lambda occurrence: (
+            kind_priority.get(occurrence["export_kind"], 99),
+            occurrence["image_role"] == "model_or_lifestyle",
+            occurrence["size_bytes"],
+            occurrence["rel_path"],
+        ),
+    )[0]
+
+
+def normalize_catalog_assets(occurrences: list[dict]) -> tuple[list[dict], dict[str, str]]:
+    uf = UnionFind([occurrence["occurrence_id"] for occurrence in occurrences])
+    by_sha: dict[str, list[dict]] = defaultdict(list)
+    by_product_shot: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
+    for occurrence in occurrences:
+        by_sha[occurrence["sha256"]].append(occurrence)
+        if occurrence["product_folder"] and occurrence["shot_key"]:
+            by_product_shot[(occurrence["category"], occurrence["product_folder"], occurrence["shot_key"])].append(occurrence)
+    for group in by_sha.values():
+        for occurrence in group[1:]:
+            uf.union(group[0]["occurrence_id"], occurrence["occurrence_id"])
+    for group in by_product_shot.values():
+        # Export variants of the same named shot: web/png/print.
+        for occurrence in group[1:]:
+            uf.union(group[0]["occurrence_id"], occurrence["occurrence_id"])
+
+    by_root: dict[str, list[dict]] = defaultdict(list)
+    for occurrence in occurrences:
+        by_root[uf.find(occurrence["occurrence_id"])].append(occurrence)
+
+    assets = []
+    occurrence_to_asset = {}
+    for index, group in enumerate(sorted(by_root.values(), key=catalog_asset_sort_key), start=1):
+        asset_id = f"CA{index:05d}"
+        for occurrence in group:
+            occurrence_to_asset[occurrence["occurrence_id"]] = asset_id
+        preferred = choose_catalog_preferred(group, KIND_REVIEW_PRIORITY)
+        quality = choose_catalog_preferred(group, KIND_QUALITY_PRIORITY)
+        product_ids = sorted(set(pid for occurrence in group for pid in occurrence["product_ids"]))
+        folder_ids = sorted(set(pid for occurrence in group for pid in occurrence["folder_product_ids"]))
+        filename_ids = sorted(set(pid for occurrence in group for pid in occurrence["filename_product_ids"]))
+        reference_clusters = sorted(set(occurrence["reference_cluster_id"] for occurrence in group))
+        categories = sorted(set(occurrence["category"] for occurrence in group))
+        product_folders = sorted(set(occurrence["product_folder"] for occurrence in group if occurrence["product_folder"]))
+        export_kinds = sorted(set(occurrence["export_kind"] for occurrence in group))
+        roles = sorted(set(occurrence["image_role"] for occurrence in group))
+        shot_keys = sorted(set(occurrence["shot_key"] for occurrence in group if occurrence["shot_key"]))
+        flags = []
+        if len(categories) > 1:
+            flags.append("multiple_categories")
+        if len(reference_clusters) > 1:
+            flags.append("shared_across_product_folders")
+        if len(filename_ids) > 1 or (not filename_ids and len(product_ids) > 1):
+            flags.append("multiple_product_ids")
+        if folder_ids and filename_ids and set(folder_ids).isdisjoint(filename_ids):
+            flags.append("folder_filename_id_mismatch")
+        if not product_ids:
+            flags.append("missing_product_id")
+        if len(group) == 1:
+            flags.append("single_occurrence")
+        assets.append(
+            {
+                "asset_id": asset_id,
+                "category": preferred["category"],
+                "preferred_path": preferred["path"],
+                "quality_path": quality["path"],
+                "product_ids": product_ids,
+                "folder_product_ids": folder_ids,
+                "filename_product_ids": filename_ids,
+                "reference_cluster_ids": reference_clusters,
+                "product_folders": product_folders,
+                "export_kinds": export_kinds,
+                "image_roles": roles,
+                "shot_keys": shot_keys,
+                "flags": flags,
+                "occurrence_count": len(group),
+                "occurrences": sorted(group, key=lambda item: item["rel_path"]),
+            }
+        )
+    return assets, occurrence_to_asset
 
 
 def inherited_reference_labels(occurrences: list[Occurrence]) -> dict[str, set[str]]:
@@ -560,8 +774,157 @@ def write_manifest_csv(path: Path, assets: list[dict]) -> None:
             )
 
 
+def write_catalog_manifest_csv(path: Path, assets: list[dict]) -> None:
+    fields = [
+        "asset_id",
+        "category",
+        "preferred_path",
+        "quality_path",
+        "product_ids",
+        "reference_cluster_ids",
+        "product_folders",
+        "export_kinds",
+        "image_roles",
+        "shot_keys",
+        "flags",
+        "occurrence_count",
+    ]
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        for asset in assets:
+            writer.writerow(
+                {
+                    "asset_id": asset["asset_id"],
+                    "category": asset["category"],
+                    "preferred_path": asset["preferred_path"],
+                    "quality_path": asset["quality_path"],
+                    "product_ids": "|".join(asset["product_ids"]),
+                    "reference_cluster_ids": "|".join(asset["reference_cluster_ids"]),
+                    "product_folders": "|".join(asset["product_folders"]),
+                    "export_kinds": "|".join(asset["export_kinds"]),
+                    "image_roles": "|".join(asset["image_roles"]),
+                    "shot_keys": "|".join(asset["shot_keys"]),
+                    "flags": "|".join(asset["flags"]),
+                    "occurrence_count": asset["occurrence_count"],
+                }
+            )
+
+
 def write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def catalog_report_markdown(occurrences: list[dict], assets: list[dict]) -> str:
+    category_counts = Counter(occurrence["category"] for occurrence in occurrences)
+    asset_category_counts = Counter(asset["category"] for asset in assets)
+    export_counts = Counter(occurrence["export_kind"] for occurrence in occurrences)
+    role_counts = Counter(occurrence["image_role"] for occurrence in occurrences)
+    flag_counts = Counter(flag for asset in assets for flag in asset["flags"])
+    product_ids = sorted(set(pid for asset in assets for pid in asset["product_ids"]))
+    reference_clusters = sorted(set(ref for asset in assets for ref in asset["reference_cluster_ids"]))
+    lines = [
+        "# Catalog Normalization Report",
+        "",
+        "## Summary",
+        "",
+        f"- Image occurrences: {len(occurrences)}",
+        f"- Visual assets: {len(assets)}",
+        f"- Product IDs represented: {len(product_ids)}",
+        f"- Product folders represented: {len(reference_clusters)}",
+        "",
+        "## Occurrences By Category",
+        "",
+    ]
+    for category, count in sorted(category_counts.items()):
+        lines.append(f"- {category}: {count}")
+    lines.extend(["", "## Visual Assets By Category", ""])
+    for category, count in sorted(asset_category_counts.items()):
+        lines.append(f"- {category}: {count}")
+    lines.extend(["", "## Export Kinds", ""])
+    for kind, count in export_counts.most_common():
+        lines.append(f"- {kind}: {count}")
+    lines.extend(["", "## Image Roles", ""])
+    for role, count in role_counts.most_common():
+        lines.append(f"- {role}: {count}")
+    lines.extend(["", "## Asset Flags", ""])
+    if flag_counts:
+        for flag, count in flag_counts.most_common():
+            lines.append(f"- {flag}: {count}")
+    else:
+        lines.append("- No flags")
+    return "\n".join(lines) + "\n"
+
+
+def write_catalog_review_sheet(path: Path, title: str, assets: list[dict], out_dir: Path, max_assets: int = 200) -> None:
+    thumbs_dir = out_dir / "review_sheets" / "thumbs"
+    thumbs_dir.mkdir(parents=True, exist_ok=True)
+    cards = []
+    for asset in assets[:max_assets]:
+        figures = []
+        for occurrence in asset["occurrences"][:12]:
+            thumb = thumbs_dir / f"{occurrence['occurrence_id']}-{hashlib.md5(occurrence['path'].encode()).hexdigest()}.jpg"
+            if not thumb.exists():
+                make_thumbnail(Path(occurrence["path"]), thumb)
+            caption = (
+                f"{occurrence['export_kind']} / {occurrence['image_role']}<br>"
+                f"{html.escape(occurrence['rel_path'])}<br>"
+                f"ids: {html.escape(', '.join(occurrence['product_ids']) or 'none')}"
+            )
+            figures.append(
+                "<figure>"
+                f"<img src='{html.escape(str(Path('thumbs') / thumb.name))}' alt=''>"
+                f"<figcaption>{caption}</figcaption>"
+                "</figure>"
+            )
+        cards.append(
+            "<section class='asset'>"
+            f"<h2>{html.escape(asset['asset_id'])} <span>{asset['occurrence_count']} occurrences</span></h2>"
+            f"<p><b>Category:</b> {html.escape(asset['category'])}</p>"
+            f"<p><b>Product IDs:</b> {html.escape(', '.join(asset['product_ids']) or 'none')}</p>"
+            f"<p><b>Folders:</b> {html.escape(', '.join(asset['product_folders']) or 'none')}</p>"
+            f"<p><b>Flags:</b> {html.escape(', '.join(asset['flags']) or 'none')}</p>"
+            "<div class='occurrences'>"
+            + "\n".join(figures)
+            + "</div></section>"
+        )
+    path.write_text(
+        "<!doctype html><html><head><meta charset='utf-8'>"
+        f"<title>{html.escape(title)}</title>"
+        "<style>body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;margin:24px;background:#f7f7f4;color:#1f2933}"
+        ".asset{break-inside:avoid;background:white;border:1px solid #ddd;border-radius:6px;margin:0 0 18px;padding:14px}"
+        ".asset h2{font-size:18px;margin:0 0 8px}.asset h2 span{font-size:13px;color:#667085;font-weight:400}"
+        ".asset p{font-size:13px;margin:4px 0}.occurrences{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}"
+        "figure{margin:0;width:180px;border:1px solid #e5e7eb;padding:6px;background:#fafafa}"
+        "img{width:180px;height:180px;object-fit:contain;background:#eee}figcaption{font-size:11px;line-height:1.25;word-break:break-word}"
+        "</style></head><body>"
+        f"<h1>{html.escape(title)}</h1>"
+        f"<p>{len(assets)} assets shown"
+        + (f" (capped at {max_assets})" if len(assets) > max_assets else "")
+        + ".</p>"
+        + "\n".join(cards)
+        + "</body></html>",
+        encoding="utf-8",
+    )
+
+
+def write_catalog_review_sheets(out_dir: Path, assets: list[dict]) -> None:
+    sheets = out_dir / "review_sheets"
+    sheets.mkdir(parents=True, exist_ok=True)
+    write_catalog_review_sheet(sheets / "01_all_assets.html", "Catalog Visual Assets", assets, out_dir)
+    for flag in [
+        "shared_across_product_folders",
+        "multiple_product_ids",
+        "folder_filename_id_mismatch",
+        "missing_product_id",
+        "single_occurrence",
+    ]:
+        write_catalog_review_sheet(
+            sheets / f"02_{flag}.html",
+            flag.replace("_", " ").title(),
+            [asset for asset in assets if flag in asset["flags"]],
+            out_dir,
+        )
 
 
 def load_dotenv(path: Path = Path(".env")) -> None:
@@ -2408,6 +2771,48 @@ def normalize_command(args: argparse.Namespace) -> int:
     return 0
 
 
+def catalog_normalize_command(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    if root.name == "קטלוג" and root.exists():
+        catalog_root = root
+    else:
+        catalog_root = root / "קטלוג" if (root / "קטלוג").exists() else root
+    out_dir = Path(args.out).resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    raw_categories = [item.strip() for item in args.categories.split(",") if item.strip()]
+    categories = {catalog_normalized_category(item) for item in raw_categories}
+    categories.discard(None)
+    if not catalog_root.exists():
+        print(f"ERROR: catalog root does not exist: {catalog_root}", file=sys.stderr)
+        return 2
+    if not categories:
+        print("ERROR: no valid categories selected", file=sys.stderr)
+        return 2
+    if shutil.which("sips") is None:
+        print("ERROR: sips is required on PATH for image metadata and hashes", file=sys.stderr)
+        return 2
+    try:
+        with tempfile.TemporaryDirectory(prefix="jewelry-catalog-normalize-") as tmp:
+            occurrences = scan_catalog(catalog_root, categories, Path(tmp))
+        if not occurrences:
+            print("ERROR: no catalog image files found", file=sys.stderr)
+            return 1
+        assets, occurrence_to_asset = normalize_catalog_assets(occurrences)
+        write_json(out_dir / "catalog_occurrences.json", occurrences)
+        write_json(out_dir / "catalog_visual_assets.json", {"visual_assets": assets, "occurrence_to_asset": occurrence_to_asset})
+        write_catalog_manifest_csv(out_dir / "manifest.csv", assets)
+        (out_dir / "catalog_normalization_report.md").write_text(catalog_report_markdown(occurrences, assets), encoding="utf-8")
+        write_catalog_review_sheets(out_dir, assets)
+    except Exception as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    print(f"Catalog root: {catalog_root}")
+    print(f"Image occurrences: {len(occurrences)}")
+    print(f"Visual assets: {len(assets)}")
+    print(f"Wrote: {out_dir}")
+    return 0
+
+
 def parse_thresholds(raw: str) -> list[float]:
     thresholds = [float(item.strip()) for item in raw.split(",") if item.strip()]
     if not thresholds:
@@ -2616,6 +3021,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="maximum ahash+dhash distance for edit dedup when --edit-dedup is enabled",
     )
     normalize.set_defaults(func=normalize_command)
+
+    catalog_normalize = subparsers.add_parser("catalog-normalize", help="normalize product-folder catalog images")
+    catalog_normalize.add_argument("--root", required=True, help="catalog root folder or folder containing קטלוג")
+    catalog_normalize.add_argument("--out", required=True, help="output directory")
+    catalog_normalize.add_argument(
+        "--categories",
+        default="rings,earrings,necklaces",
+        help="comma-separated categories: rings, earrings, necklaces, or Hebrew folder names",
+    )
+    catalog_normalize.set_defaults(func=catalog_normalize_command)
 
     cluster = subparsers.add_parser("cluster", help="cluster normalized visual assets")
     cluster.add_argument("--manifest", required=True, help="normalized manifest.csv")

@@ -261,6 +261,17 @@ class ClusterBenchmarkTests(unittest.TestCase):
 
         self.assertEqual(lookup["A1--A2"]["decision"], "same_physical_product")
 
+    def test_catalog_product_ids_extracts_ids(self):
+        self.assertEqual(jcb.catalog_product_ids("R047-R050_ring_arabesque E136"), ["E136", "R047", "R050"])
+
+    def test_catalog_shot_key_groups_export_variants(self):
+        jpg = Path("E101_louvre_white_front_02.jpg")
+        png = Path("E101_louvre_white_front_02.png")
+        high = Path("E101_louvre_white_front_02_print.jpg")
+
+        self.assertEqual(jcb.catalog_shot_key(jpg), jcb.catalog_shot_key(png))
+        self.assertEqual(jcb.catalog_shot_key(jpg), jcb.catalog_shot_key(high))
+
 
 if __name__ == "__main__":
     unittest.main()
