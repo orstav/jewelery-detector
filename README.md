@@ -47,7 +47,39 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements-local.txt
 ```
 
-Run the current beta benchmark shape:
+Generate a production-shaped embedding payload for one image:
+
+```bash
+python3 tools/jewelry_detector.py profile \
+  --image /path/image.jpg \
+  --image-id img_123 \
+  --out /tmp/img_123.profile.json \
+  --model gpt-4.1-mini \
+  --max-image-size 1024
+```
+
+```bash
+python3 tools/jewelry_detector.py embed \
+  --image /path/image.jpg \
+  --image-id img_123 \
+  --out /tmp/img_123.embedding.json \
+  --provider siglip \
+  --model-id google/siglip-base-patch16-224 \
+  --device auto \
+  --image-size 224 \
+  --profile /tmp/img_123.profile.json
+```
+
+`profile` writes OpenCLAW-ready profile JSON that OpenCLAW should store
+in its own DB. `embed` writes source hash, embedding model, preprocess
+version, crop metadata, risk flags, and one embedding per usable crop. Neither
+command reads benchmark manifests or catalog labels.
+
+For dependency-light OpenCLAW plumbing tests, replace the provider flags with
+`--provider fake`. The fake provider is deterministic and exercises the same JSON
+contract without loading a model.
+
+Run the current evaluation benchmark shape:
 
 ```bash
 scripts/openclaw_beta_benchmark.sh \
@@ -57,7 +89,8 @@ scripts/openclaw_beta_benchmark.sh \
 ```
 
 The script writes normalized assets, benchmark JSON/Markdown, and review HTML
-under the output directory.
+under the output directory. It is evaluation-only and should not be used as the
+production request path.
 
 OpenClaw agents should start with [docs/OPENCLAW.md](docs/OPENCLAW.md). It
 defines the run command, output fields to parse, report format, failure modes,

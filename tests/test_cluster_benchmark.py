@@ -1,5 +1,8 @@
+import argparse
 import csv
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,6 +11,7 @@ import pytest
 from PIL import Image, ImageDraw
 from tools import build_benchmark_review as bbr
 from tools import jewelry_cluster_benchmark as jcb
+from tools import jewelry_detector_db as jdb
 
 
 def asset(asset_id: str, labels: list[str]) -> jcb.VisualAsset:
@@ -43,6 +47,16 @@ def occurrence(occurrence_id: str, source: str, kind: str, ahash: str, dhash: st
         ahash=ahash,
         dhash=dhash,
         shot_key="",
+    )
+
+
+def argparse_namespace_for_product_embed() -> argparse.Namespace:
+    return argparse.Namespace(
+        profile=None,
+        detector="profile",
+        owlv2_model="google/owlv2-base-patch16-ensemble",
+        owlv2_threshold=0.05,
+        device="auto",
     )
 
 
@@ -848,6 +862,346 @@ class ClusterBenchmarkTests(unittest.TestCase):
         risky = [flag for view in views for flag in view.get("risk_flags", [])]
         assert "profile_review_risk" in risky
         assert "low_confidence" in risky
+
+    def test_product_embed_returns_production_json_without_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "product.jpg"
+            Image.new("RGB", (32, 24), "white").save(image_path)
+            out = base / "product.embedding.json"
+
+            exit_code = jcb.main(
+                [
+                    "product-embed",
+                    "--image",
+                    str(image_path),
+                    "--image-id",
+                    "img_123",
+                    "--out",
+                    str(out),
+                    "--provider",
+                    "fake",
+                ]
+            )
+
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 0
+        assert payload["schema_version"] == "1.0"
+        assert payload["image_id"] == "img_123"
+        assert payload["embedding_model"] == "fake-hash-v1"
+        assert payload["preprocess_version"] == "jewelry-evidence-v1"
+        assert payload["embedding_dim"] == 64
+        assert payload["source_sha256"]
+        assert payload["warnings"] == ["no_profile_supplied_full_image_only"]
+        assert len(payload["crops"]) == 1
+        crop = payload["crops"][0]
+        assert crop["crop_id"] == "img_123_full_image"
+        assert crop["view_type"] == "full_image"
+        assert crop["box"] == [0, 0, 32, 24]
+        assert crop["source"] == "full"
+        assert crop["risk_flags"] == []
+        assert crop["usable_for_retrieval"] is True
+        assert len(crop["embedding"]) == 64
+
+    def test_product_embed_fake_provider_is_stable(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "product.jpg"
+            Image.new("RGB", (16, 16), "white").save(image_path)
+            first = jcb.product_embedding_payload(image_path, "img_123", jcb.FakeEmbeddingProvider(), argparse_namespace_for_product_embed())
+            second = jcb.product_embedding_payload(image_path, "img_123", jcb.FakeEmbeddingProvider(), argparse_namespace_for_product_embed())
+
+        assert first["crops"][0]["embedding"] == second["crops"][0]["embedding"]
+
+    def test_product_embed_missing_image_returns_structured_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            out = base / "missing.embedding.json"
+
+            exit_code = jcb.main(
+                [
+                    "product-embed",
+                    "--image",
+                    str(base / "missing.jpg"),
+                    "--image-id",
+                    "img_missing",
+                    "--out",
+                    str(out),
+                    "--provider",
+                    "fake",
+                ]
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 2
+        assert payload["schema_version"] == "1.0"
+        assert payload["status"] == "error"
+        assert payload["error"]["type"] == "FileNotFoundError"
+        assert "image does not exist" in payload["error"]["message"]
+
+    def test_product_profile_returns_db_ready_payload_from_mock_response(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "lifestyle.jpg"
+            Image.new("RGB", (80, 60), "white").save(image_path)
+            mock = base / "mock_profile_response.json"
+            mock.write_text(
+                json.dumps(
+                    {
+                        "scene_type": "model_lifestyle",
+                        "has_hand": True,
+                        "has_person": False,
+                        "background_type": "studio",
+                        "jewelry_items": [
+                            {
+                                "type": "ring",
+                                "dominance": "small",
+                                "object_completeness": "complete",
+                                "box": [20, 10, 30, 30],
+                                "confidence": 0.88,
+                                "identity_features": ["gold band"],
+                            }
+                        ],
+                        "quality_flags": ["hand_context"],
+                        "recommended_evidence_policy": "crop_heavy",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            out = base / "profile.json"
+
+            exit_code = jcb.main(
+                [
+                    "product-profile",
+                    "--image",
+                    str(image_path),
+                    "--image-id",
+                    "img_profile",
+                    "--out",
+                    str(out),
+                    "--model",
+                    "gpt-4.1-mini",
+                    "--mock-response",
+                    str(mock),
+                ]
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 0
+        assert payload["schema_version"] == "1.0"
+        assert payload["image_id"] == "img_profile"
+        assert payload["source_sha256"]
+        assert payload["model"] == "gpt-4.1-mini"
+        assert payload["prompt_version"] == jcb.EVIDENCE_PROFILE_PROMPT_VERSION
+        assert payload["max_image_size"] == 1024
+        assert payload["cache_key"] == jcb.product_profile_cache_key(payload["source_sha256"], "gpt-4.1-mini", 1024)
+        assert payload["profile"]["scene_type"] == "model_lifestyle"
+        assert payload["profile"]["jewelry_items"][0]["box"] == [20, 10, 30, 30]
+        assert payload["raw_response"]["mock_response"]
+
+    def test_product_profile_missing_image_returns_structured_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            out = base / "missing.profile.json"
+
+            exit_code = jcb.main(
+                [
+                    "product-profile",
+                    "--image",
+                    str(base / "missing.jpg"),
+                    "--image-id",
+                    "img_missing",
+                    "--out",
+                    str(out),
+                    "--mock-response",
+                    str(base / "unused.json"),
+                ]
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 2
+        assert payload["status"] == "error"
+        assert payload["error"]["type"] == "FileNotFoundError"
+
+    def test_product_embed_accepts_product_profile_payload(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "profiled.jpg"
+            Image.new("RGB", (90, 70), "white").save(image_path)
+            profile_payload = {
+                "schema_version": "1.0",
+                "image_id": "img_profiled",
+                "source_sha256": jcb.sha256(image_path),
+                "model": "gpt-4.1-mini",
+                "prompt_version": jcb.EVIDENCE_PROFILE_PROMPT_VERSION,
+                "max_image_size": 1024,
+                "cache_key": "unused",
+                "profile": {
+                    "image_id": "img_profiled",
+                    "image_width": 90,
+                    "image_height": 70,
+                    "scene_type": "model_lifestyle",
+                    "has_hand": True,
+                    "has_person": False,
+                    "background_type": "studio",
+                    "jewelry_items": [
+                        {
+                            "type": "ring",
+                            "dominance": "small",
+                            "object_completeness": "complete",
+                            "box": [30, 20, 20, 20],
+                            "confidence": 0.9,
+                            "identity_features": ["gold band"],
+                        }
+                    ],
+                    "quality_flags": [],
+                    "recommended_evidence_policy": "crop_heavy",
+                },
+                "raw_response": None,
+            }
+            profile_path = base / "profile_payload.json"
+            profile_path.write_text(json.dumps(profile_payload), encoding="utf-8")
+            out = base / "profiled.embedding.json"
+
+            exit_code = jcb.main(
+                [
+                    "product-embed",
+                    "--image",
+                    str(image_path),
+                    "--image-id",
+                    "img_profiled",
+                    "--out",
+                    str(out),
+                    "--provider",
+                    "fake",
+                    "--profile",
+                    str(profile_path),
+                ]
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 0
+        assert payload["warnings"] == []
+        assert {crop["view_type"] for crop in payload["crops"]} == {"full_image", "vlm_context", "owlv2_padded", "owlv2_context"}
+
+    def test_jewelry_detector_wrapper_runs_as_documented_script(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "wrapper.jpg"
+            Image.new("RGB", (24, 20), "white").save(image_path)
+            out = base / "wrapper.embedding.json"
+
+            result = subprocess.run(  # noqa: S603
+                [
+                    sys.executable,
+                    "tools/jewelry_detector.py",
+                    "embed",
+                    "--image",
+                    str(image_path),
+                    "--image-id",
+                    "wrapper_img",
+                    "--out",
+                    str(out),
+                    "--provider",
+                    "fake",
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert result.returncode == 0
+        assert payload["image_id"] == "wrapper_img"
+        assert payload["embedding_model"] == "fake-hash-v1"
+        assert payload["crops"][0]["crop_id"] == "wrapper_img_full_image"
+
+    def test_jewelry_detector_db_rejects_fake_dim_before_connecting(self) -> None:
+        payload = {
+            "schema_version": "1.0",
+            "image_id": "fake_img",
+            "embedding_model": "fake-hash-v1",
+            "preprocess_version": "jewelry-evidence-v1",
+            "embedding_dim": 64,
+            "source_sha256": "abc",
+            "crops": [],
+            "warnings": [],
+        }
+
+        with pytest.raises(ValueError, match="embedding_dim must be 768"):
+            jdb.store_embedding("postgresql://unused", payload, source_uri="/tmp/fake.jpg")
+
+    def test_jewelry_detector_db_vector_literal_is_pgvector_compatible(self) -> None:
+        assert jdb.vector_literal([1.0, -0.25, 0.333333333333]) == "[1,-0.25,0.333333333333]"
+
+    def test_jewelry_detector_db_requires_database_url(self) -> None:
+        with pytest.raises(RuntimeError, match="DATABASE_URL is not set"):
+            jdb.database_url("")
+
+    def test_jewelry_detector_db_decides_auto_match_with_margin(self) -> None:
+        policy = {
+            "candidate_min_score": 0.82,
+            "review_min_score": 0.86,
+            "auto_match_score": 0.93,
+            "margin_threshold": 0.03,
+        }
+        decision = jdb.decide_match(
+            [
+                {"product_id": "R001", "score": 0.96, "margin": 0.05, "risk_flags": []},
+                {"product_id": "R002", "score": 0.91, "margin": 0.0, "risk_flags": []},
+            ],
+            policy,
+        )
+
+        assert decision["status"] == "matched"
+        assert decision["selected_product_id"] == "R001"
+        assert decision["reason"] == "auto_match_score_and_margin"
+
+    def test_jewelry_detector_db_sends_low_margin_to_review(self) -> None:
+        policy = {
+            "candidate_min_score": 0.82,
+            "review_min_score": 0.86,
+            "auto_match_score": 0.93,
+            "margin_threshold": 0.03,
+        }
+        decision = jdb.decide_match(
+            [
+                {"product_id": "R001", "score": 0.96, "margin": 0.01, "risk_flags": []},
+                {"product_id": "R002", "score": 0.95, "margin": 0.0, "risk_flags": []},
+            ],
+            policy,
+        )
+
+        assert decision["status"] == "needs_review"
+        assert decision["selected_product_id"] == "R001"
+        assert decision["reason"] == "review_threshold_or_low_margin"
+
+    def test_jewelry_detector_db_rejects_below_candidate_min_score(self) -> None:
+        policy = {
+            "candidate_min_score": 0.82,
+            "review_min_score": 0.86,
+            "auto_match_score": 0.93,
+            "margin_threshold": 0.03,
+        }
+        decision = jdb.decide_match([{"product_id": "R001", "score": 0.81, "margin": 0.2, "risk_flags": []}], policy)
+
+        assert decision["status"] == "no_match"
+        assert decision["selected_product_id"] is None
+        assert decision["reason"] == "below_candidate_min_score"
+
+    def test_jewelry_detector_db_aggregates_by_product(self) -> None:
+        candidates = jdb.aggregate_product_candidates(
+            [
+                {"product_id": "R001", "embedding_id": 1, "similarity": 0.8, "candidate_crop_id": "a", "query_crop_id": "q1", "query_risk_flags": []},
+                {"product_id": "R001", "embedding_id": 2, "similarity": 0.9, "candidate_crop_id": "b", "query_crop_id": "q2", "query_risk_flags": []},
+                {"product_id": "R002", "embedding_id": 3, "similarity": 0.85, "candidate_crop_id": "c", "query_crop_id": "q1", "query_risk_flags": []},
+            ]
+        )
+
+        assert [candidate["product_id"] for candidate in candidates] == ["R001", "R002"]
+        assert candidates[0]["embedding_id"] == 2
+        assert candidates[0]["margin"] == pytest.approx(0.05)
 
     def test_retrieval_groups_matches_by_parent_image(self) -> None:
         views = [

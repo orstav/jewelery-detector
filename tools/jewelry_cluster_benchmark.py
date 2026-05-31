@@ -1789,6 +1789,9 @@ VALID_JEWELRY_DOMINANCE = {"tiny", "small", "medium", "dominant"}
 VALID_OBJECT_COMPLETENESS = {"complete", "partial", "detail_only", "uncertain"}
 VALID_RETRIEVAL_ADJUDICATION_DECISIONS = {"same_product", "same_design_variant", "different", "unsure"}
 EVIDENCE_VIEW_TYPES = {"full_image", "vlm_context", "owlv2_padded", "owlv2_context"}
+PRODUCT_PROFILE_SCHEMA_VERSION = "1.0"
+PRODUCT_EMBED_SCHEMA_VERSION = "1.0"
+PRODUCT_EMBED_PREPROCESS_VERSION = "jewelry-evidence-v1"
 
 
 def product_same_decision(label: str) -> bool:
@@ -3004,6 +3007,74 @@ def call_openai_image_profile(
     return parsed
 
 
+def product_profile_cache_key(source_sha256: str, model: str, max_image_size: int) -> str:
+    return "|".join([source_sha256, model, EVIDENCE_PROFILE_PROMPT_VERSION, str(max_image_size)])
+
+
+def product_profile_payload(image_path: Path, image_id: str, args: argparse.Namespace) -> JsonDict:
+    record = single_image_manifest_record(image_path, image_id)
+    profile: JsonDict
+    if args.mock_response:
+        raw_text = Path(args.mock_response).read_text(encoding="utf-8")
+        profile = parse_image_profile_text(raw_text, image_id, int(record["width"]), int(record["height"]))
+        raw_response: JsonDict | None = {"mock_response": raw_text}
+    else:
+        load_dotenv()
+        api_key = os.environ.get("OPENAI_API_KEY", "")
+        if not api_key:
+            msg = "OPENAI_API_KEY is not set"
+            raise RuntimeError(msg)
+        with tempfile.TemporaryDirectory(prefix="jewelry-product-profile-") as tmp:
+            image_url = image_data_url_for_api(image_path, Path(tmp), args.max_image_size)
+            profile = call_openai_image_profile(
+                api_key,
+                args.model,
+                image_url,
+                image_id,
+                int(record["width"]),
+                int(record["height"]),
+                args.timeout,
+            )
+        raw_response = cast("JsonDict | None", profile.get("raw_response"))
+    parsed_profile = {key: value for key, value in profile.items() if key != "raw_response"}
+    return {
+        "schema_version": PRODUCT_PROFILE_SCHEMA_VERSION,
+        "image_id": image_id,
+        "source_sha256": record["sha256"],
+        "model": args.model,
+        "prompt_version": EVIDENCE_PROFILE_PROMPT_VERSION,
+        "max_image_size": args.max_image_size,
+        "cache_key": product_profile_cache_key(str(record["sha256"]), args.model, args.max_image_size),
+        "profile": parsed_profile,
+        "raw_response": raw_response,
+    }
+
+
+def product_profile_error(message: str, error_type: str = "product_profile_error") -> JsonDict:
+    return {
+        "schema_version": PRODUCT_PROFILE_SCHEMA_VERSION,
+        "status": "error",
+        "error": {
+            "type": error_type,
+            "message": message,
+        },
+    }
+
+
+def product_profile_command(args: argparse.Namespace) -> int:
+    out = Path(args.out).resolve()
+    try:
+        payload = product_profile_payload(Path(args.image).resolve(), args.image_id, args)
+    except Exception as exc:
+        payload = product_profile_error(str(exc), exc.__class__.__name__)
+        write_json(out, payload)
+        print(json.dumps(payload, ensure_ascii=False), file=sys.stderr)
+        return 2
+    write_json(out, payload)
+    print(f"Wrote: {out}")
+    return 0
+
+
 def image_profile_command(args: argparse.Namespace) -> int:
     load_dotenv()
     manifest = load_image_manifest(Path(args.manifest).resolve())
@@ -3293,6 +3364,143 @@ def embed_evidence_views(
         )
     write_json(cache_path, cache)
     return vectors, records
+
+
+def single_image_manifest_record(image_path: Path, image_id: str) -> JsonDict:
+    if not image_path.exists():
+        msg = f"image does not exist: {image_path}"
+        raise FileNotFoundError(msg)
+    if not image_path.is_file():
+        msg = f"image is not a file: {image_path}"
+        raise FileNotFoundError(msg)
+    width, height = image_size(image_path)
+    if not width or not height:
+        msg = f"could not read image dimensions: {image_path}"
+        raise ValueError(msg)
+    return {
+        "image_id": image_id,
+        "source_path": str(image_path.resolve()),
+        "filename": image_path.name,
+        "width": int(width),
+        "height": int(height),
+        "sha256": sha256(image_path),
+        "status": "ready",
+    }
+
+
+def default_product_embed_views(record: JsonDict) -> list[JsonDict]:
+    width = int(record["width"])
+    height = int(record["height"])
+    image_id = str(record["image_id"])
+    return [
+        view_record(
+            image_id=image_id,
+            view_type="full_image",
+            source="full",
+            box=(0, 0, width, height),
+            view_path=Path(str(record["source_path"])),
+            risk_flags=[],
+            usable=True,
+        )
+    ]
+
+
+def profile_product_embed_views(record: JsonDict, profile: JsonDict, out_dir: Path, args: argparse.Namespace) -> list[JsonDict]:
+    profile = dict(profile)
+    profile["image_id"] = str(record["image_id"])
+    return generate_evidence_views(
+        [record],
+        {str(record["image_id"]): profile},
+        out_dir,
+        detector=args.detector,
+        owlv2_model=args.owlv2_model,
+        owlv2_threshold=args.owlv2_threshold,
+        device=args.device,
+    )
+
+
+def product_embedding_payload(image_path: Path, image_id: str, provider: EmbeddingProvider, args: argparse.Namespace) -> JsonDict:
+    record = single_image_manifest_record(image_path, image_id)
+    warnings: list[str] = []
+    with tempfile.TemporaryDirectory(prefix="jewelry-product-embed-") as tmp:
+        tmpdir = Path(tmp)
+        if args.profile:
+            raw_profile = json.loads(Path(args.profile).read_text(encoding="utf-8"))
+            if not isinstance(raw_profile, dict):
+                msg = "profile JSON must contain one object"
+                raise TypeError(msg)
+            if isinstance(raw_profile.get("profile"), dict):
+                profile = cast("JsonDict", raw_profile["profile"])
+            else:
+                profile = cast("JsonDict", raw_profile)
+            views = profile_product_embed_views(record, profile, tmpdir / "evidence", args)
+        else:
+            views = default_product_embed_views(record)
+            warnings.append("no_profile_supplied_full_image_only")
+
+        vectors, records = embed_evidence_views(views, provider, tmpdir / "embeddings")
+        record_by_view_id = {str(item["view_id"]): item for item in records}
+        crops = []
+        embedding_dim = 0
+        for view in views:
+            view_id = str(view["view_id"])
+            vector = vectors.get(view_id)
+            if vector is None:
+                status = record_by_view_id.get(view_id, {}).get("status", "missing_embedding")
+                warnings.append(f"{view_id}:{status}")
+                continue
+            embedding_dim = len(vector)
+            crops.append(
+                {
+                    "crop_id": view_id,
+                    "view_type": view["view_type"],
+                    "box": view["box"],
+                    "source": view["source"],
+                    "risk_flags": view.get("risk_flags", []),
+                    "usable_for_retrieval": bool(view.get("usable_for_retrieval", True)),
+                    "embedding": vector,
+                }
+            )
+
+    if not crops:
+        msg = "no usable embeddings were produced"
+        raise RuntimeError(msg)
+    return {
+        "schema_version": PRODUCT_EMBED_SCHEMA_VERSION,
+        "image_id": image_id,
+        "embedding_model": provider.provider_id,
+        "preprocess_version": PRODUCT_EMBED_PREPROCESS_VERSION,
+        "embedding_dim": embedding_dim,
+        "source_sha256": record["sha256"],
+        "crops": crops,
+        "warnings": warnings,
+    }
+
+
+def product_embed_error(message: str, error_type: str = "product_embed_error") -> JsonDict:
+    return {
+        "schema_version": PRODUCT_EMBED_SCHEMA_VERSION,
+        "status": "error",
+        "error": {
+            "type": error_type,
+            "message": message,
+        },
+    }
+
+
+def product_embed_command(args: argparse.Namespace) -> int:
+    out = Path(args.out).resolve()
+    try:
+        provider = build_embedding_provider(args)
+        payload = product_embedding_payload(Path(args.image).resolve(), args.image_id, provider, args)
+    except Exception as exc:
+        payload = product_embed_error(str(exc), exc.__class__.__name__)
+        write_json(out, payload)
+        print(json.dumps(payload, ensure_ascii=False), file=sys.stderr)
+        return 2
+    write_json(out, payload)
+    print(f"Wrote: {out}")
+    return 0
 
 
 def feature_tokens(profile: JsonDict) -> set[str]:
@@ -5939,6 +6147,45 @@ def build_parser() -> argparse.ArgumentParser:
     generate_evidence.add_argument("--owlv2-threshold", type=float, default=0.05, help="raw OWLv2 score threshold")
     generate_evidence.add_argument("--device", default="auto", help="OWLv2 device: auto, cpu, mps, or cuda")
     generate_evidence.set_defaults(func=generate_evidence_command)
+
+    product_profile = subparsers.add_parser("product-profile", help="profile one production image as DB-ready JSON for OpenCLAW")
+    product_profile.add_argument("--image", required=True, help="source image path")
+    product_profile.add_argument("--image-id", required=True, help="stable caller-owned image id")
+    product_profile.add_argument("--out", required=True, help="output JSON path")
+    product_profile.add_argument("--model", default="gpt-4.1-mini", help="OpenAI vision-capable model")
+    product_profile.add_argument("--max-image-size", type=int, default=1024, help="max image side sent to AI")
+    product_profile.add_argument("--timeout", type=int, default=90, help="OpenAI request timeout seconds")
+    product_profile.add_argument(
+        "--mock-response",
+        help="parse a local model-response JSON file instead of calling OpenAI; useful for OpenCLAW plumbing tests",
+    )
+    product_profile.set_defaults(func=product_profile_command)
+
+    product_embed = subparsers.add_parser("product-embed", help="embed one production image as crop JSON for OpenCLAW")
+    product_embed.add_argument("--image", required=True, help="source image path")
+    product_embed.add_argument("--image-id", required=True, help="stable caller-owned image id")
+    product_embed.add_argument("--out", required=True, help="output JSON path")
+    product_embed.add_argument(
+        "--provider",
+        choices=["fake", "dinov2", "clip", "siglip"],
+        default="siglip",
+        help="embedding provider; use fake for OpenCLAW plumbing tests and siglip for production",
+    )
+    product_embed.add_argument("--model-id", help="provider-specific Hugging Face model id for CLIP/SigLIP providers")
+    product_embed.add_argument("--dinov2-model", default="dinov2_vits14", help="DINOv2 model name")
+    product_embed.add_argument("--device", default="auto", help="embedding/detector device: auto, cpu, mps, or cuda")
+    product_embed.add_argument("--image-size", type=int, default=224, help="square padded embedding image size")
+    product_embed.add_argument("--offline-model-cache", action="store_true", help="load models from local cache only")
+    product_embed.add_argument("--profile", help="optional single image profile JSON object for crop evidence generation")
+    product_embed.add_argument(
+        "--detector",
+        choices=["profile", "owlv2"],
+        default="profile",
+        help="crop detector used when --profile is supplied",
+    )
+    product_embed.add_argument("--owlv2-model", default="google/owlv2-base-patch16-ensemble", help="Hugging Face OWLv2 model id")
+    product_embed.add_argument("--owlv2-threshold", type=float, default=0.05, help="raw OWLv2 score threshold")
+    product_embed.set_defaults(func=product_embed_command)
 
     multi_view = subparsers.add_parser("multi-view-retrieve", help="embed evidence views and retrieve candidate image matches")
     multi_view.add_argument("--evidence", required=True, help="evidence_views.json from generate-evidence")
