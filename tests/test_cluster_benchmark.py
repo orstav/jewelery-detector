@@ -1119,6 +1119,76 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert payload["warnings"] == []
         assert {crop["view_type"] for crop in payload["crops"]} == {"full_image", "vlm_context", "owlv2_padded", "owlv2_context"}
 
+    def test_profiled_product_embed_crop_views_do_not_require_sips(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "profiled.jpg"
+            Image.new("RGB", (90, 70), "white").save(image_path)
+            profile_payload = {
+                "schema_version": "1.0",
+                "image_id": "img_profiled_no_sips",
+                "source_sha256": jcb.sha256(image_path),
+                "model": "gpt-4.1-mini",
+                "prompt_version": jcb.EVIDENCE_PROFILE_PROMPT_VERSION,
+                "max_image_size": 1024,
+                "cache_key": "unused",
+                "profile": {
+                    "image_id": "img_profiled_no_sips",
+                    "image_width": 90,
+                    "image_height": 70,
+                    "scene_type": "model_lifestyle",
+                    "has_hand": True,
+                    "has_person": False,
+                    "background_type": "studio",
+                    "jewelry_items": [
+                        {
+                            "type": "ring",
+                            "dominance": "small",
+                            "object_completeness": "complete",
+                            "box": [30, 20, 20, 20],
+                            "confidence": 0.9,
+                            "identity_features": ["gold band"],
+                        }
+                    ],
+                    "quality_flags": [],
+                    "recommended_evidence_policy": "crop_heavy",
+                },
+                "raw_response": None,
+            }
+            profile_path = base / "profile_payload.json"
+            profile_path.write_text(json.dumps(profile_payload), encoding="utf-8")
+            out = base / "profiled.embedding.json"
+            original_run_sips = jcb.run_sips
+
+            def fail_sips(_args: list[str]) -> subprocess.CompletedProcess[str]:
+                msg = "sips should not be required for profiled product embed"
+                raise RuntimeError(msg)
+
+            jcb.run_sips = fail_sips
+            try:
+                exit_code = jcb.main(
+                    [
+                        "product-embed",
+                        "--image",
+                        str(image_path),
+                        "--image-id",
+                        "img_profiled_no_sips",
+                        "--out",
+                        str(out),
+                        "--provider",
+                        "fake",
+                        "--profile",
+                        str(profile_path),
+                    ]
+                )
+            finally:
+                jcb.run_sips = original_run_sips
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 0
+        assert payload["warnings"] == []
+        assert {crop["view_type"] for crop in payload["crops"]} == {"full_image", "vlm_context", "owlv2_padded", "owlv2_context"}
+
     def test_jewelry_detector_wrapper_runs_as_documented_script(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)

@@ -2483,23 +2483,27 @@ def asset_is_live_shot(asset: JsonDict) -> bool:
 def crop_image(source: Path, destination: Path, box: tuple[int, int, int, int]) -> bool:
     x, y, w, h = box
     destination.parent.mkdir(parents=True, exist_ok=True)
-    result = run_sips(
-        [
-            "-c",
-            str(h),
-            str(w),
-            "--cropOffset",
-            str(y),
-            str(x),
-            "-s",
-            "format",
-            "jpeg",
-            str(source),
-            "--out",
-            str(destination),
-        ]
-    )
-    if result.returncode == 0 and destination.exists():
+    result = None
+    try:
+        result = run_sips(
+            [
+                "-c",
+                str(h),
+                str(w),
+                "--cropOffset",
+                str(y),
+                str(x),
+                "-s",
+                "format",
+                "jpeg",
+                str(source),
+                "--out",
+                str(destination),
+            ]
+        )
+    except Exception:
+        result = None
+    if result is not None and result.returncode == 0 and destination.exists():
         return True
     try:
         from PIL import Image
