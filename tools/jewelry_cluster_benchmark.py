@@ -137,8 +137,11 @@ def run_sips(args: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 def image_size(path: Path) -> tuple[int | None, int | None]:
-    result = run_sips(["-g", "pixelWidth", "-g", "pixelHeight", str(path)])
-    if result.returncode != 0:
+    try:
+        result = run_sips(["-g", "pixelWidth", "-g", "pixelHeight", str(path)])
+    except Exception:
+        result = None
+    if result is None or result.returncode != 0:
         try:
             from PIL import Image
 
@@ -1181,27 +1184,21 @@ class DinoV2EmbeddingProvider(EmbeddingProvider):
             return "cuda"
         return "cpu"
 
-    def image_tensor(self, image_path: Path, tmpdir: Path) -> Any:
-        torch = self.torch
-        resized = tmpdir / f"{stable_name_digest(str(image_path))}-{self.image_size}.bmp"
-        result = run_sips(["-Z", str(self.image_size), "-s", "format", "bmp", str(image_path), "--out", str(resized)])
-        if result.returncode != 0 or not resized.exists():
-            msg = f"sips failed to prepare image for embedding: {image_path}"
-            raise RuntimeError(msg)
-        width, height, pixels = parse_bmp_pixels(resized)
-        image = torch.tensor(pixels, dtype=torch.float32).view(height, width, 3).permute(2, 0, 1) / 255.0
-        canvas = torch.ones((3, self.image_size, self.image_size), dtype=torch.float32)
-        top = max((self.image_size - height) // 2, 0)
-        left = max((self.image_size - width) // 2, 0)
-        canvas[:, top : top + height, left : left + width] = image[:, : self.image_size, : self.image_size]
-        mean = torch.tensor([0.485, 0.456, 0.406], dtype=torch.float32).view(3, 1, 1)
-        std = torch.tensor([0.229, 0.224, 0.225], dtype=torch.float32).view(3, 1, 1)
-        return ((canvas - mean) / std).unsqueeze(0).to(self.device)
+    def image_tensor(self, image_path: Path) -> Any:
+        return image_tensor_from_pillow(
+            image_path,
+            self.image_size,
+            self.torch,
+            self.device,
+            [0.485, 0.456, 0.406],
+            [0.229, 0.224, 0.225],
+        )
 
     def embed(self, image_path: Path) -> list[float]:
         torch = self.torch
         with tempfile.TemporaryDirectory(prefix="jewelry-dinov2-") as tmp:
-            tensor = self.image_tensor(image_path, Path(tmp))
+            del tmp
+            tensor = self.image_tensor(image_path)
             with torch.no_grad():
                 if self.backend == "transformers":
                     output = self.model(pixel_values=tensor)
@@ -1257,19 +1254,20 @@ class TransformerImageEmbeddingProvider(EmbeddingProvider):
             return "cuda"
         return "cpu"
 
-    def image_tensor(self, image_path: Path, tmpdir: Path) -> Any:
+    def image_tensor(self, image_path: Path) -> Any:
         if self.provider_name == "clip":
             mean = [0.48145466, 0.4578275, 0.40821073]
             std = [0.26862954, 0.26130258, 0.27577711]
         else:
             mean = [0.5, 0.5, 0.5]
             std = [0.5, 0.5, 0.5]
-        return image_tensor_from_sips(image_path, tmpdir, self.image_size, self.torch, self.device, mean, std)
+        return image_tensor_from_pillow(image_path, self.image_size, self.torch, self.device, mean, std)
 
     def embed(self, image_path: Path) -> list[float]:
         torch = self.torch
         with tempfile.TemporaryDirectory(prefix=f"jewelry-{self.provider_name}-") as tmp:
-            tensor = self.image_tensor(image_path, Path(tmp))
+            del tmp
+            tensor = self.image_tensor(image_path)
             with torch.no_grad():
                 if hasattr(self.model, "get_image_features"):
                     vector = self.model.get_image_features(pixel_values=tensor)
@@ -1280,26 +1278,30 @@ class TransformerImageEmbeddingProvider(EmbeddingProvider):
         return normalize_vector([float(value) for value in vector])
 
 
-def image_tensor_from_sips(
+def image_tensor_from_pillow(
     image_path: Path,
-    tmpdir: Path,
     image_size: int,
     torch: Any,
     device: str,
     mean_values: list[float],
     std_values: list[float],
 ) -> Any:
-    resized = tmpdir / f"{stable_name_digest(str(image_path))}-{image_size}.bmp"
-    result = run_sips(["-Z", str(image_size), "-s", "format", "bmp", str(image_path), "--out", str(resized)])
-    if result.returncode != 0 or not resized.exists():
-        msg = f"sips failed to prepare image for embedding: {image_path}"
-        raise RuntimeError(msg)
-    width, height, pixels = parse_bmp_pixels(resized)
-    image = torch.tensor(pixels, dtype=torch.float32).view(height, width, 3).permute(2, 0, 1) / 255.0
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        msg = "Pillow is required for image preprocessing. Install pillow first."
+        raise RuntimeError(msg) from exc
+
+    with Image.open(image_path) as source_image:
+        image = source_image.convert("RGB")
+        image.thumbnail((image_size, image_size), Image.Resampling.LANCZOS)
+        width, height = image.size
+        pixels = list(image.getdata())
+    image_tensor = torch.tensor(pixels, dtype=torch.float32).view(height, width, 3).permute(2, 0, 1) / 255.0
     canvas = torch.ones((3, image_size, image_size), dtype=torch.float32)
     top = max((image_size - height) // 2, 0)
     left = max((image_size - width) // 2, 0)
-    canvas[:, top : top + height, left : left + width] = image[:, :image_size, :image_size]
+    canvas[:, top : top + height, left : left + width] = image_tensor[:, :image_size, :image_size]
     mean = torch.tensor(mean_values, dtype=torch.float32).view(3, 1, 1)
     std = torch.tensor(std_values, dtype=torch.float32).view(3, 1, 1)
     return ((canvas - mean) / std).unsqueeze(0).to(device)

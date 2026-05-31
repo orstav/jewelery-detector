@@ -19,6 +19,10 @@ Postgres with pgvector
 DATABASE_URL for DB-aware commands
 ```
 
+The production `tools/jewelry_detector.py` path uses Pillow for image
+preprocessing and is not macOS- or `sips`-dependent. Some legacy benchmark
+commands in `tools/jewelry_cluster_benchmark.py` still use `sips`.
+
 Install the detector environment:
 
 ```bash
@@ -599,7 +603,6 @@ uncertain candidates.
 The benchmark wrapper expects:
 
 - Python 3
-- macOS `sips`
 - local Python dependencies from `requirements-local.txt`
 - SigLIP model files already available in the local Hugging Face cache when
   `--offline-model-cache` is used
@@ -617,9 +620,6 @@ document and call `tools/jewelry_detector.py`, not the benchmark wrapper.
 - model cache error with `--offline-model-cache`: run once with
   `jewelry_detector.py embed` without `--offline-model-cache` from a trusted
   developer machine to populate the local cache, then rerun offline.
-- `sips` image-prep errors during real embedding: run on macOS for the current
-  local SigLIP path, or replace the image preprocessing path with Pillow/OpenCV
-  before Linux production deployment.
 - `no image files found`: verify that the input directory has product
   subfolders containing `.jpg`, `.jpeg`, `.png`, `.webp`, `.heic`, `.tif`, or
   `.tiff` files.

@@ -940,6 +940,40 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert payload["error"]["type"] == "FileNotFoundError"
         assert "image does not exist" in payload["error"]["message"]
 
+    def test_fake_product_embed_does_not_require_sips(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            image_path = base / "product.jpg"
+            Image.new("RGB", (32, 24), "white").save(image_path)
+            out = base / "product.embedding.json"
+            original_run_sips = jcb.run_sips
+
+            def fail_sips(_args: list[str]) -> subprocess.CompletedProcess[str]:
+                msg = "sips should not be required for product embed"
+                raise RuntimeError(msg)
+
+            jcb.run_sips = fail_sips
+            try:
+                exit_code = jcb.main(
+                    [
+                        "product-embed",
+                        "--image",
+                        str(image_path),
+                        "--image-id",
+                        "img_no_sips",
+                        "--out",
+                        str(out),
+                        "--provider",
+                        "fake",
+                    ]
+                )
+            finally:
+                jcb.run_sips = original_run_sips
+            payload = json.loads(out.read_text(encoding="utf-8"))
+
+        assert exit_code == 0
+        assert payload["image_id"] == "img_no_sips"
+
     def test_product_profile_returns_db_ready_payload_from_mock_response(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
