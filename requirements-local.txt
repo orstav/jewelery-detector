@@ -3,3 +3,4 @@ numpy
 transformers
 psycopg[binary]
 pillow
+pillow-heif

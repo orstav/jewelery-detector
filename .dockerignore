@@ -1,0 +1,18 @@
+.git
+.venv
+.model_cache
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.omx
+__pycache__
+*.pyc
+.DS_Store
+.env
+data
+results
+review_tools
+dataset untested
+*.zip
+temp.txt
+web.zip

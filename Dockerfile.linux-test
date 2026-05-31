@@ -1,0 +1,15 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+COPY requirements-linux-test.txt pyproject.toml ./
+RUN python -m pip install --upgrade pip \
+    && python -m pip install -r requirements-linux-test.txt
+
+COPY tools tools
+COPY tests tests
+
+CMD ["sh", "-c", "python -m pytest tests/test_cluster_benchmark.py -q && python -m ruff check --config pyproject.toml tools tests && python -m mypy --config-file pyproject.toml tools/jewelry_cluster_benchmark.py tools/jewelry_detector.py tools/jewelry_detector_db.py"]

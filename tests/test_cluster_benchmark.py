@@ -940,39 +940,30 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert payload["error"]["type"] == "FileNotFoundError"
         assert "image does not exist" in payload["error"]["message"]
 
-    def test_fake_product_embed_does_not_require_sips(self) -> None:
+    def test_fake_product_embed_uses_portable_image_loading(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
             image_path = base / "product.jpg"
             Image.new("RGB", (32, 24), "white").save(image_path)
             out = base / "product.embedding.json"
-            original_run_sips = jcb.run_sips
 
-            def fail_sips(_args: list[str]) -> subprocess.CompletedProcess[str]:
-                msg = "sips should not be required for product embed"
-                raise RuntimeError(msg)
-
-            jcb.run_sips = fail_sips
-            try:
-                exit_code = jcb.main(
-                    [
-                        "product-embed",
-                        "--image",
-                        str(image_path),
-                        "--image-id",
-                        "img_no_sips",
-                        "--out",
-                        str(out),
-                        "--provider",
-                        "fake",
-                    ]
-                )
-            finally:
-                jcb.run_sips = original_run_sips
+            exit_code = jcb.main(
+                [
+                    "product-embed",
+                    "--image",
+                    str(image_path),
+                    "--image-id",
+                    "img_portable",
+                    "--out",
+                    str(out),
+                    "--provider",
+                    "fake",
+                ]
+            )
             payload = json.loads(out.read_text(encoding="utf-8"))
 
         assert exit_code == 0
-        assert payload["image_id"] == "img_no_sips"
+        assert payload["image_id"] == "img_portable"
 
     def test_product_profile_returns_db_ready_payload_from_mock_response(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1119,21 +1110,21 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert payload["warnings"] == []
         assert {crop["view_type"] for crop in payload["crops"]} == {"full_image", "vlm_context", "owlv2_padded", "owlv2_context"}
 
-    def test_profiled_product_embed_crop_views_do_not_require_sips(self) -> None:
+    def test_profiled_product_embed_crop_views_use_portable_image_loading(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
             image_path = base / "profiled.jpg"
             Image.new("RGB", (90, 70), "white").save(image_path)
             profile_payload = {
                 "schema_version": "1.0",
-                "image_id": "img_profiled_no_sips",
+                "image_id": "img_profiled_portable",
                 "source_sha256": jcb.sha256(image_path),
                 "model": "gpt-4.1-mini",
                 "prompt_version": jcb.EVIDENCE_PROFILE_PROMPT_VERSION,
                 "max_image_size": 1024,
                 "cache_key": "unused",
                 "profile": {
-                    "image_id": "img_profiled_no_sips",
+                    "image_id": "img_profiled_portable",
                     "image_width": 90,
                     "image_height": 70,
                     "scene_type": "model_lifestyle",
@@ -1158,31 +1149,22 @@ class ClusterBenchmarkTests(unittest.TestCase):
             profile_path = base / "profile_payload.json"
             profile_path.write_text(json.dumps(profile_payload), encoding="utf-8")
             out = base / "profiled.embedding.json"
-            original_run_sips = jcb.run_sips
 
-            def fail_sips(_args: list[str]) -> subprocess.CompletedProcess[str]:
-                msg = "sips should not be required for profiled product embed"
-                raise RuntimeError(msg)
-
-            jcb.run_sips = fail_sips
-            try:
-                exit_code = jcb.main(
-                    [
-                        "product-embed",
-                        "--image",
-                        str(image_path),
-                        "--image-id",
-                        "img_profiled_no_sips",
-                        "--out",
-                        str(out),
-                        "--provider",
-                        "fake",
-                        "--profile",
-                        str(profile_path),
-                    ]
-                )
-            finally:
-                jcb.run_sips = original_run_sips
+            exit_code = jcb.main(
+                [
+                    "product-embed",
+                    "--image",
+                    str(image_path),
+                    "--image-id",
+                    "img_profiled_portable",
+                    "--out",
+                    str(out),
+                    "--provider",
+                    "fake",
+                    "--profile",
+                    str(profile_path),
+                ]
+            )
             payload = json.loads(out.read_text(encoding="utf-8"))
 
         assert exit_code == 0

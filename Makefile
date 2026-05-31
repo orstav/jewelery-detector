@@ -1,4 +1,4 @@
-.PHONY: install-dev analyze analyze-max lint typecheck security deadcode test
+.PHONY: install-dev analyze analyze-max lint typecheck security deadcode test linux-test
 
 install-dev:
 	python3 -m pip install -r requirements-dev.txt
@@ -23,3 +23,7 @@ deadcode:
 
 test:
 	python3 -m pytest
+
+linux-test:
+	docker build -f Dockerfile.linux-test -t jewelry-detector-linux-test .
+	docker run --rm jewelry-detector-linux-test

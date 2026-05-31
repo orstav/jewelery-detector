@@ -48,7 +48,6 @@ unfixable = []
 "tools/**/*.py" = [
     "BLE001", # CLI command boundaries intentionally convert unexpected failures into exit codes.
     "S603", # subprocess calls use static executable vectors here.
-    "S607", # macOS system tools are called by executable name.
 ]
 "devtools/**/*.py" = [
     "S603", # The runner executes only the static command table defined in this file.
@@ -71,7 +70,7 @@ exclude = [
 ]
 
 [[tool.mypy.overrides]]
-module = ["torch.*", "transformers.*"]
+module = ["torch.*", "transformers.*", "pillow_heif", "pillow_heif.*"]
 ignore_missing_imports = true
 
 [tool.pyright]

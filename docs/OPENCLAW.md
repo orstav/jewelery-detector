@@ -19,9 +19,9 @@ Postgres with pgvector
 DATABASE_URL for DB-aware commands
 ```
 
-The production `tools/jewelry_detector.py` path uses Pillow for image
-preprocessing and is not macOS- or `sips`-dependent. Some legacy benchmark
-commands in `tools/jewelry_cluster_benchmark.py` still use `sips`.
+The production `tools/jewelry_detector.py` path and the shared benchmark image
+helpers use Pillow for image preprocessing. They do not depend on macOS-only
+image tools.
 
 Install the detector environment:
 
@@ -49,6 +49,15 @@ python3 tools/jewelry_detector.py embed \
   --out /tmp/smoke_test_1.embedding.json \
   --provider fake
 ```
+
+Before a Linux/OpenCLAW trial, run the Linux container test phase from this repo:
+
+```bash
+make linux-test
+```
+
+That builds `Dockerfile.linux-test` on a Debian Python base image and runs the
+focused detector test suite, Ruff, and mypy without macOS tools present.
 
 Warm the SigLIP model cache once on a trusted machine with network access:
 

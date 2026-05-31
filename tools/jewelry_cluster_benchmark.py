@@ -20,8 +20,6 @@ import os
 import re
 import shutil
 import socket
-import struct
-import subprocess  # nosec B404
 import sys
 import tempfile
 import time
@@ -127,80 +125,56 @@ def stable_name_digest(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def run_sips(args: list[str]) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(  # nosec
-        ["sips", *args],
-        text=True,
-        capture_output=True,
-        check=False,
-    )
+def pillow_resample_lanczos() -> Any:
+    from PIL import Image
+
+    image_module = cast("Any", Image)
+    if hasattr(image_module, "Resampling"):
+        return image_module.Resampling.LANCZOS
+    return image_module.LANCZOS
+
+
+def register_pillow_image_plugins() -> None:
+    try:
+        from pillow_heif import register_heif_opener
+    except ImportError:
+        return
+    register_heif_opener()
+
+
+def open_pillow_image(path: Path) -> Any:
+    from PIL import Image
+
+    register_pillow_image_plugins()
+    return Image.open(path)
 
 
 def image_size(path: Path) -> tuple[int | None, int | None]:
     try:
-        result = run_sips(["-g", "pixelWidth", "-g", "pixelHeight", str(path)])
+        with open_pillow_image(path) as image:
+            width, height = cast("tuple[int, int]", image.size)
+            return int(width), int(height)
     except Exception:
-        result = None
-    if result is None or result.returncode != 0:
-        try:
-            from PIL import Image
-
-            with Image.open(path) as image:
-                width, height = image.size
-                return int(width), int(height)
-        except Exception:
-            return None, None
-    width = None
-    height = None
-    for raw_line in result.stdout.splitlines():
-        line = raw_line.strip()
-        if line.startswith("pixelWidth:"):
-            width = int(line.split(":", 1)[1].strip())
-        elif line.startswith("pixelHeight:"):
-            height = int(line.split(":", 1)[1].strip())
-    return width, height
+        return None, None
 
 
-def parse_bmp_pixels(path: Path) -> tuple[int, int, list[tuple[int, int, int]]]:
-    data = path.read_bytes()
-    if data[:2] != b"BM":
-        msg = "not a BMP file"
-        raise TypeError(msg)
-    offset = struct.unpack_from("<I", data, 10)[0]
-    width = struct.unpack_from("<i", data, 18)[0]
-    raw_height = struct.unpack_from("<i", data, 22)[0]
-    bpp = struct.unpack_from("<H", data, 28)[0]
-    if bpp not in (24, 32):
-        msg = f"unsupported BMP bit depth: {bpp}"
-        raise ValueError(msg)
-    height = abs(raw_height)
-    top_down = raw_height < 0
-    bytes_per_pixel = bpp // 8
-    row_stride = ((width * bytes_per_pixel + 3) // 4) * 4
-    pixels: list[tuple[int, int, int]] = []
-    for y in range(height):
-        source_y = y if top_down else height - 1 - y
-        row = offset + source_y * row_stride
-        for x in range(width):
-            pixel_offset = row + x * bytes_per_pixel
-            b, g, r = data[pixel_offset : pixel_offset + 3]
-            pixels.append((r, g, b))
-    return width, height, pixels
+def thumbnail_pixels(path: Path, width: int, height: int) -> list[tuple[int, int, int]]:
+    from PIL import ImageOps
 
-
-def bmp_thumbnail(path: Path, width: int, height: int, tmpdir: Path) -> Path | None:
-    out = tmpdir / f"thumb-{stable_name_digest(str(path))}-{width}x{height}.bmp"
-    result = run_sips(["-z", str(height), str(width), "-s", "format", "bmp", str(path), "--out", str(out)])
-    if result.returncode != 0 or not out.exists():
-        return None
-    return out
+    with open_pillow_image(path) as image:
+        thumbnail = ImageOps.exif_transpose(image).convert("RGB").resize(
+            (width, height),
+            pillow_resample_lanczos(),
+        )
+    return list(thumbnail.getdata())
 
 
 def average_hash(path: Path, tmpdir: Path) -> str:
-    bmp = bmp_thumbnail(path, 8, 8, tmpdir)
-    if bmp is None:
+    _ = tmpdir
+    try:
+        pixels = thumbnail_pixels(path, 8, 8)
+    except Exception:
         return ""
-    _, _, pixels = parse_bmp_pixels(bmp)
     grays = [(r * 299 + g * 587 + b * 114) // 1000 for r, g, b in pixels]
     avg = sum(grays) / len(grays)
     bits = ["1" if gray >= avg else "0" for gray in grays]
@@ -208,10 +182,13 @@ def average_hash(path: Path, tmpdir: Path) -> str:
 
 
 def difference_hash(path: Path, tmpdir: Path) -> str:
-    bmp = bmp_thumbnail(path, 9, 8, tmpdir)
-    if bmp is None:
+    _ = tmpdir
+    width = 9
+    height = 8
+    try:
+        pixels = thumbnail_pixels(path, width, height)
+    except Exception:
         return ""
-    width, height, pixels = parse_bmp_pixels(bmp)
     grays = [(r * 299 + g * 587 + b * 114) // 1000 for r, g, b in pixels]
     bits: list[str] = []
     for y in range(height):
@@ -1287,14 +1264,14 @@ def image_tensor_from_pillow(
     std_values: list[float],
 ) -> Any:
     try:
-        from PIL import Image
+        from PIL import ImageOps
     except ImportError as exc:
         msg = "Pillow is required for image preprocessing. Install pillow first."
         raise RuntimeError(msg) from exc
 
-    with Image.open(image_path) as source_image:
-        image = source_image.convert("RGB")
-        image.thumbnail((image_size, image_size), Image.Resampling.LANCZOS)
+    with open_pillow_image(image_path) as source_image:
+        image = ImageOps.exif_transpose(source_image).convert("RGB")
+        image.thumbnail((image_size, image_size), pillow_resample_lanczos())
         width, height = image.size
         pixels = list(image.getdata())
     image_tensor = torch.tensor(pixels, dtype=torch.float32).view(height, width, 3).permute(2, 0, 1) / 255.0
@@ -2077,10 +2054,23 @@ def ai_benchmark_markdown(model: str, benchmark: JsonDict) -> str:
     return "\n".join(lines)
 
 
+def resize_image_to_jpeg(source: Path, destination: Path, max_size: int) -> bool:
+    try:
+        from PIL import ImageOps
+
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with open_pillow_image(source) as image:
+            prepared = ImageOps.exif_transpose(image).convert("RGB")
+            prepared.thumbnail((max_size, max_size), pillow_resample_lanczos())
+            prepared.save(destination, "JPEG")
+        return destination.exists()
+    except Exception:
+        return False
+
+
 def image_data_url_for_api(path: Path, tmpdir: Path, max_size: int) -> str:
     out = tmpdir / f"{stable_name_digest(str(path))}-{max_size}.jpg"
-    result = run_sips(["-Z", str(max_size), "-s", "format", "jpeg", str(path), "--out", str(out)])
-    if result.returncode != 0 or not out.exists():
+    if not resize_image_to_jpeg(path, out, max_size):
         msg = f"failed to prepare API image: {path}"
         raise RuntimeError(msg)
     encoded = base64.b64encode(out.read_bytes()).decode("ascii")
@@ -2483,33 +2473,11 @@ def asset_is_live_shot(asset: JsonDict) -> bool:
 def crop_image(source: Path, destination: Path, box: tuple[int, int, int, int]) -> bool:
     x, y, w, h = box
     destination.parent.mkdir(parents=True, exist_ok=True)
-    result = None
     try:
-        result = run_sips(
-            [
-                "-c",
-                str(h),
-                str(w),
-                "--cropOffset",
-                str(y),
-                str(x),
-                "-s",
-                "format",
-                "jpeg",
-                str(source),
-                "--out",
-                str(destination),
-            ]
-        )
-    except Exception:
-        result = None
-    if result is not None and result.returncode == 0 and destination.exists():
-        return True
-    try:
-        from PIL import Image
+        from PIL import ImageOps
 
-        with Image.open(source) as image:
-            image.crop((x, y, x + w, y + h)).convert("RGB").save(destination, "JPEG")
+        with open_pillow_image(source) as image:
+            ImageOps.exif_transpose(image).crop((x, y, x + w, y + h)).convert("RGB").save(destination, "JPEG")
         return destination.exists()
     except Exception:
         return False
@@ -2539,27 +2507,34 @@ def box_iou(left: list[int] | tuple[int, int, int, int], right: list[int] | tupl
 
 
 def foreground_product_box(source: Path, image_width: int, image_height: int, sample_size: int = 384) -> JsonDict | None:
+    pixel_values: list[tuple[int, int, int]]
     try:
-        from PIL import Image
-    except ImportError:
+        with open_pillow_image(source) as source_image:
+            image = source_image.convert("RGB")
+            image.thumbnail((sample_size, sample_size), pillow_resample_lanczos())
+            width, height = cast("tuple[int, int]", image.size)
+            image_module = cast("Any", image)
+            raw_pixels = image_module.get_flattened_data() if hasattr(image_module, "get_flattened_data") else image.getdata()
+            pixel_values = [cast("tuple[int, int, int]", pixel) for pixel in raw_pixels]
+    except Exception:
         return None
-    image = Image.open(source).convert("RGB")
-    image.thumbnail((sample_size, sample_size))
-    width, height = image.size
-    pixels = cast("Any", image.load())
+
+    def pixel_at(x: int, y: int) -> tuple[int, int, int]:
+        return pixel_values[y * width + x]
+
     border: list[tuple[int, int, int]] = []
     for x in range(width):
-        border.append(pixels[x, 0])
-        border.append(pixels[x, height - 1])
+        border.append(pixel_at(x, 0))
+        border.append(pixel_at(x, height - 1))
     for y in range(height):
-        border.append(pixels[0, y])
-        border.append(pixels[width - 1, y])
+        border.append(pixel_at(0, y))
+        border.append(pixel_at(width - 1, y))
     background = tuple(sorted(pixel[channel] for pixel in border)[len(border) // 2] for channel in range(3))
     xs: list[int] = []
     ys: list[int] = []
     for y in range(height):
         for x in range(width):
-            red, green, blue = pixels[x, y]
+            red, green, blue = pixel_at(x, y)
             distance = abs(red - background[0]) + abs(green - background[1]) + abs(blue - background[2])
             if distance > FOREGROUND_BACKGROUND_DISTANCE and not (red > 245 and green > 245 and blue > 245):
                 xs.append(x)
@@ -4603,10 +4578,8 @@ def write_crop_probe_review(
         width = width or 1
         height = height or 1
         original_review_image = originals_dir / f"{asset_id}-{stable_name_digest(str(source))}.jpg"
-        if not original_review_image.exists():
-            result = run_sips(["-Z", "1200", "-s", "format", "jpeg", str(source), "--out", str(original_review_image)])
-            if result.returncode != 0 or not original_review_image.exists():
-                original_review_image = source
+        if not original_review_image.exists() and not resize_image_to_jpeg(source, original_review_image, 1200):
+            original_review_image = source
         display_width = 560
         scale = display_width / width
         boxes = []
@@ -5591,9 +5564,7 @@ def report_markdown(
 
 
 def make_thumbnail(source: Path, destination: Path) -> bool:
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    result = run_sips(["-Z", "220", "-s", "format", "jpeg", str(source), "--out", str(destination)])
-    return result.returncode == 0 and destination.exists()
+    return resize_image_to_jpeg(source, destination, 220)
 
 
 def thumbnail_name(occurrence: JsonDict) -> str:
@@ -5784,10 +5755,6 @@ def normalize_command(args: argparse.Namespace) -> int:
     if not sources:
         print("ERROR: provide at least one source folder", file=sys.stderr)
         return 2
-    if shutil.which("sips") is None:
-        print("ERROR: sips is required on PATH for image metadata and hashes", file=sys.stderr)
-        return 2
-
     occurrences: list[Occurrence] = []
     next_index = 1
     with tempfile.TemporaryDirectory(prefix="jewelry-normalize-") as tmp:
@@ -5843,9 +5810,6 @@ def catalog_normalize_command(args: argparse.Namespace) -> int:
         return 2
     if not categories:
         print("ERROR: no valid categories selected", file=sys.stderr)
-        return 2
-    if shutil.which("sips") is None:
-        print("ERROR: sips is required on PATH for image metadata and hashes", file=sys.stderr)
         return 2
     try:
         with tempfile.TemporaryDirectory(prefix="jewelry-catalog-normalize-") as tmp:
