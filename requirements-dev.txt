@@ -1,0 +1,6 @@
+bandit[toml]==1.8.6
+mypy==1.16.1
+pyright==1.1.407
+pytest==8.4.2
+ruff==0.14.8
+vulture==2.14

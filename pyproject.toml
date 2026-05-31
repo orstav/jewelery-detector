@@ -1,0 +1,109 @@
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+src = ["tools", "tests", "devtools"]
+extend-exclude = [
+    "data",
+    "results",
+    "review_tools",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN", # mypy/pyright are the authoritative annotation/type gates.
+    "ANN401", # Allow intentionally dynamic dictionaries at the data/JSON boundary.
+    "COM812", # Avoid conflict with formatter-style multiline layout.
+    "D100", # This repo is script-oriented; require useful function/class docs instead.
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D107",
+    "E501", # Formatter-compatible projects allow long strings/prompts/HTML fragments.
+    "C901", # Keep complexity visible in reviews; do not force broad refactors during analyzer setup.
+    "FBT001", # CLI/data APIs use explicit boolean flags in a few stable call sites.
+    "FBT002",
+    "ISC001", # Avoid conflict with formatter-style multiline layout.
+    "PERF401", # Prefer clearer append loops in HTML/report builders.
+    "PLC0415", # Optional heavyweight ML imports stay local to keep CLI startup cheap.
+    "PLR0911", # Existing command/report functions are intentionally branchy.
+    "PLR0912",
+    "PLR0913", # A few numeric/image helper functions are clearer with explicit parameters.
+    "PLR0915",
+    "PLR2004", # Magic numbers are common and clearer in focused tests/threshold logic.
+    "T201", # CLI scripts intentionally print operational summaries.
+    "TRY301", # Existing retry loops raise in place for local clarity.
+]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "INP001", # Tests are imported by path in this script-style repo.
+    "S101", # unittest assertions are intentional.
+    "S108", # Synthetic test paths do not create real temporary files.
+]
+"tools/**/*.py" = [
+    "BLE001", # CLI command boundaries intentionally convert unexpected failures into exit codes.
+    "S603", # subprocess calls use static executable vectors here.
+    "S607", # macOS system tools are called by executable name.
+]
+"devtools/**/*.py" = [
+    "S603", # The runner executes only the static command table defined in this file.
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.9"
+files = ["tools", "tests"]
+strict = true
+warn_unreachable = true
+pretty = true
+show_error_codes = true
+exclude = [
+    "^data/",
+    "^results/",
+    "^review_tools/",
+]
+
+[[tool.mypy.overrides]]
+module = ["torch.*", "transformers.*"]
+ignore_missing_imports = true
+
+[tool.pyright]
+include = ["tools", "tests"]
+exclude = ["data", "results", "review_tools"]
+pythonVersion = "3.9"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = "error"
+reportMissingImports = "none"
+reportUnknownParameterType = "none"
+reportUnknownArgumentType = "none"
+reportUnknownMemberType = "none"
+reportUnknownVariableType = "none"
+reportUnknownLambdaType = "none"
+reportUntypedFunctionDecorator = "error"
+reportUntypedClassDecorator = "error"
+reportUntypedBaseClass = "error"
+reportUnusedImport = "error"
+reportUnusedVariable = "error"
+reportUnusedFunction = "error"
+reportDuplicateImport = "error"
+reportPrivateUsage = "error"
+
+[tool.bandit]
+targets = ["tools", "tests"]
+exclude_dirs = ["data", "results", "review_tools"]
+severity = "low"
+confidence = "low"
+skips = ["B101", "B108"]
+
+[tool.vulture]
+paths = ["tools", "tests"]
+exclude = ["data/", "results/", "review_tools/"]
+min_confidence = 80
+sort_by_size = true

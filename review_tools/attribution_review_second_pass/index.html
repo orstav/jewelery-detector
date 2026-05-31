@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catalog Attribution Review</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Dataset QA</p>
+        <h1>Catalog Attribution Review</h1>
+      </div>
+      <div class="actions">
+        <button id="applyRecommended" title="Apply the recommended dataset label to the selected image">Apply Recommended</button>
+        <button id="markCategoryShared" title="Mark all category-conflict images as shared supporting media">Mark Category Conflicts Shared</button>
+        <button id="exportJson" title="Export decisions as JSON">Export JSON</button>
+        <button id="exportCsv" title="Export decisions as CSV">Export CSV</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="stat-grid">
+          <div>
+            <span id="statTotal">0</span>
+            <label>Total</label>
+          </div>
+          <div>
+            <span id="statDone">0</span>
+            <label>Done</label>
+          </div>
+          <div>
+            <span id="statOpen">0</span>
+            <label>Open</label>
+          </div>
+        </section>
+
+        <section class="filters">
+          <label>
+            Issue
+            <select id="issueFilter"></select>
+          </label>
+          <label>
+            Status
+            <select id="statusFilter">
+              <option value="all">All</option>
+              <option value="open" selected>Needs review</option>
+              <option value="done">Done</option>
+            </select>
+          </label>
+          <label>
+            Search
+            <input id="searchInput" type="search" placeholder="Product, folder, asset" />
+          </label>
+        </section>
+
+        <nav id="assetList" class="asset-list"></nav>
+      </aside>
+
+      <section class="review-panel">
+        <div id="emptyState" class="empty-state">No matching assets</div>
+        <article id="detail" class="detail" hidden>
+          <div class="image-stage">
+            <img id="assetImage" alt="" />
+          </div>
+
+          <div class="meta-panel">
+            <div class="title-row">
+              <div>
+                <p id="issueLabel" class="issue-label"></p>
+                <h2 id="assetTitle"></h2>
+                <p id="assetSubtitle" class="asset-subtitle"></p>
+              </div>
+              <span id="decisionPill" class="decision-pill">Open</span>
+            </div>
+
+            <div class="question-card">
+              <label>Question</label>
+              <p id="reviewQuestion"></p>
+              <div id="recommendedLabel" class="recommended-label"></div>
+            </div>
+
+            <section class="decision-box">
+              <label>Decision</label>
+              <div id="decisionButtons" class="decision-buttons"></div>
+              <label>
+                Correct product IDs
+                <input id="correctProductIds" placeholder="Example: R052 or E125,N090" />
+              </label>
+              <label>
+                Notes
+                <textarea id="notes" rows="4"></textarea>
+              </label>
+            </section>
+
+            <section>
+              <h3>File Occurrences</h3>
+              <div id="occurrences" class="occurrences"></div>
+            </section>
+
+            <details class="more-details">
+              <summary>More metadata</summary>
+              <div class="meta-grid">
+                <div>
+                  <label>Current Product IDs</label>
+                  <p id="productIds"></p>
+                </div>
+                <div>
+                  <label>Folder IDs</label>
+                  <p id="folderIds"></p>
+                </div>
+                <div>
+                  <label>Filename IDs</label>
+                  <p id="filenameIds"></p>
+                </div>
+                <div>
+                  <label>Roles</label>
+                  <p id="roles"></p>
+                </div>
+                <div>
+                  <label>Internal Row ID</label>
+                  <p id="internalId"></p>
+                </div>
+                <div>
+                  <label>Filename</label>
+                  <p id="filename"></p>
+                </div>
+                <div>
+                  <label>Folders</label>
+                  <p id="folders"></p>
+                </div>
+                <div>
+                  <label>Flags</label>
+                  <p id="flags"></p>
+                </div>
+              </div>
+
+              <h3>Related Products</h3>
+              <div id="relatedProducts" class="related-products"></div>
+            </details>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./review-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

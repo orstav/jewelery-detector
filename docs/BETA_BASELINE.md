@@ -1,0 +1,79 @@
+# Beta Baseline
+
+This baseline records the current beta-ready behavior before crop/multi-view
+improvements.
+
+## Dataset
+
+- Source folder: `dataset untested`
+- Excluded folder: `8`
+- Reason for exclusion: not representative of the intended product-cluster
+  labels.
+- Ground truth: each numbered directory is one product cluster.
+
+## Run
+
+```bash
+python3 tools/jewelry_cluster_benchmark.py normalize \
+  --reference results/untested_no8_input \
+  --out results/untested_reference_normalized_no8_rerun
+
+python3 tools/jewelry_cluster_benchmark.py cluster \
+  --manifest results/untested_reference_normalized_no8_rerun/manifest.csv \
+  --out results/untested_siglip_benchmark_no8_rerun \
+  --provider siglip \
+  --model-id google/siglip-base-patch16-224 \
+  --device auto \
+  --candidate-threshold 0.92 \
+  --candidate-top-k 5 \
+  --offline-model-cache
+```
+
+## Result
+
+```text
+Provider: siglip-google_siglip-base-patch16-224-cpu-s224
+Assets: 45
+Recommended threshold: 0.8900
+Predicted clusters: 30
+Singletons: 15
+Pairwise precision: 1.000
+Pairwise recall: 0.750
+Pairwise F1: 0.857
+Predicted positive pairs: 15
+Merge disagreements: 0
+Split disagreements: 3
+Split folders: 12, 16, 24
+```
+
+## Interpretation
+
+The current beta is safe for auto-accepting high-confidence same-product
+positives at threshold `0.89`: it produced zero wrong cross-folder merges on the
+current benchmark.
+
+It is not complete enough to treat a missing match as proof that no match
+exists. Misses should flow into a candidate/review path rather than being
+discarded as final negatives.
+
+Recommended beta policy:
+
+```text
+score >= 0.89  -> auto same-product candidate
+0.86-0.89      -> review or AI adjudication
+< 0.86         -> ignore unless top-K/crop evidence brings it back
+```
+
+## Generated Evidence
+
+These paths are local generated outputs and are ignored by git:
+
+- `results/untested_siglip_benchmark_no8_rerun/benchmark_report.md`
+- `results/untested_siglip_benchmark_no8_rerun/benchmark_report.json`
+- `results/untested_siglip_benchmark_no8_rerun/review_sheets/00_truth_mistakes_overview.html`
+
+## Next Improvement Track
+
+The highest-leverage improvement is crop/multi-view retrieval: compare jewelry
+crops before full-frame images, then use AI adjudication only on retrieved
+candidates.
