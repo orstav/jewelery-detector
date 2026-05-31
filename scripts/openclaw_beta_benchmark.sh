@@ -153,5 +153,12 @@ fi
 
 python3 "${cluster_args[@]}"
 
+python3 tools/build_benchmark_review.py \
+  --manifest "$normalized_out/manifest.csv" \
+  --benchmark "$benchmark_out" \
+  --out "$benchmark_out/review_sheets/00_truth_mistakes_overview.html"
+
 echo "Benchmark report: $benchmark_out/benchmark_report.md"
+echo "Benchmark JSON: $benchmark_out/benchmark_report.json"
+echo "Review overview: $benchmark_out/review_sheets/00_truth_mistakes_overview.html"
 echo "Review sheets: $benchmark_out/review_sheets"

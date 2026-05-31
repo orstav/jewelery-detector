@@ -1,10 +1,12 @@
 import csv
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
 import pytest
 from PIL import Image, ImageDraw
+from tools import build_benchmark_review as bbr
 from tools import jewelry_cluster_benchmark as jcb
 
 
@@ -72,6 +74,121 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert benchmark["false_negative"] == 0
         assert benchmark["precision"] == 1.0
         assert benchmark["recall"] == 1.0
+
+    def test_build_benchmark_review_counts_pair_classes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            manifest = base / "manifest.csv"
+            image_paths = {}
+            for asset_id in ("A1", "A2", "A3"):
+                image_path = base / f"{asset_id}.jpg"
+                Image.new("RGB", (16, 16), "white").save(image_path)
+                image_paths[asset_id] = image_path
+            with manifest.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(
+                    handle,
+                    fieldnames=[
+                        "asset_id",
+                        "preferred_path",
+                        "quality_path",
+                        "reference_cluster_ids",
+                        "sources",
+                        "kinds",
+                        "shot_keys",
+                        "confidence",
+                        "flags",
+                        "occurrence_count",
+                    ],
+                )
+                writer.writeheader()
+                writer.writerow(
+                    {
+                        "asset_id": "A1",
+                        "preferred_path": image_paths["A1"],
+                        "quality_path": image_paths["A1"],
+                        "reference_cluster_ids": "1",
+                        "sources": "reference",
+                        "kinds": "web",
+                        "shot_keys": "",
+                        "confidence": "1",
+                        "flags": "",
+                        "occurrence_count": "1",
+                    }
+                )
+                writer.writerow(
+                    {
+                        "asset_id": "A2",
+                        "preferred_path": image_paths["A2"],
+                        "quality_path": image_paths["A2"],
+                        "reference_cluster_ids": "1",
+                        "sources": "reference",
+                        "kinds": "web",
+                        "shot_keys": "",
+                        "confidence": "1",
+                        "flags": "",
+                        "occurrence_count": "1",
+                    }
+                )
+                writer.writerow(
+                    {
+                        "asset_id": "A3",
+                        "preferred_path": image_paths["A3"],
+                        "quality_path": image_paths["A3"],
+                        "reference_cluster_ids": "2",
+                        "sources": "reference",
+                        "kinds": "web",
+                        "shot_keys": "",
+                        "confidence": "1",
+                        "flags": "",
+                        "occurrence_count": "1",
+                    }
+                )
+            benchmark_dir = base / "benchmark"
+            benchmark_dir.mkdir()
+            (benchmark_dir / "benchmark_report.json").write_text(
+                json.dumps(
+                    {
+                        "asset_count": 3,
+                        "precision": 1.0,
+                        "recall": 1.0,
+                        "f1": 1.0,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (benchmark_dir / "predicted_clusters.json").write_text(
+                json.dumps(
+                    {
+                        "threshold": 0.89,
+                        "clusters": [
+                            {"cluster_id": "C1", "asset_ids": ["A1", "A2"]},
+                            {"cluster_id": "C2", "asset_ids": ["A3"]},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (benchmark_dir / "similarity_pairs.json").write_text(
+                json.dumps(
+                    [
+                        {"source_asset_id": "A1", "target_asset_id": "A2", "score": 0.91},
+                        {"source_asset_id": "A1", "target_asset_id": "A3", "score": 0.20},
+                        {"source_asset_id": "A2", "target_asset_id": "A3", "score": 0.30},
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            output = benchmark_dir / "review_sheets" / "00_truth_mistakes_overview.html"
+            summary = bbr.build_review_html(manifest, benchmark_dir, output, closest_nonmatches=2)
+
+            html = output.read_text(encoding="utf-8")
+            assert summary["correct"] == 1
+            assert summary["missed"] == 0
+            assert summary["wrong"] == 0
+            assert summary["nonmatches_shown"] == 2
+            assert "Correct match" in html
+            assert "Wrong cross-folder merges" in html
 
     def test_conservative_threshold_prefers_precision_then_recall(self) -> None:
         rows = [

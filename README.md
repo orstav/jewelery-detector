@@ -59,6 +59,10 @@ scripts/openclaw_beta_benchmark.sh \
 The script writes normalized assets, benchmark JSON/Markdown, and review HTML
 under the output directory.
 
+OpenClaw agents should start with [docs/OPENCLAW.md](docs/OPENCLAW.md). It
+defines the run command, output fields to parse, report format, failure modes,
+and stop conditions.
+
 ## Git Hygiene
 
 Keep only source, docs, tests, and lightweight config in git. Do not commit:

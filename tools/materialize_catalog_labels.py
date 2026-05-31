@@ -9,7 +9,6 @@ import json
 from collections import Counter
 from pathlib import Path
 
-
 DEFAULT_BASE = Path(__file__).resolve().parents[1] / "data" / "catalog_normalized_clean_v1"
 
 
