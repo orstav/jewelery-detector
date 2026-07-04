@@ -1288,15 +1288,17 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert [candidate["product_id"] for candidate in candidates] == ["R001", "R002"]
         assert candidates[0]["embedding_id"] == 2
         assert candidates[0]["best_similarity"] == pytest.approx(0.9)
-        assert candidates[0]["score"] == pytest.approx(0.915)
+        assert candidates[0]["mean_top3_similarity"] == pytest.approx(0.85)
+        assert candidates[0]["score"] == pytest.approx(0.88)
         assert candidates[0]["evidence_count"] == 2
         assert candidates[0]["query_crop_count"] == 2
-        assert candidates[0]["margin"] == pytest.approx(0.065)
+        assert candidates[0]["margin"] == pytest.approx(0.03)
 
-    def test_jewelry_detector_db_consensus_can_beat_single_lucky_crop(self) -> None:
+    def test_jewelry_detector_db_penalizes_inconsistent_product_evidence(self) -> None:
         candidates = jdb.aggregate_product_candidates(
             [
                 {"product_id": "R001", "embedding_id": 1, "similarity": 0.931, "candidate_crop_id": "a", "query_crop_id": "q1", "query_risk_flags": []},
+                {"product_id": "R001", "embedding_id": 4, "similarity": 0.100, "candidate_crop_id": "d", "query_crop_id": "q2", "query_risk_flags": []},
                 {"product_id": "R002", "embedding_id": 2, "similarity": 0.929, "candidate_crop_id": "b", "query_crop_id": "q1", "query_risk_flags": []},
                 {"product_id": "R002", "embedding_id": 3, "similarity": 0.928, "candidate_crop_id": "c", "query_crop_id": "q2", "query_risk_flags": []},
             ]

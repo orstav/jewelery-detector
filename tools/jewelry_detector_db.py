@@ -463,8 +463,10 @@ def aggregate_product_candidates(rows: JsonList) -> JsonList:
         candidate_crop_count = len([v for v in item["candidate_crop_ids"] if v])
         mean_top3 = sum(top3) / len(top3) if top3 else 0.0
         best_similarity = float(item["best_similarity"])
-        consensus_bonus = 0.005 * min(max(evidence_count - 1, 0), 4) + 0.01 * min(max(query_crop_count - 1, 0), 2)
-        item["score"] = min(1.0, best_similarity + consensus_bonus)
+        # A single high crop can be a lucky composition/background hit. Blend it
+        # with the mean of the best retrieved evidence for the same product so
+        # repeated, consistent product evidence ranks above one-off spikes.
+        item["score"] = (0.6 * best_similarity) + (0.4 * mean_top3)
         item["mean_top3_similarity"] = mean_top3
         item["evidence_count"] = evidence_count
         item["query_crop_count"] = query_crop_count
