@@ -415,21 +415,74 @@ def query_crop_candidates(url: str, embedding_payload: JsonDict, policy: JsonDic
 
 
 def aggregate_product_candidates(rows: JsonList) -> JsonList:
+    """Collapse crop-level embedding retrieval rows into product candidates.
+
+    The detector already retrieves by embeddings. This aggregation improves the
+    existing engine by using more of that evidence instead of letting a single
+    lucky crop decide Top-1. Confidence remains anchored to the best embedding
+    similarity, with a small consensus bonus when the same product appears
+    across multiple retrieved crops/query crops.
+    """
     grouped: dict[str, JsonDict] = {}
     for row in rows:
         product_id = str(row["product_id"])
-        current = grouped.get(product_id)
-        if current is None or float(row["similarity"]) > float(current["score"]):
-            grouped[product_id] = {
+        similarity = float(row["similarity"])
+        current = grouped.setdefault(
+            product_id,
+            {
                 "product_id": product_id,
                 "embedding_id": row["embedding_id"],
-                "score": float(row["similarity"]),
-                "similarity": float(row["similarity"]),
+                "similarity": similarity,
+                "best_similarity": similarity,
                 "best_crop_id": row["candidate_crop_id"],
                 "query_crop_id": row["query_crop_id"],
-                "risk_flags": row.get("query_risk_flags", []),
-            }
-    ranked = sorted(grouped.values(), key=lambda item: float(item["score"]), reverse=True)
+                "risk_flags": [],
+                "similarities": [],
+                "query_crop_ids": set(),
+                "candidate_crop_ids": set(),
+            },
+        )
+        current["similarities"].append(similarity)
+        current["query_crop_ids"].add(str(row.get("query_crop_id") or ""))
+        current["candidate_crop_ids"].add(str(row.get("candidate_crop_id") or ""))
+        for flag in row.get("query_risk_flags", []) or []:
+            if flag not in current["risk_flags"]:
+                current["risk_flags"].append(flag)
+        if similarity > float(current["best_similarity"]):
+            current["embedding_id"] = row["embedding_id"]
+            current["similarity"] = similarity
+            current["best_similarity"] = similarity
+            current["best_crop_id"] = row["candidate_crop_id"]
+            current["query_crop_id"] = row["query_crop_id"]
+
+    for item in grouped.values():
+        similarities = sorted((float(v) for v in item["similarities"]), reverse=True)
+        top3 = similarities[:3]
+        evidence_count = len(similarities)
+        query_crop_count = len([v for v in item["query_crop_ids"] if v])
+        candidate_crop_count = len([v for v in item["candidate_crop_ids"] if v])
+        mean_top3 = sum(top3) / len(top3) if top3 else 0.0
+        best_similarity = float(item["best_similarity"])
+        consensus_bonus = 0.005 * min(max(evidence_count - 1, 0), 4) + 0.01 * min(max(query_crop_count - 1, 0), 2)
+        item["score"] = min(1.0, best_similarity + consensus_bonus)
+        item["mean_top3_similarity"] = mean_top3
+        item["evidence_count"] = evidence_count
+        item["query_crop_count"] = query_crop_count
+        item["candidate_crop_count"] = candidate_crop_count
+        item["similarities"] = similarities[:5]
+        item["query_crop_ids"] = sorted(v for v in item["query_crop_ids"] if v)
+        item["candidate_crop_ids"] = sorted(v for v in item["candidate_crop_ids"] if v)
+
+    ranked = sorted(
+        grouped.values(),
+        key=lambda item: (
+            float(item["score"]),
+            int(item.get("query_crop_count") or 0),
+            int(item.get("evidence_count") or 0),
+            float(item.get("best_similarity") or 0.0),
+        ),
+        reverse=True,
+    )
     for index, item in enumerate(ranked, start=1):
         item["rank"] = index
         next_score = float(ranked[index]["score"]) if index < len(ranked) else 0.0
