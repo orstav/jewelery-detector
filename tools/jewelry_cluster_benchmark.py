@@ -1248,6 +1248,8 @@ class TransformerImageEmbeddingProvider(EmbeddingProvider):
             with torch.no_grad():
                 if hasattr(self.model, "get_image_features"):
                     vector = self.model.get_image_features(pixel_values=tensor)
+                    if not hasattr(vector, "squeeze"):
+                        vector = vector.pooler_output if getattr(vector, "pooler_output", None) is not None else vector.last_hidden_state[:, 0]
                 else:
                     output = self.model(pixel_values=tensor)
                     vector = output.pooler_output if getattr(output, "pooler_output", None) is not None else output.last_hidden_state[:, 0]
