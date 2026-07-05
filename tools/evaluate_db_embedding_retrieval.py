@@ -36,6 +36,9 @@ class EmbeddingRow:
     embedding_model: str
     preprocess_version: str
     embedding_dim: int
+    view_type: str = "unknown"
+    crop_source: str = "unknown"
+    risk_flags: list[str] | None = None
 
 
 def connect(url: str) -> Any:
@@ -57,7 +60,10 @@ def read_catalog_embeddings(url: str, *, model: str | None = None, preprocess_ve
         params.append(preprocess_version)
     sql = f"""
         SELECT id, product_id, image_id, crop_id, embedding::text,
-               embedding_model, preprocess_version, embedding_dim
+               embedding_model, preprocess_version, embedding_dim,
+               COALESCE(view_type, 'unknown') AS view_type,
+               COALESCE(crop_source, 'unknown') AS crop_source,
+               COALESCE(risk_flags, '[]'::jsonb) AS risk_flags
         FROM image_embeddings
         WHERE {' AND '.join(clauses)}
         ORDER BY product_id, image_id, crop_id
@@ -84,7 +90,11 @@ def query_candidates(url: str, query: EmbeddingRow, *, ref_products: set[str], t
     with connect(url) as con, con.cursor() as cur:
         cur.execute(
             """
-            SELECT id, product_id, image_id, crop_id, 1 - (embedding <=> %s::vector) AS similarity
+            SELECT id, product_id, image_id, crop_id,
+                   COALESCE(view_type, 'unknown') AS view_type,
+                   COALESCE(crop_source, 'unknown') AS crop_source,
+                   COALESCE(risk_flags, '[]'::jsonb) AS risk_flags,
+                   1 - (embedding <=> %s::vector) AS similarity
             FROM image_embeddings
             WHERE active = true
               AND product_id = ANY(%s)
@@ -111,14 +121,18 @@ def query_candidates(url: str, query: EmbeddingRow, *, ref_products: set[str], t
             rows.append(
                 {
                     "query_crop_id": query.crop_id,
-                    "query_view_type": "stored_embedding",
-                    "query_risk_flags": [],
+                    "query_view_type": query.view_type,
+                    "query_crop_source": query.crop_source,
+                    "query_risk_flags": query.risk_flags or [],
                     "embedding_id": row[0],
                     "product_id": row[1],
                     "candidate_image_id": row[2],
                     "candidate_crop_id": row[3],
+                    "candidate_view_type": row[4],
+                    "candidate_crop_source": row[5],
+                    "candidate_risk_flags": row[6] or [],
                     "rank": rank,
-                    "similarity": float(row[4]),
+                    "similarity": float(row[7]),
                 }
             )
         return rows
