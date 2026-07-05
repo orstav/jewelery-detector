@@ -86,6 +86,28 @@ def count_rows_by_version(url: str) -> dict[str, int]:
     return {f"{row[0]}:{bool(row[1])}": int(row[2]) for row in rows}
 
 
+def active_policies(url: str) -> list[Json]:
+    with db.connect(url) as conn, conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT id, name, preprocess_version, active
+            FROM matching_policies
+            WHERE active = true
+            ORDER BY id
+            """
+        )
+        rows = cur.fetchall()
+    return [
+        {
+            "id": int(row[0]),
+            "name": row[1],
+            "preprocess_version": row[2],
+            "active": bool(row[3]),
+        }
+        for row in rows
+    ]
+
+
 def future_policy(active_policy: Json, *, include_inactive_crops: bool) -> Json:
     policy = dict(active_policy)
     policy["preprocess_versions"] = [str(active_policy["preprocess_version"]), db.CROP_PREPROCESS_VERSION]
@@ -114,6 +136,8 @@ def run(args: argparse.Namespace) -> int:
     active_policy = db.load_active_policy(url, args.policy)
     row_counts = count_rows_by_version(url)
 
+    active_policy_rows = active_policies(url)
+
     current_effective = db.effective_candidate_policy(probe, active_policy)
     current_candidates = db.query_crop_candidates(url, probe, current_effective)
 
@@ -132,12 +156,15 @@ def run(args: argparse.Namespace) -> int:
 
     summary: Summary = {
         "row_counts": row_counts,
+        "active_policies": active_policy_rows,
         "current": summarize_result("current_active_policy", current_effective, current_candidates),
         "studio_simulated": summarize_result("studio_future_policy", studio_effective, studio_candidates),
         "live_simulated": summarize_result("live_future_policy", live_effective, live_candidates),
     }
 
     failures: list[str] = []
+    if len(active_policy_rows) != 1:
+        failures.append(f"expected exactly one active policy, found {len(active_policy_rows)}")
     if summary["current"]["candidate_count"] <= 0:
         failures.append("current active policy returned no candidates")
     if summary["current"]["candidate_policy_mode"] != "full_only":

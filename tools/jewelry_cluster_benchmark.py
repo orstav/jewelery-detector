@@ -36,6 +36,15 @@ if TYPE_CHECKING:
 JsonDict = dict[str, Any]
 SortKey = tuple[Any, ...]
 
+
+def strict_profile_bool(value: Any) -> bool:
+    """Return True only for literal JSON true.
+
+    Profile outputs sometimes carry string booleans. For detector routing, do not
+    coerce non-empty strings because `"false"` would otherwise become True.
+    """
+    return value is True
+
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".heic", ".tif", ".tiff"}
 SOURCE_PRIORITY = {"fixed": 0, "unfixed": 1, "reference": 2}
 KIND_REVIEW_PRIORITY = {"web": 0, "png": 1, "print": 2, "other": 3}
@@ -2945,8 +2954,8 @@ def parse_image_profile_text(text: str, image_id: str, width: int, height: int) 
         "image_width": width,
         "image_height": height,
         "scene_type": scene_type,
-        "has_hand": bool(payload.get("has_hand", False)),
-        "has_person": bool(payload.get("has_person", False)),
+        "has_hand": strict_profile_bool(payload.get("has_hand", False)),
+        "has_person": strict_profile_bool(payload.get("has_person", False)),
         "background_type": str(payload.get("background_type", "uncertain"))[:80],
         "jewelry_items": items,
         "quality_flags": [str(flag)[:80] for flag in flags[:12]] if isinstance(flags, list) else [],
@@ -3463,8 +3472,8 @@ def product_embedding_payload(image_path: Path, image_id: str, provider: Embeddi
     if profile is not None:
         payload["profile_scene_type"] = str(profile.get("scene_type", "uncertain"))
         payload["profile_evidence_policy"] = str(profile.get("recommended_evidence_policy", ""))
-        payload["profile_has_hand"] = bool(profile.get("has_hand"))
-        payload["profile_has_person"] = bool(profile.get("has_person"))
+        payload["profile_has_hand"] = strict_profile_bool(profile.get("has_hand"))
+        payload["profile_has_person"] = strict_profile_bool(profile.get("has_person"))
     return payload
 
 

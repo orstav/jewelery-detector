@@ -1356,6 +1356,45 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert effective["preprocess_versions"] == ["jewelry-evidence-v1"]
         assert effective["view_types"] == ["full_image"]
 
+    def test_jewelry_detector_db_live_crop_policy_ignores_string_false_booleans(self) -> None:
+        policy = {"preprocess_versions": ["jewelry-evidence-v1", "jewelry-crop-v1"]}
+        effective = jdb.effective_candidate_policy(
+            {"profile_scene_type": "clean_product", "profile_has_hand": "false", "profile_has_person": "false"},
+            policy,
+        )
+
+        assert effective["candidate_policy_mode"] == "studio_full_only"
+        assert effective["preprocess_versions"] == ["jewelry-evidence-v1"]
+        assert effective["view_types"] == ["full_image"]
+
+    def test_jewelry_detector_db_live_crop_policy_ignores_clean_product_crop_heavy_alone(self) -> None:
+        policy = {"preprocess_versions": ["jewelry-evidence-v1", "jewelry-crop-v1"]}
+        effective = jdb.effective_candidate_policy(
+            {"profile_scene_type": "clean_product", "profile_evidence_policy": "crop_heavy"},
+            policy,
+        )
+
+        assert effective["candidate_policy_mode"] == "studio_full_only"
+        assert effective["preprocess_versions"] == ["jewelry-evidence-v1"]
+        assert effective["view_types"] == ["full_image"]
+
+    def test_jewelry_detector_db_live_crop_policy_allows_literal_true_body_context(self) -> None:
+        policy = {"preprocess_versions": ["jewelry-evidence-v1", "jewelry-crop-v1"]}
+        effective = jdb.effective_candidate_policy(
+            {"profile_scene_type": "clean_product", "profile_has_hand": True},
+            policy,
+        )
+
+        assert effective["candidate_policy_mode"] == "live_additive_crop"
+        assert "jewelry-crop-v1" in effective["preprocess_versions"]
+        assert "center_object" in effective["view_types"]
+
+    def test_jewelry_cluster_benchmark_profile_booleans_are_strict(self) -> None:
+        assert jcb.strict_profile_bool(True) is True
+        assert jcb.strict_profile_bool(False) is False
+        assert jcb.strict_profile_bool("true") is False
+        assert jcb.strict_profile_bool("false") is False
+
     def test_jewelry_detector_db_aggregates_by_product(self) -> None:
         candidates = jdb.aggregate_product_candidates(
             [

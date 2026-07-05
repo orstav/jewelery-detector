@@ -417,6 +417,17 @@ def policy_view_types(policy: JsonDict) -> list[str] | None:
     return values or None
 
 
+def profile_flag_is_true(value: Any) -> bool:
+    """Interpret profile booleans conservatively.
+
+    LLM/profile JSON can occasionally encode booleans as strings. For the
+    production crop gate, only literal True may enable crop evidence; strings
+    like "false" or "true" are treated as untrusted and do not opt a studio
+    payload into crop retrieval.
+    """
+    return value is True
+
+
 def is_live_like_embedding(embedding_payload: JsonDict) -> bool:
     """Return whether an incoming query should use live/lifestyle crop evidence.
 
@@ -426,11 +437,15 @@ def is_live_like_embedding(embedding_payload: JsonDict) -> bool:
     """
     scene_type = str(embedding_payload.get("profile_scene_type", "")).strip()
     evidence_policy = str(embedding_payload.get("profile_evidence_policy", "")).strip()
-    if scene_type in LIVE_SCENE_TYPES:
+    has_live_scene = scene_type in LIVE_SCENE_TYPES
+    has_body_context = profile_flag_is_true(embedding_payload.get("profile_has_hand")) or profile_flag_is_true(
+        embedding_payload.get("profile_has_person")
+    )
+    if has_live_scene or has_body_context:
         return True
-    if bool(embedding_payload.get("profile_has_hand")) or bool(embedding_payload.get("profile_has_person")):
-        return True
-    if evidence_policy in LIVE_EVIDENCE_POLICIES:
+    # `crop_heavy` alone is not enough: a malformed clean-product profile must
+    # not opt into crop retrieval unless there is also an explicit live/body cue.
+    if evidence_policy in LIVE_EVIDENCE_POLICIES and (has_live_scene or has_body_context):
         return True
     return False
 
