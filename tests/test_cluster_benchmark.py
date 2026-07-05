@@ -12,6 +12,8 @@ from PIL import Image, ImageDraw
 from tools import build_benchmark_review as bbr
 from tools import jewelry_cluster_benchmark as jcb
 from tools import jewelry_detector_db as jdb
+from tools import evaluate_db_text_profile_reranker as text_rerank
+from tools import evaluate_offline_pair_judge_rerankers as pair_rerank
 
 
 def asset(asset_id: str, labels: list[str]) -> jcb.VisualAsset:
@@ -282,6 +284,53 @@ class ClusterBenchmarkTests(unittest.TestCase):
 
         assert "A1--A2" in keys
         assert "A1--A3" in keys
+
+    def test_offline_pair_judge_routes_dense_score_ambiguity_to_review(self) -> None:
+        candidates = [
+            {"product_id": "R100", "score": 0.915, "best_similarity": 0.925, "mean_top3_similarity": 0.905, "evidence_count": 3},
+            {"product_id": "R101", "score": 0.908, "best_similarity": 0.920, "mean_top3_similarity": 0.899, "evidence_count": 3},
+            {"product_id": "R102", "score": 0.904, "best_similarity": 0.918, "mean_top3_similarity": 0.897, "evidence_count": 3},
+        ]
+
+        ranked = pair_rerank.rerank(candidates, pair_rerank.proxies()[-1])
+
+        assert ranked[0]["product_id"] == "R100"
+        assert ranked[0]["pair_judge_decision"] == "unsure"
+
+    def test_offline_pair_judge_reports_sibling_confusion_without_using_it_for_score(self) -> None:
+        args = argparse.Namespace(
+            auto_score=0.80,
+            auto_margin=0.0,
+            sibling_window_top_k=5,
+            sibling_numeric_window=2,
+            close_score_delta=0.035,
+            close_score_min_competitors=2,
+            example_limit=3,
+            min_eval_probes=1,
+            safe_auto_precision=1.0,
+            safe_auto_recall=0.0,
+            safe_max_wrong=0,
+            safe_max_wrong_per_split=0,
+            safe_max_sibling_wrong=0,
+        )
+        cached = [
+            {
+                "query_image_id": "q1",
+                "query_view_type": "full_image",
+                "truth_product_id": "R101",
+                "candidates": [
+                    {"product_id": "R100", "score": 0.96, "best_similarity": 0.96, "mean_top3_similarity": 0.95, "evidence_count": 3},
+                    {"product_id": "R101", "score": 0.94, "best_similarity": 0.94, "mean_top3_similarity": 0.93, "evidence_count": 3},
+                ],
+            }
+        ]
+
+        result = pair_rerank.evaluate_proxy(cached, pair_rerank.proxies()[0], args)
+
+        assert result["auto_wrong"] == 1
+        assert result["same_design_sibling_cases"] == 1
+        assert result["same_design_sibling_top1_wrong"] == 1
+        assert result["split_metrics"]["studio"]["auto_wrong"] == 1
 
     def test_edit_duplicate_pairs_require_mutual_nearest(self) -> None:
         fixed = occurrence("F1", "fixed", "web", "0000000000000000", "0000000000000000")
