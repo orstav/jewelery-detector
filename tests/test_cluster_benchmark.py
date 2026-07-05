@@ -1327,6 +1327,35 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert jdb.policy_active_states({"include_inactive_embeddings": True}) == [True, False]
         assert jdb.policy_active_states({"embedding_active_states": [False]}) == [False]
 
+    def test_jewelry_detector_db_live_crop_policy_keeps_studio_full_only(self) -> None:
+        policy = {
+            "preprocess_version": "jewelry-evidence-v1, jewelry-crop-v1",
+            "embedding_model": "siglip-google_siglip-base-patch16-224-cpu-s224",
+        }
+        effective = jdb.effective_candidate_policy({"profile_scene_type": "clean_product"}, policy)
+
+        assert effective["candidate_policy_mode"] == "studio_full_only"
+        assert effective["preprocess_versions"] == ["jewelry-evidence-v1"]
+        assert effective["view_types"] == ["full_image"]
+
+    def test_jewelry_detector_db_live_crop_policy_enables_crops_for_live_like_profiles(self) -> None:
+        policy = {"preprocess_versions": ["jewelry-evidence-v1", "jewelry-crop-v1"]}
+        effective = jdb.effective_candidate_policy({"profile_scene_type": "model_lifestyle", "profile_has_person": True}, policy)
+
+        assert effective["candidate_policy_mode"] == "live_additive_crop"
+        assert effective["preprocess_versions"] == ["jewelry-evidence-v1", "jewelry-crop-v1"]
+        assert "full_image" in effective["view_types"]
+        assert "center_object" in effective["view_types"]
+        assert "detail_object" in effective["view_types"]
+
+    def test_jewelry_detector_db_live_crop_policy_keeps_legacy_payloads_full_only(self) -> None:
+        policy = {"preprocess_versions": ["jewelry-evidence-v1", "jewelry-crop-v1"]}
+        effective = jdb.effective_candidate_policy({}, policy)
+
+        assert effective["candidate_policy_mode"] == "studio_full_only"
+        assert effective["preprocess_versions"] == ["jewelry-evidence-v1"]
+        assert effective["view_types"] == ["full_image"]
+
     def test_jewelry_detector_db_aggregates_by_product(self) -> None:
         candidates = jdb.aggregate_product_candidates(
             [

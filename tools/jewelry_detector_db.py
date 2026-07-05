@@ -12,6 +12,12 @@ if TYPE_CHECKING:
 JsonDict = dict[str, Any]
 JsonList = list[JsonDict]
 
+LIVE_SCENE_TYPES = {"model_lifestyle", "multi_item"}
+LIVE_EVIDENCE_POLICIES = {"crop_heavy"}
+CROP_PREPROCESS_VERSION = "jewelry-crop-v1"
+FULL_IMAGE_VIEW_TYPES = ["full_image"]
+CROP_VIEW_TYPES = ["center_object", "detail_object", "foreground_object", "owlv2_padded", "owlv2_context", "vlm_context"]
+
 
 SCHEMA_SQL = """
 CREATE EXTENSION IF NOT EXISTS vector;
@@ -411,6 +417,50 @@ def policy_view_types(policy: JsonDict) -> list[str] | None:
     return values or None
 
 
+def is_live_like_embedding(embedding_payload: JsonDict) -> bool:
+    """Return whether an incoming query should use live/lifestyle crop evidence.
+
+    Crop evidence improves live/model recall but slightly regresses bounded studio
+    Top-1, so production matching must enable it only for live-like profiles.
+    Legacy payloads that lack profile metadata stay full-image-only.
+    """
+    scene_type = str(embedding_payload.get("profile_scene_type", "")).strip()
+    evidence_policy = str(embedding_payload.get("profile_evidence_policy", "")).strip()
+    if scene_type in LIVE_SCENE_TYPES:
+        return True
+    if bool(embedding_payload.get("profile_has_hand")) or bool(embedding_payload.get("profile_has_person")):
+        return True
+    if evidence_policy in LIVE_EVIDENCE_POLICIES:
+        return True
+    return False
+
+
+def effective_candidate_policy(embedding_payload: JsonDict, policy: JsonDict) -> JsonDict:
+    """Apply live-only crop activation to an active DB policy.
+
+    Policies may list both full and crop preprocess versions. This helper keeps
+    studio/legacy queries full-image-only, while live-like profile payloads can
+    retrieve active crop rows as additive evidence.
+    """
+    effective = dict(policy)
+    versions = policy_preprocess_versions(policy)
+    full_versions = [version for version in versions if version != CROP_PREPROCESS_VERSION]
+    if CROP_PREPROCESS_VERSION not in versions:
+        effective["preprocess_versions"] = versions
+        effective.setdefault("view_types", FULL_IMAGE_VIEW_TYPES)
+        effective["candidate_policy_mode"] = "full_only"
+        return effective
+    if is_live_like_embedding(embedding_payload):
+        effective["preprocess_versions"] = versions
+        effective["view_types"] = list(dict.fromkeys(FULL_IMAGE_VIEW_TYPES + CROP_VIEW_TYPES))
+        effective["candidate_policy_mode"] = "live_additive_crop"
+        return effective
+    effective["preprocess_versions"] = full_versions or [policy.get("preprocess_version", "")]
+    effective["view_types"] = FULL_IMAGE_VIEW_TYPES
+    effective["candidate_policy_mode"] = "studio_full_only"
+    return effective
+
+
 def query_crop_candidates(url: str, embedding_payload: JsonDict, policy: JsonDict) -> JsonList:
     ensure_ready(embedding_payload, "embedding")
     rows: JsonList = []
@@ -686,14 +736,15 @@ def persist_match_attempt(url: str, input_image_id: str, policy: JsonDict, decis
 
 def match_embedding(url: str, embedding_payload: JsonDict, *, policy_name: str | None = None, persist: bool = True) -> JsonDict:
     policy = load_active_policy(url, policy_name)
-    rows = query_crop_candidates(url, embedding_payload, policy)
+    effective_policy = effective_candidate_policy(embedding_payload, policy)
+    rows = query_crop_candidates(url, embedding_payload, effective_policy)
     candidates = aggregate_product_candidates(rows)
-    decision = decide_match(candidates, policy)
-    attempt_id = persist_match_attempt(url, str(embedding_payload["image_id"]), policy, decision, candidates) if persist else None
+    decision = decide_match(candidates, effective_policy)
+    attempt_id = persist_match_attempt(url, str(embedding_payload["image_id"]), effective_policy, decision, candidates) if persist else None
     return {
         "schema_version": "1.0",
         "image_id": embedding_payload["image_id"],
-        "policy": {key: value for key, value in policy.items() if key != "id"},
+        "policy": {key: value for key, value in effective_policy.items() if key != "id"},
         "match_attempt_id": attempt_id,
         "status": decision["status"],
         "selected_product_id": decision.get("selected_product_id"),

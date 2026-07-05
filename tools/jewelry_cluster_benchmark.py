@@ -3407,6 +3407,7 @@ def product_embedding_payload(image_path: Path, image_id: str, provider: Embeddi
     warnings: list[str] = []
     with tempfile.TemporaryDirectory(prefix="jewelry-product-embed-") as tmp:
         tmpdir = Path(tmp)
+        profile: JsonDict | None = None
         if args.profile:
             raw_profile = json.loads(Path(args.profile).read_text(encoding="utf-8"))
             if not isinstance(raw_profile, dict):
@@ -3448,16 +3449,23 @@ def product_embedding_payload(image_path: Path, image_id: str, provider: Embeddi
     if not crops:
         msg = "no usable embeddings were produced"
         raise RuntimeError(msg)
-    return {
+    payload: JsonDict = {
         "schema_version": PRODUCT_EMBED_SCHEMA_VERSION,
         "image_id": image_id,
         "embedding_model": provider.provider_id,
         "preprocess_version": PRODUCT_EMBED_PREPROCESS_VERSION,
         "embedding_dim": embedding_dim,
         "source_sha256": record["sha256"],
+        "source_uri": str(image_path.resolve()),
         "crops": crops,
         "warnings": warnings,
     }
+    if profile is not None:
+        payload["profile_scene_type"] = str(profile.get("scene_type", "uncertain"))
+        payload["profile_evidence_policy"] = str(profile.get("recommended_evidence_policy", ""))
+        payload["profile_has_hand"] = bool(profile.get("has_hand"))
+        payload["profile_has_person"] = bool(profile.get("has_person"))
+    return payload
 
 
 def product_embed_error(message: str, error_type: str = "product_embed_error") -> JsonDict:
