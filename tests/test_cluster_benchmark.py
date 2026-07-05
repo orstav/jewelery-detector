@@ -1317,6 +1317,16 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert decision["selected_product_id"] is None
         assert decision["reason"] == "below_candidate_min_score"
 
+    def test_jewelry_detector_db_policy_preprocess_versions_support_additive_versions(self) -> None:
+        assert jdb.policy_preprocess_versions({"preprocess_version": "full-v1"}) == ["full-v1"]
+        assert jdb.policy_preprocess_versions({"preprocess_version": "full-v1, crop-v1"}) == ["full-v1", "crop-v1"]
+        assert jdb.policy_preprocess_versions({"preprocess_versions": ["full-v1", "crop-v1"]}) == ["full-v1", "crop-v1"]
+
+    def test_jewelry_detector_db_policy_active_states_support_inactive_staging(self) -> None:
+        assert jdb.policy_active_states({}) == [True]
+        assert jdb.policy_active_states({"include_inactive_embeddings": True}) == [True, False]
+        assert jdb.policy_active_states({"embedding_active_states": [False]}) == [False]
+
     def test_jewelry_detector_db_aggregates_by_product(self) -> None:
         candidates = jdb.aggregate_product_candidates(
             [

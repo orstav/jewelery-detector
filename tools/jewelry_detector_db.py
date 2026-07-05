@@ -266,6 +266,7 @@ def store_embedding(
     source_uri: str,
     product_id: str | None = None,
     allow_nonproduction_dim: bool = False,
+    active: bool = True,
 ) -> int:
     ensure_ready(embedding_payload, "embedding")
     embedding_dim = int(embedding_payload["embedding_dim"])
@@ -296,7 +297,7 @@ def store_embedding(
                       product_id, image_id, crop_id, view_type, crop_box, crop_source,
                       risk_flags, embedding, embedding_model, preprocess_version,
                       embedding_dim, source_sha256, active
-                    ) VALUES (%s, %s, %s, %s, %s::jsonb, %s, %s::jsonb, %s::vector, %s, %s, %s, %s, true)
+                    ) VALUES (%s, %s, %s, %s, %s::jsonb, %s, %s::jsonb, %s::vector, %s, %s, %s, %s, %s)
                     ON CONFLICT (crop_id, embedding_model, preprocess_version) DO UPDATE SET
                       product_id = EXCLUDED.product_id,
                       view_type = EXCLUDED.view_type,
@@ -306,7 +307,7 @@ def store_embedding(
                       embedding = EXCLUDED.embedding,
                       embedding_dim = EXCLUDED.embedding_dim,
                       source_sha256 = EXCLUDED.source_sha256,
-                      active = true
+                      active = EXCLUDED.active
                     """,
                     (
                         product_id,
@@ -321,6 +322,7 @@ def store_embedding(
                         embedding_payload["preprocess_version"],
                         embedding_dim,
                         embedding_payload["source_sha256"],
+                        active,
                     ),
                 )
         conn.commit()
@@ -369,33 +371,82 @@ def load_active_policy(url: str, policy_name: str | None = None) -> JsonDict:
     }
 
 
+def policy_preprocess_versions(policy: JsonDict) -> list[str]:
+    """Return allowed preprocess versions for candidate retrieval.
+
+    A single-version policy remains the default. Additive crop rollout can pass
+    `preprocess_versions` in-memory or store a comma-separated value in the
+    legacy `matching_policies.preprocess_version` text column.
+    """
+    raw = policy.get("preprocess_versions")
+    if raw is None:
+        raw = policy.get("preprocess_version")
+    if isinstance(raw, str):
+        versions = [part.strip() for part in raw.split(",") if part.strip()]
+    elif isinstance(raw, (list, tuple, set)):
+        versions = [str(part).strip() for part in raw if str(part).strip()]
+    else:
+        versions = []
+    if not versions:
+        raise ValueError("policy must define preprocess_version or preprocess_versions")
+    return versions
+
+
+def policy_active_states(policy: JsonDict) -> list[bool]:
+    raw = policy.get("embedding_active_states")
+    if raw is None:
+        return [True, False] if policy.get("include_inactive_embeddings") else [True]
+    states = [bool(item) for item in raw]
+    return states or [True]
+
+
+def policy_view_types(policy: JsonDict) -> list[str] | None:
+    raw = policy.get("view_types")
+    if raw is None:
+        return None
+    if isinstance(raw, str):
+        values = [part.strip() for part in raw.split(",") if part.strip()]
+    else:
+        values = [str(part).strip() for part in raw if str(part).strip()]
+    return values or None
+
+
 def query_crop_candidates(url: str, embedding_payload: JsonDict, policy: JsonDict) -> JsonList:
     ensure_ready(embedding_payload, "embedding")
     rows: JsonList = []
+    preprocess_versions = policy_preprocess_versions(policy)
+    active_states = policy_active_states(policy)
+    view_types = policy_view_types(policy)
+    view_filter = "AND view_type = ANY(%s)" if view_types else ""
     with connect(url) as conn, conn.cursor() as cur:
         for crop in embedding_payload.get("crops", []):
             if not isinstance(crop, dict) or not crop.get("usable_for_retrieval", True):
                 continue
+            params: list[Any] = [
+                vector_literal(crop["embedding"]),
+                active_states,
+                policy["embedding_model"],
+                preprocess_versions,
+                int(embedding_payload["embedding_dim"]),
+            ]
+            if view_types:
+                params.append(view_types)
+            params.extend([vector_literal(crop["embedding"]), int(policy["top_k"])])
             cur.execute(
-                """
-                SELECT id, product_id, image_id, crop_id, 1 - (embedding <=> %s::vector) AS similarity
+                f"""
+                SELECT id, product_id, image_id, crop_id, view_type, preprocess_version, active,
+                       1 - (embedding <=> %s::vector) AS similarity
                 FROM image_embeddings
-                WHERE active = true
+                WHERE active = ANY(%s)
                   AND product_id IS NOT NULL
                   AND embedding_model = %s
-                  AND preprocess_version = %s
+                  AND preprocess_version = ANY(%s)
                   AND embedding_dim = %s
+                  {view_filter}
                 ORDER BY embedding <=> %s::vector
                 LIMIT %s
                 """,
-                (
-                    vector_literal(crop["embedding"]),
-                    policy["embedding_model"],
-                    policy["preprocess_version"],
-                    int(embedding_payload["embedding_dim"]),
-                    vector_literal(crop["embedding"]),
-                    int(policy["top_k"]),
-                ),
+                tuple(params),
             )
             for index, row in enumerate(cur.fetchall(), start=1):
                 rows.append(
@@ -407,8 +458,11 @@ def query_crop_candidates(url: str, embedding_payload: JsonDict, policy: JsonDic
                         "product_id": row[1],
                         "candidate_image_id": row[2],
                         "candidate_crop_id": row[3],
+                        "candidate_view_type": row[4],
+                        "candidate_preprocess_version": row[5],
+                        "candidate_active": bool(row[6]),
                         "rank": index,
-                        "similarity": float(row[4]),
+                        "similarity": float(row[7]),
                     }
                 )
     return rows
