@@ -110,10 +110,13 @@ def active_policies(url: str) -> list[Json]:
 
 def future_policy(active_policy: Json, *, include_inactive_crops: bool) -> Json:
     policy = dict(active_policy)
-    policy["preprocess_versions"] = [str(active_policy["preprocess_version"]), db.CROP_PREPROCESS_VERSION]
-    if include_inactive_crops:
-        policy["embedding_active_states"] = [True, False]
+    versions = db.policy_preprocess_versions(active_policy)
+    if db.CROP_PREPROCESS_VERSION not in versions:
+        versions = [*versions, db.CROP_PREPROCESS_VERSION]
+    policy["preprocess_versions"] = versions
+    policy["include_inactive_embeddings"] = include_inactive_crops
     return policy
+
 
 
 def summarize_result(mode: str, policy: Json, candidates: list[Json]) -> Json:
@@ -167,8 +170,8 @@ def run(args: argparse.Namespace) -> int:
         failures.append(f"expected exactly one active policy, found {len(active_policy_rows)}")
     if summary["current"]["candidate_count"] <= 0:
         failures.append("current active policy returned no candidates")
-    if summary["current"]["candidate_policy_mode"] != "full_only":
-        failures.append("current active policy did not stay full_only")
+    if summary["current"]["candidate_policy_mode"] not in {"full_only", "studio_full_only"}:
+        failures.append("current active policy did not keep legacy/studio payload full-image-only")
     if summary["studio_simulated"]["candidate_policy_mode"] != "studio_full_only":
         failures.append("studio simulated policy did not stay studio_full_only")
     if db.CROP_PREPROCESS_VERSION in summary["studio_simulated"]["versions"]:
