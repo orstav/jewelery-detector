@@ -35,12 +35,12 @@ PYTHONPATH=. uv run --with 'psycopg[binary]' python tools/evaluate_offline_pair_
 
 | Experiment | Best approach | Top-1 | Top-5 | Auto precision | Correct auto recall | Wrong autos | Deploy? |
 |---|---|---:|---:|---:|---:|---:|---|
-| Text/profile proxy rerank | `03_current_plus_small_text_bonus` | 58.67% | 87.33% | 68.18% | 45.00% | 63 | No |
+| Text/profile proxy rerank | `05_balanced_embedding_text` | 63.00% | 87.67% | 79.89% | 47.67% | 36 | No |
 | Pair-judge proxy rerank | `04_ambiguity_aware_pair_judge` | 60.67% | 86.00% | 73.58% | 47.33% | 51 | No |
 
 ## Interpretation
 
-- The current stored profile layer is not useful enough yet: DB has 343 `image_profiles` rows, but this evaluator found 0 images with usable stored profile tokens, so the run mostly measured deterministic proxy metadata.
+- The current stored profile layer is weak but measurable: DB has 343 `image_profiles` rows with crop-profile tokens after parsing `crops[]`; the best bounded text/profile proxy rerank reached 63.00% Top-1, but auto-match safety still fails (`36` wrong autos).
 - The deterministic pair-judge idea improves Top-1 on the bounded slice, but the auto-match safety gate fails badly (`auto_wrong > 0`). It is not deployable as runtime behavior.
 - These tools are still useful as harnesses for the next real experiment: generate real VLM profile JSON/text embeddings on a bounded approved dev subset, then rerun the same gates.
 
