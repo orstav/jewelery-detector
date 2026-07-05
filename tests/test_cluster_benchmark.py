@@ -1235,13 +1235,52 @@ class ClusterBenchmarkTests(unittest.TestCase):
         decision = jdb.decide_match(
             [
                 {"product_id": "R001", "score": 0.96, "margin": 0.05, "risk_flags": []},
-                {"product_id": "R002", "score": 0.91, "margin": 0.0, "risk_flags": []},
+                {"product_id": "E002", "score": 0.91, "margin": 0.0, "risk_flags": []},
             ],
             policy,
         )
 
         assert decision["status"] == "matched"
         assert decision["selected_product_id"] == "R001"
+        assert decision["reason"] == "auto_match_score_and_margin"
+
+    def test_jewelry_detector_db_sends_dense_same_family_to_review(self) -> None:
+        policy = {
+            "candidate_min_score": 0.82,
+            "review_min_score": 0.86,
+            "auto_match_score": 0.93,
+            "margin_threshold": 0.03,
+            "same_design_review_margin": 0.08,
+        }
+        decision = jdb.decide_match(
+            [
+                {"product_id": "R006", "score": 0.96, "margin": 0.05, "risk_flags": []},
+                {"product_id": "R007", "score": 0.91, "margin": 0.0, "risk_flags": []},
+            ],
+            policy,
+        )
+
+        assert decision["status"] == "needs_review"
+        assert decision["selected_product_id"] == "R006"
+        assert decision["reason"] == "dense_family_low_margin"
+
+    def test_jewelry_detector_db_keeps_clear_cross_family_auto_match(self) -> None:
+        policy = {
+            "candidate_min_score": 0.82,
+            "review_min_score": 0.86,
+            "auto_match_score": 0.93,
+            "margin_threshold": 0.03,
+            "same_design_review_margin": 0.08,
+        }
+        decision = jdb.decide_match(
+            [
+                {"product_id": "R006", "score": 0.96, "margin": 0.05, "risk_flags": []},
+                {"product_id": "E007", "score": 0.91, "margin": 0.0, "risk_flags": []},
+            ],
+            policy,
+        )
+
+        assert decision["status"] == "matched"
         assert decision["reason"] == "auto_match_score_and_margin"
 
     def test_jewelry_detector_db_sends_low_margin_to_review(self) -> None:
@@ -1261,7 +1300,7 @@ class ClusterBenchmarkTests(unittest.TestCase):
 
         assert decision["status"] == "needs_review"
         assert decision["selected_product_id"] == "R001"
-        assert decision["reason"] == "review_threshold_or_low_margin"
+        assert decision["reason"] == "dense_family_low_margin"
 
     def test_jewelry_detector_db_rejects_below_candidate_min_score(self) -> None:
         policy = {

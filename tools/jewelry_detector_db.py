@@ -492,6 +492,45 @@ def aggregate_product_candidates(rows: JsonList) -> JsonList:
     return ranked
 
 
+def product_code_parts(product_id: str) -> tuple[str, int | None]:
+    prefix = "".join(ch for ch in product_id if ch.isalpha())
+    digits = "".join(ch for ch in product_id if ch.isdigit())
+    return prefix, int(digits) if digits else None
+
+
+def same_candidate_family(left: str, right: str, *, numeric_window: int | None = None) -> bool:
+    left_prefix, left_number = product_code_parts(left)
+    right_prefix, right_number = product_code_parts(right)
+    if not left_prefix or left_prefix != right_prefix:
+        return False
+    if numeric_window is None or left_number is None or right_number is None:
+        return True
+    return abs(left_number - right_number) <= numeric_window
+
+
+def dense_family_review_needed(candidates: JsonList, policy: JsonDict) -> bool:
+    if len(candidates) < 2:
+        return False
+    top = candidates[0]
+    top_product_id = str(top["product_id"])
+    top_score = float(top["score"])
+    margin = float(top.get("margin", 0.0))
+    if top_score < float(policy.get("dense_family_min_score", policy["auto_match_score"])):
+        return False
+    required_margin = float(policy.get("same_design_review_margin", max(float(policy["margin_threshold"]) * 2, 0.08)))
+    if margin >= required_margin:
+        return False
+    close_delta = float(policy.get("dense_family_score_delta", required_margin))
+    numeric_window_raw = policy.get("same_family_numeric_window")
+    numeric_window = int(numeric_window_raw) if numeric_window_raw is not None else None
+    for candidate in candidates[1:]:
+        if top_score - float(candidate["score"]) > close_delta:
+            continue
+        if same_candidate_family(top_product_id, str(candidate["product_id"]), numeric_window=numeric_window):
+            return True
+    return False
+
+
 def decide_match(candidates: JsonList, policy: JsonDict) -> JsonDict:
     if not candidates:
         return {
@@ -517,6 +556,13 @@ def decide_match(candidates: JsonList, policy: JsonDict) -> JsonDict:
             "selected_product_id": str(top["product_id"]),
             "confidence": top_score,
             "reason": "crop_risk_flags",
+        }
+    if dense_family_review_needed(candidates, policy):
+        return {
+            "status": "needs_review",
+            "selected_product_id": str(top["product_id"]),
+            "confidence": top_score,
+            "reason": "dense_family_low_margin",
         }
     if top_score >= float(policy["auto_match_score"]) and margin >= float(policy["margin_threshold"]):
         return {
