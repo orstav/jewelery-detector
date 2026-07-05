@@ -73,9 +73,37 @@ SET active = false
 WHERE preprocess_version = 'jewelry-crop-v1';
 ```
 
+## Pre-deploy read-only preflight
+
+Use this before any production policy switch:
+
+```bash
+PYTHONPATH=tools uv run --with 'psycopg[binary]' \
+  python tools/preflight_live_crop_policy.py \
+  --include-inactive-crops \
+  --require-live-crop-candidates
+```
+
+Expected pass conditions:
+
+- current active policy returns candidates using only `jewelry-evidence-v1` + `full_image`;
+- simulated studio future policy stays `studio_full_only` and returns no `jewelry-crop-v1` candidates;
+- simulated live future policy becomes `live_additive_crop` and can see crop candidates.
+
+Latest read-only preflight result:
+
+```text
+status: pass
+current: 20 candidates, full_only, jewelry-evidence-v1/full_image only
+studio simulated: 20 candidates, studio_full_only, jewelry-evidence-v1/full_image only
+live simulated: 20 candidates, live_additive_crop, jewelry-evidence-v1 + jewelry-crop-v1
+row counts: 1197 active full-image evidence rows; 998 inactive crop rows
+```
+
 ## Current status
 
 - Code support implemented on branch.
+- Pre-deploy preflight passes.
 - Tests pass.
 - Staged crop rows remain inactive.
 - No active DB policy was switched in this step.
