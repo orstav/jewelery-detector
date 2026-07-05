@@ -1788,6 +1788,54 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert benchmark["auto_same_product_precision"] == 1.0
         assert benchmark["target_same_product_precision_met"]
 
+    def test_text_profile_tokens_use_visual_profile_fields(self) -> None:
+        tokens = text_rerank.profile_tokens(
+            {
+                "scene_type": "model_lifestyle",
+                "has_hand": True,
+                "background_type": "warm studio",
+                "recommended_evidence_policy": "crop_heavy",
+                "quality_flags": ["low_confidence"],
+                "jewelry_items": [
+                    {
+                        "type": "ring",
+                        "dominance": "small",
+                        "object_completeness": "partial",
+                        "identity_features": ["oval blue stone", "gold band"],
+                    }
+                ],
+            }
+        )
+
+        assert {"model_lifestyle", "has_hand", "ring", "oval", "blue", "stone", "gold", "band"} <= tokens
+
+    def test_text_profile_proxy_tokens_exclude_ids(self) -> None:
+        tokens = text_rerank.proxy_tokens_from_embedding_metadata(
+            view_type="owlv2_context",
+            crop_source="vlm",
+            risk_flags=["profile_review_risk"],
+        )
+
+        assert {"owlv2_context", "vlm", "profile_review_risk"} <= tokens
+        assert not any(token.startswith("r123") for token in tokens)
+
+    def test_candidate_text_features_scores_best_candidate_image_agreement(self) -> None:
+        image_tokens = {
+            "query": {"ring", "gold", "oval"},
+            "cand-a": {"ring", "gold", "oval", "blue"},
+            "cand-b": {"earring", "silver"},
+        }
+        raw_rows = [
+            {"product_id": "P1", "candidate_image_id": "cand-a", "candidate_view_type": "full_image", "candidate_crop_source": "full", "candidate_risk_flags": []},
+            {"product_id": "P2", "candidate_image_id": "cand-b", "candidate_view_type": "full_image", "candidate_crop_source": "full", "candidate_risk_flags": []},
+        ]
+        query = text_rerank.EmbeddingRow(1, "Truth", "query", "query_full", "[0,1]", "m", "p", 2)
+
+        features = text_rerank.candidate_text_features(raw_rows, query, image_tokens)
+
+        assert features["P1"]["text_profile_agreement"] > features["P2"]["text_profile_agreement"]
+        assert features["P1"]["query_text_token_count"] == 3
+
 
 if __name__ == "__main__":
     unittest.main()
