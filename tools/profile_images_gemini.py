@@ -15,6 +15,7 @@ import json
 import os
 import sys
 import tempfile
+from json import JSONDecodeError
 from pathlib import Path
 from typing import Any
 
@@ -152,12 +153,25 @@ def profile_images(args: argparse.Namespace) -> int:
                     bearer_token=bearer_token,
                 )
                 text = response_text(raw)
-                profile = parse_image_profile_text(
-                    text,
-                    str(record["image_id"]),
-                    int(record.get("width") or 1),
-                    int(record.get("height") or 1),
-                )
+                try:
+                    profile = parse_image_profile_text(
+                        text,
+                        str(record["image_id"]),
+                        int(record.get("width") or 1),
+                        int(record.get("height") or 1),
+                    )
+                except JSONDecodeError:
+                    # Gemini can occasionally return valid JSON followed by a duplicated
+                    # JSON object or stray text despite responseMimeType=json. Keep the
+                    # first complete JSON object so bounded batches can resume safely.
+                    decoder = json.JSONDecoder()
+                    first_payload, _ = decoder.raw_decode(text.strip())
+                    profile = parse_image_profile_text(
+                        json.dumps(first_payload, ensure_ascii=False),
+                        str(record["image_id"]),
+                        int(record.get("width") or 1),
+                        int(record.get("height") or 1),
+                    )
                 cache[key] = {
                     "model": args.model,
                     "prompt_version": EVIDENCE_PROFILE_PROMPT_VERSION,
