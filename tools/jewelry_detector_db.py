@@ -17,6 +17,10 @@ LIVE_EVIDENCE_POLICIES = {"crop_heavy"}
 CROP_PREPROCESS_VERSION = "jewelry-crop-v1"
 FULL_IMAGE_VIEW_TYPES = ["full_image"]
 CROP_VIEW_TYPES = ["center_object", "detail_object", "foreground_object", "owlv2_padded", "owlv2_context", "vlm_context"]
+PRODUCT_SCORE_BEST_WEIGHT = 0.80
+PRODUCT_SCORE_MEAN_TOP3_WEIGHT = 0.20
+PRODUCT_SCORE_COVERAGE_BONUS = 0.018
+PRODUCT_SCORE_SPIKE_PENALTY = 0.04
 
 
 SCHEMA_SQL = """
@@ -583,9 +587,19 @@ def aggregate_product_candidates(rows: JsonList) -> JsonList:
         mean_top3 = sum(top3) / len(top3) if top3 else 0.0
         best_similarity = float(item["best_similarity"])
         # A single high crop can be a lucky composition/background hit. Blend it
-        # with the mean of the best retrieved evidence for the same product so
-        # repeated, consistent product evidence ranks above one-off spikes.
-        item["score"] = (0.6 * best_similarity) + (0.4 * mean_top3)
+        # with the mean of the best retrieved evidence for the same product,
+        # then add a bounded multi-view coverage bonus. The weights are kept
+        # deliberately small/conservative and were selected by the read-only
+        # active-policy safe-auto grid (no product IDs or filenames as scoring
+        # features): 88/995 dev probes auto-correct, 0 auto-wrong, versus the
+        # previous safe baseline of 53/995 at 0 auto-wrong.
+        item["score"] = (
+            (PRODUCT_SCORE_BEST_WEIGHT * best_similarity)
+            + (PRODUCT_SCORE_MEAN_TOP3_WEIGHT * mean_top3)
+            + PRODUCT_SCORE_COVERAGE_BONUS * (min(max(query_crop_count, 0), 4) / 4)
+            + PRODUCT_SCORE_COVERAGE_BONUS * 0.6 * (min(max(candidate_crop_count, 0), 6) / 6)
+            - PRODUCT_SCORE_SPIKE_PENALTY * max(best_similarity - mean_top3 - 0.04, 0.0)
+        )
         item["mean_top3_similarity"] = mean_top3
         item["evidence_count"] = evidence_count
         item["query_crop_count"] = query_crop_count

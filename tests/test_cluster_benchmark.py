@@ -1457,10 +1457,10 @@ class ClusterBenchmarkTests(unittest.TestCase):
         assert candidates[0]["embedding_id"] == 2
         assert candidates[0]["best_similarity"] == pytest.approx(0.9)
         assert candidates[0]["mean_top3_similarity"] == pytest.approx(0.85)
-        assert candidates[0]["score"] == pytest.approx(0.88)
+        assert candidates[0]["score"] == pytest.approx(0.9022)
         assert candidates[0]["evidence_count"] == 2
         assert candidates[0]["query_crop_count"] == 2
-        assert candidates[0]["margin"] == pytest.approx(0.03)
+        assert candidates[0]["margin"] == pytest.approx(0.0459)
 
     def test_jewelry_detector_db_penalizes_inconsistent_product_evidence(self) -> None:
         candidates = jdb.aggregate_product_candidates(
