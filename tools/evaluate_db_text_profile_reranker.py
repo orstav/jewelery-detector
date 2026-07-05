@@ -93,6 +93,17 @@ def profile_tokens(profile: Json | None) -> set[str]:
             tokens.update(tokenize_text(item.get(key, "")))
         for feature in item.get("identity_features", []) or []:
             tokens.update(tokenize_text(feature))
+    # Crop-profile-v1 rows store deterministic crop evidence under `crops`
+    # rather than VLM jewelry_items. Treat those as weak text-profile tokens so
+    # the evaluator measures all currently stored profile rows instead of
+    # falling back to embedding-row metadata for every image.
+    for crop in profile.get("crops", []) or []:
+        if not isinstance(crop, dict):
+            continue
+        for key in ("view_type", "source", "crop_id_suffix"):
+            tokens.update(tokenize_text(crop.get(key, "")))
+        for flag in crop.get("risk_flags", []) or []:
+            tokens.update(tokenize_text(flag))
     return tokens
 
 
