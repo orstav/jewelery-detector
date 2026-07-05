@@ -17,14 +17,17 @@ candidate embeddings -> product candidates -> dense-family low-margin guard -> m
 
 If the top product has a high score but another close candidate from the same product-code family is nearby, require a stronger margin before auto-matching.
 
-Default behavior:
+Default behavior for policy-grid work:
 
 ```text
-same_design_review_margin = max(policy.margin_threshold * 2, 0.08)
+dense_family_guard_enabled = false unless explicitly set by policy
+same_design_review_margin = max(policy.margin_threshold * 2, 0.08) when enabled
 dense_family_min_score = policy.auto_match_score
 dense_family_score_delta = same_design_review_margin
 same_family_numeric_window = unset, meaning same product-letter family such as R/R or E/E
 ```
+
+The first all-prefix prototype was intentionally conservative and is documented below as a safety bound, not a final policy.
 
 If triggered, decision becomes:
 

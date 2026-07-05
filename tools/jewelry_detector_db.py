@@ -509,6 +509,8 @@ def same_candidate_family(left: str, right: str, *, numeric_window: int | None =
 
 
 def dense_family_review_needed(candidates: JsonList, policy: JsonDict) -> bool:
+    if not policy.get("dense_family_guard_enabled", False):
+        return False
     if len(candidates) < 2:
         return False
     top = candidates[0]

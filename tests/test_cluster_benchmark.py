@@ -1250,6 +1250,7 @@ class ClusterBenchmarkTests(unittest.TestCase):
             "review_min_score": 0.86,
             "auto_match_score": 0.93,
             "margin_threshold": 0.03,
+            "dense_family_guard_enabled": True,
             "same_design_review_margin": 0.08,
         }
         decision = jdb.decide_match(
@@ -1270,6 +1271,7 @@ class ClusterBenchmarkTests(unittest.TestCase):
             "review_min_score": 0.86,
             "auto_match_score": 0.93,
             "margin_threshold": 0.03,
+            "dense_family_guard_enabled": True,
             "same_design_review_margin": 0.08,
         }
         decision = jdb.decide_match(
@@ -1300,7 +1302,7 @@ class ClusterBenchmarkTests(unittest.TestCase):
 
         assert decision["status"] == "needs_review"
         assert decision["selected_product_id"] == "R001"
-        assert decision["reason"] == "dense_family_low_margin"
+        assert decision["reason"] == "review_threshold_or_low_margin"
 
     def test_jewelry_detector_db_rejects_below_candidate_min_score(self) -> None:
         policy = {
