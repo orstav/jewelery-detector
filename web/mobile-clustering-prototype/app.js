@@ -308,10 +308,10 @@ function queueScreen() {
         <span class="badge ${group.confidence}">${confidenceHe(group.confidence)}</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta decision-note">אישור = התמונות האלה הן אותו תכשיט בלבד.</div>
+      <div class="meta decision-note">במסך הזה אין שיוך למוצר קיים. רק כן / לא / לא בטוח לגבי התמונות שבקבוצה.</div>
       <div class="actions three" style="margin-top:10px">
         <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
-        <button class="btn" data-action="open" data-id="${group.id}">צריך לבדוק שיוך</button>
+        <button class="btn" data-action="not-same" data-id="${group.id}">לא — לא אותו תכשיט</button>
         <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
       </div>
     </section>`).join('');
@@ -537,6 +537,7 @@ document.addEventListener('click', (event) => {
   if (action === 'open') openGroup(id);
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
   else if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
+  if (action === 'not-same' && group) record(group, 'reject_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link', nextStep: 'system_recluster_or_manual_split' });
   if (action === 'one-product' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
   if (action === 'link-existing' && group) { state.screen = 'link-existing'; render(); }
   if (action === 'known-product' && group) { state.knownProductQuery = ''; state.screen = 'known-product'; render(); }
