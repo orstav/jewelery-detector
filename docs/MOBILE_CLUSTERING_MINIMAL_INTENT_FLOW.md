@@ -32,6 +32,51 @@ For each proposed group, the system should ask only one of these intentions:
 
 That is the whole main vocabulary. No variant/SKU/Shopify/product-model language in the parent UI.
 
+## Design / model / variant resolution
+
+Or identified that `אותו עיצוב, מוצר אחר` alone does not solve the hard modeling question. The app should use a hybrid of both options:
+
+1. **short explanation** before the question;
+2. **one simple difference question** only when the group is visually close but not exact.
+
+Do not ask Dalia/Eyal:
+
+```text
+האם זה וריאנט / מוצר / Design?
+```
+
+Ask:
+
+```text
+מה ההבדל שרואים?
+```
+
+Buttons:
+
+```text
+אין הבדל — אותו תכשיט
+צבע מתכת אחר
+כסף / זהב
+אבן / צבע אבן אחר
+גודל אחר
+צורה / פרטים שונים
+לא בטוח
+```
+
+Backend mapping:
+
+```text
+אין הבדל                 -> same_product
+צבע מתכת אחר            -> possible offering/variant inside same gold product, review by rules
+כסף / זהב                -> usually separate Product under same Design
+אבן / צבע אבן אחר        -> usually separate Product under same Design
+גודל אחר                 -> same Design; may be size offering or separate Product depending evidence
+צורה / פרטים שונים       -> likely different Design or Or review
+לא בטוח                  -> review queue
+```
+
+This keeps the parent UI simple but gives the backend enough signal to avoid corrupting Product/Variant/Design structure.
+
 ## Primary flow: group-first, not photo-first
 
 ### Step 1 — Queue shows proposed groups

@@ -203,6 +203,43 @@ function groupScreen(mode = 'group') {
       <div><strong>${candidate.label}</strong><div class="meta">${candidate.meta}</div></div>
     </div>`).join('');
   const thumbsClass = mode === 'split' ? 'thumbs split-grid' : 'thumbs';
+  if (mode === 'design-intent') {
+    return `
+    <div class="phone">
+      <header>
+        <h1>אותו עיצוב או דגם?</h1>
+        <div class="progress">לא צריך להבין Shopify — רק להגיד מה רואים</div>
+      </header>
+      <main>
+        <section class="panel">
+          <div class="group-title">${group.title}</div>
+          <div class="meta">${group.evidence}</div>
+          <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+        </section>
+        <section class="panel explain">
+          <strong>הסבר קצר</strong>
+          <div class="meta">אם זה אותו תכשיט בדיוק — מחברים לאותה קבוצה. אם זה אותו סגנון אבל יש הבדל שנמכר אחרת, מסמנים מה ההבדל. אנחנו נחליט אחר כך אם זה מוצר, וריאנט או אותו Design.</div>
+        </section>
+        <section class="panel">
+          <strong>מה ההבדל?</strong>
+          <div class="actions" style="margin-top:10px">
+            <button class="btn primary" data-action="one-product" data-id="${group.id}">אין הבדל — אותו תכשיט</button>
+            <button class="btn" data-action="difference:metal_color" data-id="${group.id}">צבע מתכת אחר</button>
+            <button class="btn" data-action="difference:metal_type" data-id="${group.id}">כסף / זהב</button>
+            <button class="btn" data-action="difference:stone" data-id="${group.id}">אבן / צבע אבן אחר</button>
+            <button class="btn" data-action="difference:size" data-id="${group.id}">גודל אחר</button>
+            <button class="btn" data-action="difference:structure" data-id="${group.id}">צורה / פרטים שונים</button>
+            <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+          </div>
+        </section>
+      </main>
+      <div class="footer">
+        <button class="btn ghost" data-action="back">חזרה</button>
+        <button class="btn ghost" data-action="more-products">עוד מוצרים</button>
+        <button class="btn ghost" data-action="more-images">עוד תמונות</button>
+      </div>
+    </div>`;
+  }
   return `
     <div class="phone">
       <header>
@@ -266,7 +303,8 @@ document.addEventListener('click', (event) => {
   if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos });
   if (action === 'link-existing' && group) record(group, 'link_group_to_existing_product', { candidate: group.candidates[0]?.id || null, photoIds: group.photos });
   if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos });
-  if (action === 'same-design' && group) record(group, 'same_design_different_product', { difference: 'unknown', photoIds: group.photos });
+  if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
+  if (action?.startsWith('difference:') && group) record(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos });
   if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos });
   if (action === 'split') startSplit(id);
   if (action === 'finish-split' && group) finishSplit(group);
