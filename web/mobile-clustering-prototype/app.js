@@ -169,6 +169,8 @@ const state = {
   decisions: JSON.parse(localStorage.getItem('stavDecisions') || '[]'),
   selectedPhotos: new Set(),
   knownProductQuery: '',
+  referenceQuery: '',
+  referenceMode: 'existing_design_new_product',
   previewPhotoId: null,
   backScreen: 'queue',
 };
@@ -182,6 +184,7 @@ const productDecisionTypes = new Set([
   'human_named_existing_product_not_in_suggestions',
   'create_new_product_cluster',
   'create_new_product_existing_design',
+  'create_new_product_existing_design_unresolved',
   'same_design_different_product',
   'same_product_variant',
   'metal_type_difference',
@@ -210,6 +213,7 @@ function productDecisionLabel(decision) {
     human_named_existing_product_not_in_suggestions: 'נשמר שם/רמז לזיהוי',
     create_new_product_cluster: 'סומן כמוצר חדש בעיצוב חדש',
     create_new_product_existing_design: 'סומן כמוצר חדש בעיצוב קיים',
+    create_new_product_existing_design_unresolved: 'עיצוב קיים — חסר איזה עיצוב',
     same_design_different_product: 'סומן כמוצר חדש באותו עיצוב עם הבדל',
     same_product_variant: 'סומן כווריאנט של אותו מוצר',
     metal_type_difference: 'סומן כהבדל בסוג מתכת',
@@ -221,7 +225,8 @@ function productDecisionLabel(decision) {
 function productDecisionDetail(decision) {
   if (!decision) return '';
   const p = decision.payload || {};
-  return [p.candidate, p.typedName, p.difference, p.designRelationship].filter(Boolean).join(' · ');
+  const reference = p.designReference?.label || p.designReference?.id || p.referenceProduct || '';
+  return [p.candidate, reference, p.typedName, p.difference, p.designRelationship, p.resolutionStatus].filter(Boolean).join(' · ');
 }
 
 function undoProductDecision(groupId) {
@@ -231,6 +236,7 @@ function undoProductDecision(groupId) {
   state.screen = 'product-stage';
   state.activeGroupId = null;
   state.knownProductQuery = '';
+  state.referenceQuery = '';
   persist();
   render();
 }
@@ -258,12 +264,80 @@ function setScreen(screen, groupId = state.activeGroupId, backScreen = state.scr
   render();
 }
 
+function setReferenceScreen(groupId, mode = 'existing_design_new_product', backScreen = state.screen) {
+  state.referenceMode = mode;
+  state.referenceQuery = '';
+  setScreen('existing-design', groupId, backScreen);
+}
+
+function referenceModeCopy() {
+  const copy = {
+    existing_design_new_product: {
+      title: 'איזה עיצוב קיים?',
+      intro: 'בחרו עיצוב/מוצר דומה שעליו המוצר החדש מבוסס. אם לא מוצאים — שומרים רמז או שולחים לבדיקה.',
+      choose: 'בחר כעיצוב הקיים',
+      search: 'שם עיצוב, מוצר דומה, משפחה או רמז',
+      unknown: 'לא יודע/ת איזה עיצוב',
+    },
+    same_design_different_product: {
+      title: 'איזה עיצוב משותף?',
+      intro: 'כדי לסמן אבן / צבע / גודל שונה צריך קודם לדעת לאיזה עיצוב קיים זה שייך.',
+      choose: 'בחר כעיצוב המשותף',
+      search: 'שם עיצוב או מוצר מאותה משפחה',
+      unknown: 'לא יודע/ת איזה עיצוב',
+    },
+    same_product_variant: {
+      title: 'איזה מוצר קיים?',
+      intro: 'כדי לסמן רק צבע זהב שונה צריך לבחור את המוצר הקיים שאליו הווריאנט שייך.',
+      choose: 'בחר כמוצר הקיים',
+      search: 'שם מוצר, קוד או רמז',
+      unknown: 'לא יודע/ת איזה מוצר',
+    },
+  };
+  return copy[state.referenceMode] || copy.existing_design_new_product;
+}
+
+function recordReferenceDecision(group, reference, source, typedName = '') {
+  const base = {
+    photoIds: group.photos.map(photoId),
+    source,
+    typedName,
+    nextStep: 'create_new_product_linked_to_existing_design',
+  };
+  if (state.referenceMode === 'same_design_different_product') {
+    return recordProductDecision(group, 'same_design_different_product', {
+      ...base,
+      difference: 'stone_color_or_size',
+      designRelationship: 'same_design_different_product',
+      designReference: reference,
+      nextStep: 'create_new_product_under_existing_design',
+    });
+  }
+  if (state.referenceMode === 'same_product_variant') {
+    return recordProductDecision(group, 'same_product_variant', {
+      ...base,
+      difference: 'gold_color',
+      designRelationship: 'same_product_variant',
+      referenceProduct: reference?.id,
+      designReference: reference,
+      nextStep: 'review_variant_policy',
+    });
+  }
+  return recordProductDecision(group, 'create_new_product_existing_design', {
+    ...base,
+    designRelationship: 'existing_design_new_product',
+    designReference: reference,
+    nextStep: 'create_new_product_linked_to_existing_design',
+  });
+}
+
 function goBack() {
   const target = state.backScreen || (pendingProductStageGroups().length ? 'product-stage' : 'queue');
   state.screen = target;
   state.activeGroupId = null;
   state.backScreen = 'queue';
   state.knownProductQuery = '';
+  state.referenceQuery = '';
   render();
 }
 
@@ -394,6 +468,7 @@ function recordProductDecision(group, decisionType, payload = {}) {
   state.activeGroupId = null;
   state.selectedPhotos = new Set();
   state.knownProductQuery = '';
+  state.referenceQuery = '';
   persist();
   render();
 }
@@ -700,6 +775,60 @@ function groupScreen(mode = 'group') {
       </div>
     </div>`;
   }
+  if (mode === 'existing-design') {
+    const copy = referenceModeCopy();
+    const query = state.referenceQuery || '';
+    const candidateCards = group.candidates.length ? group.candidates.map((candidate, index) => `
+      <div class="candidate reference-choice">
+        ${photoTile(candidatePhoto(candidate, index + 21))}
+        <div>
+          <strong>${candidate.label || candidate.name || candidate.id}</strong>
+          <ul class="candidate-evidence">${candidateEvidence(candidate)}</ul>
+          <button class="btn primary wide" data-action="choose-design-candidate" data-id="${group.id}" data-candidate="${candidate.id}">${copy.choose}</button>
+        </div>
+      </div>`).join('') : `<div class="notice">אין מועמד עיצוב חזק. אפשר לחפש לפי שם או לשמור רמז ל־HAL.</div>`;
+    const results = searchProducts(query);
+    return `
+    <div class="phone">
+      <header>
+        ${backButton()}
+        <h1>${copy.title}</h1>
+        <div class="progress">${copy.intro}</div>
+      </header>
+      <main>
+        <section class="panel">
+          <div class="group-title">התמונות החדשות</div>
+          <div class="thumbs review-thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+          <div class="meta zoom-hint">לחיצה על תמונה פותחת הגדלה למסך מלא.</div>
+        </section>
+        <section class="panel">
+          <strong>מועמדים לעיצוב</strong>
+          <div class="meta">בחרו רק אם זה באמת העיצוב/המוצר שעליו המוצר החדש מבוסס.</div>
+          <div class="candidates">${candidateCards}</div>
+        </section>
+        <section class="panel">
+          <strong>חיפוש עיצוב קיים</strong>
+          <input class="text-input" id="referenceName" dir="auto" placeholder="${copy.search}" value="${query}" autocomplete="off">
+          <div class="autocomplete">${autocompleteProducts(query).map((product) => `
+            <button class="autocomplete-item" data-action="choose-design-search" data-id="${group.id}" data-product="${product.id}">
+              <strong>${product.name}</strong><small>${product.id} · ${product.type || ''} · ${product.family || ''}</small>
+            </button>`).join('')}</div>
+          ${query ? `<div class="candidates">${results.map((product, index) => `
+            <button class="candidate choice" data-action="choose-design-search" data-id="${group.id}" data-product="${product.id}">
+              ${photoTile(productPhoto(product, index + 71))}
+              <span><strong>${product.name}</strong><small>${product.id} · ${product.type || ''} · ${product.family || ''}<br>${product.meta || ''}</small></span>
+            </button>`).join('') || '<div class="notice">לא נמצאה התאמה טובה. אפשר לשמור רמז או לשלוח לבדיקה.</div>'}</div>` : ''}
+          <div class="actions decision-actions" style="margin-top:12px">
+            <button class="btn link-choice fallback-choice" data-action="save-design-hint" data-id="${group.id}">אני יודע/ת את העיצוב אבל לא מצאתי</button>
+            <button class="btn tertiary-choice" data-action="design-reference-unknown" data-id="${group.id}">${copy.unknown}</button>
+          </div>
+        </section>
+      </main>
+      <div class="footer">
+        <button class="btn ghost" data-action="back">חזרה</button>
+      </div>
+    </div>`;
+  }
   if (mode === 'design-intent') {
     return `
     <div class="phone">
@@ -785,11 +914,13 @@ function render() {
 }
 
 document.addEventListener('input', (event) => {
-  if (event.target?.id !== 'knownProductName') return;
-  state.knownProductQuery = event.target.value.trim();
+  const targetId = event.target?.id;
+  if (!['knownProductName', 'referenceName'].includes(targetId)) return;
+  if (targetId === 'knownProductName') state.knownProductQuery = event.target.value.trim();
+  if (targetId === 'referenceName') state.referenceQuery = event.target.value.trim();
   render();
   requestAnimationFrame(() => {
-    const input = document.querySelector('#knownProductName');
+    const input = document.querySelector(`#${targetId}`);
     if (!input) return;
     input.focus();
     const pos = input.value.length;
@@ -851,12 +982,25 @@ document.addEventListener('click', (event) => {
   }
   if (action === 'link-search-product' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.product, source: 'all_product_search', typedName: state.knownProductQuery, photoIds: group.photos.map(photoId) });
   if (action === 'link-candidate' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, source: 'detector_candidate', photoIds: group.photos.map(photoId) });
-  if (action === 'new-product-existing-design' && group) recordProductDecision(group, 'create_new_product_existing_design', { photoIds: group.photos.map(photoId), source: 'candidate_screen', designRelationship: 'existing_design_new_product' });
-  if (action === 'new-product' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage', designRelationship: 'new_design_or_unknown' });
+  if (action === 'new-product-existing-design' && group) setReferenceScreen(id, 'existing_design_new_product', 'design-intent');
+  if (action === 'new-product' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'design_intent_screen', designRelationship: 'new_design', designReference: null, nextStep: 'create_new_product_and_new_design' });
   if (action === 'same-design' && group) setScreen('design-intent', id, state.screen);
   if (action?.startsWith('metal-type:') && group) recordProductDecision(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
-  if (action?.startsWith('variant:') && group) recordProductDecision(group, 'same_product_variant', { difference: action.replace('variant:', ''), photoIds: group.photos.map(photoId) });
-  if (action?.startsWith('difference:') && group) recordProductDecision(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
+  if (action?.startsWith('variant:') && group) setReferenceScreen(id, 'same_product_variant', 'design-intent');
+  if (action?.startsWith('difference:') && group) setReferenceScreen(id, 'same_design_different_product', 'design-intent');
+  if (action === 'choose-design-candidate' && group) {
+    const candidate = (group.candidates || []).find((item) => item.id === actionEl.dataset.candidate);
+    recordReferenceDecision(group, { id: actionEl.dataset.candidate, label: candidate?.label || candidate?.name || actionEl.dataset.candidate, type: 'product_or_design_candidate' }, 'existing_design_candidate');
+  }
+  if (action === 'choose-design-search' && group) {
+    const product = productIndex.find((item) => item.id === actionEl.dataset.product);
+    recordReferenceDecision(group, { id: actionEl.dataset.product, label: product?.name || actionEl.dataset.product, type: 'product_search_result' }, 'existing_design_search', state.referenceQuery);
+  }
+  if (action === 'save-design-hint' && group) {
+    const typedName = (document.querySelector('#referenceName')?.value || state.referenceQuery || '').trim();
+    recordProductDecision(group, 'create_new_product_existing_design_unresolved', { photoIds: group.photos.map(photoId), source: 'existing_design_manual_hint', typedName, designRelationship: 'existing_design_new_product', designReference: null, resolutionStatus: 'unresolved', nextStep: 'hal_find_existing_design_by_hint' });
+  }
+  if (action === 'design-reference-unknown' && group) recordProductDecision(group, 'send_to_or_review_product_stage', { reason: state.referenceMode === 'same_product_variant' ? 'variant_reference_product_unknown' : 'existing_design_but_design_reference_unknown', photoIds: group.photos.map(photoId), designRelationship: state.referenceMode, designReference: null, nextStep: state.referenceMode === 'same_product_variant' ? 'human_or_hal_select_existing_product' : 'human_or_hal_select_existing_design' });
   if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos.map(photoId) });
   if (action === 'split') startSplit(id);
   if (action === 'finish-split' && group) finishSplit(group);
