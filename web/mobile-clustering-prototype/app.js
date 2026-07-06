@@ -472,17 +472,18 @@ function queueScreen() {
     <section class="group-card">
       <div class="group-head">
         <div>
-          <div class="group-title">קבוצה ${index + 1}: האם אלה תמונות של אותו תכשיט?</div>
-          <div class="meta">${group.photos.length} תמונות · ${compactGroupHint(group)}</div>
+          <div class="eyebrow">קבוצה ${index + 1} · ${group.photos.length} תמונות</div>
+          <div class="group-title">האם התמונות הן אותו תכשיט?</div>
+          <div class="meta">${compactGroupHint(group)}</div>
         </div>
         <span class="badge ${group.confidence}">${confidenceHe(group.confidence)}</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta decision-note">במסך הזה אין שיוך למוצר קיים. רק כן / לא / לא בטוח לגבי התמונות שבקבוצה.</div>
-      <div class="actions three" style="margin-top:10px">
-        <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
-        <button class="btn" data-action="not-same" data-id="${group.id}">לא — לא אותו תכשיט</button>
-        <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+      <div class="decision-note"><strong>ענו רק על הקבוצה:</strong> אין כאן שיוך למוצר קיים או יצירת מוצר.</div>
+      <div class="actions decision-actions" style="margin-top:12px">
+        <button class="btn primary main-choice" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
+        <button class="btn secondary-choice" data-action="not-same" data-id="${group.id}">לא — לא אותו תכשיט</button>
+        <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
       </div>
     </section>`).join('');
   return `
@@ -493,7 +494,7 @@ function queueScreen() {
         <div class="progressbar" style="--p:${pct}%"><span></span></div>
       </header>
       <main>
-        <div class="notice">במסך הזה מאשרים רק דבר אחד: התמונות בקבוצה הן אותו תכשיט.</div>
+        <div class="notice focus-notice"><span>מה עושים עכשיו?</span><strong>בודקים אם התמונות בכל קבוצה הן אותו תכשיט.</strong></div>
         ${cards || emptyState}
       </main>
       <div class="footer">
@@ -512,18 +513,19 @@ function productStageScreen() {
     <section class="group-card">
       <div class="group-head">
         <div>
-          <div class="group-title">קבוצה ${index + 1}: מה זה בקטלוג?</div>
-          <div class="meta">${group.photos.length} תמונות · ${compactGroupHint(group)}</div>
+          <div class="eyebrow">קבוצה ${index + 1} · ${group.photos.length} תמונות</div>
+          <div class="group-title">מה זה בקטלוג?</div>
+          <div class="meta">${compactGroupHint(group)}</div>
         </div>
         <span class="badge ${group.confidence}">אחרי אישור תמונות</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta decision-note">המערכת מתחילה בשבילכם: אם זה נראה כמו תמונות חדשות למוצר שכבר קיים — קודם מציגה מועמדים. אם לא, מסמנים קודם שזה מוצר חדש, ואז מחליטים על העיצוב.</div>
-      <div class="actions" style="margin-top:10px">
-        <button class="btn primary" data-action="classify-existing" data-id="${group.id}">נראה מוצר קיים — הצג מועמדים</button>
-        <button class="btn" data-action="classify-design" data-id="${group.id}">לא נראה מוצר קיים — מוצר חדש</button>
-        <button class="btn warn" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
-        <button class="btn ghost wide" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
+      <div class="decision-note"><strong>התחילו מהמועמדים.</strong> אם אף מועמד לא מתאים — מסמנים מוצר חדש ורק אז עיצוב.</div>
+      <div class="actions decision-actions product-actions" style="margin-top:12px">
+        <button class="btn primary main-choice" data-action="classify-existing" data-id="${group.id}">נראה מוצר קיים — הצג מועמדים</button>
+        <button class="btn secondary-choice" data-action="classify-design" data-id="${group.id}">לא נראה מוצר קיים — מוצר חדש</button>
+        <button class="btn tertiary-choice" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
+        <button class="btn ghost fallback-choice" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
       </div>
     </section>`).join('');
   const decidedCards = decided.map((group, index) => {
@@ -553,7 +555,7 @@ function productStageScreen() {
         <div class="progress">${pending.length} קבוצות לשיוך · ${done} כבר טופלו</div>
       </header>
       <main>
-        <div class="notice">שלב 2: קודם בודקים האם אלה תמונות חדשות למוצר קיים. אם טעיתם בבחירה, כל החלטה שטופלה מופיעה למטה עם “התחרטתי — החזר לשיוך”.</div>
+        <div class="notice focus-notice"><span>שלב 2</span><strong>קודם בוחרים אם זה מוצר קיים. אפשר להתחרט אחרי כל החלטה.</strong></div>
         ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה. אם אחת ההחלטות לא נכונה, אפשר להחזיר אותה לשיוך מהרשימה למטה.</div></section>'}
         ${decidedCards ? `<section class="panel explain"><strong>החלטות שכבר סומנו</strong><div class="meta">אפשר להתחרט בלי להתחיל את כל המדגם מחדש.</div></section>${decidedCards}` : ''}
       </main>
@@ -629,10 +631,10 @@ function groupScreen(mode = 'group') {
           <strong>מועמדים קיימים</strong>
           <div class="meta">אם אחד המועמדים נכון — בוחרים אותו. אם לא, לא כותבים ידנית עדיין; מסמנים מוצר חדש וממשיכים לעיצוב.</div>
           <div class="candidates">${candidateCards}</div>
-          <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="same-design" data-id="${group.id}">אף מועמד לא מתאים — מוצר חדש</button>
-            <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
-            <button class="btn ghost wide" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
+          <div class="actions decision-actions" style="margin-top:12px">
+            <button class="btn primary main-choice" data-action="same-design" data-id="${group.id}">אף מועמד לא מתאים — מוצר חדש</button>
+            <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+            <button class="btn ghost fallback-choice" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
           </div>
         </section>
       </main>
@@ -663,10 +665,10 @@ function groupScreen(mode = 'group') {
             <button class="autocomplete-item" data-action="link-search-product" data-id="${group.id}" data-product="${product.id}">
               <strong>${product.name}</strong><small>${product.id} · ${product.type || ''} · ${product.family || ''}</small>
             </button>`).join('')}</div>
-          <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="search-known-product" data-id="${group.id}">הצג תוצאות</button>
-            <button class="btn" data-action="link-existing" data-id="${group.id}">חזרה למועמדים</button>
-            <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+          <div class="actions decision-actions" style="margin-top:12px">
+            <button class="btn primary main-choice" data-action="search-known-product" data-id="${group.id}">הצג תוצאות</button>
+            <button class="btn secondary-choice" data-action="link-existing" data-id="${group.id}">חזרה למועמדים</button>
+            <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
         </section>
         ${state.knownProductQuery ? `
@@ -711,12 +713,12 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel">
           <strong>איזה סוג מוצר חדש זה?</strong>
-          <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="new-product-existing-design" data-id="${group.id}">מוצר חדש בעיצוב קיים</button>
-            <button class="btn" data-action="new-product" data-id="${group.id}">מוצר חדש בעיצוב חדש</button>
-            <button class="btn" data-action="difference:stone" data-id="${group.id}">מוצר חדש בעיצוב קיים — אבן / צבע / גודל שונה</button>
-            <button class="btn" data-action="variant:gold_color" data-id="${group.id}">אותו מוצר — רק צבע זהב שונה</button>
-            <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+          <div class="actions decision-actions product-actions" style="margin-top:12px">
+            <button class="btn primary main-choice" data-action="new-product-existing-design" data-id="${group.id}">מוצר חדש בעיצוב קיים</button>
+            <button class="btn secondary-choice" data-action="new-product" data-id="${group.id}">מוצר חדש בעיצוב חדש</button>
+            <button class="btn secondary-choice" data-action="difference:stone" data-id="${group.id}">אותו עיצוב — אבן / צבע / גודל שונה</button>
+            <button class="btn secondary-choice" data-action="variant:gold_color" data-id="${group.id}">אותו מוצר — רק צבע זהב שונה</button>
+            <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
         </section>
       </main>
