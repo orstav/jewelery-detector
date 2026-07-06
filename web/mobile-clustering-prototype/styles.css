@@ -125,3 +125,7 @@ main { padding: 14px; flex: 1; }
 .autocomplete-item { width: 100%; border: 1px solid #eadccd; background: #fff8ef; border-radius: 14px; padding: 10px 12px; text-align: right; color: inherit; }
 .autocomplete-item strong { display: block; }
 .autocomplete-item small { display: block; color: #6d6257; margin-top: 3px; line-height: 1.35; }
+
+.decided-card { border-color: #d8ead8; background: #fbfff9; }
+.mini-review { grid-template-columns: repeat(2, minmax(0, 84px)); justify-content: end; }
+.mini-review .thumb { min-height: 84px; }

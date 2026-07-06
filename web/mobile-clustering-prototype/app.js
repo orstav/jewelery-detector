@@ -192,6 +192,41 @@ function hasProductDecision(groupId) {
   return Boolean(latestDecision(groupId, productDecisionTypes));
 }
 
+function latestProductDecision(groupId) {
+  return latestDecision(groupId, productDecisionTypes);
+}
+
+function productDecisionLabel(decision) {
+  const labels = {
+    link_group_to_existing_product: 'סומן כמוצר קיים',
+    human_named_existing_product_not_in_suggestions: 'נשמר שם/רמז לזיהוי',
+    create_new_product_cluster: 'סומן כמוצר חדש בעיצוב חדש',
+    create_new_product_existing_design: 'סומן כמוצר חדש בעיצוב קיים',
+    same_design_different_product: 'סומן כמוצר חדש באותו עיצוב עם הבדל',
+    same_product_variant: 'סומן כווריאנט של אותו מוצר',
+    metal_type_difference: 'סומן כהבדל בסוג מתכת',
+    send_to_or_review_product_stage: 'נשלח לבדיקה',
+  };
+  return labels[decision?.decisionType] || 'התקבלה החלטה';
+}
+
+function productDecisionDetail(decision) {
+  if (!decision) return '';
+  const p = decision.payload || {};
+  return [p.candidate, p.typedName, p.difference, p.designRelationship].filter(Boolean).join(' · ');
+}
+
+function undoProductDecision(groupId) {
+  const decision = latestProductDecision(groupId);
+  if (!decision) return;
+  state.decisions = state.decisions.filter((item) => item.id !== decision.id);
+  state.screen = 'product-stage';
+  state.activeGroupId = null;
+  state.knownProductQuery = '';
+  persist();
+  render();
+}
+
 function productStageGroups() {
   return datasetGroups().filter((group) => isPhotoGroupApproved(group.id));
 }
@@ -469,8 +504,10 @@ function queueScreen() {
 }
 
 function productStageScreen() {
+  const allStageGroups = productStageGroups();
   const pending = pendingProductStageGroups();
-  const done = productStageGroups().length - pending.length;
+  const decided = allStageGroups.filter((group) => hasProductDecision(group.id));
+  const done = decided.length;
   const cards = pending.map((group, index) => `
     <section class="group-card">
       <div class="group-head">
@@ -489,6 +526,25 @@ function productStageScreen() {
         <button class="btn ghost wide" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
       </div>
     </section>`).join('');
+  const decidedCards = decided.map((group, index) => {
+    const decision = latestProductDecision(group.id);
+    const detail = productDecisionDetail(decision);
+    return `
+    <section class="group-card decided-card">
+      <div class="group-head">
+        <div>
+          <div class="group-title">טופל ${index + 1}: ${productDecisionLabel(decision)}</div>
+          <div class="meta">${group.photos.length} תמונות · ${compactGroupHint(group)}${detail ? ` · ${detail}` : ''}</div>
+        </div>
+        <span class="badge high">אפשר לשנות</span>
+      </div>
+      <div class="thumbs review-thumbs mini-review">${group.photos.slice(0, 2).map((photo) => photoTile(photo)).join('')}</div>
+      <div class="actions" style="margin-top:10px">
+        <button class="btn primary" data-action="undo-product-decision" data-id="${group.id}">התחרטתי — החזר לשיוך</button>
+        <button class="btn ghost" data-action="classify-existing" data-id="${group.id}">בחר שוב</button>
+      </div>
+    </section>`;
+  }).join('');
   return `
     <div class="phone">
       <header>
@@ -497,8 +553,9 @@ function productStageScreen() {
         <div class="progress">${pending.length} קבוצות לשיוך · ${done} כבר טופלו</div>
       </header>
       <main>
-        <div class="notice">שלב 2: קודם בודקים האם אלה תמונות חדשות למוצר קיים. אם לא — זה מוצר חדש; רק אחר כך מחליטים על עיצוב.</div>
-        ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה.</div></section>'}
+        <div class="notice">שלב 2: קודם בודקים האם אלה תמונות חדשות למוצר קיים. אם טעיתם בבחירה, כל החלטה שטופלה מופיעה למטה עם “התחרטתי — החזר לשיוך”.</div>
+        ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה. אם אחת ההחלטות לא נכונה, אפשר להחזיר אותה לשיוך מהרשימה למטה.</div></section>'}
+        ${decidedCards ? `<section class="panel explain"><strong>החלטות שכבר סומנו</strong><div class="meta">אפשר להתחרט בלי להתחיל את כל המדגם מחדש.</div></section>${decidedCards}` : ''}
       </main>
       <div class="footer">
         <button class="btn ghost" data-action="back">חזרה</button>
@@ -754,6 +811,7 @@ document.addEventListener('click', (event) => {
     render();
     return;
   }
+  if (action === 'undo-product-decision' && id) { undoProductDecision(id); return; }
   if (action === 'product-stage') { state.screen = 'product-stage'; state.activeGroupId = null; render(); }
   if (action === 'classify-existing' && group) setScreen('link-existing', id, 'product-stage');
   if (action === 'classify-known' && group) { state.knownProductQuery = ''; setScreen('known-product', id, 'product-stage'); }
