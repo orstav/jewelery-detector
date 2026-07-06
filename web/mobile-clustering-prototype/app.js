@@ -53,6 +53,74 @@ const fallbackGroups = [
 ];
 
 
+const fallbackProductIndex = [
+  {
+    id: 'R037',
+    name: 'טבעת ספיר כחולה',
+    aliases: ['sapphire ring', 'טבעת ספיר', 'ספיר כחול'],
+    type: 'טבעת',
+    family: 'משפחת ספיר',
+    meta: 'מוצר קיים בקטלוג · דוגמה ממועמדי הגלאי',
+  },
+  {
+    id: 'NEGEV-NECKLACE',
+    name: 'שרשרת נגב',
+    aliases: ['Negev Necklace', 'negev', 'נגב', 'תליון נגב'],
+    type: 'שרשרת',
+    family: 'Negev',
+    meta: 'דוגמה לחיפוש לפי שם שההורה זוכר',
+  },
+  {
+    id: 'TULIP-EARRINGS',
+    name: 'עגילי טוליפ',
+    aliases: ['Tulip earrings', 'טוליפ', 'עגילי פרח'],
+    type: 'עגילים',
+    family: 'Tulip',
+    meta: 'מוצר קיים לדוגמה באינדקס קריאה בלבד',
+  },
+  {
+    id: 'RONI-GREEN',
+    name: 'רוני ירוק',
+    aliases: ['Roni green', 'רוני', 'ירוק רוני'],
+    type: 'טבעת',
+    family: 'Roni',
+    meta: 'מוצר קיים לדוגמה באינדקס קריאה בלבד',
+  },
+];
+
+const productIndex = window.STAV_PRODUCT_INDEX || fallbackProductIndex;
+
+function normalizeSearch(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0591-\u05C7]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim();
+}
+
+function productSearchText(product) {
+  return normalizeSearch([product.id, product.name, product.type, product.family, product.meta, ...(product.aliases || [])].join(' '));
+}
+
+function searchProducts(query) {
+  const normalized = normalizeSearch(query);
+  if (!normalized) return [];
+  const terms = normalized.split(/\s+/).filter(Boolean);
+  return productIndex
+    .map((product) => {
+      const text = productSearchText(product);
+      const exact = text.includes(normalized) ? 10 : 0;
+      const termHits = terms.reduce((sum, term) => sum + (text.includes(term) ? 1 : 0), 0);
+      return { product, score: exact + termHits };
+    })
+    .filter((item) => item.score >= 10 || item.score >= terms.length)
+    .sort((a, b) => b.score - a.score || a.product.name.localeCompare(b.product.name, 'he'))
+    .slice(0, 6)
+    .map((item) => item.product);
+}
+
+
 const datasetVersion = window.STAV_DATASET_VERSION || 'mock-v1';
 if (localStorage.getItem('stavDatasetVersion') !== datasetVersion) {
   localStorage.removeItem('stavGroups');
@@ -74,6 +142,7 @@ const state = {
   groups: JSON.parse(localStorage.getItem('stavGroups') || 'null') || (window.STAV_REAL_GROUPS || fallbackGroups),
   decisions: JSON.parse(localStorage.getItem('stavDecisions') || '[]'),
   selectedPhotos: new Set(),
+  knownProductQuery: '',
 };
 
 function persist() {
@@ -275,14 +344,25 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel">
           <strong>שם / רמז לזיהוי</strong>
-          <div class="meta">למשל: “שרשרת נגב”, “עגילי טוליפ”, “כמו רוני אבל ירוק”.</div>
-          <input class="text-input" id="knownProductName" dir="auto" placeholder="שם מוצר, עיצוב או רמז" value="${group.knownName || ''}">
+          <div class="meta">למשל: “שרשרת נגב”, “עגילי טוליפ”, “כמו רוני אבל ירוק”. החיפוש הוא על אינדקס מוצרים מלא וקריאה בלבד — לא רק על המועמדים של הגלאי.</div>
+          <input class="text-input" id="knownProductName" dir="auto" placeholder="שם מוצר, עיצוב או רמז" value="${state.knownProductQuery || ''}">
           <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="save-known-product" data-id="${group.id}">שמור וחפש לפי השם</button>
+            <button class="btn primary" data-action="search-known-product" data-id="${group.id}">חפש בכל המוצרים</button>
             <button class="btn" data-action="link-existing" data-id="${group.id}">חזרה למועמדים</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
         </section>
+        ${state.knownProductQuery ? `
+        <section class="panel">
+          <strong>תוצאות חיפוש</strong>
+          <div class="meta">בחרו מוצר אם אחד מהם נכון. אם לא — שומרים את השם ל־HAL.</div>
+          <div class="candidates">${searchProducts(state.knownProductQuery).map((product, index) => `
+            <button class="candidate choice" data-action="link-search-product" data-id="${group.id}" data-product="${product.id}">
+              ${photoTile(String(index + 51))}
+              <span><strong>${product.name}</strong><small>${product.id} · ${product.type || ''} · ${product.family || ''}<br>${product.meta || ''}</small></span>
+            </button>`).join('') || '<div class="notice">לא נמצאה התאמה טובה באינדקס. אפשר לשמור את השם כדי ש־HAL יחבר ידנית.</div>'}</div>
+          <button class="btn" data-action="save-known-product" data-id="${group.id}">לא מצאתי — שמור את השם ל־HAL</button>
+        </section>` : ''}
         <section class="panel explain">
           <strong>מה קורה אם המערכת עדיין לא מוצאת?</strong>
           <div class="meta">זה לא הופך ל“מוצר חדש”. זה נשמר כ: מוצר מוכר לפי ההורה, לא נמצא אוטומטית. HAL יחבר ידנית או יביא מועמדים לפי השם.</div>
@@ -393,12 +473,17 @@ document.addEventListener('click', (event) => {
   else if (action === 'quick' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
   if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
   if (action === 'link-existing' && group) { state.screen = 'link-existing'; render(); }
-  if (action === 'known-product' && group) { state.screen = 'known-product'; render(); }
+  if (action === 'known-product' && group) { state.knownProductQuery = ''; state.screen = 'known-product'; render(); }
+  if (action === 'search-known-product' && group) {
+    state.knownProductQuery = (document.querySelector('#knownProductName')?.value || '').trim();
+    render();
+  }
   if (action === 'save-known-product' && group) {
-    const typedName = (document.querySelector('#knownProductName')?.value || '').trim();
+    const typedName = (document.querySelector('#knownProductName')?.value || state.knownProductQuery || '').trim();
     record(group, 'human_named_existing_product_not_in_suggestions', { typedName, photoIds: group.photos.map(photoId), nextStep: 'search_catalog_by_name_alias_and_visual_candidates' });
   }
-  if (action === 'link-candidate' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, photoIds: group.photos.map(photoId) });
+  if (action === 'link-search-product' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.product, source: 'all_product_search', typedName: state.knownProductQuery, photoIds: group.photos.map(photoId) });
+  if (action === 'link-candidate' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, source: 'detector_candidate', photoIds: group.photos.map(photoId) });
   if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId) });
   if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
   if (action?.startsWith('metal-type:') && group) record(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
