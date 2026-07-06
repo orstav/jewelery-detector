@@ -146,6 +146,48 @@ const state = {
   previewPhotoId: null,
 };
 
+function datasetGroups() {
+  return window.STAV_REAL_GROUPS || fallbackGroups;
+}
+
+const productDecisionTypes = new Set([
+  'link_group_to_existing_product',
+  'human_named_existing_product_not_in_suggestions',
+  'create_new_product_cluster',
+  'same_design_different_product',
+  'same_product_variant',
+  'metal_type_difference',
+  'send_to_or_review_product_stage',
+]);
+
+function latestDecision(groupId, types = null) {
+  return [...state.decisions].reverse().find((decision) => decision.groupId === groupId && (!types || types.has(decision.decisionType)));
+}
+
+function isPhotoGroupApproved(groupId) {
+  return Boolean(latestDecision(groupId, new Set(['approve_photos_same_jewelry'])));
+}
+
+function hasProductDecision(groupId) {
+  return Boolean(latestDecision(groupId, productDecisionTypes));
+}
+
+function productStageGroups() {
+  return datasetGroups().filter((group) => isPhotoGroupApproved(group.id));
+}
+
+function pendingProductStageGroups() {
+  return productStageGroups().filter((group) => !hasProductDecision(group.id));
+}
+
+function rejectedOrReviewGroups() {
+  return state.decisions.filter((decision) => ['reject_photos_same_jewelry', 'send_to_or_review', 'split_review_group'].includes(decision.decisionType));
+}
+
+function findGroupAny(id) {
+  return state.groups.find((group) => group.id === id) || datasetGroups().find((group) => group.id === id);
+}
+
 function persist() {
   localStorage.setItem('stavGroups', JSON.stringify(state.groups));
   localStorage.setItem('stavDecisions', JSON.stringify(state.decisions));
@@ -168,23 +210,45 @@ const typeLabels = {
   bracelet: 'צמיד',
 };
 
+const stoneLabels = {
+  sapphire: 'ספיר',
+  emerald: 'אמרלד',
+  diamond: 'יהלום',
+  ruby: 'רובי',
+  pearl: 'פנינה',
+  moonstone: 'מונסטון',
+};
+
+const metalLabels = {
+  gold: 'זהב',
+  silver: 'כסף',
+  mixed: 'מתכות שונות',
+  white_gold: 'זהב לבן',
+  yellow_gold: 'זהב צהוב',
+  rose_gold: 'זהב אדום',
+};
+
+function labelValue(value, labels) {
+  return labels[value] || value;
+}
+
 function compactGroupHint(group) {
   const firstPhoto = group.photos.find((photo) => typeof photo !== 'string') || {};
   const parts = [
-    typeLabels[firstPhoto.jewelryType] || firstPhoto.jewelryType,
-    firstPhoto.stoneType,
-    firstPhoto.metalColor,
+    labelValue(firstPhoto.jewelryType, typeLabels),
+    labelValue(firstPhoto.stoneType, stoneLabels),
+    labelValue(firstPhoto.metalColor, metalLabels),
   ].filter(Boolean);
   return parts.length ? parts.join(' · ') : 'קבוצת תמונות חדשה';
 }
 
 function activePhotos() {
-  if (!state.activeGroupId) return state.groups.flatMap((group) => group.photos);
-  return state.groups.find((group) => group.id === state.activeGroupId)?.photos || [];
+  if (!state.activeGroupId) return datasetGroups().flatMap((group) => group.photos);
+  return findGroupAny(state.activeGroupId)?.photos || [];
 }
 
 function findPhotoById(id) {
-  return state.groups.flatMap((group) => group.photos).find((photo) => photoId(photo) === id) || id;
+  return datasetGroups().flatMap((group) => group.photos).find((photo) => photoId(photo) === id) || id;
 }
 
 function previewOverlay() {
@@ -235,6 +299,22 @@ function record(group, decisionType, payload = {}) {
   render();
 }
 
+function recordProductDecision(group, decisionType, payload = {}) {
+  state.decisions.push({
+    id: crypto.randomUUID(),
+    groupId: group.id,
+    decisionType,
+    payload: { ...payload, stage: 'product_design_linking' },
+    at: new Date().toISOString(),
+  });
+  state.screen = 'product-stage';
+  state.activeGroupId = null;
+  state.selectedPhotos = new Set();
+  state.knownProductQuery = '';
+  persist();
+  render();
+}
+
 function openGroup(id) {
   state.activeGroupId = id;
   state.screen = 'group';
@@ -245,7 +325,7 @@ function openGroup(id) {
 function startSplit(id) {
   state.activeGroupId = id;
   state.screen = 'split';
-  const group = state.groups.find((item) => item.id === id);
+  const group = findGroupAny(id);
   state.selectedPhotos = new Set((group?.photos.slice(0, Math.ceil(group.photos.length / 2)) || []).map(photoId));
   render();
 }
@@ -298,10 +378,19 @@ function queueScreen() {
   const openPhotos = state.groups.reduce((sum, group) => sum + group.photos.length, 0);
   const done = totalPhotos - openPhotos;
   const pct = totalPhotos ? Math.round((done / totalPhotos) * 100) : 0;
-  const emptyState = `
+  const pendingStage = pendingProductStageGroups();
+  const approvedCount = productStageGroups().length;
+  const productDone = approvedCount - pendingStage.length;
+  const reviewCount = rejectedOrReviewGroups().length;
+  const emptyState = pendingStage.length ? `
     <section class="empty panel">
-      <div class="empty-title">כל הקבוצות במדגם הזה הסתיימו 🎉</div>
-      <div class="meta">אין כרגע קבוצות פתוחות לבדיקה. אפשר להתחיל את אותו מדגם מחדש כדי לבדוק את הזרימה שוב.</div>
+      <div class="empty-title">שלב הקבוצות הסתיים</div>
+      <div class="meta">אישרת ${approvedCount} קבוצות תמונות. עכשיו צריך להחליט לכל קבוצה: מוצר קיים, מוצר חדש, אותו עיצוב עם הבדל, או לא בטוח.</div>
+      <button class="btn primary" data-action="product-stage" style="margin-top:14px">המשך לשיוך מוצרים ועיצובים</button>
+    </section>` : `
+    <section class="empty panel">
+      <div class="empty-title">המדגם הזה הסתיים 🎉</div>
+      <div class="meta">קבוצות שאושרו: ${approvedCount}. החלטות מוצר/עיצוב: ${productDone}. לבדיקה/פיצול: ${reviewCount}. אפשר להתחיל את אותו מדגם מחדש כדי לבדוק את הזרימה שוב.</div>
       <button class="btn primary" data-action="reset" style="margin-top:14px">התחל מדגם מחדש</button>
     </section>`;
   const cards = state.groups.map((group, index) => `
@@ -339,6 +428,45 @@ function queueScreen() {
     </div>`;
 }
 
+function productStageScreen() {
+  const pending = pendingProductStageGroups();
+  const done = productStageGroups().length - pending.length;
+  const cards = pending.map((group, index) => `
+    <section class="group-card">
+      <div class="group-head">
+        <div>
+          <div class="group-title">קבוצה ${index + 1}: מה זה בקטלוג?</div>
+          <div class="meta">${group.photos.length} תמונות · ${compactGroupHint(group)}</div>
+        </div>
+        <span class="badge ${group.confidence}">אחרי אישור תמונות</span>
+      </div>
+      <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
+      <div class="meta decision-note">עכשיו לא בודקים אם התמונות יחד — זה כבר אושר. עכשיו מחליטים אם זה מוצר קיים, מוצר חדש, אותו עיצוב עם הבדל, או דורש בדיקה.</div>
+      <div class="actions" style="margin-top:10px">
+        <button class="btn primary" data-action="classify-known" data-id="${group.id}">אני יודע/ת מה זה</button>
+        <button class="btn" data-action="classify-existing" data-id="${group.id}">בחר מוצר קיים</button>
+        <button class="btn" data-action="classify-new" data-id="${group.id}">זה מוצר חדש</button>
+        <button class="btn" data-action="classify-design" data-id="${group.id}">אותו עיצוב, הבדל נראה</button>
+        <button class="btn warn" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
+      </div>
+    </section>`).join('');
+  return `
+    <div class="phone">
+      <header>
+        <h1>שיוך מוצרים ועיצובים</h1>
+        <div class="progress">${pending.length} קבוצות לשיוך · ${done} כבר טופלו</div>
+      </header>
+      <main>
+        <div class="notice">שלב 2: אחרי שהקבוצות נקיות, מחליטים מה כל קבוצה מייצגת בקטלוג.</div>
+        ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה.</div></section>'}
+      </main>
+      <div class="footer">
+        <button class="btn ghost" data-action="back">חזרה</button>
+        <button class="btn ghost" data-action="reset">התחל מחדש</button>
+      </div>
+    </div>`;
+}
+
 function helpScreen() {
   return `
     <div class="phone">
@@ -371,7 +499,7 @@ function helpScreen() {
 }
 
 function groupScreen(mode = 'group') {
-  const group = state.groups.find((item) => item.id === state.activeGroupId);
+  const group = findGroupAny(state.activeGroupId);
   if (!group) return queueScreen();
   const candidates = group.candidates.map((candidate, index) => `
     <div class="candidate">
@@ -411,7 +539,6 @@ function groupScreen(mode = 'group') {
       </main>
       <div class="footer">
         <button class="btn ghost" data-action="back">חזרה</button>
-        <button class="btn ghost" data-action="more-products">עוד מועמדים</button>
       </div>
     </div>`;
   }
@@ -492,8 +619,6 @@ function groupScreen(mode = 'group') {
       </main>
       <div class="footer">
         <button class="btn ghost" data-action="back">חזרה</button>
-        <button class="btn ghost" data-action="more-products">עוד מוצרים</button>
-        <button class="btn ghost" data-action="more-images">עוד תמונות</button>
       </div>
     </div>`;
   }
@@ -531,15 +656,13 @@ function groupScreen(mode = 'group') {
       </main>
       <div class="footer">
         <button class="btn ghost" data-action="back">חזרה</button>
-        <button class="btn ghost" data-action="more-products">עוד מוצרים</button>
-        <button class="btn ghost" data-action="more-images">עוד תמונות</button>
       </div>
     </div>`;
 }
 
 function render() {
   const root = document.querySelector('#app');
-  root.innerHTML = (state.screen === 'queue' ? queueScreen() : state.screen === 'help' ? helpScreen() : groupScreen(state.screen)) + previewOverlay();
+  root.innerHTML = (state.screen === 'queue' ? queueScreen() : state.screen === 'help' ? helpScreen() : state.screen === 'product-stage' ? productStageScreen() : groupScreen(state.screen)) + previewOverlay();
 }
 
 document.addEventListener('click', (event) => {
@@ -560,7 +683,7 @@ document.addEventListener('click', (event) => {
   if (!actionEl) return;
   const action = actionEl.dataset.action;
   const id = actionEl.dataset.id;
-  const group = state.groups.find((item) => item.id === id);
+  const group = findGroupAny(id);
   if (action === 'close-preview') { state.previewPhotoId = null; render(); return; }
   if (action === 'prev-preview' || action === 'next-preview') {
     const photos = activePhotos();
@@ -571,6 +694,12 @@ document.addEventListener('click', (event) => {
     render();
     return;
   }
+  if (action === 'product-stage') { state.screen = 'product-stage'; state.activeGroupId = null; render(); }
+  if (action === 'classify-existing' && group) { state.activeGroupId = id; state.screen = 'link-existing'; render(); }
+  if (action === 'classify-known' && group) { state.activeGroupId = id; state.knownProductQuery = ''; state.screen = 'known-product'; render(); }
+  if (action === 'classify-new' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage' });
+  if (action === 'classify-design' && group) { state.activeGroupId = id; state.screen = 'design-intent'; render(); }
+  if (action === 'product-unsure' && group) recordProductDecision(group, 'send_to_or_review_product_stage', { reason: 'human_not_sure_product_or_design', photoIds: group.photos.map(photoId) });
   if (action === 'open') openGroup(id);
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
   else if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
@@ -584,15 +713,15 @@ document.addEventListener('click', (event) => {
   }
   if (action === 'save-known-product' && group) {
     const typedName = (document.querySelector('#knownProductName')?.value || state.knownProductQuery || '').trim();
-    record(group, 'human_named_existing_product_not_in_suggestions', { typedName, photoIds: group.photos.map(photoId), nextStep: 'search_catalog_by_name_alias_and_visual_candidates' });
+    recordProductDecision(group, 'human_named_existing_product_not_in_suggestions', { typedName, photoIds: group.photos.map(photoId), nextStep: 'search_catalog_by_name_alias_and_visual_candidates' });
   }
-  if (action === 'link-search-product' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.product, source: 'all_product_search', typedName: state.knownProductQuery, photoIds: group.photos.map(photoId) });
-  if (action === 'link-candidate' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, source: 'detector_candidate', photoIds: group.photos.map(photoId) });
-  if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId) });
+  if (action === 'link-search-product' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.product, source: 'all_product_search', typedName: state.knownProductQuery, photoIds: group.photos.map(photoId) });
+  if (action === 'link-candidate' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, source: 'detector_candidate', photoIds: group.photos.map(photoId) });
+  if (action === 'new-product' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage' });
   if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
-  if (action?.startsWith('metal-type:') && group) record(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
-  if (action?.startsWith('variant:') && group) record(group, 'same_product_variant', { difference: action.replace('variant:', ''), photoIds: group.photos.map(photoId) });
-  if (action?.startsWith('difference:') && group) record(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
+  if (action?.startsWith('metal-type:') && group) recordProductDecision(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
+  if (action?.startsWith('variant:') && group) recordProductDecision(group, 'same_product_variant', { difference: action.replace('variant:', ''), photoIds: group.photos.map(photoId) });
+  if (action?.startsWith('difference:') && group) recordProductDecision(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
   if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos.map(photoId) });
   if (action === 'split') startSplit(id);
   if (action === 'finish-split' && group) finishSplit(group);
