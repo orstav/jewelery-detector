@@ -161,6 +161,7 @@ const productDecisionTypes = new Set([
   'link_group_to_existing_product',
   'human_named_existing_product_not_in_suggestions',
   'create_new_product_cluster',
+  'create_new_product_existing_design',
   'same_design_different_product',
   'same_product_variant',
   'metal_type_difference',
@@ -468,11 +469,12 @@ function productStageScreen() {
         <span class="badge ${group.confidence}">אחרי אישור תמונות</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta decision-note">עכשיו לא בודקים אם התמונות יחד — זה כבר אושר. עכשיו מחליטים אם זה מוצר קיים, מוצר חדש, אותו עיצוב עם הבדל, או דורש בדיקה.</div>
+      <div class="meta decision-note">עכשיו מחליטים שני דברים נפרדים: האם זה מוצר שכבר קיים, ואם לא — האם הוא בעיצוב שכבר קיים או עיצוב חדש.</div>
       <div class="actions" style="margin-top:10px">
-        <button class="btn primary" data-action="classify-existing" data-id="${group.id}">בחר מתוך מועמדים</button>
-        <button class="btn" data-action="classify-new" data-id="${group.id}">זה מוצר חדש</button>
-        <button class="btn" data-action="classify-design" data-id="${group.id}">אותו עיצוב, הבדל נראה</button>
+        <button class="btn primary" data-action="classify-existing" data-id="${group.id}">בחר מוצר קיים</button>
+        <button class="btn" data-action="classify-new-existing-design" data-id="${group.id}">מוצר חדש בעיצוב קיים</button>
+        <button class="btn" data-action="classify-new" data-id="${group.id}">מוצר חדש בעיצוב חדש</button>
+        <button class="btn" data-action="classify-design" data-id="${group.id}">לא בטוח מה ההבדל</button>
         <button class="btn warn" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
         <button class="btn ghost wide" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
       </div>
@@ -485,7 +487,7 @@ function productStageScreen() {
         <div class="progress">${pending.length} קבוצות לשיוך · ${done} כבר טופלו</div>
       </header>
       <main>
-        <div class="notice">שלב 2: אחרי שהקבוצות נקיות, מחליטים מה כל קבוצה מייצגת בקטלוג.</div>
+        <div class="notice">שלב 2: מוצר קיים/חדש ועיצוב קיים/חדש הם לא אותו ציר. מוצר חדש יכול להיות בעיצוב שכבר קיים.</div>
         ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה.</div></section>'}
       </main>
       <div class="footer">
@@ -558,10 +560,11 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel">
           <strong>מועמדים קיימים</strong>
-          <div class="meta">בחירה כאן אומרת: התמונות החדשות הן של אותו מוצר קיים.</div>
+          <div class="meta">בחירה כאן אומרת: התמונות החדשות הן של אותו מוצר קיים. אם זה לא אותו מוצר אבל כן אותו עיצוב — בוחרים “מוצר חדש בעיצוב קיים”.</div>
           <div class="candidates">${candidateCards}</div>
           <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="new-product" data-id="${group.id}">לא — זה מוצר חדש</button>
+            <button class="btn primary" data-action="new-product-existing-design" data-id="${group.id}">לא — מוצר חדש בעיצוב קיים</button>
+            <button class="btn" data-action="new-product" data-id="${group.id}">מוצר חדש בעיצוב חדש</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
             <button class="btn ghost wide" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
           </div>
@@ -638,7 +641,7 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel explain">
           <strong>הכלל הפשוט</strong>
-          <div class="meta">סוג מתכת = כסף / זהב. צבע זהב = צהוב / לבן / אדום, וזה וריאנט של אותו מוצר. תמונה של כסף יכולה לשמש גם לזהב לבן. אבן שונה — סוג, צבע או גודל — היא תכשיט/מוצר אחר תחת אותו עיצוב.</div>
+          <div class="meta">מוצר חדש ועיצוב קיים יכולים לקרות יחד. למשל אבן אחרת — סוג, צבע או גודל — היא מוצר חדש תחת אותו עיצוב. צבע זהב אחר הוא וריאנט של אותו מוצר; סוג מתכת כסף/זהב הוא הבדל מתכת ש־HAL ימפה.</div>
         </section>
         <section class="panel">
           <strong>מה ההבדל?</strong>
@@ -747,7 +750,8 @@ document.addEventListener('click', (event) => {
   if (action === 'product-stage') { state.screen = 'product-stage'; state.activeGroupId = null; render(); }
   if (action === 'classify-existing' && group) setScreen('link-existing', id, 'product-stage');
   if (action === 'classify-known' && group) { state.knownProductQuery = ''; setScreen('known-product', id, 'product-stage'); }
-  if (action === 'classify-new' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage' });
+  if (action === 'classify-new-existing-design' && group) recordProductDecision(group, 'create_new_product_existing_design', { photoIds: group.photos.map(photoId), source: 'product_stage', designRelationship: 'existing_design_new_product' });
+  if (action === 'classify-new' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage', designRelationship: 'new_design_or_unknown' });
   if (action === 'classify-design' && group) setScreen('design-intent', id, 'product-stage');
   if (action === 'product-unsure' && group) recordProductDecision(group, 'send_to_or_review_product_stage', { reason: 'human_not_sure_product_or_design', photoIds: group.photos.map(photoId) });
   if (action === 'open') openGroup(id);
@@ -767,7 +771,8 @@ document.addEventListener('click', (event) => {
   }
   if (action === 'link-search-product' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.product, source: 'all_product_search', typedName: state.knownProductQuery, photoIds: group.photos.map(photoId) });
   if (action === 'link-candidate' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, source: 'detector_candidate', photoIds: group.photos.map(photoId) });
-  if (action === 'new-product' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage' });
+  if (action === 'new-product-existing-design' && group) recordProductDecision(group, 'create_new_product_existing_design', { photoIds: group.photos.map(photoId), source: 'candidate_screen', designRelationship: 'existing_design_new_product' });
+  if (action === 'new-product' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage', designRelationship: 'new_design_or_unknown' });
   if (action === 'same-design' && group) setScreen('design-intent', id, state.screen);
   if (action?.startsWith('metal-type:') && group) recordProductDecision(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
   if (action?.startsWith('variant:') && group) recordProductDecision(group, 'same_product_variant', { difference: action.replace('variant:', ''), photoIds: group.photos.map(photoId) });
