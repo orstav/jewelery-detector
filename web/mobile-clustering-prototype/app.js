@@ -359,6 +359,36 @@ function persist() {
   localStorage.setItem('stavDecisions', JSON.stringify(state.decisions));
 }
 
+function autoApproveSinglePhotoGroups() {
+  const singlePhotoGroups = state.groups.filter((group) => group.photos.length === 1 && !isPhotoGroupApproved(group.id));
+  if (!singlePhotoGroups.length) return false;
+  for (const group of singlePhotoGroups) {
+    state.decisions.push({
+      id: crypto.randomUUID(),
+      groupId: group.id,
+      decisionType: 'approve_photos_same_jewelry',
+      payload: {
+        photoIds: group.photos.map(photoId),
+        scope: 'single_photo_auto_approved_for_product_stage',
+        autoApproved: true,
+        reason: 'single_photo_no_grouping_question_needed',
+      },
+      at: new Date().toISOString(),
+    });
+  }
+  const approvedIds = new Set(singlePhotoGroups.map((group) => group.id));
+  state.groups = state.groups.filter((group) => !approvedIds.has(group.id));
+  if (approvedIds.has(state.activeGroupId)) {
+    state.activeGroupId = null;
+    state.screen = 'queue';
+  }
+  state.selectedPhotos = new Set();
+  persist();
+  return true;
+}
+
+autoApproveSinglePhotoGroups();
+
 function confidenceHe(value) {
   return value === 'high' ? 'ביטחון גבוה' : value === 'medium' ? 'ביטחון בינוני' : 'דורש בדיקה';
 }
@@ -562,6 +592,7 @@ function finishSplit(group) {
   state.screen = 'queue';
   state.activeGroupId = null;
   state.selectedPhotos = new Set();
+  autoApproveSinglePhotoGroups();
   persist();
   render();
 }
@@ -577,6 +608,7 @@ function queueScreen() {
   const productDone = approvedCount - pendingStage.length;
   const reviewCount = rejectedOrReviewGroups().length;
   const skippedText = skippedStatsText();
+  const autoSingleCount = datasetGroups.filter((group) => group.photos.length === 1).length;
   const emptyState = pendingStage.length ? `
     <section class="empty panel">
       <div class="empty-title">שלב הקבוצות הסתיים</div>
@@ -618,6 +650,7 @@ function queueScreen() {
         <section class="dataset-summary panel">
           <strong>${activeDatasetText()}</strong>
           ${skippedText ? `<div class="meta">לא מוצג עכשיו: ${skippedText}</div>` : ''}
+          ${autoSingleCount ? `<div class="meta">${autoSingleCount} קבוצה עם תמונה אחת עברה אוטומטית לשלב שיוך מוצר — אין שאלת “אותו תכשיט” כשיש רק תמונה אחת.</div>` : ''}
         </section>
         ${cards || emptyState}
       </main>
