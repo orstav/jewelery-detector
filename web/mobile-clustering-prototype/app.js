@@ -263,8 +263,8 @@ function groupScreen(mode = 'group') {
     return `
     <div class="phone">
       <header>
-        <h1>אותו מוצר או וריאנט?</h1>
-        <div class="progress">לא צריך להבין Shopify — רק להגיד מה רואים</div>
+        <h1>מה ההבדל שרואים?</h1>
+        <div class="progress">לא צריך להבין Shopify — רק לסמן את ההבדל</div>
       </header>
       <main>
         <section class="panel">
@@ -274,16 +274,16 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel explain">
           <strong>הכלל הפשוט</strong>
-          <div class="meta">אותו עיצוב עם צבע מתכת אחר הוא בדרך כלל אותו מוצר עם וריאנט — לא מוצר חדש. דליה/אייל רק מסמנים מה ההבדל שרואים; HAL ממפה אחר כך למוצר / וריאנט / Design.</div>
+          <div class="meta">סוג מתכת = כסף / זהב. צבע זהב = צהוב / לבן / אדום, וזה וריאנט של אותו מוצר. תמונה של כסף יכולה לשמש גם לזהב לבן. אבן שונה — סוג, צבע או גודל — היא תכשיט/מוצר אחר תחת אותו עיצוב.</div>
         </section>
         <section class="panel">
           <strong>מה ההבדל?</strong>
           <div class="actions" style="margin-top:10px">
             <button class="btn primary" data-action="one-product" data-id="${group.id}">אין הבדל — אותו תכשיט</button>
-            <button class="btn" data-action="variant:metal_color" data-id="${group.id}">צבע מתכת אחר — וריאנט</button>
-            <button class="btn" data-action="variant:metal_type" data-id="${group.id}">כסף / זהב — וריאנט</button>
-            <button class="btn" data-action="difference:stone" data-id="${group.id}">אבן / צבע אבן אחר</button>
-            <button class="btn" data-action="difference:size" data-id="${group.id}">גודל אחר</button>
+            <button class="btn" data-action="metal-type:material" data-id="${group.id}">סוג מתכת אחר — כסף / זהב</button>
+            <button class="btn" data-action="variant:gold_color" data-id="${group.id}">צבע זהב אחר — צהוב / לבן / אדום</button>
+            <button class="btn" data-action="difference:stone" data-id="${group.id}">אבן אחרת — סוג / צבע / גודל</button>
+            <button class="btn" data-action="difference:jewelry_size" data-id="${group.id}">גודל התכשיט אחר</button>
             <button class="btn" data-action="difference:structure" data-id="${group.id}">צורה / פרטים שונים</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
@@ -361,6 +361,7 @@ document.addEventListener('click', (event) => {
   if (action === 'link-candidate' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, photoIds: group.photos.map(photoId) });
   if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId) });
   if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
+  if (action?.startsWith('metal-type:') && group) record(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
   if (action?.startsWith('variant:') && group) record(group, 'same_product_variant', { difference: action.replace('variant:', ''), photoIds: group.photos.map(photoId) });
   if (action?.startsWith('difference:') && group) record(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
   if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos.map(photoId) });
