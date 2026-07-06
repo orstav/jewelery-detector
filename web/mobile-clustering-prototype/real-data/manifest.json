@@ -4,16 +4,17 @@
   "stats": {
     "source": "workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/staging/raw_intake_staging_plan.json",
     "considered_product_groups": 31,
-    "actionable_product_groups": 9,
-    "groups_exported": 5,
-    "photos_exported": 11,
+    "actionable_product_groups": 6,
+    "groups_exported": 2,
+    "photos_exported": 4,
     "skipped_status_counts": {
       "published_active_validated": 15,
       "draft_created": 1,
+      "approved_upload_blocked": 5,
       "dead_or_merged": 2,
       "actionable_missing_images": 4,
       "raw_intake_local_images_missing": 1,
-      "waiting_on_parents": 3
+      "waiting_on_parents": 1
     },
     "missing_files": [
       {
@@ -35,62 +36,14 @@
     ],
     "source_counts": {
       "staging_asset": 0,
-      "selected_fallback": 11
+      "selected_fallback": 4
     },
-    "generated_at": "2026-07-06T20:47:28.709055+00:00"
+    "generated_at": "2026-07-06T21:12:33.134406+00:00"
   },
   "groups": [
     {
       "id": "active-001",
       "title": "פריט לא מקוטלג 1",
-      "subtitle": "טבעת · מתכות שונות · ספיר",
-      "type": "same_design_sibling",
-      "confidence": "medium",
-      "photos": [
-        {
-          "id": "asset_b3a0bfcd3c176b5b6abf7427",
-          "src": "/real-data/pg_d2b1ed6a2f22_1__01__20251214-web_res_1500-2.jpg",
-          "sourcePath": "2026-02-02/fix/web/20251214-web res 1500-2.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "ring",
-          "metalColor": "mixed",
-          "stoneType": "sapphire",
-          "stoneColor": "blue"
-        },
-        {
-          "id": "asset_65058d660d5028a43a4f9226",
-          "src": "/real-data/pg_d2b1ed6a2f22_1__02__20251214-web_res_1500-5.jpg",
-          "sourcePath": "2026-02-02/fix/web/20251214-web res 1500-5.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "ring",
-          "metalColor": "mixed",
-          "stoneType": "sapphire",
-          "stoneColor": "blue"
-        }
-      ],
-      "evidence": "2 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
-      "recommended": "לבדוק הבדל / אותו עיצוב",
-      "candidates": [
-        {
-          "id": "R037",
-          "label": "R037 · מוצר דומה",
-          "meta": "מועמד מהגלאי — לא החלטה"
-        },
-        {
-          "id": "R036",
-          "label": "R036 · מוצר דומה",
-          "meta": "מועמד מהגלאי — לא החלטה"
-        }
-      ],
-      "rawStatus": "parent_facts_captured",
-      "rawCategory": "new_product_existing_design",
-      "sourceRef": "pg_d2b1ed6a2f22_1",
-      "candidateProductId": "R037",
-      "candidateDesignId": null
-    },
-    {
-      "id": "active-002",
-      "title": "פריט לא מקוטלג 2",
       "subtitle": "טבעת · זהב · אבן צבעונית",
       "type": "same_new_product_group",
       "confidence": "medium",
@@ -126,55 +79,8 @@
       "candidateDesignId": null
     },
     {
-      "id": "active-003",
-      "title": "פריט לא מקוטלג 3",
-      "subtitle": "עגילים · זהב · אבנים שונות",
-      "type": "same_new_product_group",
-      "confidence": "medium",
-      "photos": [
-        {
-          "id": "asset_64d3e5bd9e54eec3e051ffe9",
-          "src": "/real-data/pg_441e8efb9a1f_1__01__20251225-web_res_1500-3.jpg",
-          "sourcePath": "2025-12-30/web/20251225-web res 1500-3.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "earring",
-          "metalColor": "gold",
-          "stoneType": "mixed",
-          "stoneColor": "multi"
-        },
-        {
-          "id": "asset_51133860cab46cb5b1662ed2",
-          "src": "/real-data/pg_441e8efb9a1f_1__02__20251225-web_res_1500.jpg",
-          "sourcePath": "2026-01-18/web/20251225-web res 1500.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "earring",
-          "metalColor": "gold",
-          "stoneType": "mixed",
-          "stoneColor": "multi"
-        },
-        {
-          "id": "asset_63d2232782da642d3f25affc",
-          "src": "/real-data/pg_441e8efb9a1f_1__03__20260105-web_res_1500.jpg",
-          "sourcePath": "2026-01-18/web/20260105-web res 1500.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "earring",
-          "metalColor": "gold",
-          "stoneType": "mixed",
-          "stoneColor": "multi"
-        }
-      ],
-      "evidence": "3 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
-      "recommended": "אישור מהיר כמוצר חדש",
-      "candidates": [],
-      "rawStatus": "parent_facts_captured",
-      "rawCategory": "new_product_new_design_candidate",
-      "sourceRef": "pg_441e8efb9a1f_1",
-      "candidateProductId": null,
-      "candidateDesignId": null
-    },
-    {
-      "id": "active-004",
-      "title": "פריט לא מקוטלג 4",
+      "id": "active-002",
+      "title": "פריט לא מקוטלג 2",
       "subtitle": "טבעת · זהב · רובי",
       "type": "same_new_product_group",
       "confidence": "medium",
@@ -206,43 +112,6 @@
       "rawStatus": "package_sent_waiting_parent_approval",
       "rawCategory": "new_product_new_design_candidate",
       "sourceRef": "pg_b76bc5a1a74e_1",
-      "candidateProductId": null,
-      "candidateDesignId": null
-    },
-    {
-      "id": "active-005",
-      "title": "פריט לא מקוטלג 5",
-      "subtitle": "טבעת · זהב · אמרלד",
-      "type": "same_new_product_group",
-      "confidence": "medium",
-      "photos": [
-        {
-          "id": "asset_bd510f01e56110737b9cc924",
-          "src": "/real-data/pg_caec2d75a442_1__01__20260107-web_res_1500-2.jpg",
-          "sourcePath": "2026-01-18/web/20260107-web res 1500-2.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "ring",
-          "metalColor": "gold",
-          "stoneType": "emerald",
-          "stoneColor": "green"
-        },
-        {
-          "id": "asset_d8d7abd6c35bf94ffa971c76",
-          "src": "/real-data/pg_caec2d75a442_1__02__20260107-web_res_1500-5.jpg",
-          "sourcePath": "2026-01-18/web/20260107-web res 1500-5.jpg",
-          "sourceKind": "selected_fallback",
-          "jewelryType": "ring",
-          "metalColor": "gold",
-          "stoneType": "emerald",
-          "stoneColor": "green"
-        }
-      ],
-      "evidence": "2 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
-      "recommended": "אישור מהיר כמוצר חדש",
-      "candidates": [],
-      "rawStatus": "parent_facts_captured",
-      "rawCategory": "new_product_new_design_candidate",
-      "sourceRef": "pg_caec2d75a442_1",
       "candidateProductId": null,
       "candidateDesignId": null
     }
