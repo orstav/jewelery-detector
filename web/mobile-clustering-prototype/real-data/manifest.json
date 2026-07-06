@@ -1,0 +1,301 @@
+{
+  "datasetVersion": "real-raw-intake-2026-07-06-v1",
+  "source": "dropbox-stav-main-2026-06-07 raw-intake staging, read-only sample",
+  "stats": {
+    "considered_product_groups": 17,
+    "groups_exported": 10,
+    "photos_exported": 20,
+    "missing_files": [
+      "2026-01-08/web/20251214-web res 1500-10.jpg",
+      "2026-01-08/web/20251214-web res 1500-11.jpg",
+      "2025-12-18/web/20251209-web res 1500-14.jpg",
+      "2025-12-18/web/20251209-web res 1500-15.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500-10.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500-11.jpg",
+      "2025-12-22/web/20251215-web res 1500.jpg",
+      "2026-01-08/web/20251214-web res 1500-21.jpg",
+      "2026-01-08/web/20251214-web res 1500-19.jpg",
+      "2026-01-08/web/20251214-web res 1500-20.jpg",
+      "2025-12-18/web/20251209-web res 1500-19.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500-9.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500-5.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500.jpg",
+      "2025-12-18/web/20251209-web res 1500-7.jpg",
+      "2025-12-18/web/20251209-web res 1500-8.jpg",
+      "2025-12-18/web/20251209-web res 1500-6.jpg",
+      "2026-05-12/fix/web/20140105-web res 1500-2.jpg",
+      "2026-05-12/fix/web/20140105-web res 1500-3.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500-3.jpg",
+      "2025-12-29/fix/web/20251209-web res 1500-7.jpg",
+      "2026-01-08/web/20251214-web res 1500-12.jpg",
+      "2026-01-08/web/20251214-web res 1500-4.jpg",
+      "2025-12-30/web/20251225-web res 1500-3.jpg",
+      "2026-01-18/web/20251225-web res 1500.jpg",
+      "2026-01-18/web/20260105-web res 1500.jpg"
+    ]
+  },
+  "groups": [
+    {
+      "id": "pg_d2b1ed6a2f22_1",
+      "title": "לא מקוטלג · יש חלק מהפרטים · טבעת · מתכות שונות · sapphire",
+      "type": "same_design_sibling",
+      "confidence": "medium",
+      "photos": [
+        {
+          "id": "asset_b3a0bfcd3c176b5b6abf7427",
+          "src": "/real-data/pg_d2b1ed6a2f22_1__20251214-web_res_1500-2.jpg",
+          "sourcePath": "2026-02-02/fix/web/20251214-web res 1500-2.jpg",
+          "jewelryType": "ring",
+          "metalColor": "mixed",
+          "stoneType": "sapphire",
+          "stoneColor": "blue"
+        },
+        {
+          "id": "asset_65058d660d5028a43a4f9226",
+          "src": "/real-data/pg_d2b1ed6a2f22_1__20251214-web_res_1500-5.jpg",
+          "sourcePath": "2026-02-02/fix/web/20251214-web res 1500-5.jpg",
+          "jewelryType": "ring",
+          "metalColor": "mixed",
+          "stoneType": "sapphire",
+          "stoneColor": "blue"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מדרופבוקס · לא מקוטלג · יש חלק מהפרטים",
+      "recommended": "לבדוק הבדל / אותו עיצוב",
+      "candidates": [
+        {
+          "id": "R037",
+          "label": "R037 · מוצר/עיצוב דומה",
+          "meta": "מועמד מהגלאי — לא החלטה"
+        }
+      ],
+      "rawStatus": "parent_facts_captured",
+      "rawCategory": "new_product_existing_design",
+      "sourceRef": "pg_d2b1ed6a2f22_1"
+    },
+    {
+      "id": "pg_caec2d75a442_1",
+      "title": "לא מקוטלג · יש חלק מהפרטים · טבעת · זהב · אמרלד",
+      "type": "same_new_product_group",
+      "confidence": "medium",
+      "photos": [
+        {
+          "id": "asset_bd510f01e56110737b9cc924",
+          "src": "/real-data/pg_caec2d75a442_1__20260107-web_res_1500-2.jpg",
+          "sourcePath": "2026-01-18/web/20260107-web res 1500-2.jpg",
+          "jewelryType": "ring",
+          "metalColor": "gold",
+          "stoneType": "emerald",
+          "stoneColor": "green"
+        },
+        {
+          "id": "asset_d8d7abd6c35bf94ffa971c76",
+          "src": "/real-data/pg_caec2d75a442_1__20260107-web_res_1500-5.jpg",
+          "sourcePath": "2026-01-18/web/20260107-web res 1500-5.jpg",
+          "jewelryType": "ring",
+          "metalColor": "gold",
+          "stoneType": "emerald",
+          "stoneColor": "green"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מדרופבוקס · לא מקוטלג · יש חלק מהפרטים",
+      "recommended": "אישור מהיר כמוצר חדש",
+      "candidates": [],
+      "rawStatus": "parent_facts_captured",
+      "rawCategory": "new_product_new_design_candidate",
+      "sourceRef": "pg_caec2d75a442_1"
+    },
+    {
+      "id": "pg_076e48229edb_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_076e48229edb_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_076e48229edb_1_photo_01",
+          "src": "/real-data/pg_076e48229edb_1__selected_01.jpg",
+          "sourcePath": "selected/pg_076e48229edb_1/fix__web__20251209-web res 1500-10.jpg"
+        },
+        {
+          "id": "pg_076e48229edb_1_photo_02",
+          "src": "/real-data/pg_076e48229edb_1__selected_02.jpg",
+          "sourcePath": "selected/pg_076e48229edb_1/fix__web__20251209-web res 1500-11.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_076e48229edb_1"
+    },
+    {
+      "id": "pg_103979473889_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_103979473889_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_103979473889_1_photo_01",
+          "src": "/real-data/pg_103979473889_1__selected_01.jpg",
+          "sourcePath": "selected/pg_103979473889_1/20251210-web res 1500-7.jpg"
+        },
+        {
+          "id": "pg_103979473889_1_photo_02",
+          "src": "/real-data/pg_103979473889_1__selected_02.jpg",
+          "sourcePath": "selected/pg_103979473889_1/20251214-web res 1500-8.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_103979473889_1"
+    },
+    {
+      "id": "pg_13f413758ec1_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_13f413758ec1_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_13f413758ec1_1_photo_01",
+          "src": "/real-data/pg_13f413758ec1_1__selected_01.jpg",
+          "sourcePath": "selected/pg_13f413758ec1_1/20250304-web res 1500-18.jpg"
+        },
+        {
+          "id": "pg_13f413758ec1_1_photo_02",
+          "src": "/real-data/pg_13f413758ec1_1__selected_02.jpg",
+          "sourcePath": "selected/pg_13f413758ec1_1/20250304-web res 1500-4.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_13f413758ec1_1"
+    },
+    {
+      "id": "pg_1bef35296721_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_1bef35296721_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_1bef35296721_1_photo_01",
+          "src": "/real-data/pg_1bef35296721_1__selected_01.jpg",
+          "sourcePath": "selected/pg_1bef35296721_1/2025-12-18__web__20251209-web res 1500-7.jpg"
+        },
+        {
+          "id": "pg_1bef35296721_1_photo_02",
+          "src": "/real-data/pg_1bef35296721_1__selected_02.jpg",
+          "sourcePath": "selected/pg_1bef35296721_1/2025-12-18__web__20251209-web res 1500-8.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_1bef35296721_1"
+    },
+    {
+      "id": "pg_1f982e5013ec_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_1f982e5013ec_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_1f982e5013ec_1_photo_01",
+          "src": "/real-data/pg_1f982e5013ec_1__selected_01.jpg",
+          "sourcePath": "selected/pg_1f982e5013ec_1/20260107-web res 1500-3.jpg"
+        },
+        {
+          "id": "pg_1f982e5013ec_1_photo_02",
+          "src": "/real-data/pg_1f982e5013ec_1__selected_02.jpg",
+          "sourcePath": "selected/pg_1f982e5013ec_1/20260107-web res 1500-7.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_1f982e5013ec_1"
+    },
+    {
+      "id": "pg_234010442815_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_234010442815_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_234010442815_1_photo_01",
+          "src": "/real-data/pg_234010442815_1__selected_01.jpg",
+          "sourcePath": "selected/pg_234010442815_1/20251214-web res 1500-22.jpg"
+        },
+        {
+          "id": "pg_234010442815_1_photo_02",
+          "src": "/real-data/pg_234010442815_1__selected_02.jpg",
+          "sourcePath": "selected/pg_234010442815_1/20251214-web res 1500-23.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_234010442815_1"
+    },
+    {
+      "id": "pg_2f4375d708e2_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_2f4375d708e2_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_2f4375d708e2_1_photo_01",
+          "src": "/real-data/pg_2f4375d708e2_1__selected_01.jpg",
+          "sourcePath": "selected/pg_2f4375d708e2_1/20260412-web res 1500-2.jpg"
+        },
+        {
+          "id": "pg_2f4375d708e2_1_photo_02",
+          "src": "/real-data/pg_2f4375d708e2_1__selected_02.jpg",
+          "sourcePath": "selected/pg_2f4375d708e2_1/20260412-web res 1500-8.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_2f4375d708e2_1"
+    },
+    {
+      "id": "pg_3f933490bc7a_1",
+      "title": "לא מקוטלג · קבוצה מתיקיית עבודה · pg_3f933490bc7a_1",
+      "type": "same_new_product_group",
+      "confidence": "low",
+      "photos": [
+        {
+          "id": "pg_3f933490bc7a_1_photo_01",
+          "src": "/real-data/pg_3f933490bc7a_1__selected_01.jpg",
+          "sourcePath": "selected/pg_3f933490bc7a_1/2025-12-18__web__20251209-web res 1500-14.jpg"
+        },
+        {
+          "id": "pg_3f933490bc7a_1_photo_02",
+          "src": "/real-data/pg_3f933490bc7a_1__selected_02.jpg",
+          "sourcePath": "selected/pg_3f933490bc7a_1/2025-12-18__web__20251209-web res 1500-15.jpg"
+        }
+      ],
+      "evidence": "2 תמונות אמיתיות מתיקיית raw-intake selected",
+      "recommended": "לפתוח ולוודא קבוצה",
+      "candidates": [],
+      "rawStatus": "selected_unresolved_sample",
+      "rawCategory": "selected_filesystem_fallback",
+      "sourceRef": "pg_3f933490bc7a_1"
+    }
+  ]
+}

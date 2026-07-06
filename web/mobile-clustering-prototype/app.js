@@ -9,7 +9,7 @@ const palette = [
   ['#d1bfd7', '#7e6290'],
 ];
 
-const initialGroups = [
+const fallbackGroups = [
   {
     id: 'grp-001',
     title: 'נראה מוצר אחד חדש',
@@ -52,10 +52,26 @@ const initialGroups = [
   },
 ];
 
+
+const datasetVersion = window.STAV_DATASET_VERSION || 'mock-v1';
+if (localStorage.getItem('stavDatasetVersion') !== datasetVersion) {
+  localStorage.removeItem('stavGroups');
+  localStorage.removeItem('stavDecisions');
+  localStorage.setItem('stavDatasetVersion', datasetVersion);
+}
+
+function photoId(photo) {
+  return typeof photo === 'string' ? photo : photo.id;
+}
+
+function photoSrc(photo) {
+  return typeof photo === 'string' ? null : photo.src;
+}
+
 const state = {
   screen: 'queue',
   activeGroupId: null,
-  groups: JSON.parse(localStorage.getItem('stavGroups') || 'null') || initialGroups,
+  groups: JSON.parse(localStorage.getItem('stavGroups') || 'null') || (window.STAV_REAL_GROUPS || fallbackGroups),
   decisions: JSON.parse(localStorage.getItem('stavDecisions') || '[]'),
   selectedPhotos: new Set(),
 };
@@ -69,10 +85,14 @@ function confidenceHe(value) {
   return value === 'high' ? 'ביטחון גבוה' : value === 'medium' ? 'ביטחון בינוני' : 'דורש בדיקה';
 }
 
-function photoTile(photoId, selected = false) {
-  const ix = Number.parseInt(photoId, 10) % palette.length;
+function photoTile(photo, selected = false) {
+  const id = photoId(photo);
+  const src = photoSrc(photo);
+  const numeric = [...id].reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+  const ix = numeric % palette.length;
   const [c1, c2] = palette[ix];
-  return `<div class="thumb ${selected ? 'selected' : ''}" data-photo="${photoId}" style="--c1:${c1};--c2:${c2}">${photoId}</div>`;
+  const content = src ? `<img src="${src}" alt="${id}">` : id;
+  return `<div class="thumb ${selected ? 'selected' : ''}" data-photo="${id}" style="--c1:${c1};--c2:${c2}">${content}</div>`;
 }
 
 function record(group, decisionType, payload = {}) {
@@ -94,7 +114,7 @@ function record(group, decisionType, payload = {}) {
 function openGroup(id) {
   state.activeGroupId = id;
   state.screen = 'group';
-  state.selectedPhotos = new Set(state.groups.find((group) => group.id === id)?.photos || []);
+  state.selectedPhotos = new Set((state.groups.find((group) => group.id === id)?.photos || []).map(photoId));
   render();
 }
 
@@ -107,13 +127,13 @@ function startSplit(id) {
 }
 
 function finishSplit(group) {
-  const selected = [...state.selectedPhotos];
-  const remaining = group.photos.filter((photo) => !state.selectedPhotos.has(photo));
+  const selected = group.photos.filter((photo) => state.selectedPhotos.has(photoId(photo)));
+  const remaining = group.photos.filter((photo) => !state.selectedPhotos.has(photoId(photo)));
   state.decisions.push({
     id: crypto.randomUUID(),
     groupId: group.id,
     decisionType: 'split_review_group',
-    payload: { selected, remaining },
+    payload: { selected: selected.map(photoId), remaining: remaining.map(photoId) },
     at: new Date().toISOString(),
   });
   state.groups = state.groups.filter((item) => item.id !== group.id);
@@ -149,7 +169,8 @@ function finishSplit(group) {
 }
 
 function queueScreen() {
-  const totalPhotos = initialGroups.reduce((sum, group) => sum + group.photos.length, 0);
+  const datasetGroups = window.STAV_REAL_GROUPS || fallbackGroups;
+  const totalPhotos = datasetGroups.reduce((sum, group) => sum + group.photos.length, 0);
   const openPhotos = state.groups.reduce((sum, group) => sum + group.photos.length, 0);
   const done = totalPhotos - openPhotos;
   const pct = Math.round((done / totalPhotos) * 100);
@@ -251,7 +272,7 @@ function groupScreen(mode = 'group') {
           <div class="group-title">${group.title}</div>
           <div class="meta">${group.evidence}</div>
           <div class="${thumbsClass}">
-            ${group.photos.map((photo) => photoTile(photo, state.selectedPhotos.has(photo))).join('')}
+            ${group.photos.map((photo) => photoTile(photo, state.selectedPhotos.has(photoId(photo)))).join('')}
           </div>
           ${mode === 'split' ? '<div class="notice">בחרי רק את התמונות ששייכות יחד. השאר יחזרו לתור כקבוצה נפרדת.</div>' : ''}
         </section>
@@ -299,13 +320,13 @@ document.addEventListener('click', (event) => {
   const group = state.groups.find((item) => item.id === id);
   if (action === 'open') openGroup(id);
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
-  else if (action === 'quick' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos });
-  if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos });
-  if (action === 'link-existing' && group) record(group, 'link_group_to_existing_product', { candidate: group.candidates[0]?.id || null, photoIds: group.photos });
-  if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos });
+  else if (action === 'quick' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
+  if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
+  if (action === 'link-existing' && group) record(group, 'link_group_to_existing_product', { candidate: group.candidates[0]?.id || null, photoIds: group.photos.map(photoId) });
+  if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId) });
   if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
-  if (action?.startsWith('difference:') && group) record(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos });
-  if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos });
+  if (action?.startsWith('difference:') && group) record(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
+  if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos.map(photoId) });
   if (action === 'split') startSplit(id);
   if (action === 'finish-split' && group) finishSplit(group);
   if (action === 'back') { state.screen = 'queue'; state.activeGroupId = null; render(); }
