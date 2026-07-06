@@ -44,13 +44,13 @@ ACTIONABLE_STATUSES = {
     "needs_parent_fact_mapping",
     "parent_facts_captured",
     "pending_review",
-    "package_sent_waiting_parent_approval",
 }
 STATUS_HE = {
     "needs_parent_fact_mapping": "צריך השלמת פרטים",
     "parent_facts_captured": "יש פרטים — צריך אימות/המשך טיפול",
     "pending_review": "צריך בדיקת שיוך",
-    "package_sent_waiting_parent_approval": "כבר נשלחה חבילת אישור",
+    "package_sent_waiting_parent_approval": "כבר נשלחה חבילת אישור — לא שייך לאימות תמונות",
+    "approved_upload_blocked": "אושר להעלאה — ממשיך לשערי העלאה",
 }
 TYPE_HE = {
     "ring": "טבעת",
