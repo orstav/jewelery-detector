@@ -72,9 +72,12 @@ main { padding: 14px; flex: 1; }
 .btn.ghost { background: #f8f1e9; border: 1px solid #eadccd; }
 .btn.danger { background: #f1c7c7; }
 .candidates { display: grid; gap: 8px; margin: 10px 0 12px; }
-.candidate { display: grid; grid-template-columns: 62px 1fr; gap: 9px; align-items: center; background: #fbf6ef; border-radius: 16px; padding: 8px; }
+.candidate { display: grid; grid-template-columns: 62px 1fr; gap: 9px; align-items: center; background: #fbf6ef; border-radius: 16px; padding: 8px; text-align: right; }
+.candidate.choice { width: 100%; border: 2px solid #eadccd; color: inherit; font: inherit; }
+.candidate.choice strong { display: block; }
+.candidate.choice small { display: block; color: #6d6257; line-height: 1.4; margin-top: 4px; }
 .candidate .thumb { border-radius: 12px; }
-.footer { background: #fffaf3ee; border-top: 1px solid #eadccd; padding: 10px 14px max(12px, env(safe-area-inset-bottom)); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.footer { background: #fffaf3ee; border-top: 1px solid #eadccd; padding: 10px 14px max(12px, env(safe-area-inset-bottom)); display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
 .empty { text-align: center; padding: 40px 10px; color: #6d6257; }
 .split-grid { grid-template-columns: repeat(3, 1fr); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }

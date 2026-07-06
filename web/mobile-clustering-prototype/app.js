@@ -85,6 +85,12 @@ function confidenceHe(value) {
   return value === 'high' ? 'ביטחון גבוה' : value === 'medium' ? 'ביטחון בינוני' : 'דורש בדיקה';
 }
 
+function recommendedText(group) {
+  if (group.type === 'split_likely') return 'יש חשד לערבוב — צריך לסמן מה שייך יחד';
+  if ((group.recommended || '').includes('לפתוח')) return 'בדיקה קצרה של הקבוצה';
+  return group.recommended || 'בדיקה קצרה';
+}
+
 function photoTile(photo, selected = false) {
   const id = photoId(photo);
   const src = photoSrc(photo);
@@ -184,10 +190,10 @@ function queueScreen() {
         <span class="badge ${group.confidence}">${confidenceHe(group.confidence)}</span>
       </div>
       <div class="thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta">${group.photos.length} תמונות · פעולה מומלצת: ${group.recommended}</div>
+      <div class="meta">${group.photos.length} תמונות · פעולה מומלצת: ${recommendedText(group)}</div>
       <div class="actions three" style="margin-top:10px">
-        <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'לפצל' : 'אישור מהיר'}</button>
-        <button class="btn" data-action="open" data-id="${group.id}">לפתוח</button>
+        <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מה שייך יחד' : 'אישור מהיר'}</button>
+        <button class="btn" data-action="open" data-id="${group.id}">בדיקת הקבוצה</button>
         <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
       </div>
     </section>`).join('');
@@ -218,11 +224,46 @@ function groupScreen(mode = 'group') {
       <div><strong>${candidate.label}</strong><div class="meta">${candidate.meta}</div></div>
     </div>`).join('');
   const thumbsClass = mode === 'split' ? 'thumbs split-grid' : 'thumbs';
+
+  if (mode === 'link-existing') {
+    const candidateCards = group.candidates.length ? group.candidates.map((candidate, index) => `
+      <button class="candidate choice" data-action="link-candidate" data-id="${group.id}" data-candidate="${candidate.id}">
+        ${photoTile(String(index + 21))}
+        <span><strong>${candidate.label}</strong><small>${candidate.meta}</small></span>
+      </button>`).join('') : `<div class="notice">אין כרגע מועמד חזק מספיק. עדיף לשלוח לבדיקה במקום לנחש.</div>`;
+    return `
+    <div class="phone">
+      <header>
+        <h1>לאיזה מוצר קיים לחבר?</h1>
+        <div class="progress">בוחרים מתוך מועמדים שהמערכת מצאה — לא מקלידים קוד ידנית.</div>
+      </header>
+      <main>
+        <section class="panel">
+          <div class="group-title">התמונות החדשות</div>
+          <div class="meta">אם זה אותו תכשיט שכבר קיים באתר/בקטלוג — בוחרים את המוצר הקיים. אם זה רק דומה, לא מחברים.</div>
+          <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+        </section>
+        <section class="panel">
+          <strong>מועמדים קיימים</strong>
+          <div class="meta">בחירה כאן אומרת: התמונות החדשות הן של אותו מוצר קיים.</div>
+          <div class="candidates">${candidateCards}</div>
+          <div class="actions" style="margin-top:10px">
+            <button class="btn" data-action="new-product" data-id="${group.id}">לא — זה מוצר חדש</button>
+            <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+          </div>
+        </section>
+      </main>
+      <div class="footer">
+        <button class="btn ghost" data-action="back">חזרה</button>
+        <button class="btn ghost" data-action="more-products">עוד מועמדים</button>
+      </div>
+    </div>`;
+  }
   if (mode === 'design-intent') {
     return `
     <div class="phone">
       <header>
-        <h1>אותו עיצוב או דגם?</h1>
+        <h1>דומה לעיצוב קיים?</h1>
         <div class="progress">לא צריך להבין Shopify — רק להגיד מה רואים</div>
       </header>
       <main>
@@ -232,8 +273,8 @@ function groupScreen(mode = 'group') {
           <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
         </section>
         <section class="panel explain">
-          <strong>הסבר קצר</strong>
-          <div class="meta">אם זה אותו תכשיט בדיוק — מחברים לאותה קבוצה. אם זה אותו סגנון אבל יש הבדל שנמכר אחרת, מסמנים מה ההבדל. אנחנו נחליט אחר כך אם זה מוצר, וריאנט או אותו Design.</div>
+          <strong>איך יודעים אם זה אותו Design?</strong>
+          <div class="meta">לא מצפים מדליה/אייל לדעת Design. הם רק אומרים מה רואים: אותו תכשיט בדיוק, או אותו סגנון עם הבדל. המערכת תציע משפחה/עיצוב לפי צורה, מבנה, אבן ומתכת — HAL ממפה את זה אחר כך למוצר / וריאנט / Design.</div>
         </section>
         <section class="panel">
           <strong>מה ההבדל?</strong>
@@ -258,7 +299,7 @@ function groupScreen(mode = 'group') {
   return `
     <div class="phone">
       <header>
-        <h1>${mode === 'split' ? 'לפצל קבוצה' : 'בדיקת קבוצה'}</h1>
+        <h1>${mode === 'split' ? 'סימון תמונות ששייכות יחד' : 'בדיקת הקבוצה'}</h1>
         <div class="progress">${group.photos.length} תמונות · ${confidenceHe(group.confidence)}</div>
       </header>
       <main>
@@ -268,18 +309,18 @@ function groupScreen(mode = 'group') {
           <div class="${thumbsClass}">
             ${group.photos.map((photo) => photoTile(photo, state.selectedPhotos.has(photoId(photo)))).join('')}
           </div>
-          ${mode === 'split' ? '<div class="notice">בחרי רק את התמונות ששייכות יחד. השאר יחזרו לתור כקבוצה נפרדת.</div>' : ''}
+          ${mode === 'split' ? '<div class="notice">לא צריך לחשוב על “פיצול”. פשוט מסמנים את התמונות שהן אותו תכשיט. התמונות שלא מסומנות יחזרו לבדיקה כקבוצה נפרדת.</div>' : ''}
         </section>
         ${candidates ? `<section class="panel"><strong>אפשרויות קיימות</strong><div class="candidates">${candidates}</div></section>` : ''}
         <section class="panel">
-          <strong>מה הכוונה?</strong>
+          <strong>מה לעשות עם הקבוצה?</strong>
           <div class="actions" style="margin-top:10px">
             ${mode === 'split'
-              ? `<button class="btn primary" data-action="finish-split" data-id="${group.id}">צור קבוצה מהנבחרות</button><button class="btn" data-action="back">ביטול</button>`
+              ? `<button class="btn primary" data-action="finish-split" data-id="${group.id}">אשר את התמונות המסומנות</button><button class="btn" data-action="back">ביטול</button>`
               : `<button class="btn primary" data-action="one-product" data-id="${group.id}">כן, זו קבוצה אחת</button>
-                 <button class="btn" data-action="link-existing" data-id="${group.id}">לחבר למוצר קיים</button>
+                 <button class="btn" data-action="link-existing" data-id="${group.id}">בחר מוצר קיים לחיבור</button>
                  <button class="btn" data-action="new-product" data-id="${group.id}">זה מוצר חדש</button>
-                 <button class="btn" data-action="split" data-id="${group.id}">לפצל</button>
+                 <button class="btn" data-action="split" data-id="${group.id}">יש תמונות שלא שייכות</button>
                  <button class="btn" data-action="same-design" data-id="${group.id}">אותו עיצוב, מוצר אחר</button>
                  <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>`}
           </div>
@@ -316,7 +357,8 @@ document.addEventListener('click', (event) => {
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
   else if (action === 'quick' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
   if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
-  if (action === 'link-existing' && group) record(group, 'link_group_to_existing_product', { candidate: group.candidates[0]?.id || null, photoIds: group.photos.map(photoId) });
+  if (action === 'link-existing' && group) { state.screen = 'link-existing'; render(); }
+  if (action === 'link-candidate' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, photoIds: group.photos.map(photoId) });
   if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId) });
   if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
   if (action?.startsWith('difference:') && group) record(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
