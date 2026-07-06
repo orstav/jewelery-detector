@@ -143,6 +143,7 @@ const state = {
   decisions: JSON.parse(localStorage.getItem('stavDecisions') || '[]'),
   selectedPhotos: new Set(),
   knownProductQuery: '',
+  previewPhotoId: null,
 };
 
 function persist() {
@@ -175,6 +176,37 @@ function compactGroupHint(group) {
     firstPhoto.metalColor,
   ].filter(Boolean);
   return parts.length ? parts.join(' · ') : 'קבוצת תמונות חדשה';
+}
+
+function activePhotos() {
+  if (!state.activeGroupId) return state.groups.flatMap((group) => group.photos);
+  return state.groups.find((group) => group.id === state.activeGroupId)?.photos || [];
+}
+
+function findPhotoById(id) {
+  return state.groups.flatMap((group) => group.photos).find((photo) => photoId(photo) === id) || id;
+}
+
+function previewOverlay() {
+  if (!state.previewPhotoId) return '';
+  const photos = activePhotos();
+  const index = Math.max(0, photos.findIndex((photo) => photoId(photo) === state.previewPhotoId));
+  const photo = findPhotoById(state.previewPhotoId);
+  const src = photoSrc(photo);
+  const label = photoId(photo);
+  return `
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="תצוגת תמונה גדולה">
+      <div class="lightbox-top">
+        <button class="icon-btn" data-action="close-preview">סגור</button>
+        <div class="lightbox-title">תמונה ${index + 1} מתוך ${photos.length}</div>
+      </div>
+      <div class="lightbox-stage">${src ? `<img src="${src}" alt="${label}">` : `<div class="lightbox-placeholder">${label}</div>`}</div>
+      <div class="lightbox-actions">
+        <button class="btn ghost" data-action="prev-preview">הקודמת</button>
+        <button class="btn ghost" data-action="next-preview">הבאה</button>
+      </div>
+      <div class="lightbox-hint">אפשר לעבור בין התמונות כדי לבדוק אבן, שיניים, צבע מתכת ומבנה.</div>
+    </div>`;
 }
 
 function photoTile(photo, selected = false) {
@@ -275,7 +307,7 @@ function queueScreen() {
         </div>
         <span class="badge ${group.confidence}">${confidenceHe(group.confidence)}</span>
       </div>
-      <div class="thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
+      <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
       <div class="meta decision-note">אישור = התמונות האלה הן אותו תכשיט בלבד.</div>
       <div class="actions three" style="margin-top:10px">
         <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
@@ -327,7 +359,7 @@ function groupScreen(mode = 'group') {
         <section class="panel">
           <div class="group-title">התמונות החדשות</div>
           <div class="meta">אם זה אותו תכשיט שכבר קיים באתר/בקטלוג — בוחרים את המוצר הקיים. אם זה רק דומה, לא מחברים.</div>
-          <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+          <div class="thumbs review-thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
         </section>
         <section class="panel">
           <strong>מועמדים קיימים</strong>
@@ -357,7 +389,7 @@ function groupScreen(mode = 'group') {
         <section class="panel">
           <div class="group-title">התמונות החדשות</div>
           <div class="meta">המידע הזה נשמר עם התמונות, כדי שלא נשאל שוב מאפס.</div>
-          <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+          <div class="thumbs review-thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
         </section>
         <section class="panel">
           <strong>שם / רמז לזיהוי</strong>
@@ -401,7 +433,8 @@ function groupScreen(mode = 'group') {
         <section class="panel">
           <div class="group-title">${group.title}</div>
           <div class="meta">${group.evidence}</div>
-          <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+          <div class="thumbs review-thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+          <div class="meta zoom-hint">לחיצה על תמונה פותחת הגדלה למסך מלא.</div>
         </section>
         <section class="panel explain">
           <strong>הכלל הפשוט</strong>
@@ -437,9 +470,10 @@ function groupScreen(mode = 'group') {
         <section class="panel">
           <div class="group-title">${group.title}</div>
           <div class="meta">${group.evidence}</div>
-          <div class="${thumbsClass}">
+          <div class="${mode === 'split' ? 'thumbs split-grid' : 'thumbs review-thumbs'}">
             ${group.photos.map((photo) => photoTile(photo, state.selectedPhotos.has(photoId(photo)))).join('')}
           </div>
+          <div class="meta zoom-hint">${mode === 'split' ? 'במסך הזה לחיצה מסמנת שייכות. הגדלה זמינה במסכי הבדיקה.' : 'לחיצה על תמונה פותחת הגדלה למסך מלא.'}</div>
           ${mode === 'split' ? '<div class="notice">לא צריך לחשוב על “פיצול”. פשוט מסמנים את התמונות שהן אותו תכשיט. התמונות שלא מסומנות יחזרו לבדיקה כקבוצה נפרדת.</div>' : ''}
         </section>
         ${candidates ? `<section class="panel"><strong>אפשרויות קיימות</strong><div class="candidates">${candidates}</div></section>` : ''}
@@ -468,7 +502,7 @@ function groupScreen(mode = 'group') {
 
 function render() {
   const root = document.querySelector('#app');
-  root.innerHTML = state.screen === 'queue' ? queueScreen() : groupScreen(state.screen);
+  root.innerHTML = (state.screen === 'queue' ? queueScreen() : groupScreen(state.screen)) + previewOverlay();
 }
 
 document.addEventListener('click', (event) => {
@@ -481,10 +515,25 @@ document.addEventListener('click', (event) => {
     render();
     return;
   }
+  if (photoEl && !actionEl) {
+    state.previewPhotoId = photoEl.dataset.photo;
+    render();
+    return;
+  }
   if (!actionEl) return;
   const action = actionEl.dataset.action;
   const id = actionEl.dataset.id;
   const group = state.groups.find((item) => item.id === id);
+  if (action === 'close-preview') { state.previewPhotoId = null; render(); return; }
+  if (action === 'prev-preview' || action === 'next-preview') {
+    const photos = activePhotos();
+    const currentIndex = Math.max(0, photos.findIndex((photo) => photoId(photo) === state.previewPhotoId));
+    const delta = action === 'next-preview' ? 1 : -1;
+    const nextIndex = (currentIndex + delta + photos.length) % photos.length;
+    state.previewPhotoId = photoId(photos[nextIndex]);
+    render();
+    return;
+  }
   if (action === 'open') openGroup(id);
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
   else if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
