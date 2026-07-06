@@ -82,3 +82,7 @@ main { padding: 14px; flex: 1; }
 .split-grid { grid-template-columns: repeat(3, 1fr); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .thumb.selected { outline: 4px solid #2f7d5c; outline-offset: -4px; }
+.notice { background: #fff5dc; border: 1px solid #f1d9a5; border-radius: 14px; padding: 10px 12px; margin: 0 0 12px; color: #5d4521; font-weight: 700; }
+
+.text-input { width: 100%; box-sizing: border-box; margin-top: 10px; border: 1px solid #d7c8b8; border-radius: 14px; padding: 14px 12px; font: inherit; font-size: 17px; background: #fffdf8; color: #2f2018; }
+.text-input:focus { outline: 3px solid #ead7b8; border-color: #a57745; }

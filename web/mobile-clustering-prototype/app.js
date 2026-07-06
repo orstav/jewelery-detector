@@ -248,6 +248,7 @@ function groupScreen(mode = 'group') {
           <div class="meta">בחירה כאן אומרת: התמונות החדשות הן של אותו מוצר קיים.</div>
           <div class="candidates">${candidateCards}</div>
           <div class="actions" style="margin-top:10px">
+            <button class="btn primary" data-action="known-product" data-id="${group.id}">אני יודע/ת מה זה</button>
             <button class="btn" data-action="new-product" data-id="${group.id}">לא — זה מוצר חדש</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
@@ -256,6 +257,39 @@ function groupScreen(mode = 'group') {
       <div class="footer">
         <button class="btn ghost" data-action="back">חזרה</button>
         <button class="btn ghost" data-action="more-products">עוד מועמדים</button>
+      </div>
+    </div>`;
+  }
+  if (mode === 'known-product') {
+    return `
+    <div class="phone">
+      <header>
+        <h1>אני יודע/ת מה זה</h1>
+        <div class="progress">אם המוצר הנכון לא הופיע — כותבים או אומרים שם מוכר</div>
+      </header>
+      <main>
+        <section class="panel">
+          <div class="group-title">התמונות החדשות</div>
+          <div class="meta">המידע הזה נשמר עם התמונות, כדי שלא נשאל שוב מאפס.</div>
+          <div class="thumbs">${group.photos.map((photo) => photoTile(photo)).join('')}</div>
+        </section>
+        <section class="panel">
+          <strong>שם / רמז לזיהוי</strong>
+          <div class="meta">למשל: “שרשרת נגב”, “עגילי טוליפ”, “כמו רוני אבל ירוק”.</div>
+          <input class="text-input" id="knownProductName" dir="auto" placeholder="שם מוצר, עיצוב או רמז" value="${group.knownName || ''}">
+          <div class="actions" style="margin-top:10px">
+            <button class="btn primary" data-action="save-known-product" data-id="${group.id}">שמור וחפש לפי השם</button>
+            <button class="btn" data-action="link-existing" data-id="${group.id}">חזרה למועמדים</button>
+            <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+          </div>
+        </section>
+        <section class="panel explain">
+          <strong>מה קורה אם המערכת עדיין לא מוצאת?</strong>
+          <div class="meta">זה לא הופך ל“מוצר חדש”. זה נשמר כ: מוצר מוכר לפי ההורה, לא נמצא אוטומטית. HAL יחבר ידנית או יביא מועמדים לפי השם.</div>
+        </section>
+      </main>
+      <div class="footer">
+        <button class="btn ghost" data-action="back">חזרה</button>
       </div>
     </div>`;
   }
@@ -319,6 +353,7 @@ function groupScreen(mode = 'group') {
               ? `<button class="btn primary" data-action="finish-split" data-id="${group.id}">אשר את התמונות המסומנות</button><button class="btn" data-action="back">ביטול</button>`
               : `<button class="btn primary" data-action="one-product" data-id="${group.id}">כן, זו קבוצה אחת</button>
                  <button class="btn" data-action="link-existing" data-id="${group.id}">בחר מוצר קיים לחיבור</button>
+                 <button class="btn" data-action="known-product" data-id="${group.id}">אני יודע/ת מה זה</button>
                  <button class="btn" data-action="new-product" data-id="${group.id}">זה מוצר חדש</button>
                  <button class="btn" data-action="split" data-id="${group.id}">יש תמונות שלא שייכות</button>
                  <button class="btn" data-action="same-design" data-id="${group.id}">אותו עיצוב, מוצר אחר</button>
@@ -358,6 +393,11 @@ document.addEventListener('click', (event) => {
   else if (action === 'quick' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
   if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
   if (action === 'link-existing' && group) { state.screen = 'link-existing'; render(); }
+  if (action === 'known-product' && group) { state.screen = 'known-product'; render(); }
+  if (action === 'save-known-product' && group) {
+    const typedName = (document.querySelector('#knownProductName')?.value || '').trim();
+    record(group, 'human_named_existing_product_not_in_suggestions', { typedName, photoIds: group.photos.map(photoId), nextStep: 'search_catalog_by_name_alias_and_visual_candidates' });
+  }
   if (action === 'link-candidate' && group) record(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, photoIds: group.photos.map(photoId) });
   if (action === 'new-product' && group) record(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId) });
   if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
