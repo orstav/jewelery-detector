@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stav clustering mobile wireframe</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #191919; background: #f6f2ec; }
+    body { margin: 0; display: flex; justify-content: center; }
+    .phone { width: min(430px, 100vw); min-height: 100vh; background: #fffaf4; box-shadow: 0 0 32px #0002; }
+    header { position: sticky; top: 0; background: #fffaf4ee; backdrop-filter: blur(8px); padding: 14px 16px 10px; border-bottom: 1px solid #eadfce; }
+    h1 { margin: 0; font-size: 22px; }
+    .progress { margin-top: 6px; font-size: 14px; color: #6d6257; }
+    main { padding: 14px; }
+    .photo { height: 300px; border-radius: 22px; background: linear-gradient(135deg, #dac7ac, #f2e6d6); display:flex; align-items:center; justify-content:center; color:#6d6257; font-size: 18px; margin-bottom: 14px; overflow:hidden; }
+    .photo::before { content: "תמונה נוכחית"; }
+    .question { font-size: 20px; font-weight: 750; margin: 10px 0 12px; }
+    .primary-actions { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    button { border: 0; border-radius: 16px; padding: 14px 10px; font-size: 16px; font-weight: 700; background: #eadfce; color: #2b2118; }
+    button.main { background: #111; color: white; }
+    button.warn { background: #f4d7b9; }
+    .section-title { display:flex; justify-content:space-between; align-items:center; margin: 18px 0 10px; font-weight: 800; }
+    .small-link { font-size: 13px; color: #85613b; }
+    .card { background: white; border: 1px solid #eadfce; border-radius: 20px; padding: 12px; margin-bottom: 10px; box-shadow: 0 4px 16px #0000000d; }
+    .card-top { display:grid; grid-template-columns: 74px 1fr; gap: 10px; align-items:center; }
+    .thumb { width: 74px; height: 74px; border-radius: 14px; background: #e7d5be; display:flex; align-items:center; justify-content:center; color:#8a735a; font-size:12px; }
+    .card h2 { margin: 0 0 5px; font-size: 17px; }
+    .meta { font-size: 13px; color:#6d6257; line-height:1.35; }
+    .thumb-row { display:flex; gap:6px; margin: 10px 0; }
+    .mini { width: 44px; height: 44px; border-radius: 10px; background:#f0e1cf; }
+    .card-actions { display:grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .card-actions button { padding: 10px 8px; font-size: 14px; }
+    .cluster-callout { background: #f3eadf; border: 1px solid #dfceb9; border-radius: 18px; padding: 12px; margin-bottom: 14px; }
+    .bottom-bar { position: sticky; bottom: 0; padding: 10px 14px 14px; background: #fffaf4ee; border-top: 1px solid #eadfce; display:grid; grid-template-columns: 1fr 1fr 1fr; gap:8px; }
+    .bottom-bar button { font-size: 13px; padding: 10px 6px; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <h1>סידור תכשיטים</h1>
+      <div class="progress">נבדקו 42 מתוך 310 · קבוצות שנוצרו: 7 · לא בטוחים: 3</div>
+    </header>
+    <main>
+      <div class="photo" aria-label="current jewelry photo placeholder"></div>
+      <div class="question">מה זה התכשיט הזה?</div>
+
+      <div class="cluster-callout">
+        <strong>נראה שזה שייך לקבוצה שכבר יצרת</strong>
+        <div class="meta">קבוצה #7 · כבר קושרו 2 תמונות</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:10px;">
+          <button class="main">לקשר לקבוצה הזאת</button>
+          <button>לפתוח השוואה</button>
+        </div>
+      </div>
+
+      <div class="primary-actions">
+        <button class="main">אותו מוצר</button>
+        <button>מוצר חדש</button>
+        <button>דומה אבל לא אותו מוצר</button>
+        <button class="warn">לא בטוח</button>
+      </div>
+
+      <div class="section-title">
+        <span>הצעות מובילות</span>
+        <span class="small-link">להראות עוד</span>
+      </div>
+
+      <section class="card">
+        <div class="card-top">
+          <div class="thumb">מוצר</div>
+          <div>
+            <h2>R123 · מוצר קיים</h2>
+            <div class="meta">3 תמונות תומכות · התאמה גבוהה · אותו סוג תכשיט</div>
+          </div>
+        </div>
+        <div class="thumb-row"><div class="mini"></div><div class="mini"></div><div class="mini"></div></div>
+        <div class="card-actions">
+          <button class="main">לקשר לכאן</button>
+          <button>השוואה</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-top">
+          <div class="thumb">קבוצה</div>
+          <div>
+            <h2>קבוצה חדשה #7</h2>
+            <div class="meta">כבר קושרו 2 תמונות · נוצר היום</div>
+          </div>
+        </div>
+        <div class="thumb-row"><div class="mini"></div><div class="mini"></div></div>
+        <div class="card-actions">
+          <button class="main">לקשר לכאן</button>
+          <button>זה מוצר אחר</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-top">
+          <div class="thumb">עיצוב</div>
+          <div>
+            <h2>דומה ל־R124</h2>
+            <div class="meta">יכול להיות אותו עיצוב, אבל מוצר אחר</div>
+          </div>
+        </div>
+        <div class="card-actions" style="margin-top:10px;">
+          <button>אותו עיצוב, מוצר אחר</button>
+          <button>לא מתאים</button>
+        </div>
+      </section>
+    </main>
+    <div class="bottom-bar">
+      <button>בטל</button>
+      <button>דלג</button>
+      <button>עוד תמונות</button>
+    </div>
+  </div>
+</body>
+</html>
