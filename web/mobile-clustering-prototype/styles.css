@@ -38,7 +38,7 @@ main { padding: 14px; flex: 1; }
   box-shadow: 0 6px 18px #0000000c;
 }
 .group-head { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
-.group-title { font-size: 18px; font-weight: 850; }
+.group-title { font-size: 17px; font-weight: 850; line-height: 1.25; }
 .badge { display: inline-flex; background: #efe2d4; color: #5b4a3b; border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 800; white-space: nowrap; }
 .badge.high { background: #dff1df; color: #244f26; }
 .badge.medium { background: #fff0c7; color: #6a4a00; }
@@ -82,7 +82,8 @@ main { padding: 14px; flex: 1; }
 .split-grid { grid-template-columns: repeat(3, 1fr); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .thumb.selected { outline: 4px solid #2f7d5c; outline-offset: -4px; }
-.notice { background: #fff5dc; border: 1px solid #f1d9a5; border-radius: 14px; padding: 10px 12px; margin: 0 0 12px; color: #5d4521; font-weight: 700; }
+.notice { background: #fff7e8; border: 1px solid #ead9bd; border-radius: 14px; padding: 9px 11px; margin: 0 0 12px; color: #5d4521; font-weight: 700; font-size: 14px; line-height: 1.35; }
+.decision-note { background: #f8f1e9; border-radius: 12px; padding: 8px 10px; color: #5b4a3b; }
 
 .text-input { width: 100%; box-sizing: border-box; margin-top: 10px; border: 1px solid #d7c8b8; border-radius: 14px; padding: 14px 12px; font: inherit; font-size: 17px; background: #fffdf8; color: #2f2018; }
 .text-input:focus { outline: 3px solid #ead7b8; border-color: #a57745; }

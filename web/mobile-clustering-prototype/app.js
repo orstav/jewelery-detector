@@ -160,6 +160,23 @@ function recommendedText(group) {
   return group.recommended || 'בדיקה קצרה';
 }
 
+const typeLabels = {
+  ring: 'טבעת',
+  necklace: 'שרשרת',
+  earrings: 'עגילים',
+  bracelet: 'צמיד',
+};
+
+function compactGroupHint(group) {
+  const firstPhoto = group.photos.find((photo) => typeof photo !== 'string') || {};
+  const parts = [
+    typeLabels[firstPhoto.jewelryType] || firstPhoto.jewelryType,
+    firstPhoto.stoneType,
+    firstPhoto.metalColor,
+  ].filter(Boolean);
+  return parts.length ? parts.join(' · ') : 'קבוצת תמונות חדשה';
+}
+
 function photoTile(photo, selected = false) {
   const id = photoId(photo);
   const src = photoSrc(photo);
@@ -249,32 +266,32 @@ function queueScreen() {
   const openPhotos = state.groups.reduce((sum, group) => sum + group.photos.length, 0);
   const done = totalPhotos - openPhotos;
   const pct = Math.round((done / totalPhotos) * 100);
-  const cards = state.groups.map((group) => `
+  const cards = state.groups.map((group, index) => `
     <section class="group-card">
       <div class="group-head">
         <div>
-          <div class="group-title">${group.title}</div>
-          <div class="meta">${group.evidence}</div>
+          <div class="group-title">קבוצה ${index + 1}: האם אלה תמונות של אותו תכשיט?</div>
+          <div class="meta">${group.photos.length} תמונות · ${compactGroupHint(group)}</div>
         </div>
         <span class="badge ${group.confidence}">${confidenceHe(group.confidence)}</span>
       </div>
       <div class="thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta">${group.photos.length} תמונות · פעולה מומלצת: ${recommendedText(group)}</div>
+      <div class="meta decision-note">אישור = התמונות האלה הן אותו תכשיט בלבד.</div>
       <div class="actions three" style="margin-top:10px">
-        <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מה שייך יחד' : 'אישור מהיר'}</button>
-        <button class="btn" data-action="open" data-id="${group.id}">בדיקת הקבוצה</button>
+        <button class="btn primary" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
+        <button class="btn" data-action="open" data-id="${group.id}">צריך לבדוק שיוך</button>
         <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
       </div>
     </section>`).join('');
   return `
     <div class="phone">
       <header>
-        <h1>קבוצות לבדיקה</h1>
-        <div class="progress">נפתרו ${done} מתוך ${totalPhotos} תמונות · נשארו ${state.groups.length} קבוצות</div>
+        <h1>בדיקת קבוצות</h1>
+        <div class="progress">${state.groups.length} קבוצות · ${openPhotos} תמונות נשארו</div>
         <div class="progressbar" style="--p:${pct}%"><span></span></div>
       </header>
       <main>
-        <div class="notice">המטרה: לא לעבור תמונה-תמונה. מאשרים או מתקנים קבוצות שלמות.</div>
+        <div class="notice">במסך הזה מאשרים רק דבר אחד: התמונות בקבוצה הן אותו תכשיט.</div>
         ${cards || '<div class="empty">סיימנו את כל הקבוצות במדגם 🎉</div>'}
       </main>
       <div class="footer">
@@ -413,7 +430,7 @@ function groupScreen(mode = 'group') {
   return `
     <div class="phone">
       <header>
-        <h1>${mode === 'split' ? 'סימון תמונות ששייכות יחד' : 'בדיקת הקבוצה'}</h1>
+        <h1>${mode === 'split' ? 'סימון תמונות ששייכות יחד' : 'בדיקת שיוך הקבוצה'}</h1>
         <div class="progress">${group.photos.length} תמונות · ${confidenceHe(group.confidence)}</div>
       </header>
       <main>
@@ -431,7 +448,7 @@ function groupScreen(mode = 'group') {
           <div class="actions" style="margin-top:10px">
             ${mode === 'split'
               ? `<button class="btn primary" data-action="finish-split" data-id="${group.id}">אשר את התמונות המסומנות</button><button class="btn" data-action="back">ביטול</button>`
-              : `<button class="btn primary" data-action="one-product" data-id="${group.id}">כן, זו קבוצה אחת</button>
+              : `<button class="btn primary" data-action="one-product" data-id="${group.id}">כן — התמונות אותו תכשיט</button>
                  <button class="btn" data-action="link-existing" data-id="${group.id}">בחר מוצר קיים לחיבור</button>
                  <button class="btn" data-action="known-product" data-id="${group.id}">אני יודע/ת מה זה</button>
                  <button class="btn" data-action="new-product" data-id="${group.id}">זה מוצר חדש</button>
@@ -470,8 +487,8 @@ document.addEventListener('click', (event) => {
   const group = state.groups.find((item) => item.id === id);
   if (action === 'open') openGroup(id);
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
-  else if (action === 'quick' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
-  if (action === 'one-product' && group) record(group, 'approve_group_as_one_product', { photoIds: group.photos.map(photoId) });
+  else if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
+  if (action === 'one-product' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
   if (action === 'link-existing' && group) { state.screen = 'link-existing'; render(); }
   if (action === 'known-product' && group) { state.knownProductQuery = ''; state.screen = 'known-product'; render(); }
   if (action === 'search-known-product' && group) {
