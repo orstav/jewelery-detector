@@ -150,6 +150,14 @@ function candidateMeta(candidate) {
   return [candidate.meta, candidate.reason, candidate.scoreLabel].filter(Boolean).join(' · ');
 }
 
+function candidateEvidence(candidate) {
+  const parts = [];
+  if (candidate.meta) parts.push(candidate.meta);
+  if (candidate.reason) parts.push(candidate.reason);
+  if (candidate.scoreLabel) parts.push(`ביטחון: ${candidate.scoreLabel}`);
+  return parts.slice(0, 3).map((part) => `<li>${part}</li>`).join('');
+}
+
 function productPhoto(product, fallbackId) {
   return product && product.image ? product.image : String(fallbackId);
 }
@@ -479,7 +487,7 @@ function queueScreen() {
         <span class="badge ${group.confidence}">${confidenceHe(group.confidence)}</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="decision-note"><strong>ענו רק על הקבוצה:</strong> אין כאן שיוך למוצר קיים או יצירת מוצר.</div>
+      <div class="scope-line">רק החלטת תמונות — בלי שיוך מוצר.</div>
       <div class="actions decision-actions" style="margin-top:12px">
         <button class="btn primary main-choice" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
         <button class="btn secondary-choice" data-action="not-same" data-id="${group.id}">לא — לא אותו תכשיט</button>
@@ -520,12 +528,12 @@ function productStageScreen() {
         <span class="badge ${group.confidence}">אחרי אישור תמונות</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="decision-note"><strong>התחילו מהמועמדים.</strong> אם אף מועמד לא מתאים — מסמנים מוצר חדש ורק אז עיצוב.</div>
+      <div class="scope-line">קודם מועמדים. אם אין התאמה — מוצר חדש.</div>
       <div class="actions decision-actions product-actions" style="margin-top:12px">
         <button class="btn primary main-choice" data-action="classify-existing" data-id="${group.id}">נראה מוצר קיים — הצג מועמדים</button>
         <button class="btn secondary-choice" data-action="classify-design" data-id="${group.id}">לא נראה מוצר קיים — מוצר חדש</button>
         <button class="btn tertiary-choice" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
-        <button class="btn ghost fallback-choice" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
+        <button class="btn link-choice fallback-choice" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
       </div>
     </section>`).join('');
   const decidedCards = decided.map((group, index) => {
@@ -612,7 +620,7 @@ function groupScreen(mode = 'group') {
     const candidateCards = group.candidates.length ? group.candidates.map((candidate, index) => `
       <button class="candidate choice" data-action="link-candidate" data-id="${group.id}" data-candidate="${candidate.id}">
         ${photoTile(candidatePhoto(candidate, index + 21))}
-        <span><strong>${candidate.label || candidate.name || candidate.id}</strong><small>${candidateMeta(candidate)}</small></span>
+        <span><strong>${candidate.label || candidate.name || candidate.id}</strong><ul class="candidate-evidence">${candidateEvidence(candidate)}</ul></span>
       </button>`).join('') : `<div class="notice">אין כרגע מועמד חזק מספיק. עדיף לשלוח לבדיקה במקום לנחש.</div>`;
     return `
     <div class="phone">
@@ -632,9 +640,9 @@ function groupScreen(mode = 'group') {
           <div class="meta">אם אחד המועמדים נכון — בוחרים אותו. אם לא, לא כותבים ידנית עדיין; מסמנים מוצר חדש וממשיכים לעיצוב.</div>
           <div class="candidates">${candidateCards}</div>
           <div class="actions decision-actions" style="margin-top:12px">
-            <button class="btn primary main-choice" data-action="same-design" data-id="${group.id}">אף מועמד לא מתאים — מוצר חדש</button>
+            <button class="btn secondary-choice main-choice" data-action="same-design" data-id="${group.id}">אף מועמד לא מתאים — מוצר חדש</button>
             <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
-            <button class="btn ghost fallback-choice" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
+            <button class="btn link-choice fallback-choice" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
           </div>
         </section>
       </main>
@@ -709,16 +717,21 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel explain">
           <strong>שאלה אחרונה</strong>
-          <div class="meta">כבר סימנו שזה מוצר חדש. עכשיו רק מחליטים אם הוא בעיצוב שכבר קיים או במוצר חדש בעיצוב חדש.</div>
+          <div class="meta">כבר סימנו שזה מוצר חדש. קודם בוחרים רק אם העיצוב מוכר או חדש.</div>
         </section>
         <section class="panel">
-          <strong>איזה סוג מוצר חדש זה?</strong>
+          <strong>בחירה עיקרית</strong>
           <div class="actions decision-actions product-actions" style="margin-top:12px">
-            <button class="btn primary main-choice" data-action="new-product-existing-design" data-id="${group.id}">מוצר חדש בעיצוב קיים</button>
-            <button class="btn secondary-choice" data-action="new-product" data-id="${group.id}">מוצר חדש בעיצוב חדש</button>
+            <button class="btn primary main-choice" data-action="new-product-existing-design" data-id="${group.id}">עיצוב קיים</button>
+            <button class="btn secondary-choice" data-action="new-product" data-id="${group.id}">עיצוב חדש</button>
+            <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+          </div>
+        </section>
+        <section class="panel advanced-panel">
+          <strong>אפשרויות מדויקות אם ידוע</strong>
+          <div class="actions decision-actions" style="margin-top:12px">
             <button class="btn secondary-choice" data-action="difference:stone" data-id="${group.id}">אותו עיצוב — אבן / צבע / גודל שונה</button>
             <button class="btn secondary-choice" data-action="variant:gold_color" data-id="${group.id}">אותו מוצר — רק צבע זהב שונה</button>
-            <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
         </section>
       </main>
