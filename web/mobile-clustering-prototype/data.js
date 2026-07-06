@@ -1,8 +1,8 @@
-window.STAV_DATASET_VERSION = "real-raw-intake-2026-07-06-v1";
+window.STAV_DATASET_VERSION = "real-raw-intake-2026-07-06-v2-candidates";
 window.STAV_REAL_GROUPS = [
   {
     "id": "pg_d2b1ed6a2f22_1",
-    "title": "לא מקוטלג · יש חלק מהפרטים · טבעת · מתכות שונות · sapphire",
+    "title": "לא מקוטלג · יש חלק מהפרטים · טבעת · כסף/זהב · ספיר כחול",
     "type": "same_design_sibling",
     "confidence": "medium",
     "photos": [
@@ -26,12 +26,24 @@ window.STAV_REAL_GROUPS = [
       }
     ],
     "evidence": "2 תמונות אמיתיות מדרופבוקס · לא מקוטלג · יש חלק מהפרטים",
-    "recommended": "לבדוק הבדל / אותו עיצוב",
+    "recommended": "לבדוק אם זו תמונה חדשה של מוצר קיים או מוצר חדש בעיצוב קיים",
     "candidates": [
       {
         "id": "R037",
-        "label": "R037 · מוצר/עיצוב דומה",
-        "meta": "מועמד מהגלאי — לא החלטה"
+        "label": "R037 · טבעת ליין / עיצוב דומה",
+        "name": "טבעת ליין יהלומים",
+        "meta": "מוצר קיים בקטלוג · עיצוב דומה · אבנים שונות מהתמונות החדשות",
+        "reason": "מבנה טבעת דומה עם פס אבנים עליון; לא החלטה אוטומטית",
+        "scoreLabel": "דמיון חזותי בינוני",
+        "image": {
+          "id": "catalog_R037_frontal_01",
+          "src": "/real-data/catalog_R037_frontal_01.jpg",
+          "sourcePath": "catalog/R037/frontal_01.jpg",
+          "jewelryType": "ring",
+          "metalColor": "yellow_gold_and_white_gold",
+          "stoneType": "diamond",
+          "stoneColor": "clear"
+        }
       }
     ],
     "rawStatus": "parent_facts_captured",
@@ -261,6 +273,42 @@ window.STAV_REAL_GROUPS = [
     "rawStatus": "selected_unresolved_sample",
     "rawCategory": "selected_filesystem_fallback",
     "sourceRef": "pg_3f933490bc7a_1"
+  }
+];
+
+window.STAV_PRODUCT_INDEX = [
+  {
+    id: "R037",
+    name: "טבעת ליין יהלומים",
+    aliases: ["R037", "טבעת ליין", "ליין יהלומים", "טבעת פס יהלומים"],
+    type: "טבעת",
+    family: "Line",
+    meta: "מוצר קיים בקטלוג · עיצוב דומה למועמד הראשון",
+    image: { id: "catalog_R037_frontal_01", src: "/real-data/catalog_R037_frontal_01.jpg" }
+  },
+  {
+    id: "NEGEV-NECKLACE",
+    name: "שרשרת נגב",
+    aliases: ["Negev Necklace", "negev", "נגב", "תליון נגב"],
+    type: "שרשרת",
+    family: "Negev",
+    meta: "מוצר קיים לדוגמה לחיפוש לפי שם"
+  },
+  {
+    id: "TULIP-EARRINGS",
+    name: "עגילי טוליפ",
+    aliases: ["Tulip earrings", "טוליפ", "עגילי פרח"],
+    type: "עגילים",
+    family: "Tulip",
+    meta: "מוצר קיים לדוגמה באינדקס קריאה בלבד"
+  },
+  {
+    id: "RONI-GREEN",
+    name: "רוני ירוק",
+    aliases: ["Roni green", "רוני", "ירוק רוני"],
+    type: "טבעת",
+    family: "Roni",
+    meta: "מוצר קיים לדוגמה באינדקס קריאה בלבד"
   }
 ];
 window.STAV_REAL_DATASET_STATS = {

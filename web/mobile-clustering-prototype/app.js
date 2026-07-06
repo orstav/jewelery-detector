@@ -142,6 +142,18 @@ function photoSrc(photo) {
   return typeof photo === 'string' ? null : photo.src;
 }
 
+function candidatePhoto(candidate, fallbackId) {
+  return candidate && candidate.image ? candidate.image : String(fallbackId);
+}
+
+function candidateMeta(candidate) {
+  return [candidate.meta, candidate.reason, candidate.scoreLabel].filter(Boolean).join(' · ');
+}
+
+function productPhoto(product, fallbackId) {
+  return product && product.image ? product.image : String(fallbackId);
+}
+
 const state = {
   screen: 'queue',
   activeGroupId: null,
@@ -532,16 +544,16 @@ function groupScreen(mode = 'group') {
   if (!group) return queueScreen();
   const candidates = group.candidates.map((candidate, index) => `
     <div class="candidate">
-      ${photoTile(String(index + 21))}
-      <div><strong>${candidate.label}</strong><div class="meta">${candidate.meta}</div></div>
+      ${photoTile(candidatePhoto(candidate, index + 21))}
+      <div><strong>${candidate.label || candidate.name || candidate.id}</strong><div class="meta">${candidateMeta(candidate)}</div></div>
     </div>`).join('');
   const thumbsClass = mode === 'split' ? 'thumbs split-grid' : 'thumbs';
 
   if (mode === 'link-existing') {
     const candidateCards = group.candidates.length ? group.candidates.map((candidate, index) => `
       <button class="candidate choice" data-action="link-candidate" data-id="${group.id}" data-candidate="${candidate.id}">
-        ${photoTile(String(index + 21))}
-        <span><strong>${candidate.label}</strong><small>${candidate.meta}</small></span>
+        ${photoTile(candidatePhoto(candidate, index + 21))}
+        <span><strong>${candidate.label || candidate.name || candidate.id}</strong><small>${candidateMeta(candidate)}</small></span>
       </button>`).join('') : `<div class="notice">אין כרגע מועמד חזק מספיק. עדיף לשלוח לבדיקה במקום לנחש.</div>`;
     return `
     <div class="phone">
@@ -606,7 +618,7 @@ function groupScreen(mode = 'group') {
           <div class="meta">בחרו מוצר אם אחד מהם נכון. אם לא — שומרים את השם ל־HAL.</div>
           <div class="candidates">${searchProducts(state.knownProductQuery).map((product, index) => `
             <button class="candidate choice" data-action="link-search-product" data-id="${group.id}" data-product="${product.id}">
-              ${photoTile(String(index + 51))}
+              ${photoTile(productPhoto(product, index + 51))}
               <span><strong>${product.name}</strong><small>${product.id} · ${product.type || ''} · ${product.family || ''}<br>${product.meta || ''}</small></span>
             </button>`).join('') || '<div class="notice">לא נמצאה התאמה טובה באינדקס. אפשר לשמור את השם כדי ש־HAL יחבר ידנית.</div>'}</div>
           <button class="btn" data-action="save-known-product" data-id="${group.id}">לא מצאתי — שמור את השם ל־HAL</button>
