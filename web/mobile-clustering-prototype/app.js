@@ -89,6 +89,13 @@ const fallbackProductIndex = [
 ];
 
 const productIndex = window.STAV_PRODUCT_INDEX || fallbackProductIndex;
+const datasetStats = window.STAV_REAL_DATASET_STATS || {
+  considered_product_groups: fallbackGroups.length,
+  actionable_product_groups: fallbackGroups.length,
+  groups_exported: fallbackGroups.length,
+  photos_exported: fallbackGroups.reduce((sum, group) => sum + group.photos.length, 0),
+  skipped_status_counts: {},
+};
 
 function normalizeSearch(value) {
   return String(value || '')
@@ -143,7 +150,9 @@ function photoSrc(photo) {
 }
 
 function candidatePhoto(candidate, fallbackId) {
-  return candidate && candidate.image ? candidate.image : String(fallbackId);
+  if (candidate?.image) return candidate.image;
+  const indexed = productIndex.find((product) => product.id === candidate?.id);
+  return indexed?.image || String(fallbackId);
 }
 
 function candidateMeta(candidate) {
@@ -360,10 +369,33 @@ function recommendedText(group) {
   return group.recommended || 'בדיקה קצרה';
 }
 
+const skippedStatusLabels = {
+  published_active_validated: 'כבר באתר',
+  draft_created: 'כבר טיוטה',
+  dead_or_merged: 'נסגר/מוזג',
+  raw_intake_local_images_missing: 'חסרות תמונות',
+  actionable_missing_images: 'פעילות בלי קובץ זמין',
+};
+
+function skippedStatsText(stats = datasetStats) {
+  const skipped = stats.skipped_status_counts || {};
+  return Object.entries(skipped)
+    .filter(([, count]) => count > 0)
+    .map(([status, count]) => `${count} ${skippedStatusLabels[status] || status}`)
+    .join(' · ');
+}
+
+function activeDatasetText(stats = datasetStats) {
+  const groups = stats.groups_exported || datasetGroups().length;
+  const photos = stats.photos_exported || datasetGroups().reduce((sum, group) => sum + group.photos.length, 0);
+  return `${groups} קבוצות פעילות · ${photos} תמונות`;
+}
+
 const typeLabels = {
   ring: 'טבעת',
   necklace: 'שרשרת',
   earrings: 'עגילים',
+  earring: 'עגילים',
   bracelet: 'צמיד',
 };
 
@@ -374,6 +406,9 @@ const stoneLabels = {
   ruby: 'רובי',
   pearl: 'פנינה',
   moonstone: 'מונסטון',
+  faceted_gemstone: 'אבן צבעונית',
+  none: 'ללא אבן',
+  mixed: 'אבנים שונות',
 };
 
 const metalLabels = {
@@ -392,11 +427,12 @@ function labelValue(value, labels) {
 function compactGroupHint(group) {
   const firstPhoto = group.photos.find((photo) => typeof photo !== 'string') || {};
   const parts = [
+    group.subtitle,
     labelValue(firstPhoto.jewelryType, typeLabels),
     labelValue(firstPhoto.stoneType, stoneLabels),
     labelValue(firstPhoto.metalColor, metalLabels),
   ].filter(Boolean);
-  return parts.length ? parts.join(' · ') : 'קבוצת תמונות חדשה';
+  return [...new Set(parts)].join(' · ') || 'קבוצת תמונות חדשה';
 }
 
 function activePhotos() {
@@ -540,6 +576,7 @@ function queueScreen() {
   const approvedCount = productStageGroups().length;
   const productDone = approvedCount - pendingStage.length;
   const reviewCount = rejectedOrReviewGroups().length;
+  const skippedText = skippedStatsText();
   const emptyState = pendingStage.length ? `
     <section class="empty panel">
       <div class="empty-title">שלב הקבוצות הסתיים</div>
@@ -547,9 +584,9 @@ function queueScreen() {
       <button class="btn primary" data-action="product-stage" style="margin-top:14px">המשך לשיוך מוצרים ועיצובים</button>
     </section>` : `
     <section class="empty panel">
-      <div class="empty-title">המדגם הזה הסתיים 🎉</div>
-      <div class="meta">קבוצות שאושרו: ${approvedCount}. החלטות מוצר/עיצוב: ${productDone}. לבדיקה/פיצול: ${reviewCount}. אפשר להתחיל את אותו מדגם מחדש כדי לבדוק את הזרימה שוב.</div>
-      <button class="btn primary" data-action="reset" style="margin-top:14px">התחל מדגם מחדש</button>
+      <div class="empty-title">אין עוד קבוצות פעילות</div>
+      <div class="meta">קבוצות שאושרו: ${approvedCount}. החלטות מוצר/עיצוב: ${productDone}. לבדיקה/פיצול: ${reviewCount}. אפשר להתחיל מחדש כדי לבדוק את הזרימה שוב.</div>
+      <button class="btn primary" data-action="reset" style="margin-top:14px">התחל מחדש</button>
     </section>`;
   const cards = state.groups.map((group, index) => `
     <section class="group-card">
@@ -564,7 +601,7 @@ function queueScreen() {
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
       <div class="scope-line">רק החלטת תמונות — בלי שיוך מוצר.</div>
       <div class="actions decision-actions" style="margin-top:12px">
-        <button class="btn primary main-choice" data-action="quick" data-id="${group.id}">${group.type === 'split_likely' ? 'סמן מי שייך יחד' : 'כן — אותו תכשיט'}</button>
+        <button class="btn primary main-choice" data-action="quick" data-id="${group.id}">כן — אותו תכשיט</button>
         <button class="btn secondary-choice" data-action="not-same" data-id="${group.id}">לא — לא אותו תכשיט</button>
         <button class="btn tertiary-choice" data-action="unsure" data-id="${group.id}">לא בטוח</button>
       </div>
@@ -578,6 +615,10 @@ function queueScreen() {
       </header>
       <main>
         <div class="notice focus-notice"><span>מה עושים עכשיו?</span><strong>בודקים אם התמונות בכל קבוצה הן אותו תכשיט.</strong></div>
+        <section class="dataset-summary panel">
+          <strong>${activeDatasetText()}</strong>
+          ${skippedText ? `<div class="meta">לא מוצג עכשיו: ${skippedText}</div>` : ''}
+        </section>
         ${cards || emptyState}
       </main>
       <div class="footer">
@@ -639,7 +680,7 @@ function productStageScreen() {
       </header>
       <main>
         <div class="notice focus-notice"><span>שלב 2</span><strong>קודם בוחרים אם זה מוצר קיים. אפשר להתחרט אחרי כל החלטה.</strong></div>
-        ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה. אם אחת ההחלטות לא נכונה, אפשר להחזיר אותה לשיוך מהרשימה למטה.</div></section>'}
+        ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב</div><div class="meta">אין עוד קבוצות שמחכות לשיוך. אם אחת ההחלטות לא נכונה, אפשר להחזיר אותה לשיוך מהרשימה למטה.</div></section>'}
         ${decidedCards ? `<section class="panel explain"><strong>החלטות שכבר סומנו</strong><div class="meta">אפשר להתחרט בלי להתחיל את כל המדגם מחדש.</div></section>${decidedCards}` : ''}
       </main>
       <div class="footer">
@@ -966,8 +1007,7 @@ document.addEventListener('click', (event) => {
   if (action === 'classify-design' && group) setScreen('design-intent', id, 'product-stage');
   if (action === 'product-unsure' && group) recordProductDecision(group, 'send_to_or_review_product_stage', { reason: 'human_not_sure_product_or_design', photoIds: group.photos.map(photoId) });
   if (action === 'open') openGroup(id);
-  if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
-  else if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
+  if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
   if (action === 'not-same' && group) record(group, 'reject_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link', nextStep: 'system_recluster_or_manual_split' });
   if (action === 'one-product' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
   if (action === 'link-existing' && group) setScreen('link-existing', id, state.screen === 'known-product' ? 'product-stage' : state.screen);

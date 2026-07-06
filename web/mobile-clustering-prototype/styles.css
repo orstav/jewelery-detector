@@ -55,6 +55,13 @@ main { padding: 14px; flex: 1; }
 .focus-notice span { display: block; color: #7a5b31; font-size: 12px; font-weight: 900; margin-bottom: 3px; }
 .focus-notice strong { display: block; font-size: 16px; }
 .notice { background: #fff7e8; border: 1px solid #ead9bd; border-radius: 14px; padding: 10px 12px; margin: 0 0 12px; color: #5d4521; font-weight: 750; font-size: 14px; line-height: 1.4; }
+.dataset-summary {
+  padding: 11px 14px;
+  margin-bottom: 14px;
+  background: #f8f5f0;
+  box-shadow: none;
+}
+.dataset-summary strong { font-size: 15px; color: #2a211a; }
 .group-card, .panel {
   background: var(--card);
   border: 1px solid var(--line);

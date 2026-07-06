@@ -1,1 +1,1 @@
-{"scripts":{"check":"node --check app.js"},"dependencies":{},"devDependencies":{}}
+{"scripts":{"check":"node --check app.js && node --check verify-data.mjs && node verify-data.mjs"},"dependencies":{},"devDependencies":{}}
