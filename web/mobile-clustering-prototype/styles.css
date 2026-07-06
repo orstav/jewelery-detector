@@ -81,7 +81,8 @@ main { padding: 14px; flex: 1; }
 .candidate.choice small { display: block; color: #6d6257; line-height: 1.4; margin-top: 4px; }
 .candidate .thumb { border-radius: 12px; }
 .footer { background: #fffaf3ee; border-top: 1px solid #eadccd; padding: 10px 14px max(12px, env(safe-area-inset-bottom)); display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
-.empty { text-align: center; padding: 40px 10px; color: #6d6257; }
+.empty { text-align: center; padding: 32px 14px; color: #6d6257; }
+.empty-title { color: #251b14; font-size: 20px; font-weight: 900; margin-bottom: 8px; }
 .split-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .split-grid .thumb { cursor: pointer; }
 .review-thumbs .thumb { min-height: 160px; border-radius: 18px; }

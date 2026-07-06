@@ -297,7 +297,13 @@ function queueScreen() {
   const totalPhotos = datasetGroups.reduce((sum, group) => sum + group.photos.length, 0);
   const openPhotos = state.groups.reduce((sum, group) => sum + group.photos.length, 0);
   const done = totalPhotos - openPhotos;
-  const pct = Math.round((done / totalPhotos) * 100);
+  const pct = totalPhotos ? Math.round((done / totalPhotos) * 100) : 0;
+  const emptyState = `
+    <section class="empty panel">
+      <div class="empty-title">כל הקבוצות במדגם הזה הסתיימו 🎉</div>
+      <div class="meta">אין כרגע קבוצות פתוחות לבדיקה. אפשר להתחיל את אותו מדגם מחדש כדי לבדוק את הזרימה שוב.</div>
+      <button class="btn primary" data-action="reset" style="margin-top:14px">התחל מדגם מחדש</button>
+    </section>`;
   const cards = state.groups.map((group, index) => `
     <section class="group-card">
       <div class="group-head">
@@ -324,11 +330,42 @@ function queueScreen() {
       </header>
       <main>
         <div class="notice">במסך הזה מאשרים רק דבר אחד: התמונות בקבוצה הן אותו תכשיט.</div>
-        ${cards || '<div class="empty">סיימנו את כל הקבוצות במדגם 🎉</div>'}
+        ${cards || emptyState}
       </main>
       <div class="footer">
-        <button class="btn ghost" data-action="reset">איפוס</button>
-        <button class="btn ghost" data-action="noop">עזרה</button>
+        <button class="btn ghost" data-action="reset">התחל מחדש</button>
+        <button class="btn ghost" data-action="help">עזרה</button>
+      </div>
+    </div>`;
+}
+
+function helpScreen() {
+  return `
+    <div class="phone">
+      <header>
+        <h1>עזרה קצרה</h1>
+        <div class="progress">מה עושים במסך בדיקת הקבוצות</div>
+      </header>
+      <main>
+        <section class="panel explain">
+          <strong>שלב 1 — רק קבוצת תמונות</strong>
+          <div class="meta">בודקים אם התמונות שמוצגות באותה קבוצה הן של אותו תכשיט. אין כאן חיבור למוצר קיים ואין יצירת מוצר.</div>
+        </section>
+        <section class="panel explain">
+          <strong>אם זה לא אותו תכשיט</strong>
+          <div class="meta">לוחצים “לא — לא אותו תכשיט”. המערכת תחזיר את הקבוצה לריקלסטר / בדיקת פיצול, ולא תיצור מוצר אוטומטית.</div>
+        </section>
+        <section class="panel explain">
+          <strong>שיוך למוצר קיים</strong>
+          <div class="meta">שיוך מגיע רק אחרי שהקבוצה עצמה נקייה. שם אפשר לבחור מועמד, או להשתמש ב“אני יודע/ת מה זה” ולחפש בכל המוצרים.</div>
+        </section>
+        <section class="panel explain">
+          <strong>בדיקת פרטים עדינים</strong>
+          <div class="meta">לוחצים על תמונה כדי לפתוח הגדלה למסך מלא ולבדוק אבן, צבע מתכת, שיניים ומבנה.</div>
+        </section>
+      </main>
+      <div class="footer">
+        <button class="btn ghost" data-action="back">חזרה</button>
       </div>
     </div>`;
 }
@@ -502,7 +539,7 @@ function groupScreen(mode = 'group') {
 
 function render() {
   const root = document.querySelector('#app');
-  root.innerHTML = (state.screen === 'queue' ? queueScreen() : groupScreen(state.screen)) + previewOverlay();
+  root.innerHTML = (state.screen === 'queue' ? queueScreen() : state.screen === 'help' ? helpScreen() : groupScreen(state.screen)) + previewOverlay();
 }
 
 document.addEventListener('click', (event) => {
@@ -560,6 +597,7 @@ document.addEventListener('click', (event) => {
   if (action === 'split') startSplit(id);
   if (action === 'finish-split' && group) finishSplit(group);
   if (action === 'back') { state.screen = 'queue'; state.activeGroupId = null; render(); }
+  if (action === 'help') { state.screen = 'help'; state.activeGroupId = null; render(); }
   if (action === 'reset') { localStorage.removeItem('stavGroups'); localStorage.removeItem('stavDecisions'); window.location.reload(); }
 });
 
