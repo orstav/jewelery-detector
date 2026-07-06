@@ -122,7 +122,7 @@ function startSplit(id) {
   state.activeGroupId = id;
   state.screen = 'split';
   const group = state.groups.find((item) => item.id === id);
-  state.selectedPhotos = new Set(group?.photos.slice(0, Math.ceil(group.photos.length / 2)) || []);
+  state.selectedPhotos = new Set((group?.photos.slice(0, Math.ceil(group.photos.length / 2)) || []).map(photoId));
   render();
 }
 
@@ -201,15 +201,9 @@ function queueScreen() {
       <main>
         <div class="notice">המטרה: לא לעבור תמונה-תמונה. מאשרים או מתקנים קבוצות שלמות.</div>
         ${cards || '<div class="empty">סיימנו את כל הקבוצות במדגם 🎉</div>'}
-        <section class="panel">
-          <strong>יומן החלטות</strong>
-          <div class="meta">נשמר מקומית בפרוטוטייפ</div>
-          <pre class="log">${JSON.stringify(state.decisions.slice(-5), null, 2)}</pre>
-        </section>
       </main>
       <div class="footer">
         <button class="btn ghost" data-action="reset">איפוס</button>
-        <button class="btn ghost" data-action="export">ייצוא</button>
         <button class="btn ghost" data-action="noop">עזרה</button>
       </div>
     </div>`;
@@ -331,15 +325,6 @@ document.addEventListener('click', (event) => {
   if (action === 'finish-split' && group) finishSplit(group);
   if (action === 'back') { state.screen = 'queue'; state.activeGroupId = null; render(); }
   if (action === 'reset') { localStorage.removeItem('stavGroups'); localStorage.removeItem('stavDecisions'); window.location.reload(); }
-  if (action === 'export') {
-    const blob = new Blob([JSON.stringify({ decisions: state.decisions }, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'stav-clustering-decisions.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  }
 });
 
 render();
