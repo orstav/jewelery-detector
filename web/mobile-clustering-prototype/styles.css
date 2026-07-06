@@ -119,3 +119,9 @@ main { padding: 14px; flex: 1; }
 @media (min-width: 420px) {
   .review-thumbs .thumb { min-height: 185px; }
 }
+.header-back { border: 0; background: transparent; color: #6d4f31; font-weight: 900; padding: 0 0 6px; font-size: 15px; }
+.btn.wide { grid-column: 1 / -1; }
+.autocomplete { display: grid; gap: 7px; margin-top: 8px; }
+.autocomplete-item { width: 100%; border: 1px solid #eadccd; background: #fff8ef; border-radius: 14px; padding: 10px 12px; text-align: right; color: inherit; }
+.autocomplete-item strong { display: block; }
+.autocomplete-item small { display: block; color: #6d6257; margin-top: 3px; line-height: 1.35; }

@@ -103,6 +103,12 @@ function productSearchText(product) {
   return normalizeSearch([product.id, product.name, product.type, product.family, product.meta, ...(product.aliases || [])].join(' '));
 }
 
+function autocompleteProducts(query, limit = 4) {
+  const normalized = normalizeSearch(query);
+  if (normalized.length < 2) return [];
+  return searchProducts(query).slice(0, limit);
+}
+
 function searchProducts(query) {
   const normalized = normalizeSearch(query);
   if (!normalized) return [];
@@ -144,6 +150,7 @@ const state = {
   selectedPhotos: new Set(),
   knownProductQuery: '',
   previewPhotoId: null,
+  backScreen: 'queue',
 };
 
 function datasetGroups() {
@@ -186,6 +193,26 @@ function rejectedOrReviewGroups() {
 
 function findGroupAny(id) {
   return state.groups.find((group) => group.id === id) || datasetGroups().find((group) => group.id === id);
+}
+
+function setScreen(screen, groupId = state.activeGroupId, backScreen = state.screen) {
+  state.screen = screen;
+  state.activeGroupId = groupId;
+  state.backScreen = backScreen || 'queue';
+  render();
+}
+
+function goBack() {
+  const target = state.backScreen || (pendingProductStageGroups().length ? 'product-stage' : 'queue');
+  state.screen = target;
+  state.activeGroupId = null;
+  state.backScreen = 'queue';
+  state.knownProductQuery = '';
+  render();
+}
+
+function backButton(label = 'חזרה') {
+  return `<button class="header-back" data-action="back" aria-label="${label}">‹ ${label}</button>`;
 }
 
 function persist() {
@@ -443,16 +470,17 @@ function productStageScreen() {
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
       <div class="meta decision-note">עכשיו לא בודקים אם התמונות יחד — זה כבר אושר. עכשיו מחליטים אם זה מוצר קיים, מוצר חדש, אותו עיצוב עם הבדל, או דורש בדיקה.</div>
       <div class="actions" style="margin-top:10px">
-        <button class="btn primary" data-action="classify-known" data-id="${group.id}">אני יודע/ת מה זה</button>
-        <button class="btn" data-action="classify-existing" data-id="${group.id}">בחר מוצר קיים</button>
+        <button class="btn primary" data-action="classify-existing" data-id="${group.id}">בחר מתוך מועמדים</button>
         <button class="btn" data-action="classify-new" data-id="${group.id}">זה מוצר חדש</button>
         <button class="btn" data-action="classify-design" data-id="${group.id}">אותו עיצוב, הבדל נראה</button>
         <button class="btn warn" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
+        <button class="btn ghost wide" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
       </div>
     </section>`).join('');
   return `
     <div class="phone">
       <header>
+        ${backButton()}
         <h1>שיוך מוצרים ועיצובים</h1>
         <div class="progress">${pending.length} קבוצות לשיוך · ${done} כבר טופלו</div>
       </header>
@@ -471,6 +499,7 @@ function helpScreen() {
   return `
     <div class="phone">
       <header>
+        ${backButton()}
         <h1>עזרה קצרה</h1>
         <div class="progress">מה עושים במסך בדיקת הקבוצות</div>
       </header>
@@ -517,8 +546,9 @@ function groupScreen(mode = 'group') {
     return `
     <div class="phone">
       <header>
+        ${backButton()}
         <h1>לאיזה מוצר קיים לחבר?</h1>
-        <div class="progress">בוחרים מתוך מועמדים שהמערכת מצאה — לא מקלידים קוד ידנית.</div>
+        <div class="progress">קודם בוחרים מהמועמדים. חיפוש בשם הוא רק אם לא מצאתם.</div>
       </header>
       <main>
         <section class="panel">
@@ -531,9 +561,9 @@ function groupScreen(mode = 'group') {
           <div class="meta">בחירה כאן אומרת: התמונות החדשות הן של אותו מוצר קיים.</div>
           <div class="candidates">${candidateCards}</div>
           <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="known-product" data-id="${group.id}">אני יודע/ת מה זה</button>
-            <button class="btn" data-action="new-product" data-id="${group.id}">לא — זה מוצר חדש</button>
+            <button class="btn primary" data-action="new-product" data-id="${group.id}">לא — זה מוצר חדש</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
+            <button class="btn ghost wide" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
           </div>
         </section>
       </main>
@@ -546,8 +576,9 @@ function groupScreen(mode = 'group') {
     return `
     <div class="phone">
       <header>
-        <h1>אני יודע/ת מה זה</h1>
-        <div class="progress">אם המוצר הנכון לא הופיע — כותבים או אומרים שם מוכר</div>
+        ${backButton()}
+        <h1>חיפוש לפי שם</h1>
+        <div class="progress">רק אם המועמדים לא עוזרים — כותבים רמז או שם מוכר</div>
       </header>
       <main>
         <section class="panel">
@@ -557,10 +588,14 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel">
           <strong>שם / רמז לזיהוי</strong>
-          <div class="meta">למשל: “שרשרת נגב”, “עגילי טוליפ”, “כמו רוני אבל ירוק”. החיפוש הוא על אינדקס מוצרים מלא וקריאה בלבד — לא רק על המועמדים של הגלאי.</div>
-          <input class="text-input" id="knownProductName" dir="auto" placeholder="שם מוצר, עיצוב או רמז" value="${state.knownProductQuery || ''}">
+          <div class="meta">זה שלב אחרון כשבחירה מהמועמדים לא מספיקה. מתחילים להקליד ורואים השלמות — עדיין אפשר לשמור רמז אם אין התאמה.</div>
+          <input class="text-input" id="knownProductName" dir="auto" placeholder="שם מוצר, עיצוב או רמז" value="${state.knownProductQuery || ''}" autocomplete="off">
+          <div class="autocomplete">${autocompleteProducts(state.knownProductQuery).map((product) => `
+            <button class="autocomplete-item" data-action="link-search-product" data-id="${group.id}" data-product="${product.id}">
+              <strong>${product.name}</strong><small>${product.id} · ${product.type || ''} · ${product.family || ''}</small>
+            </button>`).join('')}</div>
           <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="search-known-product" data-id="${group.id}">חפש בכל המוצרים</button>
+            <button class="btn primary" data-action="search-known-product" data-id="${group.id}">הצג תוצאות</button>
             <button class="btn" data-action="link-existing" data-id="${group.id}">חזרה למועמדים</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
@@ -590,6 +625,7 @@ function groupScreen(mode = 'group') {
     return `
     <div class="phone">
       <header>
+        ${backButton()}
         <h1>מה ההבדל שרואים?</h1>
         <div class="progress">לא צריך להבין Shopify — רק לסמן את ההבדל</div>
       </header>
@@ -625,6 +661,7 @@ function groupScreen(mode = 'group') {
   return `
     <div class="phone">
       <header>
+        ${backButton()}
         <h1>${mode === 'split' ? 'סימון תמונות ששייכות יחד' : 'בדיקת שיוך הקבוצה'}</h1>
         <div class="progress">${group.photos.length} תמונות · ${confidenceHe(group.confidence)}</div>
       </header>
@@ -665,6 +702,19 @@ function render() {
   root.innerHTML = (state.screen === 'queue' ? queueScreen() : state.screen === 'help' ? helpScreen() : state.screen === 'product-stage' ? productStageScreen() : groupScreen(state.screen)) + previewOverlay();
 }
 
+document.addEventListener('input', (event) => {
+  if (event.target?.id !== 'knownProductName') return;
+  state.knownProductQuery = event.target.value.trim();
+  render();
+  requestAnimationFrame(() => {
+    const input = document.querySelector('#knownProductName');
+    if (!input) return;
+    input.focus();
+    const pos = input.value.length;
+    input.setSelectionRange(pos, pos);
+  });
+});
+
 document.addEventListener('click', (event) => {
   const actionEl = event.target.closest('[data-action]');
   const photoEl = event.target.closest('[data-photo]');
@@ -695,18 +745,18 @@ document.addEventListener('click', (event) => {
     return;
   }
   if (action === 'product-stage') { state.screen = 'product-stage'; state.activeGroupId = null; render(); }
-  if (action === 'classify-existing' && group) { state.activeGroupId = id; state.screen = 'link-existing'; render(); }
-  if (action === 'classify-known' && group) { state.activeGroupId = id; state.knownProductQuery = ''; state.screen = 'known-product'; render(); }
+  if (action === 'classify-existing' && group) setScreen('link-existing', id, 'product-stage');
+  if (action === 'classify-known' && group) { state.knownProductQuery = ''; setScreen('known-product', id, 'product-stage'); }
   if (action === 'classify-new' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage' });
-  if (action === 'classify-design' && group) { state.activeGroupId = id; state.screen = 'design-intent'; render(); }
+  if (action === 'classify-design' && group) setScreen('design-intent', id, 'product-stage');
   if (action === 'product-unsure' && group) recordProductDecision(group, 'send_to_or_review_product_stage', { reason: 'human_not_sure_product_or_design', photoIds: group.photos.map(photoId) });
   if (action === 'open') openGroup(id);
   if (action === 'quick' && group?.type === 'split_likely') startSplit(id);
   else if (action === 'quick' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
   if (action === 'not-same' && group) record(group, 'reject_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link', nextStep: 'system_recluster_or_manual_split' });
   if (action === 'one-product' && group) record(group, 'approve_photos_same_jewelry', { photoIds: group.photos.map(photoId), scope: 'photo_group_only_not_product_link' });
-  if (action === 'link-existing' && group) { state.screen = 'link-existing'; render(); }
-  if (action === 'known-product' && group) { state.knownProductQuery = ''; state.screen = 'known-product'; render(); }
+  if (action === 'link-existing' && group) setScreen('link-existing', id, state.screen === 'known-product' ? 'product-stage' : state.screen);
+  if (action === 'known-product' && group) { state.knownProductQuery = ''; setScreen('known-product', id, state.screen === 'link-existing' ? 'link-existing' : state.screen); }
   if (action === 'search-known-product' && group) {
     state.knownProductQuery = (document.querySelector('#knownProductName')?.value || '').trim();
     render();
@@ -718,15 +768,15 @@ document.addEventListener('click', (event) => {
   if (action === 'link-search-product' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.product, source: 'all_product_search', typedName: state.knownProductQuery, photoIds: group.photos.map(photoId) });
   if (action === 'link-candidate' && group) recordProductDecision(group, 'link_group_to_existing_product', { candidate: actionEl.dataset.candidate, source: 'detector_candidate', photoIds: group.photos.map(photoId) });
   if (action === 'new-product' && group) recordProductDecision(group, 'create_new_product_cluster', { photoIds: group.photos.map(photoId), source: 'product_stage' });
-  if (action === 'same-design' && group) { state.screen = 'design-intent'; render(); }
+  if (action === 'same-design' && group) setScreen('design-intent', id, state.screen);
   if (action?.startsWith('metal-type:') && group) recordProductDecision(group, 'metal_type_difference', { difference: action.replace('metal-type:', ''), photoIds: group.photos.map(photoId), note: 'silver_or_gold_material_type; silver_photo_may_cover_white_gold' });
   if (action?.startsWith('variant:') && group) recordProductDecision(group, 'same_product_variant', { difference: action.replace('variant:', ''), photoIds: group.photos.map(photoId) });
   if (action?.startsWith('difference:') && group) recordProductDecision(group, 'same_design_different_product', { difference: action.replace('difference:', ''), photoIds: group.photos.map(photoId) });
   if (action === 'unsure' && group) record(group, 'send_to_or_review', { reason: 'human_not_sure', photoIds: group.photos.map(photoId) });
   if (action === 'split') startSplit(id);
   if (action === 'finish-split' && group) finishSplit(group);
-  if (action === 'back') { state.screen = 'queue'; state.activeGroupId = null; render(); }
-  if (action === 'help') { state.screen = 'help'; state.activeGroupId = null; render(); }
+  if (action === 'back') goBack();
+  if (action === 'help') setScreen('help', null, 'queue');
   if (action === 'reset') { localStorage.removeItem('stavGroups'); localStorage.removeItem('stavDecisions'); window.location.reload(); }
 });
 
