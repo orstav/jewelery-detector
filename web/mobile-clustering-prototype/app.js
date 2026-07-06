@@ -469,10 +469,10 @@ function productStageScreen() {
         <span class="badge ${group.confidence}">אחרי אישור תמונות</span>
       </div>
       <div class="thumbs review-thumbs">${group.photos.slice(0, 8).map((photo) => photoTile(photo)).join('')}</div>
-      <div class="meta decision-note">המערכת מתחילה בשבילכם: אם זה נראה כמו תמונות חדשות למוצר שכבר קיים — קודם מציגה מועמדים. אם לא, עוברים רק בסוף להחלטת עיצוב.</div>
+      <div class="meta decision-note">המערכת מתחילה בשבילכם: אם זה נראה כמו תמונות חדשות למוצר שכבר קיים — קודם מציגה מועמדים. אם לא, מסמנים קודם שזה מוצר חדש, ואז מחליטים על העיצוב.</div>
       <div class="actions" style="margin-top:10px">
         <button class="btn primary" data-action="classify-existing" data-id="${group.id}">נראה מוצר קיים — הצג מועמדים</button>
-        <button class="btn" data-action="classify-design" data-id="${group.id}">לא נראה מוצר קיים — החלטת עיצוב</button>
+        <button class="btn" data-action="classify-design" data-id="${group.id}">לא נראה מוצר קיים — מוצר חדש</button>
         <button class="btn warn" data-action="product-unsure" data-id="${group.id}">לא בטוח</button>
         <button class="btn ghost wide" data-action="classify-known" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
       </div>
@@ -485,7 +485,7 @@ function productStageScreen() {
         <div class="progress">${pending.length} קבוצות לשיוך · ${done} כבר טופלו</div>
       </header>
       <main>
-        <div class="notice">שלב 2: קודם בודקים האם אלה תמונות חדשות למוצר קיים. רק אם לא — מגיעים להחלטת עיצוב.</div>
+        <div class="notice">שלב 2: קודם בודקים האם אלה תמונות חדשות למוצר קיים. אם לא — זה מוצר חדש; רק אחר כך מחליטים על עיצוב.</div>
         ${cards || '<section class="empty panel"><div class="empty-title">כל הקבוצות קיבלו החלטת מוצר/עיצוב 🎉</div><div class="meta">אין עוד קבוצות שמחכות לשיוך במדגם הזה.</div></section>'}
       </main>
       <div class="footer">
@@ -548,7 +548,7 @@ function groupScreen(mode = 'group') {
       <header>
         ${backButton()}
         <h1>האם זה מוצר שכבר קיים?</h1>
-        <div class="progress">המועמדים הם קיצור דרך. אם אף אחד לא נכון — ממשיכים להחלטת עיצוב.</div>
+        <div class="progress">המועמדים הם קיצור דרך. אם אף אחד לא נכון — זה מוצר חדש, ואז מחליטים על עיצוב.</div>
       </header>
       <main>
         <section class="panel">
@@ -558,10 +558,10 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel">
           <strong>מועמדים קיימים</strong>
-          <div class="meta">אם אחד המועמדים נכון — בוחרים אותו. אם לא, לא כותבים ידנית עדיין; ממשיכים להחלטת עיצוב.</div>
+          <div class="meta">אם אחד המועמדים נכון — בוחרים אותו. אם לא, לא כותבים ידנית עדיין; מסמנים מוצר חדש וממשיכים לעיצוב.</div>
           <div class="candidates">${candidateCards}</div>
           <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="same-design" data-id="${group.id}">אף מועמד לא מתאים — החלטת עיצוב</button>
+            <button class="btn primary" data-action="same-design" data-id="${group.id}">אף מועמד לא מתאים — מוצר חדש</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
             <button class="btn ghost wide" data-action="known-product" data-id="${group.id}">לא מצאת? חיפוש לפי שם</button>
           </div>
@@ -626,8 +626,8 @@ function groupScreen(mode = 'group') {
     <div class="phone">
       <header>
         ${backButton()}
-        <h1>החלטת עיצוב</h1>
-        <div class="progress">רק אחרי שלא מצאנו מוצר קיים מתאים</div>
+        <h1>מוצר חדש — החלטת עיצוב</h1>
+        <div class="progress">אחרי שסימנו שלא נמצא מוצר קיים מתאים</div>
       </header>
       <main>
         <section class="panel">
@@ -638,14 +638,14 @@ function groupScreen(mode = 'group') {
         </section>
         <section class="panel explain">
           <strong>שאלה אחרונה</strong>
-          <div class="meta">לא צריך לבחור שדות קטלוג. רק האם זה מרגיש אותו עיצוב שכבר קיים, או עיצוב חדש. מוצר חדש יכול עדיין להיות באותו עיצוב.</div>
+          <div class="meta">כבר סימנו שזה מוצר חדש. עכשיו רק מחליטים אם הוא בעיצוב שכבר קיים או במוצר חדש בעיצוב חדש.</div>
         </section>
         <section class="panel">
-          <strong>מה זה מבחינת עיצוב?</strong>
+          <strong>איזה סוג מוצר חדש זה?</strong>
           <div class="actions" style="margin-top:10px">
-            <button class="btn primary" data-action="new-product-existing-design" data-id="${group.id}">אותו עיצוב — מוצר חדש</button>
-            <button class="btn" data-action="new-product" data-id="${group.id}">עיצוב חדש</button>
-            <button class="btn" data-action="difference:stone" data-id="${group.id}">אותו עיצוב — אבן / צבע / גודל שונה</button>
+            <button class="btn primary" data-action="new-product-existing-design" data-id="${group.id}">מוצר חדש בעיצוב קיים</button>
+            <button class="btn" data-action="new-product" data-id="${group.id}">מוצר חדש בעיצוב חדש</button>
+            <button class="btn" data-action="difference:stone" data-id="${group.id}">מוצר חדש בעיצוב קיים — אבן / צבע / גודל שונה</button>
             <button class="btn" data-action="variant:gold_color" data-id="${group.id}">אותו מוצר — רק צבע זהב שונה</button>
             <button class="btn warn" data-action="unsure" data-id="${group.id}">לא בטוח</button>
           </div>
