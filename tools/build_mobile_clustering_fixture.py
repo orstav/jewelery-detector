@@ -47,10 +47,10 @@ ACTIONABLE_STATUSES = {
     "package_sent_waiting_parent_approval",
 }
 STATUS_HE = {
-    "needs_parent_fact_mapping": "לא מקוטלג · חסרים פרטים",
-    "parent_facts_captured": "לא מקוטלג · יש חלק מהפרטים",
-    "pending_review": "לא מקוטלג · לבדיקה",
-    "package_sent_waiting_parent_approval": "לא מקוטלג · מחכה לאישור",
+    "needs_parent_fact_mapping": "צריך השלמת פרטים",
+    "parent_facts_captured": "יש פרטים — צריך אימות/המשך טיפול",
+    "pending_review": "צריך בדיקת שיוך",
+    "package_sent_waiting_parent_approval": "כבר נשלחה חבילת אישור",
 }
 TYPE_HE = {
     "ring": "טבעת",
@@ -149,7 +149,7 @@ def summarize_assets(pg: dict) -> str:
     for value in [jt, metal, stone]:
         if value and value != "none":
             bits.append(value)
-    return " · ".join(bits) if bits else (pg.get("evidence") or {}).get("description") or "תכשיט לא מקוטלג"
+    return " · ".join(bits) if bits else (pg.get("evidence") or {}).get("description") or "קבוצת תכשיט לבדיקה"
 
 
 def proposal_type(category: str, status: str, pg: dict) -> str:
@@ -252,7 +252,7 @@ def build_group(item: dict, pg: dict, category: str, active_index: int, stats: d
     ptype = proposal_type(category, status, pg)
     return {
         "id": f"active-{active_index:03d}",
-        "title": f"פריט לא מקוטלג {active_index}",
+        "title": f"קבוצת raw-intake {active_index}",
         "subtitle": summarize_assets(pg),
         "type": ptype,
         "confidence": "medium" if status != "pending_review" else "low",

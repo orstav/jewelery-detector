@@ -454,9 +454,28 @@ function labelValue(value, labels) {
   return labels[value] || value;
 }
 
+function rawStatusLabel(status) {
+  const labels = {
+    needs_parent_fact_mapping: 'צריך השלמת פרטים',
+    parent_facts_captured: 'יש פרטים — צריך אימות/המשך טיפול',
+    package_sent_waiting_parent_approval: 'כבר נשלחה חבילת אישור',
+    pending_review: 'צריך בדיקת שיוך',
+    published_active_validated: 'כבר באתר — לא אמור להופיע כאן',
+    draft_created: 'כבר טיוטה — לא אמור להופיע כאן',
+  };
+  return labels[status] || status;
+}
+
+function candidateHint(group) {
+  const candidate = group.candidateProductId || group.candidateDesignId || group.candidates?.[0]?.id;
+  return candidate ? `מועמד קיים לבדיקה: ${candidate}` : '';
+}
+
 function compactGroupHint(group) {
   const firstPhoto = group.photos.find((photo) => typeof photo !== 'string') || {};
   const parts = [
+    rawStatusLabel(group.rawStatus),
+    candidateHint(group),
     group.subtitle,
     labelValue(firstPhoto.jewelryType, typeLabels),
     labelValue(firstPhoto.stoneType, stoneLabels),
@@ -651,6 +670,7 @@ function queueScreen() {
           <strong>${activeDatasetText()}</strong>
           ${skippedText ? `<div class="meta">לא מוצג עכשיו: ${skippedText}</div>` : ''}
           ${autoSingleCount ? `<div class="meta">${autoSingleCount} קבוצה עם תמונה אחת עברה אוטומטית לשלב שיוך מוצר — אין שאלת “אותו תכשיט” כשיש רק תמונה אחת.</div>` : ''}
+          <div class="meta">חשוב: אלה לא “בוודאות לא באתר”. זה מדגם עבודה מ־raw-intake; סטטוסים כמו “כבר באתר” ו“טיוטה” מסוננים לפי המטא־דאטה המקומי, וכל קבוצה פעילה עדיין צריכה בדיקת שיוך/סטטוס.</div>
         </section>
         ${cards || emptyState}
       </main>

@@ -67,7 +67,7 @@
           "stoneColor": "blue"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · יש חלק מהפרטים",
+      "evidence": "2 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
       "recommended": "לבדוק הבדל / אותו עיצוב",
       "candidates": [
         {
@@ -115,7 +115,7 @@
           "stoneColor": "white"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -152,7 +152,7 @@
           "stoneColor": "multi"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · מחכה לאישור",
+      "evidence": "2 תמונות זמינות · כבר נשלחה חבילת אישור",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "package_sent_waiting_parent_approval",
@@ -189,7 +189,7 @@
           "stoneColor": "multi"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -216,7 +216,7 @@
           "stoneColor": "multi"
         }
       ],
-      "evidence": "1 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "1 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -253,7 +253,7 @@
           "stoneColor": "blue"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · מחכה לאישור",
+      "evidence": "2 תמונות זמינות · כבר נשלחה חבילת אישור",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "package_sent_waiting_parent_approval",
@@ -290,7 +290,7 @@
           "stoneColor": "multi"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -337,7 +337,7 @@
           "stoneColor": "multi"
         }
       ],
-      "evidence": "3 תמונות זמינות · לא מקוטלג · לבדיקה",
+      "evidence": "3 תמונות זמינות · צריך בדיקת שיוך",
       "recommended": "לפתוח ולוודא קבוצה",
       "candidates": [],
       "rawStatus": "pending_review",
@@ -374,7 +374,7 @@
           "stoneColor": "white"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -411,7 +411,7 @@
           "stoneColor": "multi"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -448,7 +448,7 @@
           "stoneColor": "none"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -485,7 +485,7 @@
           "stoneColor": "red"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · מחכה לאישור",
+      "evidence": "2 תמונות זמינות · כבר נשלחה חבילת אישור",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "package_sent_waiting_parent_approval",
@@ -522,7 +522,7 @@
           "stoneColor": "green"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · יש חלק מהפרטים",
+      "evidence": "2 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "parent_facts_captured",
@@ -559,7 +559,7 @@
           "stoneColor": "white"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -596,7 +596,7 @@
           "stoneColor": "blue"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",
@@ -633,7 +633,7 @@
           "stoneColor": "none"
         }
       ],
-      "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+      "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
       "recommended": "אישור מהיר כמוצר חדש",
       "candidates": [],
       "rawStatus": "needs_parent_fact_mapping",

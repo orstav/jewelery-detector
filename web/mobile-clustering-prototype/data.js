@@ -29,7 +29,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "blue"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · יש חלק מהפרטים",
+    "evidence": "2 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
     "recommended": "לבדוק הבדל / אותו עיצוב",
     "candidates": [
       {
@@ -77,7 +77,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "white"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -114,7 +114,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "multi"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · מחכה לאישור",
+    "evidence": "2 תמונות זמינות · כבר נשלחה חבילת אישור",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "package_sent_waiting_parent_approval",
@@ -151,7 +151,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "multi"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -178,7 +178,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "multi"
       }
     ],
-    "evidence": "1 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "1 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -215,7 +215,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "blue"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · מחכה לאישור",
+    "evidence": "2 תמונות זמינות · כבר נשלחה חבילת אישור",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "package_sent_waiting_parent_approval",
@@ -252,7 +252,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "multi"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -299,7 +299,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "multi"
       }
     ],
-    "evidence": "3 תמונות זמינות · לא מקוטלג · לבדיקה",
+    "evidence": "3 תמונות זמינות · צריך בדיקת שיוך",
     "recommended": "לפתוח ולוודא קבוצה",
     "candidates": [],
     "rawStatus": "pending_review",
@@ -336,7 +336,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "white"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -373,7 +373,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "multi"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -410,7 +410,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "none"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -447,7 +447,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "red"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · מחכה לאישור",
+    "evidence": "2 תמונות זמינות · כבר נשלחה חבילת אישור",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "package_sent_waiting_parent_approval",
@@ -484,7 +484,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "green"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · יש חלק מהפרטים",
+    "evidence": "2 תמונות זמינות · יש פרטים — צריך אימות/המשך טיפול",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "parent_facts_captured",
@@ -521,7 +521,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "white"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -558,7 +558,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "blue"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
@@ -595,7 +595,7 @@ window.STAV_REAL_GROUPS = [
         "stoneColor": "none"
       }
     ],
-    "evidence": "2 תמונות זמינות · לא מקוטלג · חסרים פרטים",
+    "evidence": "2 תמונות זמינות · צריך השלמת פרטים",
     "recommended": "אישור מהיר כמוצר חדש",
     "candidates": [],
     "rawStatus": "needs_parent_fact_mapping",
