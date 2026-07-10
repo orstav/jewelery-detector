@@ -54,6 +54,9 @@ try {
   await page.waitForSelector('.existing_product_selection, .unified-match-flow', {timeout: 5000}).catch(() => {});
   await assertPage(await page.$eval('.unified-match-flow', (el) => Boolean(el)), 'existing-product finder did not open');
   await assertPage(await page.$$eval('.catalog-type-filter button', (nodes) => nodes.length >= 5), 'jewelry type picker missing');
+  await assertPage(await page.$eval('.catalog-type-filter button.active', (node) => node.textContent.includes('טבעת')), 'historical candidate type did not activate the ring filter');
+  await assertPage(await page.$eval('.suggestion-note', (node) => node.textContent.includes('מוצר קיים שכדאי להשוות')), 'historical suggestion is not labeled for manual comparison');
+  await assertPage(await page.$$eval('.match-list-head strong', (nodes) => !nodes.some((node) => node.textContent.includes('עוד אפשרויות מהקטלוג'))), 'unrequested catalog alternatives are visible');
   await page.evaluate(() => window.scrollTo(0, 1100));
   await new Promise((resolve) => setTimeout(resolve, 250));
   const comparisonFloating = await page.evaluate(() => ({

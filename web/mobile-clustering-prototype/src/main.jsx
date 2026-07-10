@@ -79,8 +79,8 @@ function productTypeOf(item) {
 }
 
 function defaultJewelryTypeFilter(task) {
-  const hint = task?.pendingProductType || task?.kind || '';
-  return CATALOG_TYPE_FILTERS.includes(hint) ? hint : '';
+  const suggestedType = productTypeOf(task?.existingCandidates?.[0] || task?.existingCandidate);
+  return [task?.pendingProductType, task?.kind, suggestedType].find((hint) => CATALOG_TYPE_FILTERS.includes(hint)) || '';
 }
 
 function filterCandidatesByJewelryType(candidates, jewelryType) {
@@ -786,7 +786,7 @@ function ReviewCard({task, buckets, onAction}) {
       <BucketAttachConfirm bucket={pendingAttachBucket} task={task} onCancel={() => setPendingAttachBucket(null)} onConfirm={(bucket) => onAction('attach_to_bucket', {bucketId: bucket.id, label: bucketTitle(bucket), attachedBucketTitle: bucketTitle(bucket)})} />
       <BucketRail key={`existing-buckets-${task.id}-${buckets.length}`} buckets={buckets} currentTask={task} onAttach={openAttachConfirm} />
       <MatchCandidateList task={task} candidates={primaryExistingMatches} skippedIds={skippedCandidateIds} onReject={skipCandidate} onSameProduct={chooseSameProduct} onSameDesign={chooseSameDesign} />
-      {exactProductCandidates.length && catalogExtraMatches.length ? <MatchCandidateList title="עוד אפשרויות מהקטלוג" task={task} candidates={catalogExtraMatches} skippedIds={skippedCandidateIds} onReject={skipCandidate} onSameProduct={chooseSameProduct} onSameDesign={chooseSameDesign} /> : null}
+      {exactProductCandidates.length && (showAllCatalog || catalogQuery.trim()) && catalogExtraMatches.length ? <MatchCandidateList title="עוד אפשרויות מהקטלוג" task={task} candidates={catalogExtraMatches} skippedIds={skippedCandidateIds} onReject={skipCandidate} onSameProduct={chooseSameProduct} onSameDesign={chooseSameDesign} /> : null}
       <label className="catalog-search"><span>חיפוש בקטלוג</span><input value={catalogQuery} onChange={(event) => { setCatalogQuery(event.target.value); if (event.target.value.trim()) setShowAllCatalog(false); }} placeholder="מספר מוצר או שם" aria-label="חיפוש בקטלוג מוצרים קיימים" /></label>
       <CatalogTypeFilter label="סוג תכשיט" value={catalogTypeFilter} onChange={(type) => { setCatalogTypeFilter(type); setShowAllCatalog(false); }} />
       <div className="catalog-count">{CATALOG_PRODUCT_INDEX.length ? `${catalogAvailableCount} מתוך ${CATALOG_PRODUCT_INDEX.length} מוצרים זמינים${catalogTypeFilter ? ` · ${catalogTypeFilter}` : ''}` : 'קטלוג לדוגמה בלבד'}</div>
