@@ -1,0 +1,319 @@
+{
+  "batch_id": "dropbox-2026-06-15-web",
+  "label": "2026-06-15",
+  "source_folder": "2026-06-15/web",
+  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
+  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source_assets": [
+    {
+      "asset_id": "asset_8bdbe3ed44170ac2f7470de7",
+      "source_path": "2026-06-15/web/20140129-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "c6a9875f3c9f33b0ac4ebb0df0c1556c722a483926918059dff6e0a89cdf3a3d",
+      "product_group_id": "pg_repair_16a90bb2f410e2c9",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_4819d5683107765c32fc7db8",
+      "source_path": "2026-06-15/web/20140129-web res 1500-3.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "7ff9f34981156ee0cbbe68d9072b9eec70ecf3306a5f9044636a7eac09d285f1",
+      "product_group_id": "pg_repair_2aaba6eb645e4fb6",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_62b3234b935850b117e1b550",
+      "source_path": "2026-06-15/web/20140129-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "da652fc9378af2a0f868e92a3127bee569b5de85a48d7917543722240346f186",
+      "product_group_id": "pg_repair_5be2d40b0fda9d53",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_41b6de1bfc1e92630d158cbd",
+      "source_path": "2026-06-15/web/20140130-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "92ebe80293d9f263a35d19ecb44daeb8640024058d47496875ed71dcef2265e5",
+      "product_group_id": "pg_repair_a0a7a86d38884dbd",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_9bc7242d39f012d739646dba",
+      "source_path": "2026-06-15/web/20140201-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "723198439128d6605f3861e0419da5c42b681afaea0961be3b9f1fa48588abcf",
+      "product_group_id": "pg_repair_eb4b82ac1a323261",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_8652fef36242986f9a72c677",
+      "source_path": "2026-06-15/web/20140201-web res 1500-3.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "6dce43baa613b3fbcdba675eaa170873f3e5961af90b3b0f6b90a33b9d2f2346",
+      "product_group_id": "pg_repair_6fd310174e9c4eb4",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_2ae0c0dcb7e124fc2a67628b",
+      "source_path": "2026-06-15/web/20140201-web res 1500-4.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "3945bf11fdcc258ceb1927289971a1d1df782b6a6675bac55344137484ecce01",
+      "product_group_id": "pg_repair_6399a2f39482dde9",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_73584edaf169d9688be7ed23",
+      "source_path": "2026-06-15/web/20140201-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "0507266326ad6ff5999be535552e2783b50f47112cd0712a68fc65f1095be306",
+      "product_group_id": "pg_repair_538cfd4cddaa29fa",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    }
+  ],
+  "review_cards": [
+    {
+      "id": "dropbox-2026-06-15-web-card-001",
+      "sourceRef": "pg_repair_16a90bb2f410e2c9",
+      "title": "2026-06-15 · פריט 1",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_8bdbe3ed44170ac2f7470de7",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140129-web_res_1500-2.jpg",
+          "sourcePath": "2026-06-15/web/20140129-web res 1500-2.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-002",
+      "sourceRef": "pg_repair_2aaba6eb645e4fb6",
+      "title": "2026-06-15 · פריט 2",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_4819d5683107765c32fc7db8",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140129-web_res_1500-3.jpg",
+          "sourcePath": "2026-06-15/web/20140129-web res 1500-3.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-003",
+      "sourceRef": "pg_repair_5be2d40b0fda9d53",
+      "title": "2026-06-15 · פריט 3",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_62b3234b935850b117e1b550",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140129-web_res_1500.jpg",
+          "sourcePath": "2026-06-15/web/20140129-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-004",
+      "sourceRef": "pg_repair_a0a7a86d38884dbd",
+      "title": "2026-06-15 · פריט 4",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_41b6de1bfc1e92630d158cbd",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140130-web_res_1500.jpg",
+          "sourcePath": "2026-06-15/web/20140130-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-005",
+      "sourceRef": "pg_repair_eb4b82ac1a323261",
+      "title": "2026-06-15 · פריט 5",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_9bc7242d39f012d739646dba",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140201-web_res_1500-2.jpg",
+          "sourcePath": "2026-06-15/web/20140201-web res 1500-2.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-006",
+      "sourceRef": "pg_repair_6fd310174e9c4eb4",
+      "title": "2026-06-15 · פריט 6",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_8652fef36242986f9a72c677",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140201-web_res_1500-3.jpg",
+          "sourcePath": "2026-06-15/web/20140201-web res 1500-3.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-007",
+      "sourceRef": "pg_repair_6399a2f39482dde9",
+      "title": "2026-06-15 · פריט 7",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_2ae0c0dcb7e124fc2a67628b",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140201-web_res_1500-4.jpg",
+          "sourcePath": "2026-06-15/web/20140201-web res 1500-4.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-06-15-web-card-008",
+      "sourceRef": "pg_repair_538cfd4cddaa29fa",
+      "title": "2026-06-15 · פריט 8",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_73584edaf169d9688be7ed23",
+          "src": "/batches/dropbox-2026-06-15-web/src_20140201-web_res_1500.jpg",
+          "sourcePath": "2026-06-15/web/20140201-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    }
+  ],
+  "auto_accounted_assets": [],
+  "blocked_assets": [],
+  "coverage": {
+    "expected": 8,
+    "seen": 8,
+    "reviewable": 8,
+    "review_cards": 8,
+    "auto_accounted": 0,
+    "blocked": 0,
+    "lane_counts": {
+      "dalia_identity_review": 8
+    }
+  },
+  "detector": {
+    "source": null,
+    "cards_with_candidates": 0,
+    "candidate_total": 0
+  },
+  "generated_at": "2026-07-10T07:37:33.986014+00:00",
+  "no_live_writes": true
+}

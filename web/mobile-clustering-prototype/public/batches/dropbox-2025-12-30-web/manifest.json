@@ -1,0 +1,123 @@
+{
+  "batch_id": "dropbox-2025-12-30-web",
+  "label": "2025-12-30",
+  "source_folder": "2025-12-30/web",
+  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
+  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source_assets": [
+    {
+      "asset_id": "asset_58a94b7960b37924a1252c67",
+      "source_path": "2025-12-30/web/20251225-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "81d178a38e33d57331b35e775bfc599b7256f89c47f143f07336521ccaf5fd64",
+      "product_group_id": "pg_repair_97293afc5e5cea85",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_64d3e5bd9e54eec3e051ffe9",
+      "source_path": "2025-12-30/web/20251225-web res 1500-3.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "0ab5991e610dd702d2456ffd3465f3083896394bb834e39173270e407c24609c",
+      "product_group_id": "pg_441e8efb9a1f_1",
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
+    },
+    {
+      "asset_id": "asset_7db912cb0d804f84b5fe13f0",
+      "source_path": "2025-12-30/web/20251225-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "a36f4baa85da081c032b05ad204c24c8b44e471fb505e34e8b5edcbd43ffe6dd",
+      "product_group_id": "pg_repair_aebf272ba65be471",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    }
+  ],
+  "review_cards": [
+    {
+      "id": "dropbox-2025-12-30-web-card-001",
+      "sourceRef": "pg_repair_97293afc5e5cea85",
+      "title": "2025-12-30 · פריט 1",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_58a94b7960b37924a1252c67",
+          "src": "/batches/dropbox-2025-12-30-web/src_20251225-web_res_1500-2.jpg",
+          "sourcePath": "2025-12-30/web/20251225-web res 1500-2.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-12-30-web-card-002",
+      "sourceRef": "pg_repair_aebf272ba65be471",
+      "title": "2025-12-30 · פריט 2",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_7db912cb0d804f84b5fe13f0",
+          "src": "/batches/dropbox-2025-12-30-web/src_20251225-web_res_1500.jpg",
+          "sourcePath": "2025-12-30/web/20251225-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    }
+  ],
+  "auto_accounted_assets": [
+    {
+      "asset_id": "asset_64d3e5bd9e54eec3e051ffe9",
+      "source_path": "2025-12-30/web/20251225-web res 1500-3.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    }
+  ],
+  "blocked_assets": [],
+  "coverage": {
+    "expected": 3,
+    "seen": 3,
+    "reviewable": 2,
+    "review_cards": 2,
+    "auto_accounted": 1,
+    "blocked": 0,
+    "lane_counts": {
+      "dalia_identity_review": 2,
+      "terminal_closed": 1
+    }
+  },
+  "detector": {
+    "source": null,
+    "cards_with_candidates": 0,
+    "candidate_total": 0
+  },
+  "generated_at": "2026-07-10T07:37:33.895496+00:00",
+  "no_live_writes": true
+}

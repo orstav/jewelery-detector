@@ -1,0 +1,141 @@
+{
+  "batch_id": "dropbox-2025-09-18-web",
+  "label": "2025-09-18",
+  "source_folder": "2025-09-18/web",
+  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
+  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source_assets": [
+    {
+      "asset_id": "asset_d7fe61b128ef4b5b729f9a28",
+      "source_path": "2025-09-18/web/20250826-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "21c0810bf35fd7049f69f55290c8ef97e95782a3faeca3b403ed5d49f99444d2",
+      "product_group_id": "pg_repair_1eda6ce7879d3c61",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_c0d2ed42f4e369c675c4417a",
+      "source_path": "2025-09-18/web/20250826-web res 1500-3.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "33fc2c0bd5561c021e0f35c25251b3ae468f72d5d087a95db6729146f6eae4bb",
+      "product_group_id": "pg_e7bf4535069e_1",
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
+    },
+    {
+      "asset_id": "asset_ba6e0d5b4dbb4a57e903f89b",
+      "source_path": "2025-09-18/web/20250826-web res 1500-4.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "d8a1be12ccc323b7d27b3783b0140e8612e5c348190465b11776f6518139e11b",
+      "product_group_id": "pg_e7bf4535069e_1",
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
+    },
+    {
+      "asset_id": "asset_e8cc75db6237376ed7b45661",
+      "source_path": "2025-09-18/web/20250826-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "6122d164aa52ffca4b95cdd6ea2c0b3bfa1e8dcb1c8d90cea33b04879cc0861d",
+      "product_group_id": "pg_repair_4fb8fa9c2e995516",
+      "group_status": "dropbox_new_candidate_needs_review",
+      "coverage_lane": "dalia_identity_review"
+    }
+  ],
+  "review_cards": [
+    {
+      "id": "dropbox-2025-09-18-web-card-001",
+      "sourceRef": "pg_repair_1eda6ce7879d3c61",
+      "title": "2025-09-18 · פריט 1",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_d7fe61b128ef4b5b729f9a28",
+          "src": "/batches/dropbox-2025-09-18-web/src_20250826-web_res_1500-2.jpg",
+          "sourcePath": "2025-09-18/web/20250826-web res 1500-2.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-09-18-web-card-002",
+      "sourceRef": "pg_repair_4fb8fa9c2e995516",
+      "title": "2025-09-18 · פריט 2",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזה מוצר חדש. צריך לבדוק מול הקטלוג לפני יצירת זהות חדשה.",
+      "rawStatus": "dropbox_new_candidate_needs_review",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_e8cc75db6237376ed7b45661",
+          "src": "/batches/dropbox-2025-09-18-web/src_20250826-web_res_1500.jpg",
+          "sourcePath": "2025-09-18/web/20250826-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    }
+  ],
+  "auto_accounted_assets": [
+    {
+      "asset_id": "asset_c0d2ed42f4e369c675c4417a",
+      "source_path": "2025-09-18/web/20250826-web res 1500-3.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_ba6e0d5b4dbb4a57e903f89b",
+      "source_path": "2025-09-18/web/20250826-web res 1500-4.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    }
+  ],
+  "blocked_assets": [],
+  "coverage": {
+    "expected": 4,
+    "seen": 4,
+    "reviewable": 2,
+    "review_cards": 2,
+    "auto_accounted": 2,
+    "blocked": 0,
+    "lane_counts": {
+      "dalia_identity_review": 2,
+      "terminal_closed": 2
+    }
+  },
+  "detector": {
+    "source": null,
+    "cards_with_candidates": 0,
+    "candidate_total": 0
+  },
+  "generated_at": "2026-07-10T07:37:33.867750+00:00",
+  "no_live_writes": true
+}

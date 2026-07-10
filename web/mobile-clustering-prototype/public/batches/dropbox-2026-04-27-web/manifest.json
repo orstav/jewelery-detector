@@ -1,0 +1,103 @@
+{
+  "batch_id": "dropbox-2026-04-27-web",
+  "label": "2026-04-27",
+  "source_folder": "2026-04-27/web",
+  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
+  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source_assets": [
+    {
+      "asset_id": "asset_92d524745a234d0e1f83f9f2",
+      "source_path": "2026-04-27/web/20260419-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "c0cc937b50b5da201ceff0dab4cb842dfeedb5085383d0b41e51ad69c55b2e79",
+      "product_group_id": "pg_repair_f91907b0ed73fe27",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_d6f34872a7a594de97256bfe",
+      "source_path": "2026-04-27/web/20260419-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "c8f3584af2e6b195074d558fd041d6ce87e6b07644eae08085ee65013f1eaa56",
+      "product_group_id": "pg_repair_09bf5d5a2d703a2a",
+      "group_status": "dropbox_new_candidate_needs_review",
+      "coverage_lane": "dalia_identity_review"
+    }
+  ],
+  "review_cards": [
+    {
+      "id": "dropbox-2026-04-27-web-card-001",
+      "sourceRef": "pg_repair_f91907b0ed73fe27",
+      "title": "2026-04-27 · פריט 1",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_92d524745a234d0e1f83f9f2",
+          "src": "/batches/dropbox-2026-04-27-web/src_20260419-web_res_1500-2.jpg",
+          "sourcePath": "2026-04-27/web/20260419-web res 1500-2.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2026-04-27-web-card-002",
+      "sourceRef": "pg_repair_09bf5d5a2d703a2a",
+      "title": "2026-04-27 · פריט 2",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזה מוצר חדש. צריך לבדוק מול הקטלוג לפני יצירת זהות חדשה.",
+      "rawStatus": "dropbox_new_candidate_needs_review",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_d6f34872a7a594de97256bfe",
+          "src": "/batches/dropbox-2026-04-27-web/src_20260419-web_res_1500.jpg",
+          "sourcePath": "2026-04-27/web/20260419-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    }
+  ],
+  "auto_accounted_assets": [],
+  "blocked_assets": [],
+  "coverage": {
+    "expected": 2,
+    "seen": 2,
+    "reviewable": 2,
+    "review_cards": 2,
+    "auto_accounted": 0,
+    "blocked": 0,
+    "lane_counts": {
+      "dalia_identity_review": 2
+    }
+  },
+  "detector": {
+    "source": null,
+    "cards_with_candidates": 0,
+    "candidate_total": 0
+  },
+  "generated_at": "2026-07-10T07:37:33.960356+00:00",
+  "no_live_writes": true
+}

@@ -1,0 +1,483 @@
+{
+  "batch_id": "dropbox-2025-02-02-web",
+  "label": "2025-02-02",
+  "source_folder": "2025-02-02/web",
+  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
+  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source_assets": [
+    {
+      "asset_id": "asset_d93b031cc3a29e5d1f670a38",
+      "source_path": "2025-02-02/web/20250106-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "aaf873e908e3621d1bbb31b7212bcf2aaa23e2cf9ee919111120ccaeba4bf138",
+      "product_group_id": "pg_repair_f615f1a1dc530d3a",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_228afa31f546be8f9a495343",
+      "source_path": "2025-02-02/web/20250106-web res 1500-3.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "57df895fa9bb269440db83e54c77143eca70575e6ce63723eed63d8ed34e8ef4",
+      "product_group_id": "pg_repair_a4fd2e5cb61c01ae",
+      "group_status": "dropbox_proven_existing_drive_and_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_fd314ca5c4fb523ea904b834",
+      "source_path": "2025-02-02/web/20250106-web res 1500-4.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "bae3590098593141e1467a92df40ab029116c0d66a55be507ab12e292831fc84",
+      "product_group_id": "pg_repair_f1bdd1f32fcd8e15",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_2117669758c5dda8f92745c8",
+      "source_path": "2025-02-02/web/20250106-web res 1500-5.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "6bc3a05d9d510a5fb01a9bd9e34bde531258b643638980c120510752618b6d60",
+      "product_group_id": "pg_repair_068baf8aa04fbaee",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_4ec9ef1aa34f453edeb57c0f",
+      "source_path": "2025-02-02/web/20250106-web res 1500-6.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "3283208e107148a9a408a210e32bb3f5dc3e3ae2c8900e6684f8a3f6784379ed",
+      "product_group_id": "pg_repair_ad46320e8da8919b",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_c0d3019cf3faf9d7a8d09e9c",
+      "source_path": "2025-02-02/web/20250106-web res 1500-7.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "f7841b82e12f28e1e49625bca291ab250f4b78c3a29350251dc4bfab03a4d5e9",
+      "product_group_id": "pg_repair_26414193b8b63ffd",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_6d1b1636b88b34dfea4fcacc",
+      "source_path": "2025-02-02/web/20250106-web res 1500-8.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "acc4cf8ef98120668b5fb8bc65a30a55ac4418a2eec87ec558840577bba6f72d",
+      "product_group_id": "pg_repair_d1ef9b7f858a0ccf",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_98c1f5e6e7066ee8da318754",
+      "source_path": "2025-02-02/web/20250106-web res 1500-9.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "55d9b062616b8ee5fb3a5f0b560080efb45b517def5ed83517744eac73a0270d",
+      "product_group_id": "pg_repair_4b6185f70e3a8941",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_25d69bedfbf27f3fd2ecf728",
+      "source_path": "2025-02-02/web/20250106-web res 1500-10.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "2247afd9fd93622a0ab12e3762e87f4af6ba2e9f3e57db79e6484081fd051385",
+      "product_group_id": "pg_repair_913d857ef31c2b8b",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_9b581ab81d58180448149c3b",
+      "source_path": "2025-02-02/web/20250106-web res 1500-11.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "6d71bee073f31ed1bb1a925640dc1e76ec4e01a99317d725eb0faf34000fc0a3",
+      "product_group_id": "pg_repair_19bb945f86b90fa9",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_b9572706a9a01b105004d381",
+      "source_path": "2025-02-02/web/20250106-web res 1500-12.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "3526282eb65aa1d89243d9b1cb4ca0f506d4b6994659721e0d284118ebbc22da",
+      "product_group_id": "pg_repair_cf6ecd338e59cf8f",
+      "group_status": "dropbox_proven_existing_drive_and_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_255070a125d09f4ebf07e429",
+      "source_path": "2025-02-02/web/20250106-web res 1500-13.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "c30a2b6f88ca0bbaf2cc0481afc3d2fd172e5720941a4c38fc7f6a84ae6286f7",
+      "product_group_id": "pg_repair_b6843d715fcc9bc3",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_a9cbc9176ffc398e611e2b28",
+      "source_path": "2025-02-02/web/20250106-web res 1500-14.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "64b595ef4ffc4fa53d2feeb367da9ce31f691714f618947c491fa0476cf19ac5",
+      "product_group_id": "pg_repair_53e9b4f98a313fe4",
+      "group_status": "dropbox_proven_existing_drive_and_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_c5e1d56318a58bcfc65994b2",
+      "source_path": "2025-02-02/web/20250106-web res 1500-15.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "b078329ef35c28a0368bab76c8899689c291b01a115fd03a43482d64c6a1435b",
+      "product_group_id": "pg_repair_158753d1ffd3a776",
+      "group_status": "dropbox_proven_existing_drive_and_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_d90ccb0d96e2ae3a151a23b0",
+      "source_path": "2025-02-02/web/20250106-web res 1500-16.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "252fc8c700c35393c60eebc8190b10dfea36a6a128b762045b8fb1559b7ed3c0",
+      "product_group_id": "pg_repair_863546de6f317f92",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_e76a7976b30a8554040b5390",
+      "source_path": "2025-02-02/web/20250106-web res 1500-17.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "f9709db5241c1d8a8b4c27d2d759b32df0e5d1868c30c5e29739757c52e23657",
+      "product_group_id": "pg_repair_86c1454cff564875",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_a1aa6a3500783e5a0567144a",
+      "source_path": "2025-02-02/web/20250106-web res 1500-18.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "e29257e5257de3b47e5ac6499eb29dd27790370dda6de0f7f76fa7d379d34f50",
+      "product_group_id": "pg_repair_23a15e854d4ed102",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_0c7e30693b4502749a7248d2",
+      "source_path": "2025-02-02/web/20250106-web res 1500-19.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "fc5f4078d8a260c5a7acb08b9af9411461fb900171491e7dff731786f23ee4b1",
+      "product_group_id": "pg_repair_4bdda17f0ae98ab8",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_50ad3f7a3ebae38f8a90a18e",
+      "source_path": "2025-02-02/web/20250106-web res 1500-20.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "660844fbacb3af4294d3b54b2e2eacde7992b3735e28e733c65bdbcb26527a6d",
+      "product_group_id": "pg_repair_b4d9af5f6256bcb9",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_73d6b6a4f3309b428af39d1d",
+      "source_path": "2025-02-02/web/20250106-web res 1500-21.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "109363aebf587f7a26438347834b66bf7979c6039103354c497b0c841645b8a8",
+      "product_group_id": "pg_repair_e27dd5bf87f25026",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    },
+    {
+      "asset_id": "asset_17664301d34f0b2ff864d0cf",
+      "source_path": "2025-02-02/web/20250106-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "598f2dff45e5d0e1bd9a18106f048cb31660479b613c174ade34bd0dcf1b9823",
+      "product_group_id": "pg_repair_d7bc5bf3b9417d07",
+      "group_status": "dropbox_proven_existing_drive_check_shopify",
+      "coverage_lane": "downstream_existing_workflow"
+    }
+  ],
+  "review_cards": [
+    {
+      "id": "dropbox-2025-02-02-web-card-001",
+      "sourceRef": "pg_repair_ad46320e8da8919b",
+      "title": "2025-02-02 · פריט 1",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_4ec9ef1aa34f453edeb57c0f",
+          "src": "/batches/dropbox-2025-02-02-web/src_20250106-web_res_1500-6.jpg",
+          "sourcePath": "2025-02-02/web/20250106-web res 1500-6.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-02-02-web-card-002",
+      "sourceRef": "pg_repair_26414193b8b63ffd",
+      "title": "2025-02-02 · פריט 2",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_c0d3019cf3faf9d7a8d09e9c",
+          "src": "/batches/dropbox-2025-02-02-web/src_20250106-web_res_1500-7.jpg",
+          "sourcePath": "2025-02-02/web/20250106-web res 1500-7.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-02-02-web-card-003",
+      "sourceRef": "pg_repair_d1ef9b7f858a0ccf",
+      "title": "2025-02-02 · פריט 3",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_6d1b1636b88b34dfea4fcacc",
+          "src": "/batches/dropbox-2025-02-02-web/src_20250106-web_res_1500-8.jpg",
+          "sourcePath": "2025-02-02/web/20250106-web res 1500-8.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-02-02-web-card-004",
+      "sourceRef": "pg_repair_4b6185f70e3a8941",
+      "title": "2025-02-02 · פריט 4",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_98c1f5e6e7066ee8da318754",
+          "src": "/batches/dropbox-2025-02-02-web/src_20250106-web_res_1500-9.jpg",
+          "sourcePath": "2025-02-02/web/20250106-web res 1500-9.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    }
+  ],
+  "auto_accounted_assets": [
+    {
+      "asset_id": "asset_25d69bedfbf27f3fd2ecf728",
+      "source_path": "2025-02-02/web/20250106-web res 1500-10.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_9b581ab81d58180448149c3b",
+      "source_path": "2025-02-02/web/20250106-web res 1500-11.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_b9572706a9a01b105004d381",
+      "source_path": "2025-02-02/web/20250106-web res 1500-12.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_and_shopify"
+    },
+    {
+      "asset_id": "asset_255070a125d09f4ebf07e429",
+      "source_path": "2025-02-02/web/20250106-web res 1500-13.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_a9cbc9176ffc398e611e2b28",
+      "source_path": "2025-02-02/web/20250106-web res 1500-14.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_and_shopify"
+    },
+    {
+      "asset_id": "asset_c5e1d56318a58bcfc65994b2",
+      "source_path": "2025-02-02/web/20250106-web res 1500-15.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_and_shopify"
+    },
+    {
+      "asset_id": "asset_d90ccb0d96e2ae3a151a23b0",
+      "source_path": "2025-02-02/web/20250106-web res 1500-16.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_e76a7976b30a8554040b5390",
+      "source_path": "2025-02-02/web/20250106-web res 1500-17.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_a1aa6a3500783e5a0567144a",
+      "source_path": "2025-02-02/web/20250106-web res 1500-18.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_0c7e30693b4502749a7248d2",
+      "source_path": "2025-02-02/web/20250106-web res 1500-19.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_d93b031cc3a29e5d1f670a38",
+      "source_path": "2025-02-02/web/20250106-web res 1500-2.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_50ad3f7a3ebae38f8a90a18e",
+      "source_path": "2025-02-02/web/20250106-web res 1500-20.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_73d6b6a4f3309b428af39d1d",
+      "source_path": "2025-02-02/web/20250106-web res 1500-21.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_228afa31f546be8f9a495343",
+      "source_path": "2025-02-02/web/20250106-web res 1500-3.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_and_shopify"
+    },
+    {
+      "asset_id": "asset_fd314ca5c4fb523ea904b834",
+      "source_path": "2025-02-02/web/20250106-web res 1500-4.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_2117669758c5dda8f92745c8",
+      "source_path": "2025-02-02/web/20250106-web res 1500-5.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    },
+    {
+      "asset_id": "asset_17664301d34f0b2ff864d0cf",
+      "source_path": "2025-02-02/web/20250106-web res 1500.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "dropbox_proven_existing_drive_check_shopify"
+    }
+  ],
+  "blocked_assets": [],
+  "coverage": {
+    "expected": 21,
+    "seen": 21,
+    "reviewable": 4,
+    "review_cards": 4,
+    "auto_accounted": 17,
+    "blocked": 0,
+    "lane_counts": {
+      "downstream_existing_workflow": 17,
+      "dalia_identity_review": 4
+    }
+  },
+  "detector": {
+    "source": null,
+    "cards_with_candidates": 0,
+    "candidate_total": 0
+  },
+  "generated_at": "2026-07-10T07:37:33.788155+00:00",
+  "no_live_writes": true
+}

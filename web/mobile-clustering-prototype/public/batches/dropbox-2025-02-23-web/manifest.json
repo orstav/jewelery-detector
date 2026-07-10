@@ -1,0 +1,139 @@
+{
+  "batch_id": "dropbox-2025-02-23-web",
+  "label": "2025-02-23",
+  "source_folder": "2025-02-23/web",
+  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
+  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source_assets": [
+    {
+      "asset_id": "asset_08b7be556feb2823ddb1b448",
+      "source_path": "2025-02-23/web/20241210-web res 1500-2.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "50a3f576d78a68ff66b4c2e9774d879161d8a2bfa6e377929507cb88cc1ecba2",
+      "product_group_id": "pg_repair_058cecfbbc412f4a",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_c5e54fa4eb12db813a4583e3",
+      "source_path": "2025-02-23/web/20241210-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1500,
+      "height": 1500,
+      "sha256": "1ad5d30a9e05b94271fea7b9695e3d3dc9333cca485bd772b8194ccffc7f29e9",
+      "product_group_id": "pg_repair_5704244c1aa2532a",
+      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "coverage_lane": "dalia_identity_review"
+    },
+    {
+      "asset_id": "asset_62b1e4d8b981876779c952e8",
+      "source_path": "2025-02-23/web/20241211-web res 1500.jpg",
+      "role_path": "web",
+      "asset_status": "indexed",
+      "width": 1211,
+      "height": 1500,
+      "sha256": "aa79a23b9f451d272f83c9f9aa4316f6d119addc72bd5992aefa2c8aaf101a1d",
+      "product_group_id": "pg_repair_9e4fedb94381beef",
+      "group_status": "dropbox_new_candidate_needs_review",
+      "coverage_lane": "dalia_identity_review"
+    }
+  ],
+  "review_cards": [
+    {
+      "id": "dropbox-2025-02-23-web-card-001",
+      "sourceRef": "pg_repair_058cecfbbc412f4a",
+      "title": "2025-02-23 · פריט 1",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_08b7be556feb2823ddb1b448",
+          "src": "/batches/dropbox-2025-02-23-web/src_20241210-web_res_1500-2.jpg",
+          "sourcePath": "2025-02-23/web/20241210-web res 1500-2.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-02-23-web-card-002",
+      "sourceRef": "pg_repair_5704244c1aa2532a",
+      "title": "2025-02-23 · פריט 2",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
+      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_c5e54fa4eb12db813a4583e3",
+          "src": "/batches/dropbox-2025-02-23-web/src_20241210-web_res_1500.jpg",
+          "sourcePath": "2025-02-23/web/20241210-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    },
+    {
+      "id": "dropbox-2025-02-23-web-card-003",
+      "sourceRef": "pg_repair_9e4fedb94381beef",
+      "title": "2025-02-23 · פריט 3",
+      "subtitle": "תכשיט לבדיקה",
+      "initialStage": "product_identity",
+      "reviewIntent": "identity_decision",
+      "halAssumption": "ייתכן שזה מוצר חדש. צריך לבדוק מול הקטלוג לפני יצירת זהות חדשה.",
+      "rawStatus": "dropbox_new_candidate_needs_review",
+      "detectorStatus": "no_candidates",
+      "detectorSource": null,
+      "photos": [
+        {
+          "id": "asset_62b1e4d8b981876779c952e8",
+          "src": "/batches/dropbox-2025-02-23-web/src_20241211-web_res_1500.jpg",
+          "sourcePath": "2025-02-23/web/20241211-web res 1500.jpg",
+          "sourceKind": "source_zip",
+          "role": "identity_review_photo"
+        }
+      ],
+      "candidates": [],
+      "existingCandidates": [],
+      "existingCandidate": null
+    }
+  ],
+  "auto_accounted_assets": [],
+  "blocked_assets": [],
+  "coverage": {
+    "expected": 3,
+    "seen": 3,
+    "reviewable": 3,
+    "review_cards": 3,
+    "auto_accounted": 0,
+    "blocked": 0,
+    "lane_counts": {
+      "dalia_identity_review": 3
+    }
+  },
+  "detector": {
+    "source": null,
+    "cards_with_candidates": 0,
+    "candidate_total": 0
+  },
+  "generated_at": "2026-07-10T07:37:33.798226+00:00",
+  "no_live_writes": true
+}

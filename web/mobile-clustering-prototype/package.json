@@ -1,1 +1,25 @@
-{"scripts":{"check":"node --check app.js && node --check verify-data.mjs && node verify-data.mjs"},"dependencies":{},"devDependencies":{}}
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "fixture": "python ../../tools/build_mobile_identity_batches.py --summary-json qa/all-batch-build-summary.json",
+    "fixture:single": "python ../../tools/build_mobile_identity_fixture.py",
+    "detector:candidates": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/apps/jewelery-detector/.venv/bin/python ../../tools/export_mobile_detector_candidates.py",
+    "dry-run": "node dry-run-identity-packets.mjs",
+    "workflow:status": "node tools/hal_collect_batch_sessions.mjs",
+    "qa:e2e": "node qa/dalia-e2e.mjs",
+    "check": "npm run fixture && node --check verify-data.mjs && node verify-data.mjs && node --check verify-global-coverage.mjs && node verify-global-coverage.mjs && node --check verify-ui-copy.mjs && node verify-ui-copy.mjs && node --check verify-packets.mjs && node verify-packets.mjs && node --check verify-backend-contract.mjs && node verify-backend-contract.mjs && node --check verify-backend-api.mjs && node verify-backend-api.mjs && node --check dry-run-identity-packets.mjs && node dry-run-identity-packets.mjs --out qa/identity-dry-run-report.json && vite build"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.6.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "puppeteer-core": "^24.16.0",
+    "vite": "^8.1.3"
+  }
+}
