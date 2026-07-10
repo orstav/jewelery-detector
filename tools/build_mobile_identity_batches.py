@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import os
 import re
@@ -480,8 +481,17 @@ def build_all() -> dict[str, Any]:
     default_manifest = batches[default]
     (REAL_DATA / "manifest.json").write_text(json.dumps(default_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
+    version_basis = {
+        bid: {
+            "source_assets": [asset["asset_id"] for asset in manifest["source_assets"]],
+            "review_cards": [[photo["id"] for photo in card["photos"]] for card in manifest["review_cards"]],
+            "auto_accounted": [asset["asset_id"] for asset in manifest["auto_accounted_assets"]],
+        }
+        for bid, manifest in sorted(batches.items())
+    }
+    dataset_hash = hashlib.sha256(json.dumps(version_basis, sort_keys=True, separators=(",", ":")).encode()).hexdigest()[:16]
     data_payload = {
-        "dataset_version": f"all-batches-{global_report['generated_at']}",
+        "dataset_version": f"all-batches-v2-{dataset_hash}",
         "default_batch": default,
         "batch_index": batch_index,
         "batches": batches,

@@ -60,10 +60,14 @@ export async function saveRemoteState(config, batchId, state) {
       headers: {'content-type': 'application/json', 'accept': 'application/json'},
       body: JSON.stringify({state}),
     });
+    if (response.status === 409) {
+      const payload = await response.json().catch(() => ({}));
+      return {status: 'conflict', message: 'stale_revision', currentRevision: payload.currentRevision};
+    }
     if (response.status === 501) return {status: 'not_configured', message: 'backend_not_configured'};
     if (!response.ok) return {status: 'error', message: `save_failed_${response.status}`};
     const payload = await response.json();
-    return {status: 'saved', updatedAt: payload.updatedAt};
+    return {status: 'saved', updatedAt: payload.updatedAt, revision: payload.revision};
   } catch (error) {
     return {status: 'offline', message: error?.message || 'network_error'};
   }
@@ -92,6 +96,7 @@ export function syncStatusLabel(status) {
     not_configured: 'צריך Backend ציבורי',
     offline: 'אין חיבור ל־Backend',
     error: 'שגיאת סנכרון',
+    conflict: 'יש שינוי חדש יותר — צריך לרענן',
     disabled: 'סנכרון כבוי',
   }[status] || 'שמירה מקומית בלבד';
 }

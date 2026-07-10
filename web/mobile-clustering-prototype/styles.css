@@ -845,6 +845,18 @@ button:focus-visible { outline: 4px solid var(--ring); outline-offset: 2px; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.header-status-stack {
+  display: grid;
+  justify-items: end;
+  line-height: 1.05;
+}
+.sync-indicator {
+  color: rgba(255,255,255,.72);
+  font-size: 9px;
+  font-weight: 750;
+}
+.sync-saved, .sync-loaded { color: #c7f9e9; }
+.sync-error, .sync-offline, .sync-conflict { color: #ffd0cb; }
 .compact-progress {
   height: 3px;
   margin-top: 7px;

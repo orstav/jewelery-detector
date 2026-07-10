@@ -16,10 +16,15 @@ const required = [
   [app, 'syncStatusLabel'],
   [app, 'backend-sync'],
   [app, 'sourceAssets: SOURCE_ASSETS'],
+  [app, 'persistQueueRef'],
+  [api, 'stale_identity_session_revision'],
+  [shared, "status: 'conflict'"],
 ];
 const missing = required.filter(([text, needle]) => !text.includes(needle)).map(([, needle]) => needle);
 if (missing.length) {
   console.error(`Missing backend contract markers: ${missing.join(', ')}`);
   process.exit(1);
 }
-console.log('Verified shared backend/session contract and HAL export path.');
+const createBucketBody = app.match(/function createBucket[\s\S]*?function completeTask/)?.[0] || '';
+if (!createBucketBody || createBucketBody.includes('persist(')) throw new Error('createBucket must not issue an independent save before completeTask');
+console.log('Verified serialized revisioned backend/session contract, atomic decision save, and HAL export path.');

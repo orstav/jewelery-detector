@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {exportPacketBundle} from './packetSchema.js';
 import {deleteRemoteState, loadRemoteState, localState, saveLocalState, saveRemoteState, sharedSessionConfig, syncStatusLabel} from './sharedSession.js';
@@ -874,7 +874,7 @@ function Header({started, remaining, photos, completed, total, onReset, onHelp, 
   const progress = total ? Math.round((completed / total) * 100) : 0;
   const statusText = total ? (started ? `${remaining} נשארו` : 'מוכן') : 'אין תור';
   return <><header className="app-header compact-app-header" title={`${syncStatusLabel(syncStatus)} · ${sessionId || ''}`}>
-    <div className="header-main"><h1>זהות מוצר</h1><span className="header-status backend-sync">{statusText} · {photos} תמונות</span></div>
+    <div className="header-main"><h1>זהות מוצר</h1><div className="header-status-stack"><span className="header-status backend-sync">{statusText} · {photos} תמונות</span><small className={`sync-indicator sync-${syncStatus}`}>{syncStatusLabel(syncStatus)}</small></div></div>
     <div className="progressbar compact-progress" aria-label={`התקדמות ${progress}%`}><span style={{width: `${progress}%`}} /></div>
   </header><footer className="mobile-footer compact-actions">{total ? <button onClick={onReset}>איפוס</button> : null}{started ? <button className="footer-save" onClick={onSave}>שמירה</button> : null}<button onClick={onHelp}>עזרה</button></footer></>;
 }
@@ -897,6 +897,8 @@ function App() {
   const [showExport, setShowExport] = useState(false);
   const [splitTask, setSplitTask] = useState(null);
   const [lastDecisionNotice, setLastDecisionNotice] = useState(null);
+  const revisionRef = useRef(Number(saved?.revision || 0));
+  const persistQueueRef = useRef(Promise.resolve());
 
   useEffect(() => {
     let cancelled = false;
@@ -904,6 +906,7 @@ function App() {
       if (cancelled) return;
       setSyncStatus(result.status === 'loaded' || result.status === 'ready_empty' ? result.status : (result.status || 'local'));
       if (result.state?.datasetVersion === DATASET_VERSION && Array.isArray(result.state.tasks)) {
+        revisionRef.current = Number(result.state.revision || 0);
         setStarted(Boolean(result.state.started));
         setTasks(result.state.tasks);
         setDecisions(result.state.decisions || []);
@@ -923,12 +926,17 @@ function App() {
     return {started, tasks, decisions, buckets, datasetVersion: DATASET_VERSION, batchId: BATCH_ID, sourceAssets: SOURCE_ASSETS, no_live_writes: true, ...next};
   }
   function persist(next = {}) {
-    const state = stateSnapshot(next);
+    const revision = revisionRef.current + 1;
+    revisionRef.current = revision;
+    const state = stateSnapshot({...next, revision});
     saveState(state);
-    return saveRemoteState(sessionConfig, BATCH_ID, state).then((result) => {
+    setSyncStatus('saving');
+    const save = () => saveRemoteState(sessionConfig, BATCH_ID, state).then((result) => {
       setSyncStatus(result.status || 'local');
       return result;
     });
+    persistQueueRef.current = persistQueueRef.current.catch(() => null).then(save);
+    return persistQueueRef.current;
   }
   function manualSave() {
     setSyncStatus('saving');
@@ -947,7 +955,6 @@ function App() {
     const bucket = {id: `bucket-${Date.now()}-${buckets.length + 1}`, kind, label, displayTitle: payload.displayTitle || label, sourceTitle: task.title, kindLabel: payload.kindLabel || kind, photoIds: task.photos.map(photoId), photoPreviews, photoCount: task.photos.length, createdAt: new Date().toISOString(), ...payload};
     const nextBuckets = [...buckets, bucket];
     setBuckets(nextBuckets);
-    persist({buckets: nextBuckets});
     return {bucket, nextBuckets};
   }
   function completeTask(task, outcome, payload = {}, nextBuckets = buckets) {

@@ -24,6 +24,7 @@ function stateValidationError(state, batchId) {
   if (state.tasks.length > MAX_TASKS || state.decisions.length > MAX_DECISIONS || state.buckets.length > MAX_BUCKETS) return 'session_collection_limit_exceeded';
   if (state.batchId && safeId(state.batchId) !== batchId) return 'state_batch_id_mismatch';
   if (state.datasetVersion != null && (typeof state.datasetVersion !== 'string' || state.datasetVersion.length > 240)) return 'invalid_dataset_version';
+  if (!Number.isSafeInteger(state.revision) || state.revision < 1) return 'invalid_revision';
   if (state.sourceAssets != null && (!Array.isArray(state.sourceAssets) || state.sourceAssets.length > 1000)) return 'invalid_source_assets';
   const taskIds = state.tasks.map((task) => task?.id).filter(Boolean);
   if (taskIds.length !== state.tasks.length || new Set(taskIds).size !== taskIds.length) return 'missing_or_duplicate_task_id';
@@ -158,9 +159,13 @@ export default async function handler(req, res) {
       const payload = JSON.parse(await readBody(req) || '{}');
       const validationError = stateValidationError(payload.state, batchId);
       if (validationError) return json(res, 422, {error: 'invalid_identity_session_state', reason: validationError});
+      const currentRecord = await readState(batchId, sessionId);
+      if (currentRecord === undefined) return json(res, 501, {error: 'backend_store_not_configured', required: 'Configure Vercel KV, Vercel Blob, or STAV_IDENTITY_SESSION_DIR.'});
+      const currentRevision = Number(currentRecord?.state?.revision || 0);
+      if (payload.state.revision <= currentRevision) return json(res, 409, {error: 'stale_identity_session_revision', currentRevision});
       const record = await writeState(batchId, sessionId, {...payload.state, sessionId, batchId, no_live_writes: true});
       if (record === undefined) return json(res, 501, {error: 'backend_store_not_configured', required: 'Configure Vercel KV, Vercel Blob, or STAV_IDENTITY_SESSION_DIR.'});
-      return json(res, 200, {sessionId, batchId, updatedAt: record.updatedAt, no_live_writes: true});
+      return json(res, 200, {sessionId, batchId, updatedAt: record.updatedAt, revision: record.state.revision, no_live_writes: true});
     }
     if (req.method === 'DELETE') {
       const deleted = await deleteState(batchId, sessionId);
