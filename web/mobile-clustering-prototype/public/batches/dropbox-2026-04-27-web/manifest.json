@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2026-04-27-web",
   "label": "2026-04-27",
   "source_folder": "2026-04-27/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_92d524745a234d0e1f83f9f2",
@@ -42,6 +42,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_92d524745a234d0e1f83f9f2",
@@ -51,9 +52,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N152",
+          "name": "שנדליר - לברדורייט אפור (2023)",
+          "label": "N152 · שנדליר - לברדורייט אפור (2023)",
+          "aliases": [
+            "N152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "שנדליר - לברדורייט אפור (2023)",
+            "Chandelier - Grey Labradorite (2023)",
+            "chandelier grey",
+            "N152_chandelier-grey_yellow_angled_01.jpg",
+            "n152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "chandelier - grey labradorite (2023)",
+            "chandelier grey"
+          ],
+          "type": "שרשרת",
+          "family": "שנדליר - לברדורייט אפור (2023)",
+          "nameHe": "שנדליר - לברדורייט אפור (2023)",
+          "nameEn": "Chandelier - Grey Labradorite (2023)",
+          "technicalName": "chandelier grey",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N152",
+            "src": "/real-data/catalog_N152_N152_chandelier-grey_yellow_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N152_chandelier-grey_yellow_angled_01.jpg",
+          "productId": "N152",
+          "referenceProductId": "N152",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N152_chandelier-grey_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N152",
+          "name": "שנדליר - לברדורייט אפור (2023)",
+          "label": "N152 · שנדליר - לברדורייט אפור (2023)",
+          "aliases": [
+            "N152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "שנדליר - לברדורייט אפור (2023)",
+            "Chandelier - Grey Labradorite (2023)",
+            "chandelier grey",
+            "N152_chandelier-grey_yellow_angled_01.jpg",
+            "n152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "chandelier - grey labradorite (2023)",
+            "chandelier grey"
+          ],
+          "type": "שרשרת",
+          "family": "שנדליר - לברדורייט אפור (2023)",
+          "nameHe": "שנדליר - לברדורייט אפור (2023)",
+          "nameEn": "Chandelier - Grey Labradorite (2023)",
+          "technicalName": "chandelier grey",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N152",
+            "src": "/real-data/catalog_N152_N152_chandelier-grey_yellow_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N152_chandelier-grey_yellow_angled_01.jpg",
+          "productId": "N152",
+          "referenceProductId": "N152",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N152_chandelier-grey_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N152",
+        "name": "שנדליר - לברדורייט אפור (2023)",
+        "label": "N152 · שנדליר - לברדורייט אפור (2023)",
+        "aliases": [
+          "N152",
+          "שנדליר - לברדורייט אפור (2023)",
+          "שנדליר - לברדורייט אפור (2023)",
+          "Chandelier - Grey Labradorite (2023)",
+          "chandelier grey",
+          "N152_chandelier-grey_yellow_angled_01.jpg",
+          "n152",
+          "שנדליר - לברדורייט אפור (2023)",
+          "chandelier - grey labradorite (2023)",
+          "chandelier grey"
+        ],
+        "type": "שרשרת",
+        "family": "שנדליר - לברדורייט אפור (2023)",
+        "nameHe": "שנדליר - לברדורייט אפור (2023)",
+        "nameEn": "Chandelier - Grey Labradorite (2023)",
+        "technicalName": "chandelier grey",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N152",
+          "src": "/real-data/catalog_N152_N152_chandelier-grey_yellow_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N152_chandelier-grey_yellow_angled_01.jpg",
+        "productId": "N152",
+        "referenceProductId": "N152",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "2",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N152_chandelier-grey_yellow_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-04-27-web-card-002",
@@ -66,6 +200,7 @@
       "rawStatus": "dropbox_new_candidate_needs_review",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": null,
       "photos": [
         {
           "id": "asset_d6f34872a7a594de97256bfe",
@@ -98,6 +233,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.960356+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 1,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.460892+00:00",
   "no_live_writes": true
 }

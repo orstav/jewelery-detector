@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2025-12-22-web",
   "label": "2025-12-22",
   "source_folder": "2025-12-22/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_3a8a0b85bd5ab6dc69903280",
@@ -126,6 +126,7 @@
       "rawStatus": "dropbox_likely_existing_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_7322cb1dcc06b20c26afda91",
@@ -135,9 +136,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N079",
+          "name": "מרקש",
+          "label": "N079 · מרקש",
+          "aliases": [
+            "N079",
+            "מרקש",
+            "מרקש",
+            "Marrakesh",
+            "marrakesh",
+            "N079_marrakesh_rose_angled_01.jpg",
+            "n079",
+            "מרקש",
+            "marrakesh",
+            "marrakesh"
+          ],
+          "type": "שרשרת",
+          "family": "מרקש",
+          "nameHe": "מרקש",
+          "nameEn": "Marrakesh",
+          "technicalName": "marrakesh",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N079",
+            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N079_marrakesh_rose_angled_01.jpg",
+          "productId": "N079",
+          "referenceProductId": "N079",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
+            "matchedDriveImage": "20230202-web-res-1500-59.png",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N079",
+          "name": "מרקש",
+          "label": "N079 · מרקש",
+          "aliases": [
+            "N079",
+            "מרקש",
+            "מרקש",
+            "Marrakesh",
+            "marrakesh",
+            "N079_marrakesh_rose_angled_01.jpg",
+            "n079",
+            "מרקש",
+            "marrakesh",
+            "marrakesh"
+          ],
+          "type": "שרשרת",
+          "family": "מרקש",
+          "nameHe": "מרקש",
+          "nameEn": "Marrakesh",
+          "technicalName": "marrakesh",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N079",
+            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N079_marrakesh_rose_angled_01.jpg",
+          "productId": "N079",
+          "referenceProductId": "N079",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
+            "matchedDriveImage": "20230202-web-res-1500-59.png",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N079",
+        "name": "מרקש",
+        "label": "N079 · מרקש",
+        "aliases": [
+          "N079",
+          "מרקש",
+          "מרקש",
+          "Marrakesh",
+          "marrakesh",
+          "N079_marrakesh_rose_angled_01.jpg",
+          "n079",
+          "מרקש",
+          "marrakesh",
+          "marrakesh"
+        ],
+        "type": "שרשרת",
+        "family": "מרקש",
+        "nameHe": "מרקש",
+        "nameEn": "Marrakesh",
+        "technicalName": "marrakesh",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N079",
+          "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N079_marrakesh_rose_angled_01.jpg",
+        "productId": "N079",
+        "referenceProductId": "N079",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "1",
+          "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
+          "matchedDriveImage": "20230202-web-res-1500-59.png",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2025-12-22-web-card-002",
@@ -150,6 +284,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_0d2dcdfb825725f7309889d0",
@@ -159,9 +294,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N084",
+          "name": "פנינה יסמין",
+          "label": "N084 · פנינה יסמין",
+          "aliases": [
+            "N084",
+            "פנינה יסמין",
+            "פנינה יסמין",
+            "jasmine pearl",
+            "jasmine pearl",
+            "N084_jasmine-pearl_yellow_angled_01.jpg",
+            "n084",
+            "פנינה יסמין",
+            "jasmine pearl",
+            "jasmine pearl"
+          ],
+          "type": "שרשרת",
+          "family": "פנינה יסמין",
+          "nameHe": "פנינה יסמין",
+          "nameEn": "jasmine pearl",
+          "technicalName": "jasmine pearl",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N084",
+            "src": "/real-data/catalog_N084_N084_jasmine-pearl_yellow_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N084_jasmine-pearl_yellow_angled_01.jpg",
+          "productId": "N084",
+          "referenceProductId": "N084",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N084_jasmine-pearl_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N084",
+          "name": "פנינה יסמין",
+          "label": "N084 · פנינה יסמין",
+          "aliases": [
+            "N084",
+            "פנינה יסמין",
+            "פנינה יסמין",
+            "jasmine pearl",
+            "jasmine pearl",
+            "N084_jasmine-pearl_yellow_angled_01.jpg",
+            "n084",
+            "פנינה יסמין",
+            "jasmine pearl",
+            "jasmine pearl"
+          ],
+          "type": "שרשרת",
+          "family": "פנינה יסמין",
+          "nameHe": "פנינה יסמין",
+          "nameEn": "jasmine pearl",
+          "technicalName": "jasmine pearl",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N084",
+            "src": "/real-data/catalog_N084_N084_jasmine-pearl_yellow_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N084_jasmine-pearl_yellow_angled_01.jpg",
+          "productId": "N084",
+          "referenceProductId": "N084",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N084_jasmine-pearl_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N084",
+        "name": "פנינה יסמין",
+        "label": "N084 · פנינה יסמין",
+        "aliases": [
+          "N084",
+          "פנינה יסמין",
+          "פנינה יסמין",
+          "jasmine pearl",
+          "jasmine pearl",
+          "N084_jasmine-pearl_yellow_angled_01.jpg",
+          "n084",
+          "פנינה יסמין",
+          "jasmine pearl",
+          "jasmine pearl"
+        ],
+        "type": "שרשרת",
+        "family": "פנינה יסמין",
+        "nameHe": "פנינה יסמין",
+        "nameEn": "jasmine pearl",
+        "technicalName": "jasmine pearl",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N084",
+          "src": "/real-data/catalog_N084_N084_jasmine-pearl_yellow_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N084_jasmine-pearl_yellow_angled_01.jpg",
+        "productId": "N084",
+        "referenceProductId": "N084",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "1",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N084_jasmine-pearl_yellow_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2025-12-22-web-card-003",
@@ -174,6 +442,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_a1429b3e3e2566f37e86c672",
@@ -183,9 +452,133 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N089",
+          "name": "ריטה",
+          "label": "N089 · ריטה",
+          "aliases": [
+            "N089",
+            "ריטה",
+            "ריטה",
+            "Rita",
+            "N151 rita",
+            "N151_rita_rose_front_01.jpg",
+            "n089",
+            "ריטה",
+            "rita",
+            "n151 rita"
+          ],
+          "type": "שרשרת",
+          "family": "ריטה",
+          "nameHe": "ריטה",
+          "nameEn": "Rita",
+          "technicalName": "N151 rita",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": null,
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N151_rita_rose_front_01.jpg",
+          "productId": "N089",
+          "referenceProductId": "N089",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N089",
+          "name": "ריטה",
+          "label": "N089 · ריטה",
+          "aliases": [
+            "N089",
+            "ריטה",
+            "ריטה",
+            "Rita",
+            "N151 rita",
+            "N151_rita_rose_front_01.jpg",
+            "n089",
+            "ריטה",
+            "rita",
+            "n151 rita"
+          ],
+          "type": "שרשרת",
+          "family": "ריטה",
+          "nameHe": "ריטה",
+          "nameEn": "Rita",
+          "technicalName": "N151 rita",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": null,
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N151_rita_rose_front_01.jpg",
+          "productId": "N089",
+          "referenceProductId": "N089",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N089",
+        "name": "ריטה",
+        "label": "N089 · ריטה",
+        "aliases": [
+          "N089",
+          "ריטה",
+          "ריטה",
+          "Rita",
+          "N151 rita",
+          "N151_rita_rose_front_01.jpg",
+          "n089",
+          "ריטה",
+          "rita",
+          "n151 rita"
+        ],
+        "type": "שרשרת",
+        "family": "ריטה",
+        "nameHe": "ריטה",
+        "nameEn": "Rita",
+        "technicalName": "N151 rita",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": null,
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N151_rita_rose_front_01.jpg",
+        "productId": "N089",
+        "referenceProductId": "N089",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "2",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2025-12-22-web-card-004",
@@ -198,6 +591,7 @@
       "rawStatus": "dropbox_likely_existing_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_96f9268d6574b15f53c144c5",
@@ -207,9 +601,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N079",
+          "name": "מרקש",
+          "label": "N079 · מרקש",
+          "aliases": [
+            "N079",
+            "מרקש",
+            "מרקש",
+            "Marrakesh",
+            "marrakesh",
+            "N079_marrakesh_rose_angled_01.jpg",
+            "n079",
+            "מרקש",
+            "marrakesh",
+            "marrakesh"
+          ],
+          "type": "שרשרת",
+          "family": "מרקש",
+          "nameHe": "מרקש",
+          "nameEn": "Marrakesh",
+          "technicalName": "marrakesh",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N079",
+            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N079_marrakesh_rose_angled_01.jpg",
+          "productId": "N079",
+          "referenceProductId": "N079",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
+            "matchedDriveImage": "20230202-web-res-1500-59.png",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N079",
+          "name": "מרקש",
+          "label": "N079 · מרקש",
+          "aliases": [
+            "N079",
+            "מרקש",
+            "מרקש",
+            "Marrakesh",
+            "marrakesh",
+            "N079_marrakesh_rose_angled_01.jpg",
+            "n079",
+            "מרקש",
+            "marrakesh",
+            "marrakesh"
+          ],
+          "type": "שרשרת",
+          "family": "מרקש",
+          "nameHe": "מרקש",
+          "nameEn": "Marrakesh",
+          "technicalName": "marrakesh",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N079",
+            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N079_marrakesh_rose_angled_01.jpg",
+          "productId": "N079",
+          "referenceProductId": "N079",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
+            "matchedDriveImage": "20230202-web-res-1500-59.png",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N079",
+        "name": "מרקש",
+        "label": "N079 · מרקש",
+        "aliases": [
+          "N079",
+          "מרקש",
+          "מרקש",
+          "Marrakesh",
+          "marrakesh",
+          "N079_marrakesh_rose_angled_01.jpg",
+          "n079",
+          "מרקש",
+          "marrakesh",
+          "marrakesh"
+        ],
+        "type": "שרשרת",
+        "family": "מרקש",
+        "nameHe": "מרקש",
+        "nameEn": "Marrakesh",
+        "technicalName": "marrakesh",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N079",
+          "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N079_marrakesh_rose_angled_01.jpg",
+        "productId": "N079",
+        "referenceProductId": "N079",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "2",
+          "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
+          "matchedDriveImage": "20230202-web-res-1500-59.png",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2025-12-22-web-card-005",
@@ -222,6 +749,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_0d8fec791270fd4cdaac60e6",
@@ -231,9 +759,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N152",
+          "name": "שנדליר - לברדורייט אפור (2023)",
+          "label": "N152 · שנדליר - לברדורייט אפור (2023)",
+          "aliases": [
+            "N152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "שנדליר - לברדורייט אפור (2023)",
+            "Chandelier - Grey Labradorite (2023)",
+            "chandelier grey",
+            "N152_chandelier-grey_yellow_angled_01.jpg",
+            "n152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "chandelier - grey labradorite (2023)",
+            "chandelier grey"
+          ],
+          "type": "שרשרת",
+          "family": "שנדליר - לברדורייט אפור (2023)",
+          "nameHe": "שנדליר - לברדורייט אפור (2023)",
+          "nameEn": "Chandelier - Grey Labradorite (2023)",
+          "technicalName": "chandelier grey",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N152",
+            "src": "/real-data/catalog_N152_N152_chandelier-grey_yellow_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N152_chandelier-grey_yellow_angled_01.jpg",
+          "productId": "N152",
+          "referenceProductId": "N152",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "3",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N152_chandelier-grey_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N152",
+          "name": "שנדליר - לברדורייט אפור (2023)",
+          "label": "N152 · שנדליר - לברדורייט אפור (2023)",
+          "aliases": [
+            "N152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "שנדליר - לברדורייט אפור (2023)",
+            "Chandelier - Grey Labradorite (2023)",
+            "chandelier grey",
+            "N152_chandelier-grey_yellow_angled_01.jpg",
+            "n152",
+            "שנדליר - לברדורייט אפור (2023)",
+            "chandelier - grey labradorite (2023)",
+            "chandelier grey"
+          ],
+          "type": "שרשרת",
+          "family": "שנדליר - לברדורייט אפור (2023)",
+          "nameHe": "שנדליר - לברדורייט אפור (2023)",
+          "nameEn": "Chandelier - Grey Labradorite (2023)",
+          "technicalName": "chandelier grey",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N152",
+            "src": "/real-data/catalog_N152_N152_chandelier-grey_yellow_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N152_chandelier-grey_yellow_angled_01.jpg",
+          "productId": "N152",
+          "referenceProductId": "N152",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "3",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N152_chandelier-grey_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N152",
+        "name": "שנדליר - לברדורייט אפור (2023)",
+        "label": "N152 · שנדליר - לברדורייט אפור (2023)",
+        "aliases": [
+          "N152",
+          "שנדליר - לברדורייט אפור (2023)",
+          "שנדליר - לברדורייט אפור (2023)",
+          "Chandelier - Grey Labradorite (2023)",
+          "chandelier grey",
+          "N152_chandelier-grey_yellow_angled_01.jpg",
+          "n152",
+          "שנדליר - לברדורייט אפור (2023)",
+          "chandelier - grey labradorite (2023)",
+          "chandelier grey"
+        ],
+        "type": "שרשרת",
+        "family": "שנדליר - לברדורייט אפור (2023)",
+        "nameHe": "שנדליר - לברדורייט אפור (2023)",
+        "nameEn": "Chandelier - Grey Labradorite (2023)",
+        "technicalName": "chandelier grey",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N152",
+          "src": "/real-data/catalog_N152_N152_chandelier-grey_yellow_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N152_chandelier-grey_yellow_angled_01.jpg",
+        "productId": "N152",
+        "referenceProductId": "N152",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "3",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N152_chandelier-grey_yellow_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     }
   ],
   "auto_accounted_assets": [
@@ -281,6 +942,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.891662+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 5,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.430139+00:00",
   "no_live_writes": true
 }

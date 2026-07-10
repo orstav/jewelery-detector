@@ -14,6 +14,7 @@ Policy:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import re
@@ -43,6 +44,10 @@ DATA_JS = OUT_ROOT / "data.js"
 LEGACY_DATA_JS = ROOT / "web/mobile-clustering-prototype/data.js"
 INVENTORY = BATCH_ROOT / "index.json"
 GLOBAL_COVERAGE = BATCH_ROOT / "coverage.json"
+HISTORICAL_EVIDENCE = Path(os.environ.get(
+    "STAV_IDENTITY_PREFILTER_EVIDENCE",
+    WORKSPACE / "workbench/reports/dropbox-queue-drive-shopify-validation-20260707T0938Z/reduced_repair_queue_classification.csv",
+))
 DEFAULT_BATCH = "dropbox-2025-03-19-web"
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp"}
 
@@ -52,7 +57,6 @@ DALIA_REVIEW_STATUSES = {
     "dropbox_new_candidate_needs_review",
     "pending_review",
     "identity_ambiguous",
-    "unmapped",
 }
 TERMINAL_STATUSES = {
     "published_active_validated",
@@ -179,9 +183,83 @@ def zip_index() -> tuple[zipfile.ZipFile, dict[str, str]]:
     return archive, exact
 
 
-def asset_lane(row: dict[str, Any], web_keys: set[tuple[str, str]]) -> tuple[str, str]:
+def load_historical_evidence() -> dict[str, dict[str, str]]:
+    if not HISTORICAL_EVIDENCE.exists():
+        raise SystemExit(f"Historical prefilter evidence not found: {HISTORICAL_EVIDENCE}")
+    evidence: dict[str, dict[str, str]] = {}
+    with HISTORICAL_EVIDENCE.open(encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            asset_id = (row.get("asset_id") or "").strip()
+            source_path = (row.get("source_path") or "").strip()
+            if not asset_id or not source_path:
+                raise SystemExit("Historical prefilter evidence contains a row without asset_id/source_path")
+            if asset_id in evidence:
+                raise SystemExit(f"Duplicate historical evidence for {asset_id}")
+            evidence[asset_id] = row
+    return evidence
+
+
+def verified_evidence(row: dict[str, Any], evidence_by_asset: dict[str, dict[str, str]]) -> dict[str, str] | None:
+    evidence = evidence_by_asset.get(row["asset_id"])
+    if not evidence:
+        return None
+    if evidence.get("source_path") != row.get("source_path"):
+        raise SystemExit(f"Historical evidence source mismatch for {row['asset_id']}")
+    return evidence
+
+
+def exact_catalog_ids(evidence: dict[str, str]) -> set[str]:
+    ids = set()
+    try:
+        candidates = json.loads(evidence.get("top5_drive_candidates") or "[]")
+    except json.JSONDecodeError:
+        candidates = []
+    for candidate in candidates:
+        if candidate.get("dist") == 0 and candidate.get("catalog_id"):
+            ids.add(str(candidate["catalog_id"]))
+    if evidence.get("drive_match_type") == "exact_hash" and evidence.get("matched_catalog_id"):
+        ids.add(evidence["matched_catalog_id"])
+    return ids
+
+
+def historical_candidate(evidence: dict[str, str] | None, product_by_id: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
+    if not evidence:
+        return None
+    if evidence.get("reduced_queue_class") not in {
+        "possible_drive_catalog_duplicate_needs_visual_confirmation",
+        "likely_already_cataloged_needs_visual_confirmation",
+    }:
+        return None
+    catalog_id = (evidence.get("matched_catalog_id") or "").strip()
+    product = product_by_id.get(catalog_id)
+    if not catalog_id or product is None:
+        return None
+    return {
+        **product,
+        "id": catalog_id,
+        "productId": catalog_id,
+        "referenceProductId": catalog_id,
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": None,
+        "detectorScore": None,
+        "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": evidence.get("drive_match_type"),
+            "driveDistance": evidence.get("drive_distance"),
+            "reducedQueueClass": evidence.get("reduced_queue_class"),
+            "recommendedAction": evidence.get("recommended_action"),
+            "matchedDriveImage": evidence.get("matched_drive_image"),
+            "manualConfirmationRequired": True,
+        },
+    }
+
+
+def asset_lane(row: dict[str, Any], web_keys: set[tuple[str, str]], evidence_by_asset: dict[str, dict[str, str]]) -> tuple[str, str]:
     date, role = batch_parts(row.get("source_path") or "")
     status = row.get("group_status") or "unmapped"
+    if role == "fix":
+        return "fix_deferred_next_pass", "fix image intentionally deferred by Or for the next processing pass"
     if role in SUPPORT_ROLES:
         key = support_match_key(row.get("source_path") or "")
         if key and (date, key) in web_keys:
@@ -189,11 +267,24 @@ def asset_lane(row: dict[str, Any], web_keys: set[tuple[str, str]]) -> tuple[str
         return "support_mapping_pending", "support/derivative asset needs deterministic version mapping"
     if role != "web":
         return "non_web_source_routed", f"source role {role} routed outside Dalia identity review"
+    evidence = verified_evidence(row, evidence_by_asset)
+    if evidence and evidence.get("drive_match_type") == "exact_hash" and evidence.get("drive_distance") == "0" and evidence.get("reduced_queue_class") in {
+        "proven_already_in_proper_drive_catalog_not_proven_on_website",
+        "proven_already_cataloged_drive_and_website",
+    }:
+        catalog_ids = exact_catalog_ids(evidence)
+        if len(catalog_ids) > 1:
+            return "old_work_ownership_review", "exact historical image is shared by multiple Catalog IDs: " + ",".join(sorted(catalog_ids))
+        return "old_work_catalog_exact", f"exact historical catalog image: {evidence.get('matched_catalog_id')}"
     if status in TERMINAL_STATUSES:
         return "terminal_closed", status
     if status in DOWNSTREAM_STATUSES:
         return "downstream_existing_workflow", status
-    if status in DALIA_REVIEW_STATUSES or not row.get("group_id"):
+    if not row.get("group_id") or status == "unmapped":
+        return "hal_prefilter_blocked", "missing canonical product-group identity evidence"
+    if status in DALIA_REVIEW_STATUSES:
+        if evidence is None:
+            return "hal_prefilter_blocked", "historical Drive/Shopify prefilter evidence missing"
         return "dalia_identity_review", status
     return "system_review_pending", status
 
@@ -218,6 +309,7 @@ def build_all() -> dict[str, Any]:
     product_index = helpers.build_product_index(con)
     product_by_id = {str(item["id"]): item for item in product_index}
     detector_export = helpers.load_detector_candidate_export()
+    evidence_by_asset = load_historical_evidence()
     archive, members = zip_index()
 
     web_keys = {
@@ -228,7 +320,7 @@ def build_all() -> dict[str, Any]:
     web_rows_by_date: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         date, role = batch_parts(row.get("source_path") or "")
-        lane, reason = asset_lane(row, web_keys)
+        lane, reason = asset_lane(row, web_keys, evidence_by_asset)
         coverage_rows.append({
             "asset_id": row["asset_id"], "source_path": row.get("source_path"),
             "source_date": date, "role": role, "product_group_id": row.get("group_id"),
@@ -279,6 +371,12 @@ def build_all() -> dict[str, Any]:
             candidates = []
             if bid == DEFAULT_BATCH:
                 candidates = helpers.attach_detector_candidates(lookup_card_id, detector_export, product_by_id)
+            evidence_rows = [verified_evidence(row, evidence_by_asset) for row in group_rows]
+            historical_ids = {evidence.get("matched_catalog_id") for evidence in evidence_rows if evidence and evidence.get("matched_catalog_id")}
+            if len(historical_ids) == 1:
+                suggested = historical_candidate(next(evidence for evidence in evidence_rows if evidence and evidence.get("matched_catalog_id")), product_by_id)
+                if suggested:
+                    candidates = [suggested, *[candidate for candidate in candidates if candidate.get("id") != suggested["id"]]]
             status = group_rows[0].get("group_status") or "unmapped"
             review_cards.append({
                 "id": f"{bid}-card-{batch_detector_card:03d}",
@@ -289,8 +387,9 @@ def build_all() -> dict[str, Any]:
                 "reviewIntent": "identity_decision",
                 "halAssumption": assumption_for(status, len(photos)),
                 "rawStatus": status,
-                "detectorStatus": "candidates" if candidates else "no_candidates",
-                "detectorSource": "detector_db_embedding_topk" if candidates else None,
+                "detectorStatus": "candidates" if any(candidate.get("source") == "detector_db_embedding_topk" for candidate in candidates) else "no_candidates",
+                "detectorSource": "detector_db_embedding_topk" if any(candidate.get("source") == "detector_db_embedding_topk" for candidate in candidates) else None,
+                "candidateSource": candidates[0].get("source") if candidates else None,
                 "photos": photos,
                 "candidates": candidates,
                 "existingCandidates": candidates,
@@ -314,7 +413,7 @@ def build_all() -> dict[str, Any]:
         ]
         manifest = {
             "batch_id": bid, "label": date, "source_folder": f"{date}/web",
-            "source": str(SQLITE), "source_zip": str(SOURCE_ZIP),
+            "source": "stav_source_intake_sqlite", "source_snapshot": "dropbox_stav_main",
             "source_assets": source_assets, "review_cards": review_cards,
             "auto_accounted_assets": auto_accounted, "blocked_assets": blocked_assets,
             "coverage": {
@@ -325,8 +424,13 @@ def build_all() -> dict[str, Any]:
             },
             "detector": {
                 "source": "detector_db_embedding_topk" if bid == DEFAULT_BATCH else None,
-                "cards_with_candidates": sum(bool(card["candidates"]) for card in review_cards),
-                "candidate_total": sum(len(card["candidates"]) for card in review_cards),
+                "cards_with_candidates": sum(any(candidate.get("source") == "detector_db_embedding_topk" for candidate in card["candidates"]) for card in review_cards),
+                "candidate_total": sum(sum(candidate.get("source") == "detector_db_embedding_topk" for candidate in card["candidates"]) for card in review_cards),
+            },
+            "historical_prefilter": {
+                "source": "dropbox_queue_drive_shopify_validation",
+                "cards_with_catalog_suggestion": sum(any(candidate.get("source") == "historical_drive_visual_candidate" for candidate in card["candidates"]) for card in review_cards),
+                "manual_confirmation_required": True,
             },
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "no_live_writes": True,
@@ -358,7 +462,7 @@ def build_all() -> dict[str, Any]:
     reviewable_total = sum(item["reviewable_assets"] for item in batch_index)
     global_report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "source": str(SQLITE), "source_zip": str(SOURCE_ZIP),
+        "source": "stav_source_intake_sqlite", "source_snapshot": "dropbox_stav_main",
         "total_assets": len(rows), "accounted_assets": len(coverage_rows),
         "coverage_valid": len(rows) == len(coverage_rows),
         "lane_counts": dict(lane_counts), "reviewable_web_assets": reviewable_total,

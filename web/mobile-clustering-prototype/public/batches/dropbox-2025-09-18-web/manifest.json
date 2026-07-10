@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2025-09-18-web",
   "label": "2025-09-18",
   "source_folder": "2025-09-18/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_d7fe61b128ef4b5b729f9a28",
@@ -66,6 +66,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_d7fe61b128ef4b5b729f9a28",
@@ -75,9 +76,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N081",
+          "name": "נגב 5",
+          "label": "N081 · נגב 5",
+          "aliases": [
+            "N081",
+            "נגב 5",
+            "נגב 5",
+            "Negev 5",
+            "negev 5",
+            "N081_negev-5_rose_front_01.jpg",
+            "n081",
+            "נגב 5",
+            "negev 5",
+            "negev 5"
+          ],
+          "type": "שרשרת",
+          "family": "נגב 5",
+          "nameHe": "נגב 5",
+          "nameEn": "Negev 5",
+          "technicalName": "negev 5",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N081",
+            "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N081_negev-5_rose_front_01.jpg",
+          "productId": "N081",
+          "referenceProductId": "N081",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "4",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N081_negev-5_white_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N081",
+          "name": "נגב 5",
+          "label": "N081 · נגב 5",
+          "aliases": [
+            "N081",
+            "נגב 5",
+            "נגב 5",
+            "Negev 5",
+            "negev 5",
+            "N081_negev-5_rose_front_01.jpg",
+            "n081",
+            "נגב 5",
+            "negev 5",
+            "negev 5"
+          ],
+          "type": "שרשרת",
+          "family": "נגב 5",
+          "nameHe": "נגב 5",
+          "nameEn": "Negev 5",
+          "technicalName": "negev 5",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N081",
+            "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N081_negev-5_rose_front_01.jpg",
+          "productId": "N081",
+          "referenceProductId": "N081",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "4",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N081_negev-5_white_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N081",
+        "name": "נגב 5",
+        "label": "N081 · נגב 5",
+        "aliases": [
+          "N081",
+          "נגב 5",
+          "נגב 5",
+          "Negev 5",
+          "negev 5",
+          "N081_negev-5_rose_front_01.jpg",
+          "n081",
+          "נגב 5",
+          "negev 5",
+          "negev 5"
+        ],
+        "type": "שרשרת",
+        "family": "נגב 5",
+        "nameHe": "נגב 5",
+        "nameEn": "Negev 5",
+        "technicalName": "negev 5",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N081",
+          "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N081_negev-5_rose_front_01.jpg",
+        "productId": "N081",
+        "referenceProductId": "N081",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "4",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N081_negev-5_white_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2025-09-18-web-card-002",
@@ -90,6 +224,7 @@
       "rawStatus": "dropbox_new_candidate_needs_review",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": null,
       "photos": [
         {
           "id": "asset_e8cc75db6237376ed7b45661",
@@ -136,6 +271,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.867750+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 1,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.419946+00:00",
   "no_live_writes": true
 }

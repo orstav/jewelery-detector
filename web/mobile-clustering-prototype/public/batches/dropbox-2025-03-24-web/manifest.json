@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2025-03-24-web",
   "label": "2025-03-24",
   "source_folder": "2025-03-24/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_65f1cfe6f4200768c4d93585",
@@ -27,7 +27,7 @@
       "sha256": "39a509bd4c805dbbdf83bffeb3c7c0dad55d76b97c0026908f0b5ade6fbda502",
       "product_group_id": null,
       "group_status": null,
-      "coverage_lane": "dalia_identity_review"
+      "coverage_lane": "hal_prefilter_blocked"
     }
   ],
   "review_cards": [
@@ -42,6 +42,7 @@
       "rawStatus": "dropbox_new_candidate_needs_review",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": null,
       "photos": [
         {
           "id": "asset_65f1cfe6f4200768c4d93585",
@@ -54,43 +55,27 @@
       "candidates": [],
       "existingCandidates": [],
       "existingCandidate": null
-    },
-    {
-      "id": "dropbox-2025-03-24-web-card-002",
-      "sourceRef": "asset_be1c2696c43478a25b2d9ee4",
-      "title": "2025-03-24 · פריט 2",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "התמונה דורשת החלטת זהות: מוצר קיים, מוצר חדש או לא בטוחה.",
-      "rawStatus": "unmapped",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "photos": [
-        {
-          "id": "asset_be1c2696c43478a25b2d9ee4",
-          "src": "/batches/dropbox-2025-03-24-web/src_20250106-web_res_1500.jpg",
-          "sourcePath": "2025-03-24/web/20250106-web res 1500.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
     }
   ],
-  "auto_accounted_assets": [],
+  "auto_accounted_assets": [
+    {
+      "asset_id": "asset_be1c2696c43478a25b2d9ee4",
+      "source_path": "2025-03-24/web/20250106-web res 1500.jpg",
+      "lane": "hal_prefilter_blocked",
+      "reason": "hal_prefilter_blocked"
+    }
+  ],
   "blocked_assets": [],
   "coverage": {
     "expected": 2,
     "seen": 2,
-    "reviewable": 2,
-    "review_cards": 2,
-    "auto_accounted": 0,
+    "reviewable": 1,
+    "review_cards": 1,
+    "auto_accounted": 1,
     "blocked": 0,
     "lane_counts": {
-      "dalia_identity_review": 2
+      "dalia_identity_review": 1,
+      "hal_prefilter_blocked": 1
     }
   },
   "detector": {
@@ -98,6 +83,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.861386+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 0,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.417586+00:00",
   "no_live_writes": true
 }

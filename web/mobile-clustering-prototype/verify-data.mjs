@@ -17,6 +17,11 @@ if (Object.keys(batches).length !== batchIndex.length) throw new Error('Batch in
 let totalSource = 0;
 let totalReviewable = 0;
 let totalCards = 0;
+let historicalSuggestionCards = 0;
+const allowedHistoricalClasses = new Set([
+  'possible_drive_catalog_duplicate_needs_visual_confirmation',
+  'likely_already_cataloged_needs_visual_confirmation',
+]);
 const globalPhotoIds = new Set();
 for (const summary of batchIndex) {
   const manifest = batches[summary.batch_id];
@@ -38,6 +43,15 @@ for (const summary of batchIndex) {
     if (!(card.photos || []).length) throw new Error(`${card.id}: card has no photos`);
     if ((card.photos || []).length > 1 && card.initialStage !== 'cluster_photos') throw new Error(`${card.id}: multi-photo card must start in clustering`);
     if ((card.photos || []).length === 1 && card.initialStage !== 'product_identity') throw new Error(`${card.id}: singleton must start in identity`);
+    const historical = (card.candidates || []).filter((candidate) => candidate.source === 'historical_drive_visual_candidate');
+    if (historical.length > 1) throw new Error(`${card.id}: more than one historical visual suggestion`);
+    if (historical.length) {
+      historicalSuggestionCards += 1;
+      const candidate = historical[0];
+      if (!allowedHistoricalClasses.has(candidate.prefilterEvidence?.reducedQueueClass)) throw new Error(`${card.id}: unapproved historical suggestion class`);
+      if (candidate.detectorScore != null || candidate.score != null) throw new Error(`${card.id}: historical suggestion must not expose a confidence score`);
+      if (candidate.prefilterEvidence?.manualConfirmationRequired !== true) throw new Error(`${card.id}: historical suggestion must require manual confirmation`);
+    }
     for (const photo of card.photos || []) {
       if (globalPhotoIds.has(photo.id)) throw new Error(`Photo appears in multiple batch cards: ${photo.id}`);
       globalPhotoIds.add(photo.id);
@@ -64,4 +78,5 @@ for (const product of products) {
   if (!fs.existsSync(new URL(`./public${src}`, import.meta.url))) throw new Error(`Catalog thumbnail missing: ${src}`);
 }
 
-console.log(`Verified ${batchIndex.length} batches, ${totalCards} review cards, ${totalReviewable}/${totalSource} web assets queued for Dalia, and ${products.length} catalog products.`);
+if (historicalSuggestionCards !== 152) throw new Error(`Expected 152 current historical visual suggestions, got ${historicalSuggestionCards}`);
+console.log(`Verified ${batchIndex.length} batches, ${totalCards} review cards, ${totalReviewable}/${totalSource} web assets queued for Dalia, ${historicalSuggestionCards} manually-confirmed historical suggestions, and ${products.length} catalog products.`);

@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2026-06-08-web",
   "label": "2026-06-08",
   "source_folder": "2026-06-08/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_d7d0a0703dd883f6139a363d",
@@ -150,6 +150,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_d7d0a0703dd883f6139a363d",
@@ -159,9 +160,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "3",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "3",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R055",
+        "name": "שטרן",
+        "label": "R055 · שטרן",
+        "aliases": [
+          "R055",
+          "שטרן",
+          "שטרן",
+          "Staern",
+          "stern sapphire",
+          "R055_stern_sapphire_rose_angled_01.jpg",
+          "r055",
+          "שטרן",
+          "staern",
+          "stern sapphire"
+        ],
+        "type": "טבעת",
+        "family": "שטרן",
+        "nameHe": "שטרן",
+        "nameEn": "Staern",
+        "technicalName": "stern sapphire",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R055",
+          "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+        "productId": "R055",
+        "referenceProductId": "R055",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "3",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-002",
@@ -174,6 +308,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_40daf169910468fe1a1104c8",
@@ -183,9 +318,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "4",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "4",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R055",
+        "name": "שטרן",
+        "label": "R055 · שטרן",
+        "aliases": [
+          "R055",
+          "שטרן",
+          "שטרן",
+          "Staern",
+          "stern sapphire",
+          "R055_stern_sapphire_rose_angled_01.jpg",
+          "r055",
+          "שטרן",
+          "staern",
+          "stern sapphire"
+        ],
+        "type": "טבעת",
+        "family": "שטרן",
+        "nameHe": "שטרן",
+        "nameEn": "Staern",
+        "technicalName": "stern sapphire",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R055",
+          "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+        "productId": "R055",
+        "referenceProductId": "R055",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "4",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-003",
@@ -198,6 +466,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_496199292aa334fdd35ad017",
@@ -207,9 +476,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "6",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "6",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R055",
+        "name": "שטרן",
+        "label": "R055 · שטרן",
+        "aliases": [
+          "R055",
+          "שטרן",
+          "שטרן",
+          "Staern",
+          "stern sapphire",
+          "R055_stern_sapphire_rose_angled_01.jpg",
+          "r055",
+          "שטרן",
+          "staern",
+          "stern sapphire"
+        ],
+        "type": "טבעת",
+        "family": "שטרן",
+        "nameHe": "שטרן",
+        "nameEn": "Staern",
+        "technicalName": "stern sapphire",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R055",
+          "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+        "productId": "R055",
+        "referenceProductId": "R055",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "possible_phash_le8",
+          "driveDistance": "6",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-004",
@@ -222,6 +624,7 @@
       "rawStatus": "dropbox_new_candidate_needs_review",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": null,
       "photos": [
         {
           "id": "asset_b1b54dfd36d8a0b461b11057",
@@ -246,6 +649,7 @@
       "rawStatus": "dropbox_new_candidate_needs_review",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": null,
       "photos": [
         {
           "id": "asset_b9167e48b0baee8ab12df80f",
@@ -270,6 +674,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_81f8d377d697364ae39c253f",
@@ -279,9 +684,133 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N089",
+          "name": "ריטה",
+          "label": "N089 · ריטה",
+          "aliases": [
+            "N089",
+            "ריטה",
+            "ריטה",
+            "Rita",
+            "N151 rita",
+            "N151_rita_rose_front_01.jpg",
+            "n089",
+            "ריטה",
+            "rita",
+            "n151 rita"
+          ],
+          "type": "שרשרת",
+          "family": "ריטה",
+          "nameHe": "ריטה",
+          "nameEn": "Rita",
+          "technicalName": "N151 rita",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": null,
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N151_rita_rose_front_01.jpg",
+          "productId": "N089",
+          "referenceProductId": "N089",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N089",
+          "name": "ריטה",
+          "label": "N089 · ריטה",
+          "aliases": [
+            "N089",
+            "ריטה",
+            "ריטה",
+            "Rita",
+            "N151 rita",
+            "N151_rita_rose_front_01.jpg",
+            "n089",
+            "ריטה",
+            "rita",
+            "n151 rita"
+          ],
+          "type": "שרשרת",
+          "family": "ריטה",
+          "nameHe": "ריטה",
+          "nameEn": "Rita",
+          "technicalName": "N151 rita",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": null,
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N151_rita_rose_front_01.jpg",
+          "productId": "N089",
+          "referenceProductId": "N089",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N089",
+        "name": "ריטה",
+        "label": "N089 · ריטה",
+        "aliases": [
+          "N089",
+          "ריטה",
+          "ריטה",
+          "Rita",
+          "N151 rita",
+          "N151_rita_rose_front_01.jpg",
+          "n089",
+          "ריטה",
+          "rita",
+          "n151 rita"
+        ],
+        "type": "שרשרת",
+        "family": "ריטה",
+        "nameHe": "ריטה",
+        "nameEn": "Rita",
+        "technicalName": "N151 rita",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": null,
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N151_rita_rose_front_01.jpg",
+        "productId": "N089",
+        "referenceProductId": "N089",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "0",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-007",
@@ -294,6 +823,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_ac98e6d79cacfa786beb01d6",
@@ -303,9 +833,133 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N089",
+          "name": "ריטה",
+          "label": "N089 · ריטה",
+          "aliases": [
+            "N089",
+            "ריטה",
+            "ריטה",
+            "Rita",
+            "N151 rita",
+            "N151_rita_rose_front_01.jpg",
+            "n089",
+            "ריטה",
+            "rita",
+            "n151 rita"
+          ],
+          "type": "שרשרת",
+          "family": "ריטה",
+          "nameHe": "ריטה",
+          "nameEn": "Rita",
+          "technicalName": "N151 rita",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": null,
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N151_rita_rose_front_01.jpg",
+          "productId": "N089",
+          "referenceProductId": "N089",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N089",
+          "name": "ריטה",
+          "label": "N089 · ריטה",
+          "aliases": [
+            "N089",
+            "ריטה",
+            "ריטה",
+            "Rita",
+            "N151 rita",
+            "N151_rita_rose_front_01.jpg",
+            "n089",
+            "ריטה",
+            "rita",
+            "n151 rita"
+          ],
+          "type": "שרשרת",
+          "family": "ריטה",
+          "nameHe": "ריטה",
+          "nameEn": "Rita",
+          "technicalName": "N151 rita",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": null,
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N151_rita_rose_front_01.jpg",
+          "productId": "N089",
+          "referenceProductId": "N089",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N089",
+        "name": "ריטה",
+        "label": "N089 · ריטה",
+        "aliases": [
+          "N089",
+          "ריטה",
+          "ריטה",
+          "Rita",
+          "N151 rita",
+          "N151_rita_rose_front_01.jpg",
+          "n089",
+          "ריטה",
+          "rita",
+          "n151 rita"
+        ],
+        "type": "שרשרת",
+        "family": "ריטה",
+        "nameHe": "ריטה",
+        "nameEn": "Rita",
+        "technicalName": "N151 rita",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": null,
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N151_rita_rose_front_01.jpg",
+        "productId": "N089",
+        "referenceProductId": "N089",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "0",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N151_rita_rose_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-008",
@@ -318,6 +972,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_ca3ad62fcbb61a79eaa3d105",
@@ -327,9 +982,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N081",
+          "name": "נגב 5",
+          "label": "N081 · נגב 5",
+          "aliases": [
+            "N081",
+            "נגב 5",
+            "נגב 5",
+            "Negev 5",
+            "negev 5",
+            "N081_negev-5_rose_front_01.jpg",
+            "n081",
+            "נגב 5",
+            "negev 5",
+            "negev 5"
+          ],
+          "type": "שרשרת",
+          "family": "נגב 5",
+          "nameHe": "נגב 5",
+          "nameEn": "Negev 5",
+          "technicalName": "negev 5",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N081",
+            "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N081_negev-5_rose_front_01.jpg",
+          "productId": "N081",
+          "referenceProductId": "N081",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "5",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N081_negev-5_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N081",
+          "name": "נגב 5",
+          "label": "N081 · נגב 5",
+          "aliases": [
+            "N081",
+            "נגב 5",
+            "נגב 5",
+            "Negev 5",
+            "negev 5",
+            "N081_negev-5_rose_front_01.jpg",
+            "n081",
+            "נגב 5",
+            "negev 5",
+            "negev 5"
+          ],
+          "type": "שרשרת",
+          "family": "נגב 5",
+          "nameHe": "נגב 5",
+          "nameEn": "Negev 5",
+          "technicalName": "negev 5",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N081",
+            "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N081_negev-5_rose_front_01.jpg",
+          "productId": "N081",
+          "referenceProductId": "N081",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "5",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N081_negev-5_yellow_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N081",
+        "name": "נגב 5",
+        "label": "N081 · נגב 5",
+        "aliases": [
+          "N081",
+          "נגב 5",
+          "נגב 5",
+          "Negev 5",
+          "negev 5",
+          "N081_negev-5_rose_front_01.jpg",
+          "n081",
+          "נגב 5",
+          "negev 5",
+          "negev 5"
+        ],
+        "type": "שרשרת",
+        "family": "נגב 5",
+        "nameHe": "נגב 5",
+        "nameEn": "Negev 5",
+        "technicalName": "negev 5",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N081",
+          "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N081_negev-5_rose_front_01.jpg",
+        "productId": "N081",
+        "referenceProductId": "N081",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "possible_phash_le8",
+          "driveDistance": "5",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N081_negev-5_yellow_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-009",
@@ -342,6 +1130,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_aed88d9a2d57b2acb69824f0",
@@ -351,9 +1140,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N078",
+          "name": "אורורה",
+          "label": "N078 · אורורה",
+          "aliases": [
+            "N078",
+            "אורורה",
+            "אורורה",
+            "Aurora",
+            "aurora",
+            "N078_aurora_rose_front_01.jpg",
+            "n078",
+            "אורורה",
+            "aurora",
+            "aurora"
+          ],
+          "type": "שרשרת",
+          "family": "אורורה",
+          "nameHe": "אורורה",
+          "nameEn": "Aurora",
+          "technicalName": "aurora",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N078",
+            "src": "/real-data/catalog_N078_N078_aurora_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N078_aurora_rose_front_01.jpg",
+          "productId": "N078",
+          "referenceProductId": "N078",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "5",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N078_aurora_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N078",
+          "name": "אורורה",
+          "label": "N078 · אורורה",
+          "aliases": [
+            "N078",
+            "אורורה",
+            "אורורה",
+            "Aurora",
+            "aurora",
+            "N078_aurora_rose_front_01.jpg",
+            "n078",
+            "אורורה",
+            "aurora",
+            "aurora"
+          ],
+          "type": "שרשרת",
+          "family": "אורורה",
+          "nameHe": "אורורה",
+          "nameEn": "Aurora",
+          "technicalName": "aurora",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N078",
+            "src": "/real-data/catalog_N078_N078_aurora_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N078_aurora_rose_front_01.jpg",
+          "productId": "N078",
+          "referenceProductId": "N078",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "5",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N078_aurora_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N078",
+        "name": "אורורה",
+        "label": "N078 · אורורה",
+        "aliases": [
+          "N078",
+          "אורורה",
+          "אורורה",
+          "Aurora",
+          "aurora",
+          "N078_aurora_rose_front_01.jpg",
+          "n078",
+          "אורורה",
+          "aurora",
+          "aurora"
+        ],
+        "type": "שרשרת",
+        "family": "אורורה",
+        "nameHe": "אורורה",
+        "nameEn": "Aurora",
+        "technicalName": "aurora",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N078",
+          "src": "/real-data/catalog_N078_N078_aurora_rose_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N078_aurora_rose_front_01.jpg",
+        "productId": "N078",
+        "referenceProductId": "N078",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "possible_phash_le8",
+          "driveDistance": "5",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N078_aurora_rose_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-010",
@@ -366,6 +1288,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_5110ff9b09ff36553b48430a",
@@ -375,9 +1298,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "N078",
+          "name": "אורורה",
+          "label": "N078 · אורורה",
+          "aliases": [
+            "N078",
+            "אורורה",
+            "אורורה",
+            "Aurora",
+            "aurora",
+            "N078_aurora_rose_front_01.jpg",
+            "n078",
+            "אורורה",
+            "aurora",
+            "aurora"
+          ],
+          "type": "שרשרת",
+          "family": "אורורה",
+          "nameHe": "אורורה",
+          "nameEn": "Aurora",
+          "technicalName": "aurora",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N078",
+            "src": "/real-data/catalog_N078_N078_aurora_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N078_aurora_rose_front_01.jpg",
+          "productId": "N078",
+          "referenceProductId": "N078",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "4",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N078_aurora_yellow_front_04.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "N078",
+          "name": "אורורה",
+          "label": "N078 · אורורה",
+          "aliases": [
+            "N078",
+            "אורורה",
+            "אורורה",
+            "Aurora",
+            "aurora",
+            "N078_aurora_rose_front_01.jpg",
+            "n078",
+            "אורורה",
+            "aurora",
+            "aurora"
+          ],
+          "type": "שרשרת",
+          "family": "אורורה",
+          "nameHe": "אורורה",
+          "nameEn": "Aurora",
+          "technicalName": "aurora",
+          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-N078",
+            "src": "/real-data/catalog_N078_N078_aurora_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "N078_aurora_rose_front_01.jpg",
+          "productId": "N078",
+          "referenceProductId": "N078",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "4",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "N078_aurora_yellow_front_04.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "N078",
+        "name": "אורורה",
+        "label": "N078 · אורורה",
+        "aliases": [
+          "N078",
+          "אורורה",
+          "אורורה",
+          "Aurora",
+          "aurora",
+          "N078_aurora_rose_front_01.jpg",
+          "n078",
+          "אורורה",
+          "aurora",
+          "aurora"
+        ],
+        "type": "שרשרת",
+        "family": "אורורה",
+        "nameHe": "אורורה",
+        "nameEn": "Aurora",
+        "technicalName": "aurora",
+        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-N078",
+          "src": "/real-data/catalog_N078_N078_aurora_rose_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "N078_aurora_rose_front_01.jpg",
+        "productId": "N078",
+        "referenceProductId": "N078",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "4",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "N078_aurora_yellow_front_04.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-08-web-card-011",
@@ -390,6 +1446,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_cacf0452b882b8b4246990f7",
@@ -399,9 +1456,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "E137",
+          "name": "רנסנס - לברדורייט",
+          "label": "E137 · רנסנס - לברדורייט",
+          "aliases": [
+            "E137",
+            "רנסנס - לברדורייט",
+            "רנסנס - לברדורייט",
+            "Renaissance - Labradorite",
+            "renaissance",
+            "E137_renaissance_yellow_front_01.jpg",
+            "e137",
+            "רנסנס - לברדורייט",
+            "renaissance - labradorite",
+            "renaissance"
+          ],
+          "type": "עגילים",
+          "family": "רנסנס - לברדורייט",
+          "nameHe": "רנסנס - לברדורייט",
+          "nameEn": "Renaissance - Labradorite",
+          "technicalName": "renaissance",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E137",
+            "src": "/real-data/catalog_E137_E137_renaissance_yellow_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E137_renaissance_yellow_front_01.jpg",
+          "productId": "E137",
+          "referenceProductId": "E137",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "5",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E137_renaissance_yellow_front_03.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "E137",
+          "name": "רנסנס - לברדורייט",
+          "label": "E137 · רנסנס - לברדורייט",
+          "aliases": [
+            "E137",
+            "רנסנס - לברדורייט",
+            "רנסנס - לברדורייט",
+            "Renaissance - Labradorite",
+            "renaissance",
+            "E137_renaissance_yellow_front_01.jpg",
+            "e137",
+            "רנסנס - לברדורייט",
+            "renaissance - labradorite",
+            "renaissance"
+          ],
+          "type": "עגילים",
+          "family": "רנסנס - לברדורייט",
+          "nameHe": "רנסנס - לברדורייט",
+          "nameEn": "Renaissance - Labradorite",
+          "technicalName": "renaissance",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E137",
+            "src": "/real-data/catalog_E137_E137_renaissance_yellow_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E137_renaissance_yellow_front_01.jpg",
+          "productId": "E137",
+          "referenceProductId": "E137",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "5",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E137_renaissance_yellow_front_03.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "E137",
+        "name": "רנסנס - לברדורייט",
+        "label": "E137 · רנסנס - לברדורייט",
+        "aliases": [
+          "E137",
+          "רנסנס - לברדורייט",
+          "רנסנס - לברדורייט",
+          "Renaissance - Labradorite",
+          "renaissance",
+          "E137_renaissance_yellow_front_01.jpg",
+          "e137",
+          "רנסנס - לברדורייט",
+          "renaissance - labradorite",
+          "renaissance"
+        ],
+        "type": "עגילים",
+        "family": "רנסנס - לברדורייט",
+        "nameHe": "רנסנס - לברדורייט",
+        "nameEn": "Renaissance - Labradorite",
+        "technicalName": "renaissance",
+        "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-E137",
+          "src": "/real-data/catalog_E137_E137_renaissance_yellow_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "E137_renaissance_yellow_front_01.jpg",
+        "productId": "E137",
+        "referenceProductId": "E137",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "possible_phash_le8",
+          "driveDistance": "5",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "E137_renaissance_yellow_front_03.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     }
   ],
   "auto_accounted_assets": [],
@@ -422,6 +1612,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.975457+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 9,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.467701+00:00",
   "no_live_writes": true
 }

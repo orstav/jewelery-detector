@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2025-08-14-web",
   "label": "2025-08-14",
   "source_folder": "2025-08-14/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_523c0c30ede07a2c7eb38522",
@@ -42,6 +42,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_523c0c30ede07a2c7eb38522",
@@ -51,9 +52,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R065",
+          "name": "מרקיזה יהלום",
+          "label": "R065 · מרקיזה יהלום",
+          "aliases": [
+            "R065",
+            "מרקיזה יהלום",
+            "מרקיזה יהלום",
+            "Marquise Diamond",
+            "marquise diamond diamond",
+            "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+            "r065",
+            "מרקיזה יהלום",
+            "marquise diamond",
+            "marquise diamond diamond"
+          ],
+          "type": "טבעת",
+          "family": "מרקיזה יהלום",
+          "nameHe": "מרקיזה יהלום",
+          "nameEn": "Marquise Diamond",
+          "technicalName": "marquise diamond diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R065",
+            "src": "/real-data/catalog_R065_R065_marquise-diamond_diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "productId": "R065",
+          "referenceProductId": "R065",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R065",
+          "name": "מרקיזה יהלום",
+          "label": "R065 · מרקיזה יהלום",
+          "aliases": [
+            "R065",
+            "מרקיזה יהלום",
+            "מרקיזה יהלום",
+            "Marquise Diamond",
+            "marquise diamond diamond",
+            "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+            "r065",
+            "מרקיזה יהלום",
+            "marquise diamond",
+            "marquise diamond diamond"
+          ],
+          "type": "טבעת",
+          "family": "מרקיזה יהלום",
+          "nameHe": "מרקיזה יהלום",
+          "nameEn": "Marquise Diamond",
+          "technicalName": "marquise diamond diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R065",
+            "src": "/real-data/catalog_R065_R065_marquise-diamond_diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "productId": "R065",
+          "referenceProductId": "R065",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R065",
+        "name": "מרקיזה יהלום",
+        "label": "R065 · מרקיזה יהלום",
+        "aliases": [
+          "R065",
+          "מרקיזה יהלום",
+          "מרקיזה יהלום",
+          "Marquise Diamond",
+          "marquise diamond diamond",
+          "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "r065",
+          "מרקיזה יהלום",
+          "marquise diamond",
+          "marquise diamond diamond"
+        ],
+        "type": "טבעת",
+        "family": "מרקיזה יהלום",
+        "nameHe": "מרקיזה יהלום",
+        "nameEn": "Marquise Diamond",
+        "technicalName": "marquise diamond diamond",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R065",
+          "src": "/real-data/catalog_R065_R065_marquise-diamond_diamond_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+        "productId": "R065",
+        "referenceProductId": "R065",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "0",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2025-08-14-web-card-002",
@@ -66,6 +200,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_8db7b69b628d0682b935cac5",
@@ -75,9 +210,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R065",
+          "name": "מרקיזה יהלום",
+          "label": "R065 · מרקיזה יהלום",
+          "aliases": [
+            "R065",
+            "מרקיזה יהלום",
+            "מרקיזה יהלום",
+            "Marquise Diamond",
+            "marquise diamond diamond",
+            "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+            "r065",
+            "מרקיזה יהלום",
+            "marquise diamond",
+            "marquise diamond diamond"
+          ],
+          "type": "טבעת",
+          "family": "מרקיזה יהלום",
+          "nameHe": "מרקיזה יהלום",
+          "nameEn": "Marquise Diamond",
+          "technicalName": "marquise diamond diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R065",
+            "src": "/real-data/catalog_R065_R065_marquise-diamond_diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "productId": "R065",
+          "referenceProductId": "R065",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R065_marquise-diamond_diamond_rose_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R065",
+          "name": "מרקיזה יהלום",
+          "label": "R065 · מרקיזה יהלום",
+          "aliases": [
+            "R065",
+            "מרקיזה יהלום",
+            "מרקיזה יהלום",
+            "Marquise Diamond",
+            "marquise diamond diamond",
+            "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+            "r065",
+            "מרקיזה יהלום",
+            "marquise diamond",
+            "marquise diamond diamond"
+          ],
+          "type": "טבעת",
+          "family": "מרקיזה יהלום",
+          "nameHe": "מרקיזה יהלום",
+          "nameEn": "Marquise Diamond",
+          "technicalName": "marquise diamond diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R065",
+            "src": "/real-data/catalog_R065_R065_marquise-diamond_diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "productId": "R065",
+          "referenceProductId": "R065",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R065_marquise-diamond_diamond_rose_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R065",
+        "name": "מרקיזה יהלום",
+        "label": "R065 · מרקיזה יהלום",
+        "aliases": [
+          "R065",
+          "מרקיזה יהלום",
+          "מרקיזה יהלום",
+          "Marquise Diamond",
+          "marquise diamond diamond",
+          "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+          "r065",
+          "מרקיזה יהלום",
+          "marquise diamond",
+          "marquise diamond diamond"
+        ],
+        "type": "טבעת",
+        "family": "מרקיזה יהלום",
+        "nameHe": "מרקיזה יהלום",
+        "nameEn": "Marquise Diamond",
+        "technicalName": "marquise diamond diamond",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R065",
+          "src": "/real-data/catalog_R065_R065_marquise-diamond_diamond_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R065_marquise-diamond_diamond_rose_angled_01.jpg",
+        "productId": "R065",
+        "referenceProductId": "R065",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "0",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R065_marquise-diamond_diamond_rose_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     }
   ],
   "auto_accounted_assets": [],
@@ -98,6 +366,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.865494+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 2,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.418784+00:00",
   "no_live_writes": true
 }

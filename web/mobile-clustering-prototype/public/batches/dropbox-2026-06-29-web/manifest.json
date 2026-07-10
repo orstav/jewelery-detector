@@ -2,8 +2,8 @@
   "batch_id": "dropbox-2026-06-29-web",
   "label": "2026-06-29",
   "source_folder": "2026-06-29/web",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "source_assets": [
     {
       "asset_id": "asset_7be026adf72d123d56174162",
@@ -114,6 +114,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_7be026adf72d123d56174162",
@@ -123,9 +124,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R013",
+          "name": "אלישבע L",
+          "label": "R013 · אלישבע L",
+          "aliases": [
+            "R013",
+            "אלישבע L",
+            "אלישבע L",
+            "Elisheva L",
+            "elisheva l diamond",
+            "R013_elisheva-l-diamond_rose_angled_01.jpg",
+            "r013",
+            "אלישבע l",
+            "elisheva l",
+            "elisheva l diamond"
+          ],
+          "type": "טבעת",
+          "family": "אלישבע L",
+          "nameHe": "אלישבע L",
+          "nameEn": "Elisheva L",
+          "technicalName": "elisheva l diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R013",
+            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "productId": "R013",
+          "referenceProductId": "R013",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R013",
+          "name": "אלישבע L",
+          "label": "R013 · אלישבע L",
+          "aliases": [
+            "R013",
+            "אלישבע L",
+            "אלישבע L",
+            "Elisheva L",
+            "elisheva l diamond",
+            "R013_elisheva-l-diamond_rose_angled_01.jpg",
+            "r013",
+            "אלישבע l",
+            "elisheva l",
+            "elisheva l diamond"
+          ],
+          "type": "טבעת",
+          "family": "אלישבע L",
+          "nameHe": "אלישבע L",
+          "nameEn": "Elisheva L",
+          "technicalName": "elisheva l diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R013",
+            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "productId": "R013",
+          "referenceProductId": "R013",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "0",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R013",
+        "name": "אלישבע L",
+        "label": "R013 · אלישבע L",
+        "aliases": [
+          "R013",
+          "אלישבע L",
+          "אלישבע L",
+          "Elisheva L",
+          "elisheva l diamond",
+          "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "r013",
+          "אלישבע l",
+          "elisheva l",
+          "elisheva l diamond"
+        ],
+        "type": "טבעת",
+        "family": "אלישבע L",
+        "nameHe": "אלישבע L",
+        "nameEn": "Elisheva L",
+        "technicalName": "elisheva l diamond",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R013",
+          "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+        "productId": "R013",
+        "referenceProductId": "R013",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "0",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-002",
@@ -138,6 +272,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_eba701a3ce6c027f990cbf10",
@@ -147,9 +282,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "E137",
+          "name": "רנסנס - לברדורייט",
+          "label": "E137 · רנסנס - לברדורייט",
+          "aliases": [
+            "E137",
+            "רנסנס - לברדורייט",
+            "רנסנס - לברדורייט",
+            "Renaissance - Labradorite",
+            "renaissance",
+            "E137_renaissance_yellow_front_01.jpg",
+            "e137",
+            "רנסנס - לברדורייט",
+            "renaissance - labradorite",
+            "renaissance"
+          ],
+          "type": "עגילים",
+          "family": "רנסנס - לברדורייט",
+          "nameHe": "רנסנס - לברדורייט",
+          "nameEn": "Renaissance - Labradorite",
+          "technicalName": "renaissance",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E137",
+            "src": "/real-data/catalog_E137_E137_renaissance_yellow_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E137_renaissance_yellow_front_01.jpg",
+          "productId": "E137",
+          "referenceProductId": "E137",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E137_renaissance_yellow_front_02.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "E137",
+          "name": "רנסנס - לברדורייט",
+          "label": "E137 · רנסנס - לברדורייט",
+          "aliases": [
+            "E137",
+            "רנסנס - לברדורייט",
+            "רנסנס - לברדורייט",
+            "Renaissance - Labradorite",
+            "renaissance",
+            "E137_renaissance_yellow_front_01.jpg",
+            "e137",
+            "רנסנס - לברדורייט",
+            "renaissance - labradorite",
+            "renaissance"
+          ],
+          "type": "עגילים",
+          "family": "רנסנס - לברדורייט",
+          "nameHe": "רנסנס - לברדורייט",
+          "nameEn": "Renaissance - Labradorite",
+          "technicalName": "renaissance",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E137",
+            "src": "/real-data/catalog_E137_E137_renaissance_yellow_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E137_renaissance_yellow_front_01.jpg",
+          "productId": "E137",
+          "referenceProductId": "E137",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E137_renaissance_yellow_front_02.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "E137",
+        "name": "רנסנס - לברדורייט",
+        "label": "E137 · רנסנס - לברדורייט",
+        "aliases": [
+          "E137",
+          "רנסנס - לברדורייט",
+          "רנסנס - לברדורייט",
+          "Renaissance - Labradorite",
+          "renaissance",
+          "E137_renaissance_yellow_front_01.jpg",
+          "e137",
+          "רנסנס - לברדורייט",
+          "renaissance - labradorite",
+          "renaissance"
+        ],
+        "type": "עגילים",
+        "family": "רנסנס - לברדורייט",
+        "nameHe": "רנסנס - לברדורייט",
+        "nameEn": "Renaissance - Labradorite",
+        "technicalName": "renaissance",
+        "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-E137",
+          "src": "/real-data/catalog_E137_E137_renaissance_yellow_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "E137_renaissance_yellow_front_01.jpg",
+        "productId": "E137",
+        "referenceProductId": "E137",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "2",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "E137_renaissance_yellow_front_02.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-003",
@@ -162,6 +430,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_2a512d5aa56ab58f696aede8",
@@ -171,9 +440,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "3",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "3",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R055",
+        "name": "שטרן",
+        "label": "R055 · שטרן",
+        "aliases": [
+          "R055",
+          "שטרן",
+          "שטרן",
+          "Staern",
+          "stern sapphire",
+          "R055_stern_sapphire_rose_angled_01.jpg",
+          "r055",
+          "שטרן",
+          "staern",
+          "stern sapphire"
+        ],
+        "type": "טבעת",
+        "family": "שטרן",
+        "nameHe": "שטרן",
+        "nameEn": "Staern",
+        "technicalName": "stern sapphire",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R055",
+          "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+        "productId": "R055",
+        "referenceProductId": "R055",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "3",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-004",
@@ -186,6 +588,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_936beae3e765d44b5f4f1a34",
@@ -195,9 +598,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "E117",
+          "name": "פנינה עדן",
+          "label": "E117 · פנינה עדן",
+          "aliases": [
+            "E117",
+            "פנינה עדן",
+            "פנינה עדן",
+            "Eden Pearl Earrings",
+            "eden pearl",
+            "E117_eden-pearl_rose_front_01.jpg",
+            "e117",
+            "פנינה עדן",
+            "eden pearl earrings",
+            "eden pearl"
+          ],
+          "type": "עגילים",
+          "family": "פנינה עדן",
+          "nameHe": "פנינה עדן",
+          "nameEn": "Eden Pearl Earrings",
+          "technicalName": "eden pearl",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E117",
+            "src": "/real-data/catalog_E117_E117_eden-pearl_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E117_eden-pearl_rose_front_01.jpg",
+          "productId": "E117",
+          "referenceProductId": "E117",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E117_eden-pearl_yellow_front_02.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "E117",
+          "name": "פנינה עדן",
+          "label": "E117 · פנינה עדן",
+          "aliases": [
+            "E117",
+            "פנינה עדן",
+            "פנינה עדן",
+            "Eden Pearl Earrings",
+            "eden pearl",
+            "E117_eden-pearl_rose_front_01.jpg",
+            "e117",
+            "פנינה עדן",
+            "eden pearl earrings",
+            "eden pearl"
+          ],
+          "type": "עגילים",
+          "family": "פנינה עדן",
+          "nameHe": "פנינה עדן",
+          "nameEn": "Eden Pearl Earrings",
+          "technicalName": "eden pearl",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E117",
+            "src": "/real-data/catalog_E117_E117_eden-pearl_rose_front_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E117_eden-pearl_rose_front_01.jpg",
+          "productId": "E117",
+          "referenceProductId": "E117",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E117_eden-pearl_yellow_front_02.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "E117",
+        "name": "פנינה עדן",
+        "label": "E117 · פנינה עדן",
+        "aliases": [
+          "E117",
+          "פנינה עדן",
+          "פנינה עדן",
+          "Eden Pearl Earrings",
+          "eden pearl",
+          "E117_eden-pearl_rose_front_01.jpg",
+          "e117",
+          "פנינה עדן",
+          "eden pearl earrings",
+          "eden pearl"
+        ],
+        "type": "עגילים",
+        "family": "פנינה עדן",
+        "nameHe": "פנינה עדן",
+        "nameEn": "Eden Pearl Earrings",
+        "technicalName": "eden pearl",
+        "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-E117",
+          "src": "/real-data/catalog_E117_E117_eden-pearl_rose_front_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "E117_eden-pearl_rose_front_01.jpg",
+        "productId": "E117",
+        "referenceProductId": "E117",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "1",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "E117_eden-pearl_yellow_front_02.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-005",
@@ -210,6 +746,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_30cce575a467a69442131b06",
@@ -219,9 +756,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "E127",
+          "name": "בלו טופז מתנדנד",
+          "label": "E127 · בלו טופז מתנדנד",
+          "aliases": [
+            "E127",
+            "בלו טופז מתנדנד",
+            "בלו טופז מתנדנד",
+            "Dangling Blue Topaz Earrings",
+            "dangling blue topaz",
+            "E127_dangling-blue-topaz_white_front_02.jpg",
+            "e127",
+            "בלו טופז מתנדנד",
+            "dangling blue topaz earrings",
+            "dangling blue topaz"
+          ],
+          "type": "עגילים",
+          "family": "בלו טופז מתנדנד",
+          "nameHe": "בלו טופז מתנדנד",
+          "nameEn": "Dangling Blue Topaz Earrings",
+          "technicalName": "dangling blue topaz",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E127",
+            "src": "/real-data/catalog_E127_E127_dangling-blue-topaz_white_front_02.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E127_dangling-blue-topaz_white_front_02.jpg",
+          "productId": "E127",
+          "referenceProductId": "E127",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E127_dangling-blue-topaz_white_front_02.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "E127",
+          "name": "בלו טופז מתנדנד",
+          "label": "E127 · בלו טופז מתנדנד",
+          "aliases": [
+            "E127",
+            "בלו טופז מתנדנד",
+            "בלו טופז מתנדנד",
+            "Dangling Blue Topaz Earrings",
+            "dangling blue topaz",
+            "E127_dangling-blue-topaz_white_front_02.jpg",
+            "e127",
+            "בלו טופז מתנדנד",
+            "dangling blue topaz earrings",
+            "dangling blue topaz"
+          ],
+          "type": "עגילים",
+          "family": "בלו טופז מתנדנד",
+          "nameHe": "בלו טופז מתנדנד",
+          "nameEn": "Dangling Blue Topaz Earrings",
+          "technicalName": "dangling blue topaz",
+          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-E127",
+            "src": "/real-data/catalog_E127_E127_dangling-blue-topaz_white_front_02.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "E127_dangling-blue-topaz_white_front_02.jpg",
+          "productId": "E127",
+          "referenceProductId": "E127",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "2",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "E127_dangling-blue-topaz_white_front_02.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "E127",
+        "name": "בלו טופז מתנדנד",
+        "label": "E127 · בלו טופז מתנדנד",
+        "aliases": [
+          "E127",
+          "בלו טופז מתנדנד",
+          "בלו טופז מתנדנד",
+          "Dangling Blue Topaz Earrings",
+          "dangling blue topaz",
+          "E127_dangling-blue-topaz_white_front_02.jpg",
+          "e127",
+          "בלו טופז מתנדנד",
+          "dangling blue topaz earrings",
+          "dangling blue topaz"
+        ],
+        "type": "עגילים",
+        "family": "בלו טופז מתנדנד",
+        "nameHe": "בלו טופז מתנדנד",
+        "nameEn": "Dangling Blue Topaz Earrings",
+        "technicalName": "dangling blue topaz",
+        "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-E127",
+          "src": "/real-data/catalog_E127_E127_dangling-blue-topaz_white_front_02.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "E127_dangling-blue-topaz_white_front_02.jpg",
+        "productId": "E127",
+        "referenceProductId": "E127",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "2",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "E127_dangling-blue-topaz_white_front_02.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-006",
@@ -234,6 +904,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_ee0f0550942c2393e68ca1e0",
@@ -243,9 +914,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "7",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "7",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R055",
+        "name": "שטרן",
+        "label": "R055 · שטרן",
+        "aliases": [
+          "R055",
+          "שטרן",
+          "שטרן",
+          "Staern",
+          "stern sapphire",
+          "R055_stern_sapphire_rose_angled_01.jpg",
+          "r055",
+          "שטרן",
+          "staern",
+          "stern sapphire"
+        ],
+        "type": "טבעת",
+        "family": "שטרן",
+        "nameHe": "שטרן",
+        "nameEn": "Staern",
+        "technicalName": "stern sapphire",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R055",
+          "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+        "productId": "R055",
+        "referenceProductId": "R055",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "possible_phash_le8",
+          "driveDistance": "7",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-007",
@@ -258,6 +1062,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_8785ea6193de64b1eefeaad8",
@@ -267,9 +1072,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "7",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R055",
+          "name": "שטרן",
+          "label": "R055 · שטרן",
+          "aliases": [
+            "R055",
+            "שטרן",
+            "שטרן",
+            "Staern",
+            "stern sapphire",
+            "R055_stern_sapphire_rose_angled_01.jpg",
+            "r055",
+            "שטרן",
+            "staern",
+            "stern sapphire"
+          ],
+          "type": "טבעת",
+          "family": "שטרן",
+          "nameHe": "שטרן",
+          "nameEn": "Staern",
+          "technicalName": "stern sapphire",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R055",
+            "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+          "productId": "R055",
+          "referenceProductId": "R055",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "possible_phash_le8",
+            "driveDistance": "7",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R055",
+        "name": "שטרן",
+        "label": "R055 · שטרן",
+        "aliases": [
+          "R055",
+          "שטרן",
+          "שטרן",
+          "Staern",
+          "stern sapphire",
+          "R055_stern_sapphire_rose_angled_01.jpg",
+          "r055",
+          "שטרן",
+          "staern",
+          "stern sapphire"
+        ],
+        "type": "טבעת",
+        "family": "שטרן",
+        "nameHe": "שטרן",
+        "nameEn": "Staern",
+        "technicalName": "stern sapphire",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R055",
+          "src": "/real-data/catalog_R055_R055_stern_sapphire_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R055_stern_sapphire_rose_angled_01.jpg",
+        "productId": "R055",
+        "referenceProductId": "R055",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "possible_phash_le8",
+          "driveDistance": "7",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R055_stern_sapphire_white_frontal_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     },
     {
       "id": "dropbox-2026-06-29-web-card-008",
@@ -282,6 +1220,7 @@
       "rawStatus": "dropbox_possible_duplicate_visual_confirm",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
+      "candidateSource": "historical_drive_visual_candidate",
       "photos": [
         {
           "id": "asset_5c568bc0df53fb25ebb717af",
@@ -291,9 +1230,142 @@
           "role": "identity_review_photo"
         }
       ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
+      "candidates": [
+        {
+          "id": "R013",
+          "name": "אלישבע L",
+          "label": "R013 · אלישבע L",
+          "aliases": [
+            "R013",
+            "אלישבע L",
+            "אלישבע L",
+            "Elisheva L",
+            "elisheva l diamond",
+            "R013_elisheva-l-diamond_rose_angled_01.jpg",
+            "r013",
+            "אלישבע l",
+            "elisheva l",
+            "elisheva l diamond"
+          ],
+          "type": "טבעת",
+          "family": "אלישבע L",
+          "nameHe": "אלישבע L",
+          "nameEn": "Elisheva L",
+          "technicalName": "elisheva l diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R013",
+            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "productId": "R013",
+          "referenceProductId": "R013",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidates": [
+        {
+          "id": "R013",
+          "name": "אלישבע L",
+          "label": "R013 · אלישבע L",
+          "aliases": [
+            "R013",
+            "אלישבע L",
+            "אלישבע L",
+            "Elisheva L",
+            "elisheva l diamond",
+            "R013_elisheva-l-diamond_rose_angled_01.jpg",
+            "r013",
+            "אלישבע l",
+            "elisheva l",
+            "elisheva l diamond"
+          ],
+          "type": "טבעת",
+          "family": "אלישבע L",
+          "nameHe": "אלישבע L",
+          "nameEn": "Elisheva L",
+          "technicalName": "elisheva l diamond",
+          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+          "image": {
+            "id": "catalog-R013",
+            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
+          },
+          "catalogSource": "drive_catalog_index",
+          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "productId": "R013",
+          "referenceProductId": "R013",
+          "source": "historical_drive_visual_candidate",
+          "provenance": "historical_drive_visual_candidate",
+          "score": null,
+          "detectorScore": null,
+          "prefilterEvidence": {
+            "source": "historical_drive_shopify_read_only_audit",
+            "driveMatchType": "near_phash_le4",
+            "driveDistance": "1",
+            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+            "recommendedAction": "visual_confirm_against_drive_before_new_work",
+            "matchedDriveImage": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+            "manualConfirmationRequired": true
+          }
+        }
+      ],
+      "existingCandidate": {
+        "id": "R013",
+        "name": "אלישבע L",
+        "label": "R013 · אלישבע L",
+        "aliases": [
+          "R013",
+          "אלישבע L",
+          "אלישבע L",
+          "Elisheva L",
+          "elisheva l diamond",
+          "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "r013",
+          "אלישבע l",
+          "elisheva l",
+          "elisheva l diamond"
+        ],
+        "type": "טבעת",
+        "family": "אלישבע L",
+        "nameHe": "אלישבע L",
+        "nameEn": "Elisheva L",
+        "technicalName": "elisheva l diamond",
+        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
+        "image": {
+          "id": "catalog-R013",
+          "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
+        },
+        "catalogSource": "drive_catalog_index",
+        "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+        "productId": "R013",
+        "referenceProductId": "R013",
+        "source": "historical_drive_visual_candidate",
+        "provenance": "historical_drive_visual_candidate",
+        "score": null,
+        "detectorScore": null,
+        "prefilterEvidence": {
+          "source": "historical_drive_shopify_read_only_audit",
+          "driveMatchType": "near_phash_le4",
+          "driveDistance": "1",
+          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
+          "recommendedAction": "visual_confirm_against_drive_before_new_work",
+          "matchedDriveImage": "R013_elisheva-l-diamond_rose_angled_01.jpg",
+          "manualConfirmationRequired": true
+        }
+      }
     }
   ],
   "auto_accounted_assets": [],
@@ -314,6 +1386,11 @@
     "cards_with_candidates": 0,
     "candidate_total": 0
   },
-  "generated_at": "2026-07-10T07:37:33.996043+00:00",
+  "historical_prefilter": {
+    "source": "dropbox_queue_drive_shopify_validation",
+    "cards_with_catalog_suggestion": 8,
+    "manual_confirmation_required": true
+  },
+  "generated_at": "2026-07-10T07:59:49.482089+00:00",
   "no_live_writes": true
 }

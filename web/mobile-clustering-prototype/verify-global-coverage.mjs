@@ -8,6 +8,10 @@ const allowedLanes = new Set([
   'downstream_existing_workflow',
   'support_linked_to_web',
   'support_mapping_pending',
+  'fix_deferred_next_pass',
+  'hal_prefilter_blocked',
+  'old_work_catalog_exact',
+  'old_work_ownership_review',
   'non_web_source_routed',
   'system_review_pending',
 ]);
@@ -24,5 +28,10 @@ for (const asset of coverage.assets || []) {
 const laneTotal = Object.values(coverage.lane_counts || {}).reduce((sum, value) => sum + value, 0);
 if (laneTotal !== coverage.total_assets) throw new Error(`Lane count total mismatch ${laneTotal}/${coverage.total_assets}`);
 if ((index.batches || []).length !== coverage.batches.length) throw new Error('Batch index mismatch.');
+const fixAssets = (coverage.assets || []).filter((asset) => asset.role === 'fix');
+if (fixAssets.some((asset) => asset.lane !== 'fix_deferred_next_pass')) throw new Error('Every fix asset must be deferred to the next pass.');
+if ((coverage.assets || []).some((asset) => asset.role === 'fix' && asset.lane === 'dalia_identity_review')) throw new Error('Fix image leaked into Dalia review.');
+const halBlocked = (coverage.assets || []).filter((asset) => asset.lane === 'hal_prefilter_blocked');
+if ((coverage.assets || []).some((asset) => asset.lane === 'dalia_identity_review' && (!asset.product_group_id || asset.group_status == null))) throw new Error('Unmapped identity leaked into Dalia review.');
 if (!coverage.review_batches || !coverage.reviewable_web_assets) throw new Error('Expected non-zero Dalia review queue.');
-console.log(`Verified global coverage ${coverage.accounted_assets}/${coverage.total_assets}: ${coverage.reviewable_web_assets} Dalia-review photos across ${coverage.review_batches} batches; ${coverage.lane_counts.support_mapping_pending || 0} support assets remain in deterministic mapping queue.`);
+console.log(`Verified global coverage ${coverage.accounted_assets}/${coverage.total_assets}: ${coverage.reviewable_web_assets} Dalia-review photos across ${coverage.review_batches} batches; ${halBlocked.length} HAL-prefilter blocked; ${coverage.lane_counts.support_mapping_pending || 0} support assets remain in deterministic mapping queue; ${fixAssets.length} fix images deferred to the next pass.`);

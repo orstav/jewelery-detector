@@ -736,6 +736,7 @@ function ReviewCard({task, buckets, onAction}) {
     return () => window.removeEventListener('scroll', updateFromScroll);
   }, [task.id, task.stage, showCurrentPhotoBlock]);
   const exactProductCandidates = task.existingCandidates?.length ? task.existingCandidates : [task.existingCandidate].filter(Boolean);
+  const hasHistoricalVisualSuggestion = exactProductCandidates.some((candidate) => candidate.source === 'historical_drive_visual_candidate');
   const filteredExactProductCandidates = filterCandidatesByJewelryType(exactProductCandidates, catalogTypeFilter);
   const productCandidates = filteredExactProductCandidates;
   const catalogMatches = searchCatalogProducts(catalogQuery, task, exactProductCandidates, showAllCatalog, catalogTypeFilter);
@@ -781,7 +782,7 @@ function ReviewCard({task, buckets, onAction}) {
     </> : null}
 
     {task.stage === 'existing_product_selection' ? <div className="product-list catalog-finder unified-match-flow">
-      <div className="suggestion-note"><strong>{exactProductCandidates.length ? 'התאמות מהגלאי' : 'אין התאמה אוטומטית אמינה'}</strong><span>{exactProductCandidates.length ? 'הגלאי מציע מועמדים לפי דמיון תמונות. דליה עדיין מאשרת ידנית אם זה אותו תכשיט, רק אותו עיצוב, או לא זה.' : 'חפשי לפי מספר/שם מוצר או פתחי את כל הקטלוג. לא מוצגים מועמדים אקראיים כ“דירוג”.'}</span></div>
+      <div className="suggestion-note"><strong>{hasHistoricalVisualSuggestion ? 'מוצר קיים שכדאי להשוות' : (exactProductCandidates.length ? 'התאמות מהגלאי' : 'אין התאמה אוטומטית אמינה')}</strong><span>{hasHistoricalVisualSuggestion ? 'מצאנו מועמד מהקטלוג הישן לפי השוואת תמונות. זו הצעה בלבד — אשרי אם זה אותו מוצר, רק אותו עיצוב, או לא זה.' : (exactProductCandidates.length ? 'הגלאי מציע מועמדים לפי דמיון תמונות. דליה עדיין מאשרת ידנית אם זה אותו תכשיט, רק אותו עיצוב, או לא זה.' : 'חפשי לפי מספר/שם מוצר או פתחי את כל הקטלוג. לא מוצגים מועמדים אקראיים כ“דירוג”.')}</span></div>
       <BucketAttachConfirm bucket={pendingAttachBucket} task={task} onCancel={() => setPendingAttachBucket(null)} onConfirm={(bucket) => onAction('attach_to_bucket', {bucketId: bucket.id, label: bucketTitle(bucket), attachedBucketTitle: bucketTitle(bucket)})} />
       <BucketRail key={`existing-buckets-${task.id}-${buckets.length}`} buckets={buckets} currentTask={task} onAttach={openAttachConfirm} />
       <MatchCandidateList task={task} candidates={primaryExistingMatches} skippedIds={skippedCandidateIds} onReject={skipCandidate} onSameProduct={chooseSameProduct} onSameDesign={chooseSameDesign} />

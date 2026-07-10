@@ -1,18 +1,21 @@
 {
-  "generated_at": "2026-07-10T07:37:33.996571+00:00",
-  "source": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/state/stav/stav.sqlite",
-  "source_zip": "/home/server/.hermes/profiles/hermes-hal-9000/workspace/openclaw-hal-import/workspace/workbench/package-prep/raw-intake/dropbox-stav-main-2026-06-07/source/stav.zip",
+  "generated_at": "2026-07-10T07:59:49.483597+00:00",
+  "source": "stav_source_intake_sqlite",
+  "source_snapshot": "dropbox_stav_main",
   "total_assets": 555,
   "accounted_assets": 555,
   "coverage_valid": true,
   "lane_counts": {
-    "downstream_existing_workflow": 23,
-    "dalia_identity_review": 162,
-    "support_linked_to_web": 207,
+    "old_work_catalog_exact": 13,
+    "old_work_ownership_review": 4,
+    "dalia_identity_review": 161,
+    "support_linked_to_web": 203,
     "terminal_closed": 35,
-    "support_mapping_pending": 128
+    "hal_prefilter_blocked": 1,
+    "fix_deferred_next_pass": 132,
+    "downstream_existing_workflow": 6
   },
-  "reviewable_web_assets": 162,
+  "reviewable_web_assets": 161,
   "review_batches": 18,
   "batches": [
     {
@@ -200,9 +203,9 @@
       "label": "2025-03-24",
       "source_folder": "2025-03-24/web",
       "source_assets": 2,
-      "reviewable_assets": 2,
-      "review_cards": 2,
-      "auto_accounted": 0,
+      "reviewable_assets": 1,
+      "review_cards": 1,
+      "auto_accounted": 1,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2025-03-24-web"
@@ -240,8 +243,8 @@
       "role": "web",
       "product_group_id": "pg_repair_913d857ef31c2b8b",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: R173"
     },
     {
       "asset_id": "asset_9b581ab81d58180448149c3b",
@@ -250,8 +253,8 @@
       "role": "web",
       "product_group_id": "pg_repair_19bb945f86b90fa9",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_ownership_review",
+      "reason": "exact historical image is shared by multiple Catalog IDs: R018,R019,R174"
     },
     {
       "asset_id": "asset_b9572706a9a01b105004d381",
@@ -260,8 +263,8 @@
       "role": "web",
       "product_group_id": "pg_repair_cf6ecd338e59cf8f",
       "group_status": "dropbox_proven_existing_drive_and_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_and_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: R062"
     },
     {
       "asset_id": "asset_255070a125d09f4ebf07e429",
@@ -270,8 +273,8 @@
       "role": "web",
       "product_group_id": "pg_repair_b6843d715fcc9bc3",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: R059"
     },
     {
       "asset_id": "asset_a9cbc9176ffc398e611e2b28",
@@ -280,8 +283,8 @@
       "role": "web",
       "product_group_id": "pg_repair_53e9b4f98a313fe4",
       "group_status": "dropbox_proven_existing_drive_and_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_and_shopify"
+      "lane": "old_work_ownership_review",
+      "reason": "exact historical image is shared by multiple Catalog IDs: R060,R176"
     },
     {
       "asset_id": "asset_c5e1d56318a58bcfc65994b2",
@@ -290,8 +293,8 @@
       "role": "web",
       "product_group_id": "pg_repair_158753d1ffd3a776",
       "group_status": "dropbox_proven_existing_drive_and_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_and_shopify"
+      "lane": "old_work_ownership_review",
+      "reason": "exact historical image is shared by multiple Catalog IDs: R060,R176"
     },
     {
       "asset_id": "asset_d90ccb0d96e2ae3a151a23b0",
@@ -300,8 +303,8 @@
       "role": "web",
       "product_group_id": "pg_repair_863546de6f317f92",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: R059"
     },
     {
       "asset_id": "asset_e76a7976b30a8554040b5390",
@@ -310,8 +313,8 @@
       "role": "web",
       "product_group_id": "pg_repair_86c1454cff564875",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: N093"
     },
     {
       "asset_id": "asset_a1aa6a3500783e5a0567144a",
@@ -320,8 +323,8 @@
       "role": "web",
       "product_group_id": "pg_repair_23a15e854d4ed102",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: N147"
     },
     {
       "asset_id": "asset_0c7e30693b4502749a7248d2",
@@ -330,8 +333,8 @@
       "role": "web",
       "product_group_id": "pg_repair_4bdda17f0ae98ab8",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: E128"
     },
     {
       "asset_id": "asset_d93b031cc3a29e5d1f670a38",
@@ -340,8 +343,8 @@
       "role": "web",
       "product_group_id": "pg_repair_f615f1a1dc530d3a",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: N152"
     },
     {
       "asset_id": "asset_50ad3f7a3ebae38f8a90a18e",
@@ -350,8 +353,8 @@
       "role": "web",
       "product_group_id": "pg_repair_b4d9af5f6256bcb9",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: E128"
     },
     {
       "asset_id": "asset_73d6b6a4f3309b428af39d1d",
@@ -360,8 +363,8 @@
       "role": "web",
       "product_group_id": "pg_repair_e27dd5bf87f25026",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: N147"
     },
     {
       "asset_id": "asset_228afa31f546be8f9a495343",
@@ -370,8 +373,8 @@
       "role": "web",
       "product_group_id": "pg_repair_a4fd2e5cb61c01ae",
       "group_status": "dropbox_proven_existing_drive_and_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_and_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: R062"
     },
     {
       "asset_id": "asset_fd314ca5c4fb523ea904b834",
@@ -380,8 +383,8 @@
       "role": "web",
       "product_group_id": "pg_repair_f1bdd1f32fcd8e15",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_ownership_review",
+      "reason": "exact historical image is shared by multiple Catalog IDs: R018,R019,R020,R174"
     },
     {
       "asset_id": "asset_2117669758c5dda8f92745c8",
@@ -390,8 +393,8 @@
       "role": "web",
       "product_group_id": "pg_repair_068baf8aa04fbaee",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: R173"
     },
     {
       "asset_id": "asset_4ec9ef1aa34f453edeb57c0f",
@@ -440,8 +443,8 @@
       "role": "web",
       "product_group_id": "pg_repair_d7bc5bf3b9417d07",
       "group_status": "dropbox_proven_existing_drive_check_shopify",
-      "lane": "downstream_existing_workflow",
-      "reason": "dropbox_proven_existing_drive_check_shopify"
+      "lane": "old_work_catalog_exact",
+      "reason": "exact historical catalog image: N152"
     },
     {
       "asset_id": "asset_08b7be556feb2823ddb1b448",
@@ -1770,8 +1773,8 @@
       "role": "web",
       "product_group_id": null,
       "group_status": null,
-      "lane": "dalia_identity_review",
-      "reason": "unmapped"
+      "lane": "hal_prefilter_blocked",
+      "reason": "missing canonical product-group identity evidence"
     },
     {
       "asset_id": "asset_4c27645356f3aef4b52b0397",
@@ -1780,8 +1783,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_65acac26de89b2925c991ff6",
@@ -1790,8 +1793,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_0a61b91ec0a6ba6dc16ec014",
@@ -1800,8 +1803,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_a825091e4860ab76a7aa21ca",
@@ -1810,8 +1813,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_ee3f46c73b4d492c0ac3306d",
@@ -1820,8 +1823,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b3d835b875948b95c9463dc7",
@@ -1830,8 +1833,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_1ff5cbf0e0545f9c342aedaf",
@@ -1840,8 +1843,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2fe0e66b29af7cab50bde48c",
@@ -1850,8 +1853,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2aa66b18cf431c13cdedfa9a",
@@ -1860,8 +1863,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7da498036f193a2c567778aa",
@@ -1870,8 +1873,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_052ae7e6243da82a58c07c59",
@@ -1880,8 +1883,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_acc0bb9bb2483c500df84fff",
@@ -1890,8 +1893,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_8b8d2d39b3f858dfb5df3c49",
@@ -1900,8 +1903,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2e474e2bc6d74b0623f79d3b",
@@ -1910,8 +1913,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_cc600ae91cb7999379bc8c93",
@@ -1920,8 +1923,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_3377f7f66a783371ef4ccea7",
@@ -1930,8 +1933,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_e2e9704f2c2352d31040a316",
@@ -1940,8 +1943,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_5384f11048c61e237c8a00f2",
@@ -1950,8 +1953,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_6df9aba671c26dc734859f02",
@@ -1960,8 +1963,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_25869af1d06c35f8a978dbb0",
@@ -1970,8 +1973,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b20b9f69ec33f0dbe01da12a",
@@ -1980,8 +1983,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_c9971190b2e9cae876f4c538",
@@ -1990,8 +1993,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_bb4b0aca99577a0bb129f7bd",
@@ -2000,8 +2003,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_dddf8e76d43d5868ea067700",
@@ -2010,8 +2013,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_875e602d21dabf30b4f6edc7",
@@ -2020,8 +2023,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_e685e168dfa493f0188622c3",
@@ -2030,8 +2033,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2d6e69d07d90e746215b6ea5",
@@ -2040,8 +2043,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2ac9cf31c98e9f8b16d5cd52",
@@ -2050,8 +2053,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b48cafebe9a92afa54ada810",
@@ -2060,8 +2063,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_0958347c5c377a6f3f30a285",
@@ -2070,8 +2073,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2703004b2173052cb3f21d00",
@@ -2080,8 +2083,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_dba1ad3a6ab0fd85d79cbf75",
@@ -2090,8 +2093,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2ddd6f0e7d8f18b23b75c387",
@@ -2100,8 +2103,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_c5cca590ea7785ad0f7d6260",
@@ -2110,8 +2113,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_f21cc76b2f6f192cc7502410",
@@ -2120,8 +2123,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_18d8257148c010a10c2f96c9",
@@ -2130,8 +2133,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b155c13d361cbb1a965f5339",
@@ -2140,8 +2143,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_36a824827118182bbf46c5f0",
@@ -2150,8 +2153,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7b05136d82422cdb6e889b2f",
@@ -2160,8 +2163,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_c5dd19dc4c04c7d931384b47",
@@ -2170,8 +2173,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_f50718e210e9789a83bf3a8f",
@@ -2180,8 +2183,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b87feae4a12eca52e4c0bede",
@@ -2190,8 +2193,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_70d951dae2c73b3641f20a69",
@@ -2200,8 +2203,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_32b708a1e46696084809611f",
@@ -2210,8 +2213,8 @@
       "role": "fix",
       "product_group_id": "pg_13f413758ec1_1",
       "group_status": "dead_or_merged",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_c16f8052e70c4bd5105f43e9",
@@ -2220,8 +2223,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b8ddbfefb72b07276169d9e3",
@@ -2230,8 +2233,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_797ca1dedbd4fcd70053fcd7",
@@ -2240,8 +2243,8 @@
       "role": "fix",
       "product_group_id": "pg_f3793f932350_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7a6bfe58f72848fb53196ab3",
@@ -2250,8 +2253,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_87942a15a811a04a5bce12ca",
@@ -2260,8 +2263,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_51e0f3ca424093d65c387c25",
@@ -2270,8 +2273,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_d2e04fcd307c83db1278c5ca",
@@ -2280,8 +2283,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_359543331899780dd8e409d9",
@@ -2290,8 +2293,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_626215b5f9a78c89dc1d6a21",
@@ -2300,8 +2303,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_6c815a6f810665a6a0b39611",
@@ -2310,8 +2313,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b91ef409e9f588e726be1980",
@@ -2320,8 +2323,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_77e08564df8c98b8b648fcab",
@@ -2330,8 +2333,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_5b25aef8f45433c3f16e9e85",
@@ -2340,8 +2343,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_63a177b3c292c00cf3e033e7",
@@ -2350,8 +2353,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_9fd1e2065e637c23568fa860",
@@ -2360,8 +2363,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_f0152e2b32792441b9ed4ca4",
@@ -2370,8 +2373,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_e13f121720092410a878c6be",
@@ -2380,8 +2383,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_3044fc2df40c2f1b15101a01",
@@ -2390,8 +2393,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_24d57c742dd6a4b2ad3d6c4a",
@@ -2400,8 +2403,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_2d4b5dbeaebe7e12b3f3f0be",
@@ -2410,8 +2413,8 @@
       "role": "fix",
       "product_group_id": "pg_13f413758ec1_1",
       "group_status": "dead_or_merged",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_270236243c618374a8663d03",
@@ -2420,8 +2423,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_71c9f6b0b8c219f6094e85fa",
@@ -2430,8 +2433,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_6d6f5b2d7200c336d49029e0",
@@ -2440,8 +2443,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_844b4d62c7a7c83235655837",
@@ -2450,8 +2453,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_9f8192e7b1237d29f09b06ef",
@@ -2460,8 +2463,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7b920c103689b8e5133d392f",
@@ -2470,8 +2473,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_5f816ca4ecda190497fc42cc",
@@ -2480,8 +2483,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_linked_to_web",
-      "reason": "support/derivative asset linked by date + normalized filename"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_aedde3c4fd0bafcff0816d59",
@@ -2490,8 +2493,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_linked_to_web",
-      "reason": "support/derivative asset linked by date + normalized filename"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_aa63eb107b5d6137a509cfe1",
@@ -2500,8 +2503,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_linked_to_web",
-      "reason": "support/derivative asset linked by date + normalized filename"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_02ebca107f698e9dbb6b5ded",
@@ -2510,8 +2513,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_linked_to_web",
-      "reason": "support/derivative asset linked by date + normalized filename"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_fec7dd5450f1b743a3aa4c30",
@@ -2560,8 +2563,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_48a0f6f9f277ff9d5032aa8c",
@@ -2570,8 +2573,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_01cda3994993edd8eb6aeef6",
@@ -2580,8 +2583,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_e01cf03ef4bd9fda00702020",
@@ -2590,8 +2593,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_1c00ea349af6ef046d134a34",
@@ -3280,8 +3283,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_cbcedf45cfc9934868e1b1c9",
@@ -3290,8 +3293,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_f45d1f058552fc4ae45ef36f",
@@ -3300,8 +3303,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_55676e9693af32ca81ca88af",
@@ -3310,8 +3313,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_1d15fb4fe47308fd2c075b89",
@@ -3320,8 +3323,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b32fa97115828531edbcd3b8",
@@ -3330,8 +3333,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_a9f1a2c9beb5a11db735cf3e",
@@ -3340,8 +3343,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_087c0fa3cd64c9d7831b8fb5",
@@ -3350,8 +3353,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_487d8c109d9993a38fc5f626",
@@ -3360,8 +3363,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_dd05114b5618634eb8f2feda",
@@ -3370,8 +3373,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_9ce225a093ae93b5033f0b07",
@@ -3380,8 +3383,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_c04ba35beddd6944a7a0a82f",
@@ -3390,8 +3393,8 @@
       "role": "fix",
       "product_group_id": "pg_076e48229edb_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_823284c18c8cb0ebb88a9712",
@@ -3400,8 +3403,8 @@
       "role": "fix",
       "product_group_id": "pg_076e48229edb_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_5b42f1b6fc9b69b2148643a3",
@@ -3410,8 +3413,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7000a95548ca7e0cc44ae860",
@@ -3420,8 +3423,8 @@
       "role": "fix",
       "product_group_id": "pg_93c7c32ff214_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_24fbf0581888daa6407ec051",
@@ -3430,8 +3433,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7b11eab93987e28539e661d1",
@@ -3440,8 +3443,8 @@
       "role": "fix",
       "product_group_id": "pg_f5753fc361d6_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_26e31b32754bc0fb86ab2d4f",
@@ -3450,8 +3453,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_8ff2f49867b4449db310d230",
@@ -3460,8 +3463,8 @@
       "role": "fix",
       "product_group_id": "pg_93c7c32ff214_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_356d0922eb1dc0407b639915",
@@ -3470,8 +3473,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_1cbefaef88bf196fd3118383",
@@ -3480,8 +3483,8 @@
       "role": "fix",
       "product_group_id": "pg_b1401e31c6ab_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_c182acd3d419e6ba6a18f4f5",
@@ -3490,8 +3493,8 @@
       "role": "fix",
       "product_group_id": "pg_f5753fc361d6_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_27100c0f24beae7f29252f82",
@@ -4220,8 +4223,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_3198559e07f07c0899b2dca6",
@@ -4230,8 +4233,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_611043a7493d37f9b1a674e7",
@@ -4720,8 +4723,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7b8e9bc0d8ddc192e3949e1a",
@@ -4730,8 +4733,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_8e38d7e67f16949d83a11d98",
@@ -4740,8 +4743,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_87a7d4dcc270fa2a49cba397",
@@ -4750,8 +4753,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_cfc4659694a101662dc68d63",
@@ -4760,8 +4763,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_ff61bbc0b22b42711036b47f",
@@ -4770,8 +4773,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7a57c99b9459c118f597cd7a",
@@ -4780,8 +4783,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_80b24a31ab1e77cbc42fb434",
@@ -4790,8 +4793,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_9a93766b996bb9185ffc7c70",
@@ -4800,8 +4803,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b3a0bfcd3c176b5b6abf7427",
@@ -4810,8 +4813,8 @@
       "role": "fix",
       "product_group_id": "pg_d2b1ed6a2f22_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b0177470253bb8ae47dab5a2",
@@ -4820,8 +4823,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_cc0eb9b6f13f8e8e0ddebba9",
@@ -4830,8 +4833,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_65058d660d5028a43a4f9226",
@@ -4840,8 +4843,8 @@
       "role": "fix",
       "product_group_id": "pg_d2b1ed6a2f22_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_40fafdff36c372202f541c20",
@@ -4850,8 +4853,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_33c046c51efbba22b4d790ab",
@@ -4860,8 +4863,8 @@
       "role": "fix",
       "product_group_id": "pg_ebf02bee85fe_1",
       "group_status": "dead_or_merged",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_f8ea5ca07db15185ea64939d",
@@ -4870,8 +4873,8 @@
       "role": "fix",
       "product_group_id": "pg_103979473889_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_92face2223dc5d505cdadd3a",
@@ -4880,8 +4883,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_6b76ea1bb6895793a2f67bb6",
@@ -4890,8 +4893,8 @@
       "role": "fix",
       "product_group_id": "pg_7ffbbf304671_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_dca954bd5df90a3f02e3b626",
@@ -5320,8 +5323,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_b3600b75cc90accd5d75772e",
@@ -5330,8 +5333,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_722fd07bf122e28ee3b8c8e0",
@@ -5340,8 +5343,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_1e4b07ec4f4957535416d1bc",
@@ -5350,8 +5353,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_7285c6182f74712233b1e7d0",
@@ -5360,8 +5363,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_193b1c6376cd7ccd2f402290",
@@ -5370,8 +5373,8 @@
       "role": "fix",
       "product_group_id": "pg_956e30749f31_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_5d6d3ea03a0cebe2608d5e49",
@@ -5380,8 +5383,8 @@
       "role": "fix",
       "product_group_id": "pg_956e30749f31_1",
       "group_status": "published_active_validated",
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_e80350ea16a3d0705db28f84",
@@ -5390,8 +5393,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_29be8f2b741c70964f93090f",
@@ -5400,8 +5403,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_f6929d17db511c2c325fccfa",
@@ -5410,8 +5413,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_fb7ac370645636c38df22c2b",
@@ -5420,8 +5423,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_487439a9cff38d3bed2a4f2b",
@@ -5430,8 +5433,8 @@
       "role": "fix",
       "product_group_id": null,
       "group_status": null,
-      "lane": "support_mapping_pending",
-      "reason": "support/derivative asset needs deterministic version mapping"
+      "lane": "fix_deferred_next_pass",
+      "reason": "fix image intentionally deferred by Or for the next processing pass"
     },
     {
       "asset_id": "asset_aed88d9a2d57b2acb69824f0",

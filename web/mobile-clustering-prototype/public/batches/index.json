@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T07:37:33.996571+00:00",
+  "generated_at": "2026-07-10T07:59:49.483597+00:00",
   "default_batch": "dropbox-2025-03-19-web",
   "batches": [
     {
@@ -187,9 +187,9 @@
       "label": "2025-03-24",
       "source_folder": "2025-03-24/web",
       "source_assets": 2,
-      "reviewable_assets": 2,
-      "review_cards": 2,
-      "auto_accounted": 0,
+      "reviewable_assets": 1,
+      "review_cards": 1,
+      "auto_accounted": 1,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2025-03-24-web"
