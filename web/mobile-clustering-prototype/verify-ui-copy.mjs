@@ -23,7 +23,7 @@ const required = [
   'מה שונה בין התמונות?',
   'design_reference_selection',
   'reference_airtable_product',
-  'האצווה הסתיימה',
+  'הסבב הסתיים',
   'שמירה לשרת',
   'שמירת עבודה',
   'הורדת גיבוי JSON',
@@ -54,6 +54,8 @@ const forbiddenReviewerCopy = [
   'corrected_image_selected',
   'תמונות מתוקנות מהצלם',
   'אלו תמונות מתוקנות מהצלם?',
+  'אצווה',
+  'אצוות',
 ];
 for (const needle of forbiddenReviewerCopy) {
   if (src.includes(needle)) throw new Error(`Reviewer-facing banned copy/state still present: ${needle}`);

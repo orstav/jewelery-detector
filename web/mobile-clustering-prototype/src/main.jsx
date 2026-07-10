@@ -568,8 +568,8 @@ function batchHref(id) {
 function BatchQueue({currentBatchId}) {
   const open = BATCH_INDEX.filter((batch) => batch.reviewable_assets > 0);
   if (!open.length) return null;
-  return <section className="batch-queue panel" aria-label="אצוות תמונות">
-    <div className="batch-queue-head"><div><span>תור האצוות</span><strong>{open.length} תאריכי צילום עם עבודה</strong></div><small>{GLOBAL_COVERAGE.reviewable_web_assets || open.reduce((sum, batch) => sum + batch.reviewable_assets, 0)} תמונות ממתינות לזהות</small></div>
+  return <section className="batch-queue panel" aria-label="תאריכי צילום">
+    <div className="batch-queue-head"><div><span>תאריכי צילום</span><strong>{open.length} תאריכים עם תמונות לבדיקה</strong></div><small>{GLOBAL_COVERAGE.reviewable_web_assets || open.reduce((sum, batch) => sum + batch.reviewable_assets, 0)} תמונות ממתינות לזהות</small></div>
     <div className="batch-list">
       {open.map((batch) => <a className={`batch-row ${batch.batch_id === currentBatchId ? 'active' : ''}`} href={batchHref(batch.batch_id)} key={batch.batch_id}>
         <span><strong>{batch.label}</strong><small>{batch.review_cards} פריטים · {batch.reviewable_assets} תמונות</small></span>
@@ -583,13 +583,13 @@ function StartScreen({taskCount, photoCount, realStats, demoMode, noReviewMode, 
   const batchLabel = SELECTED_BATCH?.label || DATASET_STATS.label || BATCH_ID;
   return <main>
     <section className="hero panel">
-      <div className="eyebrow">{noReviewMode ? 'האצווה הושלמה' : demoMode ? 'אין תמונות פתוחות באצווה' : `אצווה ${batchLabel}`}</div>
+      <div className="eyebrow">{noReviewMode ? 'הסבב הושלם' : demoMode ? 'אין תמונות פתוחות בסבב' : `תמונות מ־${batchLabel}`}</div>
       <h2>סידור תמונות לפי מוצר</h2>
-      <p>{noReviewMode ? 'כל התמונות באצווה כבר קיבלו יעד.' : 'עוברים פריט־פריט. מחליטים אם זה מוצר קיים, מוצר חדש או לא בטוחה; את שאר הפרטים משלימים אחר כך בוואטסאפ.'}</p>
-      <div className="stats-grid"><div><strong>{realStats.expected}</strong><span>תמונות באצווה</span></div><div><strong>{photoCount}</strong><span>לבדיקה עכשיו</span></div><div><strong>{realStats.autoAccounted}</strong><span>כבר נותבו</span></div><div><strong>{realStats.blocked}</strong><span>דורשות הכנה</span></div></div>
+      <p>{noReviewMode ? 'כל התמונות בסבב כבר קיבלו יעד.' : 'עוברים פריט־פריט. מחליטים אם זה מוצר קיים, מוצר חדש או לא בטוחה; את שאר הפרטים משלימים אחר כך בוואטסאפ.'}</p>
+      <div className="stats-grid"><div><strong>{realStats.expected}</strong><span>תמונות בסבב</span></div><div><strong>{photoCount}</strong><span>לבדיקה עכשיו</span></div><div><strong>{realStats.autoAccounted}</strong><span>כבר נותבו</span></div><div><strong>{realStats.blocked}</strong><span>דורשות הכנה</span></div></div>
       <div className="identity-thesis"><strong>המטרה</strong><span>בסיום, לכל תמונה יהיה מוצר, באקט זמני או סימון ברור להמשך.</span></div>
-      {demoMode && !noReviewMode ? <p className="quiet-note important-note">אין באצווה הזו תמונות שממתינות להחלטת זהות. אפשר לבחור אצווה אחרת מהתור.</p> : null}
-      {noReviewMode || demoMode ? null : <button className="btn primary start-btn" onClick={onStart}>התחלת האצווה · {taskCount} פריטים</button>}
+      {demoMode && !noReviewMode ? <p className="quiet-note important-note">אין בסבב הזה תמונות שממתינות להחלטה. אפשר לבחור תאריך אחר.</p> : null}
+      {noReviewMode || demoMode ? null : <button className="btn primary start-btn" onClick={onStart}>התחלת הסבב · {taskCount} פריטים</button>}
       <button className="link-button" onClick={onHelp}>איך עובדים כאן?</button>
     </section>
     <BatchQueue currentBatchId={BATCH_ID} />
@@ -833,7 +833,7 @@ function Summary({decisions, buckets, tasks, sourceAssets, onReset, onEditDecisi
   function downloadPackets() {
     downloadJson(`${BATCH_ID}-identity-packets.json`, packetText);
   }
-  return <main><CompletedDecisionStrip decisions={decisions} onEdit={onEditDecision} /><section className="panel empty-state done-state"><div className="done-icon">✓</div><h2>האצווה הסתיימה</h2><p>כל התמונות באצווה קיבלו החלטה. שמרי לשרת ואז אפשר לעבור לתאריך הבא.</p><div className="summary-grid"><div><strong>{tasks.length}</strong><span>פריטים</span></div><div><strong>{buckets.length}</strong><span>זהויות מוצר</span></div><div><strong>{(counts.new_product_identity || 0) + (counts.same_design_different_product || 0)}</strong><span>חדשים/עיצוב</span></div><div><strong>{whatsappFollowups}</strong><span>המשך וואטסאפ</span></div></div><div className="validation-box"><strong>{bundle.validation.packets.valid && bundle.validation.coverage.valid ? syncStatusLabel(syncStatus) : 'יש חסימות במבנה'}</strong><span>{bundle.validation.coverage.accounted}/{bundle.validation.coverage.expected} תמונות לבדיקה מכוסות</span></div><button className="btn primary" onClick={onSave}>שמירה לשרת</button>{nextBatch ? <a className="btn secondary-choice next-batch-link" href={batchHref(nextBatch.batch_id)}>מעבר לאצווה הבאה · {nextBatch.label}</a> : null}<button className="btn tertiary-choice" onClick={downloadPackets}>הורדת גיבוי JSON</button><button className="btn tertiary-choice" onClick={onReset}>פתיחה מחדש של האצווה</button></section><BatchQueue currentBatchId={BATCH_ID} /></main>;
+  return <main><CompletedDecisionStrip decisions={decisions} onEdit={onEditDecision} /><section className="panel empty-state done-state"><div className="done-icon">✓</div><h2>הסבב הסתיים</h2><p>כל התמונות בסבב קיבלו החלטה. שמרי לשרת ואז אפשר לעבור לתאריך הבא.</p><div className="summary-grid"><div><strong>{tasks.length}</strong><span>פריטים</span></div><div><strong>{buckets.length}</strong><span>זהויות מוצר</span></div><div><strong>{(counts.new_product_identity || 0) + (counts.same_design_different_product || 0)}</strong><span>חדשים/עיצוב</span></div><div><strong>{whatsappFollowups}</strong><span>המשך וואטסאפ</span></div></div><div className="validation-box"><strong>{bundle.validation.packets.valid && bundle.validation.coverage.valid ? syncStatusLabel(syncStatus) : 'יש חסימות במבנה'}</strong><span>{bundle.validation.coverage.accounted}/{bundle.validation.coverage.expected} תמונות לבדיקה מכוסות</span></div><button className="btn primary" onClick={onSave}>שמירה לשרת</button>{nextBatch ? <a className="btn secondary-choice next-batch-link" href={batchHref(nextBatch.batch_id)}>מעבר לתאריך הבא · {nextBatch.label}</a> : null}<button className="btn tertiary-choice" onClick={downloadPackets}>הורדת גיבוי JSON</button><button className="btn tertiary-choice" onClick={onReset}>פתיחה מחדש של הסבב</button></section><BatchQueue currentBatchId={BATCH_ID} /></main>;
 }
 
 function ExportPanel({decisions, buckets, sourceAssets, tasks, onClose, onSave, syncStatus}) {
@@ -944,7 +944,7 @@ function App() {
   }
   function start() { setStarted(true); persist({started: true}); }
   function reset() {
-    if (!window.confirm('לפתוח מחדש את האצווה? כל הבחירות השמורות באצווה הזו יימחקו.')) return;
+    if (!window.confirm('לפתוח מחדש את הסבב? כל הבחירות השמורות בסבב הזה יימחקו.')) return;
     localStorage.removeItem(STORAGE_KEY);
     deleteRemoteState(sessionConfig, BATCH_ID).then((result) => setSyncStatus(result.status || 'local'));
     setStarted(false); setTasks(initialTasks); setDecisions([]); setBuckets([]); setSplitTask(null); setLastDecisionNotice(null); setShowExport(false);
