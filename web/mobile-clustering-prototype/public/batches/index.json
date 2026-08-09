@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T09:00:43.811778+00:00",
+  "generated_at": "2026-08-09T12:20:15.594182+00:00",
   "default_batch": "dropbox-2025-03-19-web",
   "batches": [
     {
@@ -67,9 +67,9 @@
       "label": "2026-05-10",
       "source_folder": "2026-05-10/web",
       "source_assets": 4,
-      "reviewable_assets": 4,
-      "review_cards": 4,
-      "auto_accounted": 0,
+      "reviewable_assets": 2,
+      "review_cards": 2,
+      "auto_accounted": 2,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2026-05-10-web"
@@ -115,9 +115,9 @@
       "label": "2026-01-08",
       "source_folder": "2026-01-08/web",
       "source_assets": 33,
-      "reviewable_assets": 22,
-      "review_cards": 22,
-      "auto_accounted": 11,
+      "reviewable_assets": 13,
+      "review_cards": 13,
+      "auto_accounted": 20,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2026-01-08-web"
@@ -151,9 +151,9 @@
       "label": "2025-12-18",
       "source_folder": "2025-12-18/web",
       "source_assets": 21,
-      "reviewable_assets": 15,
-      "review_cards": 15,
-      "auto_accounted": 6,
+      "reviewable_assets": 10,
+      "review_cards": 10,
+      "auto_accounted": 11,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2025-12-18-web"
@@ -175,11 +175,11 @@
       "label": "2025-08-14",
       "source_folder": "2025-08-14/web",
       "source_assets": 2,
-      "reviewable_assets": 2,
-      "review_cards": 2,
-      "auto_accounted": 0,
+      "reviewable_assets": 0,
+      "review_cards": 0,
+      "auto_accounted": 2,
       "blocked": 0,
-      "complete": false,
+      "complete": true,
       "url": "/?batch=dropbox-2025-08-14-web"
     },
     {
@@ -187,11 +187,11 @@
       "label": "2025-03-24",
       "source_folder": "2025-03-24/web",
       "source_assets": 2,
-      "reviewable_assets": 1,
-      "review_cards": 1,
-      "auto_accounted": 1,
+      "reviewable_assets": 0,
+      "review_cards": 0,
+      "auto_accounted": 2,
       "blocked": 0,
-      "complete": false,
+      "complete": true,
       "url": "/?batch=dropbox-2025-03-24-web"
     },
     {
@@ -199,9 +199,9 @@
       "label": "2025-02-23",
       "source_folder": "2025-02-23/web",
       "source_assets": 3,
-      "reviewable_assets": 3,
-      "review_cards": 3,
-      "auto_accounted": 0,
+      "reviewable_assets": 1,
+      "review_cards": 1,
+      "auto_accounted": 2,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2025-02-23-web"

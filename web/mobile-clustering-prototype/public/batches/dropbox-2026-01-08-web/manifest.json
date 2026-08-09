@@ -74,8 +74,8 @@
       "height": 1500,
       "sha256": "8676cb2569cfd17698eec29750a086eafcfdf77e2ba79c994afab05e24375f92",
       "product_group_id": "pg_repair_efc845499bf2f9db",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_58ad22c456d47c02b3953eb5",
@@ -98,8 +98,8 @@
       "height": 1500,
       "sha256": "702e6e5c887da5394b629647e952e9dd5a1e1b14c4ca057ccb5a31510daf9b25",
       "product_group_id": "pg_repair_e3c3819b533f66e1",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_c9590ca8340f482959475a7c",
@@ -122,8 +122,8 @@
       "height": 1500,
       "sha256": "a2339fef359497866f3686c8b9f2457e80abf388ed42f7d79f3e50b7c35bcffc",
       "product_group_id": "pg_repair_d7287a963226ecb2",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_14b53ba0d026432895fa6d12",
@@ -134,8 +134,8 @@
       "height": 1500,
       "sha256": "39e4dbff95b42b6658bc02b43e5fb27cc5d5d895e6fb340686a93c032db75f17",
       "product_group_id": "pg_repair_eb20020d569aa85a",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_2386da96e6bf2234c7c9c388",
@@ -146,8 +146,8 @@
       "height": 1500,
       "sha256": "f0d3445e49f4960cca19147ca3074cb3bc686570f8622f3e8f75701e10ef60e0",
       "product_group_id": "pg_repair_aae3ad8914c34506",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_185395c0cb070fd8ce6127fb",
@@ -182,8 +182,8 @@
       "height": 1500,
       "sha256": "7b26ae32f2b1f519377c2ac60a3d6e498b23402c5f164c82cc0438ec03bb5fe6",
       "product_group_id": "pg_125b1aad40ce_1",
-      "group_status": "published_active_validated",
-      "coverage_lane": "terminal_closed"
+      "group_status": "ready_for_package",
+      "coverage_lane": "downstream_existing_workflow"
     },
     {
       "asset_id": "asset_6b5a409dc9c29bf02048bd96",
@@ -206,8 +206,8 @@
       "height": 1500,
       "sha256": "35c96382e07544225a647491e9d7e6b6d28f0d40f22165ccf5fb5c014bd47693",
       "product_group_id": "pg_repair_f8478645ae5d8d9f",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_0a224248ced8972e0d0bd306",
@@ -218,8 +218,8 @@
       "height": 1500,
       "sha256": "204de629cb50d851c2139d83b78fbb50fc388109103ef905dd574a225858c3e9",
       "product_group_id": "pg_repair_3b302d23e18ffa5f",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_234325e6a4e84cd563dff1a8",
@@ -338,8 +338,8 @@
       "height": 1500,
       "sha256": "ef102d5f41f23b8a71f0607c95cc9e87c67086110087ba5a414b19aa40fa99e6",
       "product_group_id": "pg_repair_4d34cda570ca6845",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_02aa790e4538d0dd76cf610b",
@@ -398,8 +398,8 @@
       "height": 1500,
       "sha256": "a72c475d7bc63cb11126c0b39023317b2564c2f7b58824d0bf2b7b044f1d4ee7",
       "product_group_id": "pg_repair_e99c60a979bfe3c3",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     }
   ],
   "review_cards": [
@@ -1062,324 +1062,8 @@
     },
     {
       "id": "dropbox-2026-01-08-web-card-006",
-      "sourceRef": "pg_repair_efc845499bf2f9db",
-      "title": "2026-01-08 · פריט 6",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_67e793fcc0bcf4b67c34067a",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-3.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-3.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R021",
-          "name": "גלקסיה",
-          "label": "R021 · גלקסיה",
-          "aliases": [
-            "R021",
-            "גלקסיה",
-            "גלקסיה",
-            "Galaxy",
-            "galaxy",
-            "R021_galaxy_yellow_angled_02.jpg",
-            "r021",
-            "גלקסיה",
-            "galaxy",
-            "galaxy"
-          ],
-          "type": "טבעת",
-          "family": "גלקסיה",
-          "nameHe": "גלקסיה",
-          "nameEn": "Galaxy",
-          "technicalName": "galaxy",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R021",
-            "src": "/real-data/catalog_R021_R021_galaxy_yellow_angled_02.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R021_galaxy_yellow_angled_02.jpg",
-          "productId": "R021",
-          "referenceProductId": "R021",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "0",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R021_galaxy_yellow_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R021",
-          "name": "גלקסיה",
-          "label": "R021 · גלקסיה",
-          "aliases": [
-            "R021",
-            "גלקסיה",
-            "גלקסיה",
-            "Galaxy",
-            "galaxy",
-            "R021_galaxy_yellow_angled_02.jpg",
-            "r021",
-            "גלקסיה",
-            "galaxy",
-            "galaxy"
-          ],
-          "type": "טבעת",
-          "family": "גלקסיה",
-          "nameHe": "גלקסיה",
-          "nameEn": "Galaxy",
-          "technicalName": "galaxy",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R021",
-            "src": "/real-data/catalog_R021_R021_galaxy_yellow_angled_02.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R021_galaxy_yellow_angled_02.jpg",
-          "productId": "R021",
-          "referenceProductId": "R021",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "0",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R021_galaxy_yellow_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R021",
-        "name": "גלקסיה",
-        "label": "R021 · גלקסיה",
-        "aliases": [
-          "R021",
-          "גלקסיה",
-          "גלקסיה",
-          "Galaxy",
-          "galaxy",
-          "R021_galaxy_yellow_angled_02.jpg",
-          "r021",
-          "גלקסיה",
-          "galaxy",
-          "galaxy"
-        ],
-        "type": "טבעת",
-        "family": "גלקסיה",
-        "nameHe": "גלקסיה",
-        "nameEn": "Galaxy",
-        "technicalName": "galaxy",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R021",
-          "src": "/real-data/catalog_R021_R021_galaxy_yellow_angled_02.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R021_galaxy_yellow_angled_02.jpg",
-        "productId": "R021",
-        "referenceProductId": "R021",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "0",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R021_galaxy_yellow_front_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-007",
-      "sourceRef": "pg_repair_e3c3819b533f66e1",
-      "title": "2026-01-08 · פריט 7",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_76fc60f52a19399301c55f76",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-5.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-5.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R031",
-          "name": "טוליפ יהלומים",
-          "label": "R031 · טוליפ יהלומים",
-          "aliases": [
-            "R031",
-            "טוליפ יהלומים",
-            "טוליפ יהלומים",
-            "Diamond Tulip",
-            "diamond tulip diamond",
-            "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "r031",
-            "טוליפ יהלומים",
-            "diamond tulip",
-            "diamond tulip diamond"
-          ],
-          "type": "טבעת",
-          "family": "טוליפ יהלומים",
-          "nameHe": "טוליפ יהלומים",
-          "nameEn": "Diamond Tulip",
-          "technicalName": "diamond tulip diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R031",
-            "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "productId": "R031",
-          "referenceProductId": "R031",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "0",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R031_diamond-tulip_rose_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R031",
-          "name": "טוליפ יהלומים",
-          "label": "R031 · טוליפ יהלומים",
-          "aliases": [
-            "R031",
-            "טוליפ יהלומים",
-            "טוליפ יהלומים",
-            "Diamond Tulip",
-            "diamond tulip diamond",
-            "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "r031",
-            "טוליפ יהלומים",
-            "diamond tulip",
-            "diamond tulip diamond"
-          ],
-          "type": "טבעת",
-          "family": "טוליפ יהלומים",
-          "nameHe": "טוליפ יהלומים",
-          "nameEn": "Diamond Tulip",
-          "technicalName": "diamond tulip diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R031",
-            "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "productId": "R031",
-          "referenceProductId": "R031",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "0",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R031_diamond-tulip_rose_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R031",
-        "name": "טוליפ יהלומים",
-        "label": "R031 · טוליפ יהלומים",
-        "aliases": [
-          "R031",
-          "טוליפ יהלומים",
-          "טוליפ יהלומים",
-          "Diamond Tulip",
-          "diamond tulip diamond",
-          "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "r031",
-          "טוליפ יהלומים",
-          "diamond tulip",
-          "diamond tulip diamond"
-        ],
-        "type": "טבעת",
-        "family": "טוליפ יהלומים",
-        "nameHe": "טוליפ יהלומים",
-        "nameEn": "Diamond Tulip",
-        "technicalName": "diamond tulip diamond",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R031",
-          "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-        "productId": "R031",
-        "referenceProductId": "R031",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "0",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R031_diamond-tulip_rose_front_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-008",
       "sourceRef": "pg_repair_28523abd2d028a0c",
-      "title": "2026-01-08 · פריט 8",
+      "title": "2026-01-08 · פריט 6",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -1535,483 +1219,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-009",
-      "sourceRef": "pg_repair_d7287a963226ecb2",
-      "title": "2026-01-08 · פריט 9",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_493e81b17ecff4f55d9d90a0",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-7.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-7.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R013",
-          "name": "אלישבע L",
-          "label": "R013 · אלישבע L",
-          "aliases": [
-            "R013",
-            "אלישבע L",
-            "אלישבע L",
-            "Elisheva L",
-            "elisheva l diamond",
-            "R013_elisheva-l-diamond_rose_angled_01.jpg",
-            "r013",
-            "אלישבע l",
-            "elisheva l",
-            "elisheva l diamond"
-          ],
-          "type": "טבעת",
-          "family": "אלישבע L",
-          "nameHe": "אלישבע L",
-          "nameEn": "Elisheva L",
-          "technicalName": "elisheva l diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R013",
-            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
-          "productId": "R013",
-          "referenceProductId": "R013",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R013",
-          "name": "אלישבע L",
-          "label": "R013 · אלישבע L",
-          "aliases": [
-            "R013",
-            "אלישבע L",
-            "אלישבע L",
-            "Elisheva L",
-            "elisheva l diamond",
-            "R013_elisheva-l-diamond_rose_angled_01.jpg",
-            "r013",
-            "אלישבע l",
-            "elisheva l",
-            "elisheva l diamond"
-          ],
-          "type": "טבעת",
-          "family": "אלישבע L",
-          "nameHe": "אלישבע L",
-          "nameEn": "Elisheva L",
-          "technicalName": "elisheva l diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R013",
-            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
-          "productId": "R013",
-          "referenceProductId": "R013",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R013",
-        "name": "אלישבע L",
-        "label": "R013 · אלישבע L",
-        "aliases": [
-          "R013",
-          "אלישבע L",
-          "אלישבע L",
-          "Elisheva L",
-          "elisheva l diamond",
-          "R013_elisheva-l-diamond_rose_angled_01.jpg",
-          "r013",
-          "אלישבע l",
-          "elisheva l",
-          "elisheva l diamond"
-        ],
-        "type": "טבעת",
-        "family": "אלישבע L",
-        "nameHe": "אלישבע L",
-        "nameEn": "Elisheva L",
-        "technicalName": "elisheva l diamond",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R013",
-          "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
-        "productId": "R013",
-        "referenceProductId": "R013",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "1",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-010",
-      "sourceRef": "pg_repair_eb20020d569aa85a",
-      "title": "2026-01-08 · פריט 10",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_14b53ba0d026432895fa6d12",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-8.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-8.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R013",
-          "name": "אלישבע L",
-          "label": "R013 · אלישבע L",
-          "aliases": [
-            "R013",
-            "אלישבע L",
-            "אלישבע L",
-            "Elisheva L",
-            "elisheva l diamond",
-            "R013_elisheva-l-diamond_rose_angled_01.jpg",
-            "r013",
-            "אלישבע l",
-            "elisheva l",
-            "elisheva l diamond"
-          ],
-          "type": "טבעת",
-          "family": "אלישבע L",
-          "nameHe": "אלישבע L",
-          "nameEn": "Elisheva L",
-          "technicalName": "elisheva l diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R013",
-            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
-          "productId": "R013",
-          "referenceProductId": "R013",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R013",
-          "name": "אלישבע L",
-          "label": "R013 · אלישבע L",
-          "aliases": [
-            "R013",
-            "אלישבע L",
-            "אלישבע L",
-            "Elisheva L",
-            "elisheva l diamond",
-            "R013_elisheva-l-diamond_rose_angled_01.jpg",
-            "r013",
-            "אלישבע l",
-            "elisheva l",
-            "elisheva l diamond"
-          ],
-          "type": "טבעת",
-          "family": "אלישבע L",
-          "nameHe": "אלישבע L",
-          "nameEn": "Elisheva L",
-          "technicalName": "elisheva l diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R013",
-            "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
-          "productId": "R013",
-          "referenceProductId": "R013",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R013",
-        "name": "אלישבע L",
-        "label": "R013 · אלישבע L",
-        "aliases": [
-          "R013",
-          "אלישבע L",
-          "אלישבע L",
-          "Elisheva L",
-          "elisheva l diamond",
-          "R013_elisheva-l-diamond_rose_angled_01.jpg",
-          "r013",
-          "אלישבע l",
-          "elisheva l",
-          "elisheva l diamond"
-        ],
-        "type": "טבעת",
-        "family": "אלישבע L",
-        "nameHe": "אלישבע L",
-        "nameEn": "Elisheva L",
-        "technicalName": "elisheva l diamond",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R013",
-          "src": "/real-data/catalog_R013_R013_elisheva-l-diamond_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R013_elisheva-l-diamond_rose_angled_01.jpg",
-        "productId": "R013",
-        "referenceProductId": "R013",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "1",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R013_elisheva-l-diamond_rose_front_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-011",
-      "sourceRef": "pg_repair_aae3ad8914c34506",
-      "title": "2026-01-08 · פריט 11",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_2386da96e6bf2234c7c9c388",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-9.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-9.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R012",
-          "name": "אלישבע L",
-          "label": "R012 · אלישבע L",
-          "aliases": [
-            "R012",
-            "אלישבע L",
-            "אלישבע L",
-            "Elisheva L",
-            "R014 elisheva l stack",
-            "R012-R014_elisheva-l_stack_angled_01.jpg",
-            "r012",
-            "אלישבע l",
-            "elisheva l",
-            "r014 elisheva l stack"
-          ],
-          "type": "טבעת",
-          "family": "אלישבע L",
-          "nameHe": "אלישבע L",
-          "nameEn": "Elisheva L",
-          "technicalName": "R014 elisheva l stack",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R012",
-            "src": "/real-data/catalog_R012_R012-R014_elisheva-l_stack_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R012-R014_elisheva-l_stack_angled_01.jpg",
-          "productId": "R012",
-          "referenceProductId": "R012",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R012-R014_elisheva-l_stack_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R012",
-          "name": "אלישבע L",
-          "label": "R012 · אלישבע L",
-          "aliases": [
-            "R012",
-            "אלישבע L",
-            "אלישבע L",
-            "Elisheva L",
-            "R014 elisheva l stack",
-            "R012-R014_elisheva-l_stack_angled_01.jpg",
-            "r012",
-            "אלישבע l",
-            "elisheva l",
-            "r014 elisheva l stack"
-          ],
-          "type": "טבעת",
-          "family": "אלישבע L",
-          "nameHe": "אלישבע L",
-          "nameEn": "Elisheva L",
-          "technicalName": "R014 elisheva l stack",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R012",
-            "src": "/real-data/catalog_R012_R012-R014_elisheva-l_stack_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R012-R014_elisheva-l_stack_angled_01.jpg",
-          "productId": "R012",
-          "referenceProductId": "R012",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R012-R014_elisheva-l_stack_front_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R012",
-        "name": "אלישבע L",
-        "label": "R012 · אלישבע L",
-        "aliases": [
-          "R012",
-          "אלישבע L",
-          "אלישבע L",
-          "Elisheva L",
-          "R014 elisheva l stack",
-          "R012-R014_elisheva-l_stack_angled_01.jpg",
-          "r012",
-          "אלישבע l",
-          "elisheva l",
-          "r014 elisheva l stack"
-        ],
-        "type": "טבעת",
-        "family": "אלישבע L",
-        "nameHe": "אלישבע L",
-        "nameEn": "Elisheva L",
-        "technicalName": "R014 elisheva l stack",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R012",
-          "src": "/real-data/catalog_R012_R012-R014_elisheva-l_stack_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R012-R014_elisheva-l_stack_angled_01.jpg",
-        "productId": "R012",
-        "referenceProductId": "R012",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "2",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R012-R014_elisheva-l_stack_front_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-012",
+      "id": "dropbox-2026-01-08-web-card-007",
       "sourceRef": "pg_repair_b43aa44fb05618e3",
-      "title": "2026-01-08 · פריט 12",
+      "title": "2026-01-08 · פריט 7",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2167,325 +1377,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-013",
-      "sourceRef": "pg_repair_f8478645ae5d8d9f",
-      "title": "2026-01-08 · פריט 13",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_aa392f041f2b246b370e8491",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-14.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-14.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R031",
-          "name": "טוליפ יהלומים",
-          "label": "R031 · טוליפ יהלומים",
-          "aliases": [
-            "R031",
-            "טוליפ יהלומים",
-            "טוליפ יהלומים",
-            "Diamond Tulip",
-            "diamond tulip diamond",
-            "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "r031",
-            "טוליפ יהלומים",
-            "diamond tulip",
-            "diamond tulip diamond"
-          ],
-          "type": "טבעת",
-          "family": "טוליפ יהלומים",
-          "nameHe": "טוליפ יהלומים",
-          "nameEn": "Diamond Tulip",
-          "technicalName": "diamond tulip diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R031",
-            "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "productId": "R031",
-          "referenceProductId": "R031",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R031",
-          "name": "טוליפ יהלומים",
-          "label": "R031 · טוליפ יהלומים",
-          "aliases": [
-            "R031",
-            "טוליפ יהלומים",
-            "טוליפ יהלומים",
-            "Diamond Tulip",
-            "diamond tulip diamond",
-            "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "r031",
-            "טוליפ יהלומים",
-            "diamond tulip",
-            "diamond tulip diamond"
-          ],
-          "type": "טבעת",
-          "family": "טוליפ יהלומים",
-          "nameHe": "טוליפ יהלומים",
-          "nameEn": "Diamond Tulip",
-          "technicalName": "diamond tulip diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R031",
-            "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "productId": "R031",
-          "referenceProductId": "R031",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R031",
-        "name": "טוליפ יהלומים",
-        "label": "R031 · טוליפ יהלומים",
-        "aliases": [
-          "R031",
-          "טוליפ יהלומים",
-          "טוליפ יהלומים",
-          "Diamond Tulip",
-          "diamond tulip diamond",
-          "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "r031",
-          "טוליפ יהלומים",
-          "diamond tulip",
-          "diamond tulip diamond"
-        ],
-        "type": "טבעת",
-        "family": "טוליפ יהלומים",
-        "nameHe": "טוליפ יהלומים",
-        "nameEn": "Diamond Tulip",
-        "technicalName": "diamond tulip diamond",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R031",
-          "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-        "productId": "R031",
-        "referenceProductId": "R031",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "1",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-014",
-      "sourceRef": "pg_repair_3b302d23e18ffa5f",
-      "title": "2026-01-08 · פריט 14",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_0a224248ced8972e0d0bd306",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-15.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-15.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R031",
-          "name": "טוליפ יהלומים",
-          "label": "R031 · טוליפ יהלומים",
-          "aliases": [
-            "R031",
-            "טוליפ יהלומים",
-            "טוליפ יהלומים",
-            "Diamond Tulip",
-            "diamond tulip diamond",
-            "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "r031",
-            "טוליפ יהלומים",
-            "diamond tulip",
-            "diamond tulip diamond"
-          ],
-          "type": "טבעת",
-          "family": "טוליפ יהלומים",
-          "nameHe": "טוליפ יהלומים",
-          "nameEn": "Diamond Tulip",
-          "technicalName": "diamond tulip diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R031",
-            "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "productId": "R031",
-          "referenceProductId": "R031",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R031",
-          "name": "טוליפ יהלומים",
-          "label": "R031 · טוליפ יהלומים",
-          "aliases": [
-            "R031",
-            "טוליפ יהלומים",
-            "טוליפ יהלומים",
-            "Diamond Tulip",
-            "diamond tulip diamond",
-            "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "r031",
-            "טוליפ יהלומים",
-            "diamond tulip",
-            "diamond tulip diamond"
-          ],
-          "type": "טבעת",
-          "family": "טוליפ יהלומים",
-          "nameHe": "טוליפ יהלומים",
-          "nameEn": "Diamond Tulip",
-          "technicalName": "diamond tulip diamond",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R031",
-            "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "productId": "R031",
-          "referenceProductId": "R031",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R031",
-        "name": "טוליפ יהלומים",
-        "label": "R031 · טוליפ יהלומים",
-        "aliases": [
-          "R031",
-          "טוליפ יהלומים",
-          "טוליפ יהלומים",
-          "Diamond Tulip",
-          "diamond tulip diamond",
-          "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "r031",
-          "טוליפ יהלומים",
-          "diamond tulip",
-          "diamond tulip diamond"
-        ],
-        "type": "טבעת",
-        "family": "טוליפ יהלומים",
-        "nameHe": "טוליפ יהלומים",
-        "nameEn": "Diamond Tulip",
-        "technicalName": "diamond tulip diamond",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R031",
-          "src": "/real-data/catalog_R031_R031_diamond-tulip_diamond_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-        "productId": "R031",
-        "referenceProductId": "R031",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "2",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R031_diamond-tulip_diamond_rose_angled_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-015",
+      "id": "dropbox-2026-01-08-web-card-008",
       "sourceRef": "pg_repair_deaeb08bb9bcfc06",
-      "title": "2026-01-08 · פריט 15",
+      "title": "2026-01-08 · פריט 8",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2641,9 +1535,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-016",
+      "id": "dropbox-2026-01-08-web-card-009",
       "sourceRef": "pg_repair_f559e61c3e1fe2ec",
-      "title": "2026-01-08 · פריט 16",
+      "title": "2026-01-08 · פריט 9",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2799,9 +1693,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-017",
+      "id": "dropbox-2026-01-08-web-card-010",
       "sourceRef": "pg_repair_9cd55a13c54f3a10",
-      "title": "2026-01-08 · פריט 17",
+      "title": "2026-01-08 · פריט 10",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2957,167 +1851,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-018",
-      "sourceRef": "pg_repair_4d34cda570ca6845",
-      "title": "2026-01-08 · פריט 18",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_78b8cc83cc177d07d1fbeca4",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251214-web_res_1500-25.jpg",
-          "sourcePath": "2026-01-08/web/20251214-web res 1500-25.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "N088",
-          "name": "טוסקנה",
-          "label": "N088 · טוסקנה",
-          "aliases": [
-            "N088",
-            "טוסקנה",
-            "טוסקנה",
-            "Tuscany Necklace",
-            "mantle",
-            "N088_mantle_yellow_angled_01.jpg",
-            "n088",
-            "טוסקנה",
-            "tuscany necklace",
-            "mantle"
-          ],
-          "type": "שרשרת",
-          "family": "טוסקנה",
-          "nameHe": "טוסקנה",
-          "nameEn": "Tuscany Necklace",
-          "technicalName": "mantle",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N088",
-            "src": "/real-data/catalog_N088_N088_mantle_yellow_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N088_mantle_yellow_angled_01.jpg",
-          "productId": "N088",
-          "referenceProductId": "N088",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "3",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "N088_mantle_yellow_front_02.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "N088",
-          "name": "טוסקנה",
-          "label": "N088 · טוסקנה",
-          "aliases": [
-            "N088",
-            "טוסקנה",
-            "טוסקנה",
-            "Tuscany Necklace",
-            "mantle",
-            "N088_mantle_yellow_angled_01.jpg",
-            "n088",
-            "טוסקנה",
-            "tuscany necklace",
-            "mantle"
-          ],
-          "type": "שרשרת",
-          "family": "טוסקנה",
-          "nameHe": "טוסקנה",
-          "nameEn": "Tuscany Necklace",
-          "technicalName": "mantle",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N088",
-            "src": "/real-data/catalog_N088_N088_mantle_yellow_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N088_mantle_yellow_angled_01.jpg",
-          "productId": "N088",
-          "referenceProductId": "N088",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "3",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "N088_mantle_yellow_front_02.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "N088",
-        "name": "טוסקנה",
-        "label": "N088 · טוסקנה",
-        "aliases": [
-          "N088",
-          "טוסקנה",
-          "טוסקנה",
-          "Tuscany Necklace",
-          "mantle",
-          "N088_mantle_yellow_angled_01.jpg",
-          "n088",
-          "טוסקנה",
-          "tuscany necklace",
-          "mantle"
-        ],
-        "type": "שרשרת",
-        "family": "טוסקנה",
-        "nameHe": "טוסקנה",
-        "nameEn": "Tuscany Necklace",
-        "technicalName": "mantle",
-        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-N088",
-          "src": "/real-data/catalog_N088_N088_mantle_yellow_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N088_mantle_yellow_angled_01.jpg",
-        "productId": "N088",
-        "referenceProductId": "N088",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "3",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "N088_mantle_yellow_front_02.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-019",
+      "id": "dropbox-2026-01-08-web-card-011",
       "sourceRef": "pg_repair_44bc67ccf37dc372",
-      "title": "2026-01-08 · פריט 19",
+      "title": "2026-01-08 · פריט 11",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -3273,9 +2009,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-020",
+      "id": "dropbox-2026-01-08-web-card-012",
       "sourceRef": "pg_repair_2803749354fa0d69",
-      "title": "2026-01-08 · פריט 20",
+      "title": "2026-01-08 · פריט 12",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -3431,9 +2167,9 @@
       }
     },
     {
-      "id": "dropbox-2026-01-08-web-card-021",
+      "id": "dropbox-2026-01-08-web-card-013",
       "sourceRef": "pg_repair_d9d7fb9b002b6156",
-      "title": "2026-01-08 · פריט 21",
+      "title": "2026-01-08 · פריט 13",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -3587,164 +2323,6 @@
           "manualConfirmationRequired": true
         }
       }
-    },
-    {
-      "id": "dropbox-2026-01-08-web-card-022",
-      "sourceRef": "pg_repair_e99c60a979bfe3c3",
-      "title": "2026-01-08 · פריט 22",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_b16f2be9b5d1981d82591885",
-          "src": "/batches/dropbox-2026-01-08-web/src_20251228-web_res_1500.jpg",
-          "sourcePath": "2026-01-08/web/20251228-web res 1500.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "N081",
-          "name": "נגב 5",
-          "label": "N081 · נגב 5",
-          "aliases": [
-            "N081",
-            "נגב 5",
-            "נגב 5",
-            "Negev 5",
-            "negev 5",
-            "N081_negev-5_rose_front_01.jpg",
-            "n081",
-            "נגב 5",
-            "negev 5",
-            "negev 5"
-          ],
-          "type": "שרשרת",
-          "family": "נגב 5",
-          "nameHe": "נגב 5",
-          "nameEn": "Negev 5",
-          "technicalName": "negev 5",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N081",
-            "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N081_negev-5_rose_front_01.jpg",
-          "productId": "N081",
-          "referenceProductId": "N081",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "negev 5 yellow gold crop.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "N081",
-          "name": "נגב 5",
-          "label": "N081 · נגב 5",
-          "aliases": [
-            "N081",
-            "נגב 5",
-            "נגב 5",
-            "Negev 5",
-            "negev 5",
-            "N081_negev-5_rose_front_01.jpg",
-            "n081",
-            "נגב 5",
-            "negev 5",
-            "negev 5"
-          ],
-          "type": "שרשרת",
-          "family": "נגב 5",
-          "nameHe": "נגב 5",
-          "nameEn": "Negev 5",
-          "technicalName": "negev 5",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N081",
-            "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N081_negev-5_rose_front_01.jpg",
-          "productId": "N081",
-          "referenceProductId": "N081",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "negev 5 yellow gold crop.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "N081",
-        "name": "נגב 5",
-        "label": "N081 · נגב 5",
-        "aliases": [
-          "N081",
-          "נגב 5",
-          "נגב 5",
-          "Negev 5",
-          "negev 5",
-          "N081_negev-5_rose_front_01.jpg",
-          "n081",
-          "נגב 5",
-          "negev 5",
-          "negev 5"
-        ],
-        "type": "שרשרת",
-        "family": "נגב 5",
-        "nameHe": "נגב 5",
-        "nameEn": "Negev 5",
-        "technicalName": "negev 5",
-        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-N081",
-          "src": "/real-data/catalog_N081_N081_negev-5_rose_front_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N081_negev-5_rose_front_01.jpg",
-        "productId": "N081",
-        "referenceProductId": "N081",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "1",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "negev 5 yellow gold crop.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
     }
   ],
   "auto_accounted_assets": [
@@ -3763,6 +2341,18 @@
     {
       "asset_id": "asset_3c2dca43c03f7384136d0b65",
       "source_path": "2026-01-08/web/20251214-web res 1500-12.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "ready_for_package"
+    },
+    {
+      "asset_id": "asset_aa392f041f2b246b370e8491",
+      "source_path": "2026-01-08/web/20251214-web res 1500-14.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_0a224248ced8972e0d0bd306",
+      "source_path": "2026-01-08/web/20251214-web res 1500-15.jpg",
       "lane": "terminal_closed",
       "reason": "published_active_validated"
     },
@@ -3803,14 +2393,56 @@
       "reason": "published_active_validated"
     },
     {
+      "asset_id": "asset_78b8cc83cc177d07d1fbeca4",
+      "source_path": "2026-01-08/web/20251214-web res 1500-25.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_67e793fcc0bcf4b67c34067a",
+      "source_path": "2026-01-08/web/20251214-web res 1500-3.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
       "asset_id": "asset_58ad22c456d47c02b3953eb5",
       "source_path": "2026-01-08/web/20251214-web res 1500-4.jpg",
       "lane": "terminal_closed",
       "reason": "dead_or_merged"
     },
     {
+      "asset_id": "asset_76fc60f52a19399301c55f76",
+      "source_path": "2026-01-08/web/20251214-web res 1500-5.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_493e81b17ecff4f55d9d90a0",
+      "source_path": "2026-01-08/web/20251214-web res 1500-7.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_14b53ba0d026432895fa6d12",
+      "source_path": "2026-01-08/web/20251214-web res 1500-8.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_2386da96e6bf2234c7c9c388",
+      "source_path": "2026-01-08/web/20251214-web res 1500-9.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
       "asset_id": "asset_d6d10d575c6af41f94cad986",
       "source_path": "2026-01-08/web/20251228-web res 1500-2.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_b16f2be9b5d1981d82591885",
+      "source_path": "2026-01-08/web/20251228-web res 1500.jpg",
       "lane": "terminal_closed",
       "reason": "published_active_validated"
     }
@@ -3819,14 +2451,14 @@
   "coverage": {
     "expected": 33,
     "seen": 33,
-    "reviewable": 22,
-    "review_cards": 22,
-    "auto_accounted": 11,
+    "reviewable": 13,
+    "review_cards": 13,
+    "auto_accounted": 20,
     "blocked": 0,
     "lane_counts": {
-      "dalia_identity_review": 22,
-      "downstream_existing_workflow": 2,
-      "terminal_closed": 9
+      "dalia_identity_review": 13,
+      "downstream_existing_workflow": 3,
+      "terminal_closed": 17
     }
   },
   "detector": {
@@ -3836,9 +2468,9 @@
   },
   "historical_prefilter": {
     "source": "dropbox_queue_drive_shopify_validation",
-    "cards_with_catalog_suggestion": 21,
+    "cards_with_catalog_suggestion": 12,
     "manual_confirmation_required": true
   },
-  "generated_at": "2026-07-10T09:00:43.770520+00:00",
+  "generated_at": "2026-08-09T12:20:15.547695+00:00",
   "no_live_writes": true
 }

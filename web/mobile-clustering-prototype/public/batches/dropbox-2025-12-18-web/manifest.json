@@ -14,8 +14,8 @@
       "height": 1500,
       "sha256": "dc073a388791bf00bea6c2d48457c05994af1f406b75a6640d47d76f8f93a47d",
       "product_group_id": "pg_repair_f9b347c26008a8fd",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_fa976d638f4d47d50bdde0ac",
@@ -38,8 +38,8 @@
       "height": 1500,
       "sha256": "0c9b0bc042b2956749428e07a471904f3dfa0f0e35d2af6c43203cf2d5a55199",
       "product_group_id": "pg_repair_330cbfe44778b787",
-      "group_status": "dropbox_likely_existing_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_288c8d3f25afda7fb631c170",
@@ -110,8 +110,8 @@
       "height": 1500,
       "sha256": "4c908ff746494dcd82adf4e58ea17e17d94b0e103bfa59fd2b976e36b9b0b445",
       "product_group_id": "pg_repair_afb5e619a2be3a59",
-      "group_status": "dropbox_likely_existing_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_36901814b1bf012a185f8dcc",
@@ -134,8 +134,8 @@
       "height": 1500,
       "sha256": "414f041d80216f63b502fa094945ed9e4100d3900482c90dde4e28b916636811",
       "product_group_id": "pg_repair_22262014a251bc1e",
-      "group_status": "dropbox_likely_existing_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_2148baca9b0f81d6d1b2e1e7",
@@ -158,8 +158,8 @@
       "height": 1500,
       "sha256": "f78b2db9e4d77a269407c0cc4ce0484a58503fc32ebb73e700bb157cc2c52ddd",
       "product_group_id": "pg_3f933490bc7a_1",
-      "group_status": "published_active_validated",
-      "coverage_lane": "terminal_closed"
+      "group_status": "ready_for_package",
+      "coverage_lane": "downstream_existing_workflow"
     },
     {
       "asset_id": "asset_c7047fdf5b0b654ce77fe877",
@@ -170,8 +170,8 @@
       "height": 1500,
       "sha256": "bc37d20e05015735b5965f3f4937ecf4c8bdc3080d7c4077802dc62f6d232ad0",
       "product_group_id": "pg_3f933490bc7a_1",
-      "group_status": "published_active_validated",
-      "coverage_lane": "terminal_closed"
+      "group_status": "ready_for_package",
+      "coverage_lane": "downstream_existing_workflow"
     },
     {
       "asset_id": "asset_90b6626f1ec8943cf81f9609",
@@ -206,8 +206,8 @@
       "height": 1500,
       "sha256": "a29780d9e43e2cc51b9a1d8285ff758ce89081f23e5f3939a972c6b271ced69f",
       "product_group_id": "pg_repair_0ccbbfa2fa90f61e",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_f87acf1031b7629f98997e6a",
@@ -261,157 +261,8 @@
   "review_cards": [
     {
       "id": "dropbox-2025-12-18-web-card-001",
-      "sourceRef": "pg_repair_f9b347c26008a8fd",
-      "title": "2025-12-18 · פריט 1",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_2389999159c037c7af0f9b94",
-          "src": "/batches/dropbox-2025-12-18-web/src_20251209-web_res_1500-2.jpg",
-          "sourcePath": "2025-12-18/web/20251209-web res 1500-2.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "E158",
-          "name": "עגילי גרנטה מלכותית",
-          "label": "E158 · עגילי גרנטה מלכותית",
-          "aliases": [
-            "E158",
-            "עגילי גרנטה מלכותית",
-            "עגילי גרנטה מלכותית",
-            "Royal Granetta Earrings",
-            "N071 E158 royal granetta set",
-            "N071-E158_royal-granetta_yellow_set_front.jpg",
-            "e158",
-            "עגילי גרנטה מלכותית",
-            "royal granetta earrings",
-            "n071 e158 royal granetta set"
-          ],
-          "type": "עגילים",
-          "family": "עגילי גרנטה מלכותית",
-          "nameHe": "עגילי גרנטה מלכותית",
-          "nameEn": "Royal Granetta Earrings",
-          "technicalName": "N071 E158 royal granetta set",
-          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
-          "image": null,
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N071-E158_royal-granetta_yellow_set_front.jpg",
-          "productId": "E158",
-          "referenceProductId": "E158",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "N071-N184_royal-granetta_yellow_set_front.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "E158",
-          "name": "עגילי גרנטה מלכותית",
-          "label": "E158 · עגילי גרנטה מלכותית",
-          "aliases": [
-            "E158",
-            "עגילי גרנטה מלכותית",
-            "עגילי גרנטה מלכותית",
-            "Royal Granetta Earrings",
-            "N071 E158 royal granetta set",
-            "N071-E158_royal-granetta_yellow_set_front.jpg",
-            "e158",
-            "עגילי גרנטה מלכותית",
-            "royal granetta earrings",
-            "n071 e158 royal granetta set"
-          ],
-          "type": "עגילים",
-          "family": "עגילי גרנטה מלכותית",
-          "nameHe": "עגילי גרנטה מלכותית",
-          "nameEn": "Royal Granetta Earrings",
-          "technicalName": "N071 E158 royal granetta set",
-          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
-          "image": null,
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N071-E158_royal-granetta_yellow_set_front.jpg",
-          "productId": "E158",
-          "referenceProductId": "E158",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "1",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "N071-N184_royal-granetta_yellow_set_front.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "E158",
-        "name": "עגילי גרנטה מלכותית",
-        "label": "E158 · עגילי גרנטה מלכותית",
-        "aliases": [
-          "E158",
-          "עגילי גרנטה מלכותית",
-          "עגילי גרנטה מלכותית",
-          "Royal Granetta Earrings",
-          "N071 E158 royal granetta set",
-          "N071-E158_royal-granetta_yellow_set_front.jpg",
-          "e158",
-          "עגילי גרנטה מלכותית",
-          "royal granetta earrings",
-          "n071 e158 royal granetta set"
-        ],
-        "type": "עגילים",
-        "family": "עגילי גרנטה מלכותית",
-        "nameHe": "עגילי גרנטה מלכותית",
-        "nameEn": "Royal Granetta Earrings",
-        "technicalName": "N071 E158 royal granetta set",
-        "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
-        "image": null,
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N071-E158_royal-granetta_yellow_set_front.jpg",
-        "productId": "E158",
-        "referenceProductId": "E158",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "1",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "N071-N184_royal-granetta_yellow_set_front.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-12-18-web-card-002",
       "sourceRef": "pg_repair_a06d94dea58b0123",
-      "title": "2025-12-18 · פריט 2",
+      "title": "2025-12-18 · פריט 1",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -567,167 +418,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-003",
-      "sourceRef": "pg_repair_330cbfe44778b787",
-      "title": "2025-12-18 · פריט 3",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזה מוצר שכבר קיים. הגלאי מציע כיוון בלבד ודליה מאשרת לפי התמונות.",
-      "rawStatus": "dropbox_likely_existing_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_ee6cd02170419fea3f288af6",
-          "src": "/batches/dropbox-2025-12-18-web/src_20251209-web_res_1500-4.jpg",
-          "sourcePath": "2025-12-18/web/20251209-web res 1500-4.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "N079",
-          "name": "מרקש",
-          "label": "N079 · מרקש",
-          "aliases": [
-            "N079",
-            "מרקש",
-            "מרקש",
-            "Marrakesh",
-            "marrakesh",
-            "N079_marrakesh_rose_angled_01.jpg",
-            "n079",
-            "מרקש",
-            "marrakesh",
-            "marrakesh"
-          ],
-          "type": "שרשרת",
-          "family": "מרקש",
-          "nameHe": "מרקש",
-          "nameEn": "Marrakesh",
-          "technicalName": "marrakesh",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N079",
-            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N079_marrakesh_rose_angled_01.jpg",
-          "productId": "N079",
-          "referenceProductId": "N079",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-            "matchedDriveImage": "20230202-web-res-1500-59.png",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "N079",
-          "name": "מרקש",
-          "label": "N079 · מרקש",
-          "aliases": [
-            "N079",
-            "מרקש",
-            "מרקש",
-            "Marrakesh",
-            "marrakesh",
-            "N079_marrakesh_rose_angled_01.jpg",
-            "n079",
-            "מרקש",
-            "marrakesh",
-            "marrakesh"
-          ],
-          "type": "שרשרת",
-          "family": "מרקש",
-          "nameHe": "מרקש",
-          "nameEn": "Marrakesh",
-          "technicalName": "marrakesh",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N079",
-            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N079_marrakesh_rose_angled_01.jpg",
-          "productId": "N079",
-          "referenceProductId": "N079",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-            "matchedDriveImage": "20230202-web-res-1500-59.png",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "N079",
-        "name": "מרקש",
-        "label": "N079 · מרקש",
-        "aliases": [
-          "N079",
-          "מרקש",
-          "מרקש",
-          "Marrakesh",
-          "marrakesh",
-          "N079_marrakesh_rose_angled_01.jpg",
-          "n079",
-          "מרקש",
-          "marrakesh",
-          "marrakesh"
-        ],
-        "type": "שרשרת",
-        "family": "מרקש",
-        "nameHe": "מרקש",
-        "nameEn": "Marrakesh",
-        "technicalName": "marrakesh",
-        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-N079",
-          "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N079_marrakesh_rose_angled_01.jpg",
-        "productId": "N079",
-        "referenceProductId": "N079",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "2",
-          "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-          "matchedDriveImage": "20230202-web-res-1500-59.png",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-12-18-web-card-004",
+      "id": "dropbox-2025-12-18-web-card-002",
       "sourceRef": "pg_repair_e5335d1027be61e8",
-      "title": "2025-12-18 · פריט 4",
+      "title": "2025-12-18 · פריט 2",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -883,9 +576,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-005",
+      "id": "dropbox-2025-12-18-web-card-003",
       "sourceRef": "pg_repair_c369428985f215c4",
-      "title": "2025-12-18 · פריט 5",
+      "title": "2025-12-18 · פריט 3",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -908,167 +601,9 @@
       "existingCandidate": null
     },
     {
-      "id": "dropbox-2025-12-18-web-card-006",
-      "sourceRef": "pg_repair_afb5e619a2be3a59",
-      "title": "2025-12-18 · פריט 6",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזה מוצר שכבר קיים. הגלאי מציע כיוון בלבד ודליה מאשרת לפי התמונות.",
-      "rawStatus": "dropbox_likely_existing_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_9f81934fc14e9afdfaf0c005",
-          "src": "/batches/dropbox-2025-12-18-web/src_20251209-web_res_1500-10.jpg",
-          "sourcePath": "2025-12-18/web/20251209-web res 1500-10.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "N079",
-          "name": "מרקש",
-          "label": "N079 · מרקש",
-          "aliases": [
-            "N079",
-            "מרקש",
-            "מרקש",
-            "Marrakesh",
-            "marrakesh",
-            "N079_marrakesh_rose_angled_01.jpg",
-            "n079",
-            "מרקש",
-            "marrakesh",
-            "marrakesh"
-          ],
-          "type": "שרשרת",
-          "family": "מרקש",
-          "nameHe": "מרקש",
-          "nameEn": "Marrakesh",
-          "technicalName": "marrakesh",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N079",
-            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N079_marrakesh_rose_angled_01.jpg",
-          "productId": "N079",
-          "referenceProductId": "N079",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "possible_phash_le8",
-            "driveDistance": "5",
-            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-            "matchedDriveImage": "N079_marrakesh_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "N079",
-          "name": "מרקש",
-          "label": "N079 · מרקש",
-          "aliases": [
-            "N079",
-            "מרקש",
-            "מרקש",
-            "Marrakesh",
-            "marrakesh",
-            "N079_marrakesh_rose_angled_01.jpg",
-            "n079",
-            "מרקש",
-            "marrakesh",
-            "marrakesh"
-          ],
-          "type": "שרשרת",
-          "family": "מרקש",
-          "nameHe": "מרקש",
-          "nameEn": "Marrakesh",
-          "technicalName": "marrakesh",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N079",
-            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N079_marrakesh_rose_angled_01.jpg",
-          "productId": "N079",
-          "referenceProductId": "N079",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "possible_phash_le8",
-            "driveDistance": "5",
-            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-            "matchedDriveImage": "N079_marrakesh_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "N079",
-        "name": "מרקש",
-        "label": "N079 · מרקש",
-        "aliases": [
-          "N079",
-          "מרקש",
-          "מרקש",
-          "Marrakesh",
-          "marrakesh",
-          "N079_marrakesh_rose_angled_01.jpg",
-          "n079",
-          "מרקש",
-          "marrakesh",
-          "marrakesh"
-        ],
-        "type": "שרשרת",
-        "family": "מרקש",
-        "nameHe": "מרקש",
-        "nameEn": "Marrakesh",
-        "technicalName": "marrakesh",
-        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-N079",
-          "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N079_marrakesh_rose_angled_01.jpg",
-        "productId": "N079",
-        "referenceProductId": "N079",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "possible_phash_le8",
-          "driveDistance": "5",
-          "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-          "matchedDriveImage": "N079_marrakesh_rose_angled_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-12-18-web-card-007",
+      "id": "dropbox-2025-12-18-web-card-004",
       "sourceRef": "pg_repair_438e98a29f437f24",
-      "title": "2025-12-18 · פריט 7",
+      "title": "2025-12-18 · פריט 4",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -1224,167 +759,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-008",
-      "sourceRef": "pg_repair_22262014a251bc1e",
-      "title": "2025-12-18 · פריט 8",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזה מוצר שכבר קיים. הגלאי מציע כיוון בלבד ודליה מאשרת לפי התמונות.",
-      "rawStatus": "dropbox_likely_existing_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_fb136564f0419e35d5fb7992",
-          "src": "/batches/dropbox-2025-12-18-web/src_20251209-web_res_1500-12.jpg",
-          "sourcePath": "2025-12-18/web/20251209-web res 1500-12.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "N079",
-          "name": "מרקש",
-          "label": "N079 · מרקש",
-          "aliases": [
-            "N079",
-            "מרקש",
-            "מרקש",
-            "Marrakesh",
-            "marrakesh",
-            "N079_marrakesh_rose_angled_01.jpg",
-            "n079",
-            "מרקש",
-            "marrakesh",
-            "marrakesh"
-          ],
-          "type": "שרשרת",
-          "family": "מרקש",
-          "nameHe": "מרקש",
-          "nameEn": "Marrakesh",
-          "technicalName": "marrakesh",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N079",
-            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N079_marrakesh_rose_angled_01.jpg",
-          "productId": "N079",
-          "referenceProductId": "N079",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "4",
-            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-            "matchedDriveImage": "N079_marrakesh_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "N079",
-          "name": "מרקש",
-          "label": "N079 · מרקש",
-          "aliases": [
-            "N079",
-            "מרקש",
-            "מרקש",
-            "Marrakesh",
-            "marrakesh",
-            "N079_marrakesh_rose_angled_01.jpg",
-            "n079",
-            "מרקש",
-            "marrakesh",
-            "marrakesh"
-          ],
-          "type": "שרשרת",
-          "family": "מרקש",
-          "nameHe": "מרקש",
-          "nameEn": "Marrakesh",
-          "technicalName": "marrakesh",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N079",
-            "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N079_marrakesh_rose_angled_01.jpg",
-          "productId": "N079",
-          "referenceProductId": "N079",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "4",
-            "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-            "matchedDriveImage": "N079_marrakesh_rose_angled_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "N079",
-        "name": "מרקש",
-        "label": "N079 · מרקש",
-        "aliases": [
-          "N079",
-          "מרקש",
-          "מרקש",
-          "Marrakesh",
-          "marrakesh",
-          "N079_marrakesh_rose_angled_01.jpg",
-          "n079",
-          "מרקש",
-          "marrakesh",
-          "marrakesh"
-        ],
-        "type": "שרשרת",
-        "family": "מרקש",
-        "nameHe": "מרקש",
-        "nameEn": "Marrakesh",
-        "technicalName": "marrakesh",
-        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-N079",
-          "src": "/real-data/catalog_N079_N079_marrakesh_rose_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N079_marrakesh_rose_angled_01.jpg",
-        "productId": "N079",
-        "referenceProductId": "N079",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "4",
-          "reducedQueueClass": "likely_already_cataloged_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_and_website_before_new_work",
-          "matchedDriveImage": "N079_marrakesh_rose_angled_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-12-18-web-card-009",
+      "id": "dropbox-2025-12-18-web-card-005",
       "sourceRef": "pg_repair_55f5f744b0e65164",
-      "title": "2025-12-18 · פריט 9",
+      "title": "2025-12-18 · פריט 5",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -1531,9 +908,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-010",
+      "id": "dropbox-2025-12-18-web-card-006",
       "sourceRef": "pg_repair_c680b849e24b1eb7",
-      "title": "2025-12-18 · פריט 10",
+      "title": "2025-12-18 · פריט 6",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -1689,9 +1066,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-011",
+      "id": "dropbox-2025-12-18-web-card-007",
       "sourceRef": "pg_repair_7f505419034caf67",
-      "title": "2025-12-18 · פריט 11",
+      "title": "2025-12-18 · פריט 7",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -1847,167 +1224,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-012",
-      "sourceRef": "pg_repair_0ccbbfa2fa90f61e",
-      "title": "2025-12-18 · פריט 12",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_dca7ecf3e662d9a0a6c3e4ec",
-          "src": "/batches/dropbox-2025-12-18-web/src_20251209-web_res_1500-18.jpg",
-          "sourcePath": "2025-12-18/web/20251209-web res 1500-18.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "N080",
-          "name": "נגב 1",
-          "label": "N080 · נגב 1",
-          "aliases": [
-            "N080",
-            "נגב 1",
-            "נגב 1",
-            "Negev 1",
-            "negev 1",
-            "N080_negev-1_rose_front_01.jpg",
-            "n080",
-            "נגב 1",
-            "negev 1",
-            "negev 1"
-          ],
-          "type": "שרשרת",
-          "family": "נגב 1",
-          "nameHe": "נגב 1",
-          "nameEn": "Negev 1",
-          "technicalName": "negev 1",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N080",
-            "src": "/real-data/catalog_N080_N080_negev-1_rose_front_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N080_negev-1_rose_front_01.jpg",
-          "productId": "N080",
-          "referenceProductId": "N080",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "possible_phash_le8",
-            "driveDistance": "6",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "N080_negev-1_yellow_front_02.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "N080",
-          "name": "נגב 1",
-          "label": "N080 · נגב 1",
-          "aliases": [
-            "N080",
-            "נגב 1",
-            "נגב 1",
-            "Negev 1",
-            "negev 1",
-            "N080_negev-1_rose_front_01.jpg",
-            "n080",
-            "נגב 1",
-            "negev 1",
-            "negev 1"
-          ],
-          "type": "שרשרת",
-          "family": "נגב 1",
-          "nameHe": "נגב 1",
-          "nameEn": "Negev 1",
-          "technicalName": "negev 1",
-          "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-N080",
-            "src": "/real-data/catalog_N080_N080_negev-1_rose_front_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "N080_negev-1_rose_front_01.jpg",
-          "productId": "N080",
-          "referenceProductId": "N080",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "possible_phash_le8",
-            "driveDistance": "6",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "N080_negev-1_yellow_front_02.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "N080",
-        "name": "נגב 1",
-        "label": "N080 · נגב 1",
-        "aliases": [
-          "N080",
-          "נגב 1",
-          "נגב 1",
-          "Negev 1",
-          "negev 1",
-          "N080_negev-1_rose_front_01.jpg",
-          "n080",
-          "נגב 1",
-          "negev 1",
-          "negev 1"
-        ],
-        "type": "שרשרת",
-        "family": "נגב 1",
-        "nameHe": "נגב 1",
-        "nameEn": "Negev 1",
-        "technicalName": "negev 1",
-        "meta": "מוצר קיים בקטלוג · שרשרת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-N080",
-          "src": "/real-data/catalog_N080_N080_negev-1_rose_front_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "N080_negev-1_rose_front_01.jpg",
-        "productId": "N080",
-        "referenceProductId": "N080",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "possible_phash_le8",
-          "driveDistance": "6",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "N080_negev-1_yellow_front_02.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-12-18-web-card-013",
+      "id": "dropbox-2025-12-18-web-card-008",
       "sourceRef": "pg_repair_48f313ca69e5f789",
-      "title": "2025-12-18 · פריט 13",
+      "title": "2025-12-18 · פריט 8",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2163,9 +1382,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-014",
+      "id": "dropbox-2025-12-18-web-card-009",
       "sourceRef": "pg_repair_91824136a90e15ee",
-      "title": "2025-12-18 · פריט 14",
+      "title": "2025-12-18 · פריט 9",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2321,9 +1540,9 @@
       }
     },
     {
-      "id": "dropbox-2025-12-18-web-card-015",
+      "id": "dropbox-2025-12-18-web-card-010",
       "sourceRef": "pg_repair_be79a4407d7a619b",
-      "title": "2025-12-18 · פריט 15",
+      "title": "2025-12-18 · פריט 10",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -2472,20 +1691,50 @@
   ],
   "auto_accounted_assets": [
     {
-      "asset_id": "asset_ee39bac77ce1e6a56a7e1df8",
-      "source_path": "2025-12-18/web/20251209-web res 1500-14.jpg",
+      "asset_id": "asset_9f81934fc14e9afdfaf0c005",
+      "source_path": "2025-12-18/web/20251209-web res 1500-10.jpg",
       "lane": "terminal_closed",
       "reason": "published_active_validated"
     },
     {
+      "asset_id": "asset_fb136564f0419e35d5fb7992",
+      "source_path": "2025-12-18/web/20251209-web res 1500-12.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_ee39bac77ce1e6a56a7e1df8",
+      "source_path": "2025-12-18/web/20251209-web res 1500-14.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "ready_for_package"
+    },
+    {
       "asset_id": "asset_c7047fdf5b0b654ce77fe877",
       "source_path": "2025-12-18/web/20251209-web res 1500-15.jpg",
+      "lane": "downstream_existing_workflow",
+      "reason": "ready_for_package"
+    },
+    {
+      "asset_id": "asset_dca7ecf3e662d9a0a6c3e4ec",
+      "source_path": "2025-12-18/web/20251209-web res 1500-18.jpg",
       "lane": "terminal_closed",
       "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_f87acf1031b7629f98997e6a",
       "source_path": "2025-12-18/web/20251209-web res 1500-19.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_2389999159c037c7af0f9b94",
+      "source_path": "2025-12-18/web/20251209-web res 1500-2.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_ee6cd02170419fea3f288af6",
+      "source_path": "2025-12-18/web/20251209-web res 1500-4.jpg",
       "lane": "terminal_closed",
       "reason": "published_active_validated"
     },
@@ -2512,13 +1761,14 @@
   "coverage": {
     "expected": 21,
     "seen": 21,
-    "reviewable": 15,
-    "review_cards": 15,
-    "auto_accounted": 6,
+    "reviewable": 10,
+    "review_cards": 10,
+    "auto_accounted": 11,
     "blocked": 0,
     "lane_counts": {
-      "dalia_identity_review": 15,
-      "terminal_closed": 6
+      "terminal_closed": 9,
+      "dalia_identity_review": 10,
+      "downstream_existing_workflow": 2
     }
   },
   "detector": {
@@ -2528,9 +1778,9 @@
   },
   "historical_prefilter": {
     "source": "dropbox_queue_drive_shopify_validation",
-    "cards_with_catalog_suggestion": 14,
+    "cards_with_catalog_suggestion": 9,
     "manual_confirmation_required": true
   },
-  "generated_at": "2026-07-10T09:00:43.753172+00:00",
+  "generated_at": "2026-08-09T12:20:15.530289+00:00",
   "no_live_writes": true
 }

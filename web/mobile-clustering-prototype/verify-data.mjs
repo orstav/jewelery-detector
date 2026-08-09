@@ -78,5 +78,5 @@ for (const product of products) {
   if (!fs.existsSync(new URL(`./public${src}`, import.meta.url))) throw new Error(`Catalog thumbnail missing: ${src}`);
 }
 
-if (historicalSuggestionCards !== 152) throw new Error(`Expected 152 current historical visual suggestions, got ${historicalSuggestionCards}`);
+if (historicalSuggestionCards !== 132) throw new Error(`Expected 132 current unresolved historical visual suggestions after live-image reconciliation, got ${historicalSuggestionCards}`);
 console.log(`Verified ${batchIndex.length} batches, ${totalCards} review cards, ${totalReviewable}/${totalSource} web assets queued for Dalia, ${historicalSuggestionCards} manually-confirmed historical suggestions, and ${products.length} catalog products.`);

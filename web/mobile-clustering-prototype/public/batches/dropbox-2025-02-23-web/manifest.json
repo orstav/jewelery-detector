@@ -14,8 +14,8 @@
       "height": 1500,
       "sha256": "50a3f576d78a68ff66b4c2e9774d879161d8a2bfa6e377929507cb88cc1ecba2",
       "product_group_id": "pg_repair_058cecfbbc412f4a",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_c5e54fa4eb12db813a4583e3",
@@ -26,8 +26,8 @@
       "height": 1500,
       "sha256": "1ad5d30a9e05b94271fea7b9695e3d3dc9333cca485bd772b8194ccffc7f29e9",
       "product_group_id": "pg_repair_5704244c1aa2532a",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_62b1e4d8b981876779c952e8",
@@ -45,324 +45,8 @@
   "review_cards": [
     {
       "id": "dropbox-2025-02-23-web-card-001",
-      "sourceRef": "pg_repair_058cecfbbc412f4a",
-      "title": "2025-02-23 · פריט 1",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_08b7be556feb2823ddb1b448",
-          "src": "/batches/dropbox-2025-02-23-web/src_20241210-web_res_1500-2.jpg",
-          "sourcePath": "2025-02-23/web/20241210-web res 1500-2.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "E105",
-          "name": "חישוק תחרה",
-          "label": "E105 · חישוק תחרה",
-          "aliases": [
-            "E105",
-            "חישוק תחרה",
-            "חישוק תחרה",
-            "Lace hoop",
-            "lace hoop",
-            "E105_lace-hoop_rose_front_01.jpg",
-            "e105",
-            "חישוק תחרה",
-            "lace hoop",
-            "lace hoop"
-          ],
-          "type": "עגילים",
-          "family": "חישוק תחרה",
-          "nameHe": "חישוק תחרה",
-          "nameEn": "Lace hoop",
-          "technicalName": "lace hoop",
-          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-E105",
-            "src": "/real-data/catalog_E105_E105_lace-hoop_rose_front_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "E105_lace-hoop_rose_front_01.jpg",
-          "productId": "E105",
-          "referenceProductId": "E105",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "possible_phash_le8",
-            "driveDistance": "5",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "E105_lace-hoop_yellow_front_04.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "E105",
-          "name": "חישוק תחרה",
-          "label": "E105 · חישוק תחרה",
-          "aliases": [
-            "E105",
-            "חישוק תחרה",
-            "חישוק תחרה",
-            "Lace hoop",
-            "lace hoop",
-            "E105_lace-hoop_rose_front_01.jpg",
-            "e105",
-            "חישוק תחרה",
-            "lace hoop",
-            "lace hoop"
-          ],
-          "type": "עגילים",
-          "family": "חישוק תחרה",
-          "nameHe": "חישוק תחרה",
-          "nameEn": "Lace hoop",
-          "technicalName": "lace hoop",
-          "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-E105",
-            "src": "/real-data/catalog_E105_E105_lace-hoop_rose_front_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "E105_lace-hoop_rose_front_01.jpg",
-          "productId": "E105",
-          "referenceProductId": "E105",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "possible_phash_le8",
-            "driveDistance": "5",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "E105_lace-hoop_yellow_front_04.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "E105",
-        "name": "חישוק תחרה",
-        "label": "E105 · חישוק תחרה",
-        "aliases": [
-          "E105",
-          "חישוק תחרה",
-          "חישוק תחרה",
-          "Lace hoop",
-          "lace hoop",
-          "E105_lace-hoop_rose_front_01.jpg",
-          "e105",
-          "חישוק תחרה",
-          "lace hoop",
-          "lace hoop"
-        ],
-        "type": "עגילים",
-        "family": "חישוק תחרה",
-        "nameHe": "חישוק תחרה",
-        "nameEn": "Lace hoop",
-        "technicalName": "lace hoop",
-        "meta": "מוצר קיים בקטלוג · עגילים · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-E105",
-          "src": "/real-data/catalog_E105_E105_lace-hoop_rose_front_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "E105_lace-hoop_rose_front_01.jpg",
-        "productId": "E105",
-        "referenceProductId": "E105",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "possible_phash_le8",
-          "driveDistance": "5",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "E105_lace-hoop_yellow_front_04.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-02-23-web-card-002",
-      "sourceRef": "pg_repair_5704244c1aa2532a",
-      "title": "2025-02-23 · פריט 2",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_c5e54fa4eb12db813a4583e3",
-          "src": "/batches/dropbox-2025-02-23-web/src_20241210-web_res_1500.jpg",
-          "sourcePath": "2025-02-23/web/20241210-web res 1500.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R046",
-          "name": "עלים מטפסים (אייבי)",
-          "label": "R046 · עלים מטפסים (אייבי)",
-          "aliases": [
-            "R046",
-            "עלים מטפסים (אייבי)",
-            "עלים מטפסים (אייבי)",
-            "Ivy",
-            "ivy",
-            "R046_ivy_yellow_lifestyle_angled_01.jpg",
-            "r046",
-            "עלים מטפסים (אייבי)",
-            "ivy",
-            "ivy"
-          ],
-          "type": "טבעת",
-          "family": "עלים מטפסים (אייבי)",
-          "nameHe": "עלים מטפסים (אייבי)",
-          "nameEn": "Ivy",
-          "technicalName": "ivy",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R046",
-            "src": "/real-data/catalog_R046_R046_ivy_yellow_lifestyle_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R046_ivy_yellow_lifestyle_angled_01.jpg",
-          "productId": "R046",
-          "referenceProductId": "R046",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "4",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R046_ivy_yellow_product_front_01.png",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R046",
-          "name": "עלים מטפסים (אייבי)",
-          "label": "R046 · עלים מטפסים (אייבי)",
-          "aliases": [
-            "R046",
-            "עלים מטפסים (אייבי)",
-            "עלים מטפסים (אייבי)",
-            "Ivy",
-            "ivy",
-            "R046_ivy_yellow_lifestyle_angled_01.jpg",
-            "r046",
-            "עלים מטפסים (אייבי)",
-            "ivy",
-            "ivy"
-          ],
-          "type": "טבעת",
-          "family": "עלים מטפסים (אייבי)",
-          "nameHe": "עלים מטפסים (אייבי)",
-          "nameEn": "Ivy",
-          "technicalName": "ivy",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": {
-            "id": "catalog-R046",
-            "src": "/real-data/catalog_R046_R046_ivy_yellow_lifestyle_angled_01.jpg"
-          },
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R046_ivy_yellow_lifestyle_angled_01.jpg",
-          "productId": "R046",
-          "referenceProductId": "R046",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "4",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R046_ivy_yellow_product_front_01.png",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R046",
-        "name": "עלים מטפסים (אייבי)",
-        "label": "R046 · עלים מטפסים (אייבי)",
-        "aliases": [
-          "R046",
-          "עלים מטפסים (אייבי)",
-          "עלים מטפסים (אייבי)",
-          "Ivy",
-          "ivy",
-          "R046_ivy_yellow_lifestyle_angled_01.jpg",
-          "r046",
-          "עלים מטפסים (אייבי)",
-          "ivy",
-          "ivy"
-        ],
-        "type": "טבעת",
-        "family": "עלים מטפסים (אייבי)",
-        "nameHe": "עלים מטפסים (אייבי)",
-        "nameEn": "Ivy",
-        "technicalName": "ivy",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": {
-          "id": "catalog-R046",
-          "src": "/real-data/catalog_R046_R046_ivy_yellow_lifestyle_angled_01.jpg"
-        },
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R046_ivy_yellow_lifestyle_angled_01.jpg",
-        "productId": "R046",
-        "referenceProductId": "R046",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "4",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R046_ivy_yellow_product_front_01.png",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2025-02-23-web-card-003",
       "sourceRef": "pg_repair_9e4fedb94381beef",
-      "title": "2025-02-23 · פריט 3",
+      "title": "2025-02-23 · פריט 1",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -385,17 +69,31 @@
       "existingCandidate": null
     }
   ],
-  "auto_accounted_assets": [],
+  "auto_accounted_assets": [
+    {
+      "asset_id": "asset_08b7be556feb2823ddb1b448",
+      "source_path": "2025-02-23/web/20241210-web res 1500-2.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_c5e54fa4eb12db813a4583e3",
+      "source_path": "2025-02-23/web/20241210-web res 1500.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    }
+  ],
   "blocked_assets": [],
   "coverage": {
     "expected": 3,
     "seen": 3,
-    "reviewable": 3,
-    "review_cards": 3,
-    "auto_accounted": 0,
+    "reviewable": 1,
+    "review_cards": 1,
+    "auto_accounted": 2,
     "blocked": 0,
     "lane_counts": {
-      "dalia_identity_review": 3
+      "terminal_closed": 2,
+      "dalia_identity_review": 1
     }
   },
   "detector": {
@@ -405,9 +103,9 @@
   },
   "historical_prefilter": {
     "source": "dropbox_queue_drive_shopify_validation",
-    "cards_with_catalog_suggestion": 2,
+    "cards_with_catalog_suggestion": 0,
     "manual_confirmation_required": true
   },
-  "generated_at": "2026-07-10T09:00:43.692544+00:00",
+  "generated_at": "2026-08-09T12:20:15.455706+00:00",
   "no_live_writes": true
 }

@@ -14,8 +14,8 @@
       "height": 1500,
       "sha256": "410b14bf6b06297081da37a0e9bde7420f9bfbe05c3ae59ce9d513127d8843a0",
       "product_group_id": "pg_repair_5ab59903a887393d",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_83218384488f08389517b7d1",
@@ -26,8 +26,8 @@
       "height": 1500,
       "sha256": "0acaa12800afd511369126cfa6d9d88ed7134071a23c40ef9789bd0e24d00e52",
       "product_group_id": "pg_repair_ad00810a90871cd5",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "published_active_validated",
+      "coverage_lane": "terminal_closed"
     },
     {
       "asset_id": "asset_ead26689c6127fc0bfbb68e8",
@@ -57,306 +57,8 @@
   "review_cards": [
     {
       "id": "dropbox-2026-05-10-web-card-001",
-      "sourceRef": "pg_repair_5ab59903a887393d",
-      "title": "2026-05-10 · פריט 1",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_726207b51f1ed3f0071f3178",
-          "src": "/batches/dropbox-2026-05-10-web/src_20140105-web_res_1500-2.jpg",
-          "sourcePath": "2026-05-10/web/20140105-web res 1500-2.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R019",
-          "name": "אמילי M",
-          "label": "R019 · אמילי M",
-          "aliases": [
-            "R019",
-            "אמילי M",
-            "אמילי M",
-            "Amelie M",
-            "R018 amelie s ruby",
-            "R018_amelie-s_ruby_rose_angled_01.jpg",
-            "r019",
-            "אמילי m",
-            "amelie m",
-            "r018 amelie s ruby"
-          ],
-          "type": "טבעת",
-          "family": "אמילי M",
-          "nameHe": "אמילי M",
-          "nameEn": "Amelie M",
-          "technicalName": "R018 amelie s ruby",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": null,
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R018_amelie-s_ruby_rose_angled_01.jpg",
-          "productId": "R019",
-          "referenceProductId": "R019",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R018_amelie-s_ruby_rose_frontal_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R019",
-          "name": "אמילי M",
-          "label": "R019 · אמילי M",
-          "aliases": [
-            "R019",
-            "אמילי M",
-            "אמילי M",
-            "Amelie M",
-            "R018 amelie s ruby",
-            "R018_amelie-s_ruby_rose_angled_01.jpg",
-            "r019",
-            "אמילי m",
-            "amelie m",
-            "r018 amelie s ruby"
-          ],
-          "type": "טבעת",
-          "family": "אמילי M",
-          "nameHe": "אמילי M",
-          "nameEn": "Amelie M",
-          "technicalName": "R018 amelie s ruby",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": null,
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R018_amelie-s_ruby_rose_angled_01.jpg",
-          "productId": "R019",
-          "referenceProductId": "R019",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R018_amelie-s_ruby_rose_frontal_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R019",
-        "name": "אמילי M",
-        "label": "R019 · אמילי M",
-        "aliases": [
-          "R019",
-          "אמילי M",
-          "אמילי M",
-          "Amelie M",
-          "R018 amelie s ruby",
-          "R018_amelie-s_ruby_rose_angled_01.jpg",
-          "r019",
-          "אמילי m",
-          "amelie m",
-          "r018 amelie s ruby"
-        ],
-        "type": "טבעת",
-        "family": "אמילי M",
-        "nameHe": "אמילי M",
-        "nameEn": "Amelie M",
-        "technicalName": "R018 amelie s ruby",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": null,
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R018_amelie-s_ruby_rose_angled_01.jpg",
-        "productId": "R019",
-        "referenceProductId": "R019",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "2",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R018_amelie-s_ruby_rose_frontal_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-05-10-web-card-002",
-      "sourceRef": "pg_repair_ad00810a90871cd5",
-      "title": "2026-05-10 · פריט 2",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": "historical_drive_visual_candidate",
-      "photos": [
-        {
-          "id": "asset_83218384488f08389517b7d1",
-          "src": "/batches/dropbox-2026-05-10-web/src_20140105-web_res_1500-3.jpg",
-          "sourcePath": "2026-05-10/web/20140105-web res 1500-3.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [
-        {
-          "id": "R019",
-          "name": "אמילי M",
-          "label": "R019 · אמילי M",
-          "aliases": [
-            "R019",
-            "אמילי M",
-            "אמילי M",
-            "Amelie M",
-            "R018 amelie s ruby",
-            "R018_amelie-s_ruby_rose_angled_01.jpg",
-            "r019",
-            "אמילי m",
-            "amelie m",
-            "r018 amelie s ruby"
-          ],
-          "type": "טבעת",
-          "family": "אמילי M",
-          "nameHe": "אמילי M",
-          "nameEn": "Amelie M",
-          "technicalName": "R018 amelie s ruby",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": null,
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R018_amelie-s_ruby_rose_angled_01.jpg",
-          "productId": "R019",
-          "referenceProductId": "R019",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R018_amelie-s_ruby_rose_frontal_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidates": [
-        {
-          "id": "R019",
-          "name": "אמילי M",
-          "label": "R019 · אמילי M",
-          "aliases": [
-            "R019",
-            "אמילי M",
-            "אמילי M",
-            "Amelie M",
-            "R018 amelie s ruby",
-            "R018_amelie-s_ruby_rose_angled_01.jpg",
-            "r019",
-            "אמילי m",
-            "amelie m",
-            "r018 amelie s ruby"
-          ],
-          "type": "טבעת",
-          "family": "אמילי M",
-          "nameHe": "אמילי M",
-          "nameEn": "Amelie M",
-          "technicalName": "R018 amelie s ruby",
-          "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-          "image": null,
-          "catalogSource": "drive_catalog_index",
-          "imageName": "R018_amelie-s_ruby_rose_angled_01.jpg",
-          "productId": "R019",
-          "referenceProductId": "R019",
-          "source": "historical_drive_visual_candidate",
-          "provenance": "historical_drive_visual_candidate",
-          "score": null,
-          "detectorScore": null,
-          "prefilterEvidence": {
-            "source": "historical_drive_shopify_read_only_audit",
-            "driveMatchType": "near_phash_le4",
-            "driveDistance": "2",
-            "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-            "recommendedAction": "visual_confirm_against_drive_before_new_work",
-            "matchedDriveImage": "R018_amelie-s_ruby_rose_frontal_01.jpg",
-            "manualConfirmationRequired": true
-          }
-        }
-      ],
-      "existingCandidate": {
-        "id": "R019",
-        "name": "אמילי M",
-        "label": "R019 · אמילי M",
-        "aliases": [
-          "R019",
-          "אמילי M",
-          "אמילי M",
-          "Amelie M",
-          "R018 amelie s ruby",
-          "R018_amelie-s_ruby_rose_angled_01.jpg",
-          "r019",
-          "אמילי m",
-          "amelie m",
-          "r018 amelie s ruby"
-        ],
-        "type": "טבעת",
-        "family": "אמילי M",
-        "nameHe": "אמילי M",
-        "nameEn": "Amelie M",
-        "technicalName": "R018 amelie s ruby",
-        "meta": "מוצר קיים בקטלוג · טבעת · תמונת ייחוס לקריאה בלבד",
-        "image": null,
-        "catalogSource": "drive_catalog_index",
-        "imageName": "R018_amelie-s_ruby_rose_angled_01.jpg",
-        "productId": "R019",
-        "referenceProductId": "R019",
-        "source": "historical_drive_visual_candidate",
-        "provenance": "historical_drive_visual_candidate",
-        "score": null,
-        "detectorScore": null,
-        "prefilterEvidence": {
-          "source": "historical_drive_shopify_read_only_audit",
-          "driveMatchType": "near_phash_le4",
-          "driveDistance": "2",
-          "reducedQueueClass": "possible_drive_catalog_duplicate_needs_visual_confirmation",
-          "recommendedAction": "visual_confirm_against_drive_before_new_work",
-          "matchedDriveImage": "R018_amelie-s_ruby_rose_frontal_01.jpg",
-          "manualConfirmationRequired": true
-        }
-      }
-    },
-    {
-      "id": "dropbox-2026-05-10-web-card-003",
       "sourceRef": "pg_repair_69073883ab5b4607",
-      "title": "2026-05-10 · פריט 3",
+      "title": "2026-05-10 · פריט 1",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -512,9 +214,9 @@
       }
     },
     {
-      "id": "dropbox-2026-05-10-web-card-004",
+      "id": "dropbox-2026-05-10-web-card-002",
       "sourceRef": "pg_repair_d466834a81988f7b",
-      "title": "2026-05-10 · פריט 4",
+      "title": "2026-05-10 · פריט 2",
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
@@ -670,17 +372,31 @@
       }
     }
   ],
-  "auto_accounted_assets": [],
+  "auto_accounted_assets": [
+    {
+      "asset_id": "asset_726207b51f1ed3f0071f3178",
+      "source_path": "2026-05-10/web/20140105-web res 1500-2.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    },
+    {
+      "asset_id": "asset_83218384488f08389517b7d1",
+      "source_path": "2026-05-10/web/20140105-web res 1500-3.jpg",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
+    }
+  ],
   "blocked_assets": [],
   "coverage": {
     "expected": 4,
     "seen": 4,
-    "reviewable": 4,
-    "review_cards": 4,
-    "auto_accounted": 0,
+    "reviewable": 2,
+    "review_cards": 2,
+    "auto_accounted": 2,
     "blocked": 0,
     "lane_counts": {
-      "dalia_identity_review": 4
+      "terminal_closed": 2,
+      "dalia_identity_review": 2
     }
   },
   "detector": {
@@ -690,9 +406,9 @@
   },
   "historical_prefilter": {
     "source": "dropbox_queue_drive_shopify_validation",
-    "cards_with_catalog_suggestion": 4,
+    "cards_with_catalog_suggestion": 2,
     "manual_confirmation_required": true
   },
-  "generated_at": "2026-07-10T09:00:43.791042+00:00",
+  "generated_at": "2026-08-09T12:20:15.571874+00:00",
   "no_live_writes": true
 }

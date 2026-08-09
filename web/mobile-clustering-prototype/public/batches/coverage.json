@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T09:00:43.811778+00:00",
+  "generated_at": "2026-08-09T12:20:15.594182+00:00",
   "source": "stav_source_intake_sqlite",
   "source_snapshot": "dropbox_stav_main",
   "total_assets": 555,
@@ -8,15 +8,16 @@
   "lane_counts": {
     "old_work_catalog_exact": 13,
     "old_work_ownership_review": 4,
-    "dalia_identity_review": 161,
+    "dalia_identity_review": 140,
+    "terminal_closed": 52,
     "support_linked_to_web": 203,
-    "terminal_closed": 35,
+    "system_review_pending": 1,
     "hal_prefilter_blocked": 1,
     "fix_deferred_next_pass": 132,
-    "downstream_existing_workflow": 6
+    "downstream_existing_workflow": 9
   },
-  "reviewable_web_assets": 161,
-  "review_batches": 18,
+  "reviewable_web_assets": 140,
+  "review_batches": 16,
   "batches": [
     {
       "batch_id": "dropbox-2025-03-19-web",
@@ -83,9 +84,9 @@
       "label": "2026-05-10",
       "source_folder": "2026-05-10/web",
       "source_assets": 4,
-      "reviewable_assets": 4,
-      "review_cards": 4,
-      "auto_accounted": 0,
+      "reviewable_assets": 2,
+      "review_cards": 2,
+      "auto_accounted": 2,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2026-05-10-web"
@@ -131,9 +132,9 @@
       "label": "2026-01-08",
       "source_folder": "2026-01-08/web",
       "source_assets": 33,
-      "reviewable_assets": 22,
-      "review_cards": 22,
-      "auto_accounted": 11,
+      "reviewable_assets": 13,
+      "review_cards": 13,
+      "auto_accounted": 20,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2026-01-08-web"
@@ -167,9 +168,9 @@
       "label": "2025-12-18",
       "source_folder": "2025-12-18/web",
       "source_assets": 21,
-      "reviewable_assets": 15,
-      "review_cards": 15,
-      "auto_accounted": 6,
+      "reviewable_assets": 10,
+      "review_cards": 10,
+      "auto_accounted": 11,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2025-12-18-web"
@@ -191,11 +192,11 @@
       "label": "2025-08-14",
       "source_folder": "2025-08-14/web",
       "source_assets": 2,
-      "reviewable_assets": 2,
-      "review_cards": 2,
-      "auto_accounted": 0,
+      "reviewable_assets": 0,
+      "review_cards": 0,
+      "auto_accounted": 2,
       "blocked": 0,
-      "complete": false,
+      "complete": true,
       "url": "/?batch=dropbox-2025-08-14-web"
     },
     {
@@ -203,11 +204,11 @@
       "label": "2025-03-24",
       "source_folder": "2025-03-24/web",
       "source_assets": 2,
-      "reviewable_assets": 1,
-      "review_cards": 1,
-      "auto_accounted": 1,
+      "reviewable_assets": 0,
+      "review_cards": 0,
+      "auto_accounted": 2,
       "blocked": 0,
-      "complete": false,
+      "complete": true,
       "url": "/?batch=dropbox-2025-03-24-web"
     },
     {
@@ -215,9 +216,9 @@
       "label": "2025-02-23",
       "source_folder": "2025-02-23/web",
       "source_assets": 3,
-      "reviewable_assets": 3,
-      "review_cards": 3,
-      "auto_accounted": 0,
+      "reviewable_assets": 1,
+      "review_cards": 1,
+      "auto_accounted": 2,
       "blocked": 0,
       "complete": false,
       "url": "/?batch=dropbox-2025-02-23-web"
@@ -452,9 +453,9 @@
       "source_date": "2025-02-23",
       "role": "web",
       "product_group_id": "pg_repair_058cecfbbc412f4a",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_c5e54fa4eb12db813a4583e3",
@@ -462,9 +463,9 @@
       "source_date": "2025-02-23",
       "role": "web",
       "product_group_id": "pg_repair_5704244c1aa2532a",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_62b1e4d8b981876779c952e8",
@@ -1762,9 +1763,9 @@
       "source_date": "2025-03-24",
       "role": "web",
       "product_group_id": "pg_repair_40fb890592186816",
-      "group_status": "dropbox_new_candidate_needs_review",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_new_candidate_needs_review"
+      "group_status": "raw_intake_local_images_missing",
+      "lane": "system_review_pending",
+      "reason": "raw_intake_local_images_missing"
     },
     {
       "asset_id": "asset_be1c2696c43478a25b2d9ee4",
@@ -2542,9 +2543,9 @@
       "source_date": "2025-08-14",
       "role": "web",
       "product_group_id": "pg_repair_def83af4389cb976",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_8db7b69b628d0682b935cac5",
@@ -2552,9 +2553,9 @@
       "source_date": "2025-08-14",
       "role": "web",
       "product_group_id": "pg_repair_6338d76285249815",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_66acfb3635aa105f27f510f0",
@@ -2892,9 +2893,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_repair_afb5e619a2be3a59",
-      "group_status": "dropbox_likely_existing_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_likely_existing_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_36901814b1bf012a185f8dcc",
@@ -2912,9 +2913,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_repair_22262014a251bc1e",
-      "group_status": "dropbox_likely_existing_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_likely_existing_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_2148baca9b0f81d6d1b2e1e7",
@@ -2932,9 +2933,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_3f933490bc7a_1",
-      "group_status": "published_active_validated",
-      "lane": "terminal_closed",
-      "reason": "published_active_validated"
+      "group_status": "ready_for_package",
+      "lane": "downstream_existing_workflow",
+      "reason": "ready_for_package"
     },
     {
       "asset_id": "asset_c7047fdf5b0b654ce77fe877",
@@ -2942,9 +2943,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_3f933490bc7a_1",
-      "group_status": "published_active_validated",
-      "lane": "terminal_closed",
-      "reason": "published_active_validated"
+      "group_status": "ready_for_package",
+      "lane": "downstream_existing_workflow",
+      "reason": "ready_for_package"
     },
     {
       "asset_id": "asset_90b6626f1ec8943cf81f9609",
@@ -2972,9 +2973,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_repair_0ccbbfa2fa90f61e",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_f87acf1031b7629f98997e6a",
@@ -2992,9 +2993,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_repair_f9b347c26008a8fd",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_99937e60c2e0d5d2ba933da7",
@@ -3032,9 +3033,9 @@
       "source_date": "2025-12-18",
       "role": "web",
       "product_group_id": "pg_repair_330cbfe44778b787",
-      "group_status": "dropbox_likely_existing_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_likely_existing_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_288c8d3f25afda7fb631c170",
@@ -3952,9 +3953,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_125b1aad40ce_1",
-      "group_status": "published_active_validated",
-      "lane": "terminal_closed",
-      "reason": "published_active_validated"
+      "group_status": "ready_for_package",
+      "lane": "downstream_existing_workflow",
+      "reason": "ready_for_package"
     },
     {
       "asset_id": "asset_6b5a409dc9c29bf02048bd96",
@@ -3972,9 +3973,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_f8478645ae5d8d9f",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_0a224248ced8972e0d0bd306",
@@ -3982,9 +3983,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_3b302d23e18ffa5f",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_234325e6a4e84cd563dff1a8",
@@ -4092,9 +4093,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_4d34cda570ca6845",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_67e793fcc0bcf4b67c34067a",
@@ -4102,9 +4103,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_efc845499bf2f9db",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_58ad22c456d47c02b3953eb5",
@@ -4122,9 +4123,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_e3c3819b533f66e1",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_c9590ca8340f482959475a7c",
@@ -4142,9 +4143,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_d7287a963226ecb2",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_14b53ba0d026432895fa6d12",
@@ -4152,9 +4153,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_eb20020d569aa85a",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_2386da96e6bf2234c7c9c388",
@@ -4162,9 +4163,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_aae3ad8914c34506",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_02aa790e4538d0dd76cf610b",
@@ -4212,9 +4213,9 @@
       "source_date": "2026-01-08",
       "role": "web",
       "product_group_id": "pg_repair_e99c60a979bfe3c3",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_a5c4afe3ece6a8b9fce1fab5",
@@ -4502,9 +4503,9 @@
       "source_date": "2026-01-18",
       "role": "web",
       "product_group_id": "pg_repair_01377e7408b8f325",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "group_status": "dropbox_new_candidate_needs_review",
       "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "reason": "dropbox_new_candidate_needs_review"
     },
     {
       "asset_id": "asset_5c0a3c000e59314d9089a7e2",
@@ -5282,9 +5283,9 @@
       "source_date": "2026-05-10",
       "role": "web",
       "product_group_id": "pg_repair_5ab59903a887393d",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_83218384488f08389517b7d1",
@@ -5292,9 +5293,9 @@
       "source_date": "2026-05-10",
       "role": "web",
       "product_group_id": "pg_repair_ad00810a90871cd5",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
-      "lane": "dalia_identity_review",
-      "reason": "dropbox_possible_duplicate_visual_confirm"
+      "group_status": "published_active_validated",
+      "lane": "terminal_closed",
+      "reason": "published_active_validated"
     },
     {
       "asset_id": "asset_ead26689c6127fc0bfbb68e8",

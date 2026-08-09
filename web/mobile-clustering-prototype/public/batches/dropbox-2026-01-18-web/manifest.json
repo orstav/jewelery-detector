@@ -134,7 +134,7 @@
       "height": 1500,
       "sha256": "fe65a397ae983133556bd8741d0d75acb440c3aa612dbe82d34f05105331ef0a",
       "product_group_id": "pg_repair_01377e7408b8f325",
-      "group_status": "dropbox_possible_duplicate_visual_confirm",
+      "group_status": "dropbox_new_candidate_needs_review",
       "coverage_lane": "dalia_identity_review"
     },
     {
@@ -758,8 +758,8 @@
       "subtitle": "תכשיט לבדיקה",
       "initialStage": "product_identity",
       "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזו תמונה של מוצר קיים או תמונה דומה. צריך לבחור לפי זהות התכשיט.",
-      "rawStatus": "dropbox_possible_duplicate_visual_confirm",
+      "halAssumption": "ייתכן שזה מוצר חדש. צריך לבדוק מול הקטלוג לפני יצירת זהות חדשה.",
+      "rawStatus": "dropbox_new_candidate_needs_review",
       "detectorStatus": "no_candidates",
       "detectorSource": null,
       "candidateSource": "historical_drive_visual_candidate",
@@ -2254,6 +2254,6 @@
     "cards_with_catalog_suggestion": 12,
     "manual_confirmation_required": true
   },
-  "generated_at": "2026-07-10T09:00:43.779282+00:00",
+  "generated_at": "2026-08-09T12:20:15.558452+00:00",
   "no_live_writes": true
 }

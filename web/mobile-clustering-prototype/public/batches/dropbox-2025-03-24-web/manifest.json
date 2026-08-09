@@ -14,8 +14,8 @@
       "height": 723,
       "sha256": "6a8f034a99829bba66274c1f9441acfa46cc93cdeedadf36ff79a037275649a0",
       "product_group_id": "pg_repair_40fb890592186816",
-      "group_status": "dropbox_new_candidate_needs_review",
-      "coverage_lane": "dalia_identity_review"
+      "group_status": "raw_intake_local_images_missing",
+      "coverage_lane": "system_review_pending"
     },
     {
       "asset_id": "asset_be1c2696c43478a25b2d9ee4",
@@ -30,34 +30,14 @@
       "coverage_lane": "hal_prefilter_blocked"
     }
   ],
-  "review_cards": [
-    {
-      "id": "dropbox-2025-03-24-web-card-001",
-      "sourceRef": "pg_repair_40fb890592186816",
-      "title": "2025-03-24 · פריט 1",
-      "subtitle": "תכשיט לבדיקה",
-      "initialStage": "product_identity",
-      "reviewIntent": "identity_decision",
-      "halAssumption": "ייתכן שזה מוצר חדש. צריך לבדוק מול הקטלוג לפני יצירת זהות חדשה.",
-      "rawStatus": "dropbox_new_candidate_needs_review",
-      "detectorStatus": "no_candidates",
-      "detectorSource": null,
-      "candidateSource": null,
-      "photos": [
-        {
-          "id": "asset_65f1cfe6f4200768c4d93585",
-          "src": "/batches/dropbox-2025-03-24-web/src_20250106-web_res_1500-2.jpg",
-          "sourcePath": "2025-03-24/web/20250106-web res 1500-2.jpg",
-          "sourceKind": "source_zip",
-          "role": "identity_review_photo"
-        }
-      ],
-      "candidates": [],
-      "existingCandidates": [],
-      "existingCandidate": null
-    }
-  ],
+  "review_cards": [],
   "auto_accounted_assets": [
+    {
+      "asset_id": "asset_65f1cfe6f4200768c4d93585",
+      "source_path": "2025-03-24/web/20250106-web res 1500-2.jpg",
+      "lane": "system_review_pending",
+      "reason": "raw_intake_local_images_missing"
+    },
     {
       "asset_id": "asset_be1c2696c43478a25b2d9ee4",
       "source_path": "2025-03-24/web/20250106-web res 1500.jpg",
@@ -69,12 +49,12 @@
   "coverage": {
     "expected": 2,
     "seen": 2,
-    "reviewable": 1,
-    "review_cards": 1,
-    "auto_accounted": 1,
+    "reviewable": 0,
+    "review_cards": 0,
+    "auto_accounted": 2,
     "blocked": 0,
     "lane_counts": {
-      "dalia_identity_review": 1,
+      "system_review_pending": 1,
       "hal_prefilter_blocked": 1
     }
   },
@@ -88,6 +68,6 @@
     "cards_with_catalog_suggestion": 0,
     "manual_confirmation_required": true
   },
-  "generated_at": "2026-07-10T09:00:43.744800+00:00",
+  "generated_at": "2026-08-09T12:20:15.520875+00:00",
   "no_live_writes": true
 }
