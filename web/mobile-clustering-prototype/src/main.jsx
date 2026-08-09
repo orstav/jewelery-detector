@@ -11,6 +11,9 @@ const GLOBAL_COVERAGE = window.STAV_GLOBAL_COVERAGE || {};
 const REQUESTED_BATCH_ID = (() => {
   try { return new URLSearchParams(window.location.search).get('batch'); } catch { return null; }
 })();
+const CONTINUOUS_QUEUE_MODE = (() => {
+  try { return new URLSearchParams(window.location.search).get('queue') === '1'; } catch { return false; }
+})();
 const DEFAULT_BATCH_ID = window.STAV_DEFAULT_BATCH || BATCH_INDEX.find((batch) => batch.reviewable_assets > 0)?.batch_id || 'dropbox-2025-03-19-web';
 const SELECTED_BATCH_ID = REQUESTED_BATCH_ID && ALL_BATCHES[REQUESTED_BATCH_ID] ? REQUESTED_BATCH_ID : DEFAULT_BATCH_ID;
 const SELECTED_BATCH = ALL_BATCHES[SELECTED_BATCH_ID] || null;
@@ -565,7 +568,23 @@ function batchHref(id) {
   } catch { return `/?batch=${encodeURIComponent(id)}`; }
 }
 
+async function nextIncompleteBatchId(currentBatchId) {
+  const open = BATCH_INDEX.filter((batch) => batch.reviewable_assets > 0);
+  if (!open.length) return null;
+  const currentIndex = Math.max(0, open.findIndex((batch) => batch.batch_id === currentBatchId));
+  const ordered = [...open.slice(currentIndex + 1), ...open.slice(0, currentIndex)];
+  for (const batch of ordered) {
+    const config = {...sharedSessionConfig(batch.batch_id), sessionId: `stav-${batch.batch_id}`};
+    const result = await loadRemoteState(config, batch.batch_id);
+    if (!result.state || !Array.isArray(result.state.tasks)) return batch.batch_id;
+    const decided = new Set((result.state.decisions || []).map((decision) => decision.taskId));
+    if (result.state.tasks.some((task) => !decided.has(task.id))) return batch.batch_id;
+  }
+  return null;
+}
+
 function BatchQueue({currentBatchId}) {
+  if (CONTINUOUS_QUEUE_MODE) return null;
   const open = BATCH_INDEX.filter((batch) => batch.reviewable_assets > 0);
   if (!open.length) return null;
   return <section className="batch-queue panel" aria-label="תאריכי צילום">
@@ -833,7 +852,7 @@ function Summary({decisions, buckets, tasks, sourceAssets, onReset, onEditDecisi
   function downloadPackets() {
     downloadJson(`${BATCH_ID}-identity-packets.json`, packetText);
   }
-  return <main><CompletedDecisionStrip decisions={decisions} onEdit={onEditDecision} /><section className="panel empty-state done-state"><div className="done-icon">✓</div><h2>הסבב הסתיים</h2><p>כל התמונות בסבב קיבלו החלטה. שמרי לשרת ואז אפשר לעבור לתאריך הבא.</p><div className="summary-grid"><div><strong>{tasks.length}</strong><span>פריטים</span></div><div><strong>{buckets.length}</strong><span>זהויות מוצר</span></div><div><strong>{(counts.new_product_identity || 0) + (counts.same_design_different_product || 0)}</strong><span>חדשים/עיצוב</span></div><div><strong>{whatsappFollowups}</strong><span>המשך וואטסאפ</span></div></div><div className="validation-box"><strong>{bundle.validation.packets.valid && bundle.validation.coverage.valid ? syncStatusLabel(syncStatus) : 'יש חסימות במבנה'}</strong><span>{bundle.validation.coverage.accounted}/{bundle.validation.coverage.expected} תמונות לבדיקה מכוסות</span></div><button className="btn primary" onClick={onSave}>שמירה לשרת</button>{nextBatch ? <a className="btn secondary-choice next-batch-link" href={batchHref(nextBatch.batch_id)}>מעבר לתאריך הבא · {nextBatch.label}</a> : null}<button className="btn tertiary-choice" onClick={downloadPackets}>הורדת גיבוי JSON</button><button className="btn tertiary-choice" onClick={onReset}>פתיחה מחדש של הסבב</button></section><BatchQueue currentBatchId={BATCH_ID} /></main>;
+  return <main><CompletedDecisionStrip decisions={decisions} onEdit={onEditDecision} /><section className="panel empty-state done-state"><div className="done-icon">✓</div><h2>{CONTINUOUS_QUEUE_MODE ? 'התור הסתיים' : 'הסבב הסתיים'}</h2><p>{CONTINUOUS_QUEUE_MODE ? 'כל התמונות הפתוחות קיבלו החלטה. העבודה נשמרה לשרת.' : 'כל התמונות בסבב קיבלו החלטה. שמרי לשרת ואז אפשר לעבור לתאריך הבא.'}</p><div className="summary-grid"><div><strong>{tasks.length}</strong><span>פריטים</span></div><div><strong>{buckets.length}</strong><span>זהויות מוצר</span></div><div><strong>{(counts.new_product_identity || 0) + (counts.same_design_different_product || 0)}</strong><span>חדשים/עיצוב</span></div><div><strong>{whatsappFollowups}</strong><span>המשך וואטסאפ</span></div></div><div className="validation-box"><strong>{bundle.validation.packets.valid && bundle.validation.coverage.valid ? syncStatusLabel(syncStatus) : 'יש חסימות במבנה'}</strong><span>{bundle.validation.coverage.accounted}/{bundle.validation.coverage.expected} תמונות לבדיקה מכוסות</span></div><button className="btn primary" onClick={onSave}>שמירה לשרת</button>{!CONTINUOUS_QUEUE_MODE && nextBatch ? <a className="btn secondary-choice next-batch-link" href={batchHref(nextBatch.batch_id)}>מעבר לתאריך הבא · {nextBatch.label}</a> : null}<button className="btn tertiary-choice" onClick={downloadPackets}>הורדת גיבוי JSON</button><button className="btn tertiary-choice" onClick={onReset}>פתיחה מחדש של הסבב</button></section><BatchQueue currentBatchId={BATCH_ID} /></main>;
 }
 
 function ExportPanel({decisions, buckets, sourceAssets, tasks, onClose, onSave, syncStatus}) {
@@ -897,6 +916,7 @@ function App() {
   const [showExport, setShowExport] = useState(false);
   const [splitTask, setSplitTask] = useState(null);
   const [lastDecisionNotice, setLastDecisionNotice] = useState(null);
+  const [queueRouting, setQueueRouting] = useState(false);
   const revisionRef = useRef(Number(saved?.revision || 0));
   const persistQueueRef = useRef(Promise.resolve());
 
@@ -921,6 +941,18 @@ function App() {
   const remaining = tasks.filter((task) => !completedIds.has(task.id));
   const completedCount = tasks.length - remaining.length;
   const photoCount = tasks.reduce((sum, task) => sum + task.photos.length, 0);
+
+  useEffect(() => {
+    if (!CONTINUOUS_QUEUE_MODE || queueRouting || !started || remaining.length > 0 || ['checking', 'saving'].includes(syncStatus)) return;
+    let cancelled = false;
+    setQueueRouting(true);
+    nextIncompleteBatchId(BATCH_ID).then((nextId) => {
+      if (cancelled) return;
+      if (nextId) window.location.assign(batchHref(nextId));
+      else setQueueRouting(false);
+    });
+    return () => { cancelled = true; };
+  }, [queueRouting, remaining.length, started, syncStatus]);
 
   function stateSnapshot(next = {}) {
     return {started, tasks, decisions, buckets, datasetVersion: DATASET_VERSION, batchId: BATCH_ID, sourceAssets: SOURCE_ASSETS, no_live_writes: true, ...next};
@@ -949,6 +981,10 @@ function App() {
     deleteRemoteState(sessionConfig, BATCH_ID).then((result) => setSyncStatus(result.status || 'local'));
     setStarted(false); setTasks(initialTasks); setDecisions([]); setBuckets([]); setSplitTask(null); setLastDecisionNotice(null); setShowExport(false);
   }
+  useEffect(() => {
+    if (!CONTINUOUS_QUEUE_MODE || started || !tasks.length || !['loaded', 'ready_empty'].includes(syncStatus)) return;
+    start();
+  }, [started, syncStatus, tasks.length]);
   function updateTask(task, patch) { const nextTasks = tasks.map((item) => item.id === task.id ? {...item, ...patch} : item); setTasks(nextTasks); persist({tasks: nextTasks}); }
   function createBucket(kind, label, task, payload = {}) {
     const photoPreviews = task.photos.slice(0, 4).map((photo) => ({id: photoId(photo), src: photo.src, label: shortSourceName(photo)}));

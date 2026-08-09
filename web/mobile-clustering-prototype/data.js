@@ -1241,7 +1241,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 4,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.453126+00:00",
+    "generated_at": "2026-08-09T12:37:34.174392+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-02-23-web": {
@@ -1352,7 +1352,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 0,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.455706+00:00",
+    "generated_at": "2026-08-09T12:37:34.176867+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-03-19-web": {
@@ -27839,7 +27839,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 41,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.496428+00:00",
+    "generated_at": "2026-08-09T12:37:34.208334+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-03-24-web": {
@@ -27912,7 +27912,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 0,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.520875+00:00",
+    "generated_at": "2026-08-09T12:37:34.233901+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-08-14-web": {
@@ -27984,7 +27984,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 0,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.521103+00:00",
+    "generated_at": "2026-08-09T12:37:34.234131+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-09-18-web": {
@@ -28265,7 +28265,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 1,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.522651+00:00",
+    "generated_at": "2026-08-09T12:37:34.235802+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-12-18-web": {
@@ -30051,7 +30051,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 9,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.530289+00:00",
+    "generated_at": "2026-08-09T12:37:34.243458+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-12-22-web": {
@@ -31003,7 +31003,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 5,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.534271+00:00",
+    "generated_at": "2026-08-09T12:37:34.247685+00:00",
     "no_live_writes": true
   },
   "dropbox-2025-12-30-web": {
@@ -31399,7 +31399,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 2,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.536857+00:00",
+    "generated_at": "2026-08-09T12:37:34.250161+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-01-08-web": {
@@ -33875,7 +33875,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 12,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.547695+00:00",
+    "generated_at": "2026-08-09T12:37:34.260621+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-01-18-web": {
@@ -36134,7 +36134,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 12,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.558452+00:00",
+    "generated_at": "2026-08-09T12:37:34.271689+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-04-20-web": {
@@ -37981,7 +37981,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 10,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.566678+00:00",
+    "generated_at": "2026-08-09T12:37:34.279925+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-04-27-web": {
@@ -38224,7 +38224,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 1,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.569345+00:00",
+    "generated_at": "2026-08-09T12:37:34.283085+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-05-10-web": {
@@ -38638,7 +38638,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 2,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.571874+00:00",
+    "generated_at": "2026-08-09T12:37:34.285697+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-06-08-web": {
@@ -40260,7 +40260,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 9,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.576803+00:00",
+    "generated_at": "2026-08-09T12:37:34.290752+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-06-15-web": {
@@ -41638,7 +41638,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 8,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.582835+00:00",
+    "generated_at": "2026-08-09T12:37:34.296899+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-06-22-web": {
@@ -43025,7 +43025,7 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 8,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.587653+00:00",
+    "generated_at": "2026-08-09T12:37:34.301751+00:00",
     "no_live_writes": true
   },
   "dropbox-2026-06-29-web": {
@@ -44421,12 +44421,12 @@ window.STAV_BATCHES = {
       "cards_with_catalog_suggestion": 8,
       "manual_confirmation_required": true
     },
-    "generated_at": "2026-08-09T12:20:15.592969+00:00",
+    "generated_at": "2026-08-09T12:37:34.307165+00:00",
     "no_live_writes": true
   }
 };
 window.STAV_GLOBAL_COVERAGE = {
-  "generated_at": "2026-08-09T12:20:15.594182+00:00",
+  "generated_at": "2026-08-09T12:37:34.308342+00:00",
   "source": "stav_source_intake_sqlite",
   "source_snapshot": "dropbox_stav_main",
   "total_assets": 555,
